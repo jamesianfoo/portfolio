@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="James Foo — Product Designer specialising in Developer Experience and AI-native workflows.">
+  <title>James Foo — Product Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header" id="top">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link active">Home</a>
+    <a href="about.html" class="mobile-menu-link">About</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Designing where complexity meets humans — enterprise systems, AI workflows, developer tools.</h1>
+        <p class="hero-subtitle">I design products where complexity is the brief — enterprise transformation, AI-native systems, and developer platforms built to perform at scale in all environments.</p>
+        <p class="hero-ai-line">Currently building Sous Pantry — a full-stack AI app — solo, using Claude Code.</p>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects">
+      <div class="container">
+        <div class="projects-grid">
+
+          <!-- Project 1: Sous Pantry -->
+          <a href="sous-pantry.html" class="project-card project-card--wide">
+            <div class="project-image project-image--placeholder">
+              <img src="images/souspantry.png" alt="Sous Pantry — AI-powered pantry and meal planning app" loading="lazy">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">WIP · Solo Build</span>
+              <h2 class="project-title">One designer. One AI. One full-stack app.</h2>
+              <p class="project-desc">Building Sous Pantry solo with Claude Code — and auditing every moment the tool broke down for a non-engineer.</p>
+            </div>
+          </a>
+
+          <!-- Project 2: The Hot Bar -->
+          <a href="hotbar.html" class="project-card">
+            <div class="project-image">
+              <img src="images/hotbar.png" alt="The Hot Bar — deployment workflow interface" loading="lazy">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Developer Experience · Macquarie</span>
+              <h2 class="project-title">4–7 days → 24 hours. Less friction, more velocity.</h2>
+              <p class="project-desc">A single persistent UI component that eliminated deployment dead-ends for engineers — and cut support escalations by 60%.</p>
+            </div>
+          </a>
+
+          <!-- Project 3: AI Access Requests -->
+          <a href="ai-access.html" class="project-card">
+            <div class="project-image">
+              <img src="images/ai-access.png" alt="AI Access Requests — Macquarie Bank" loading="lazy">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">AI Workflow · Macquarie</span>
+              <h2 class="project-title">90% less effort. 4 hours back every week.</h2>
+              <p class="project-desc">Replacing manual active directory requests with an AI-assisted workflow that let every user self-serve in under 5 minutes.</p>
+            </div>
+          </a>
+
+          <!-- Project 4: Risk Control -->
+          <a href="risk-control.html" class="project-card">
+            <div class="project-image">
+              <img src="images/risk-control.png" alt="Risk Control — Macquarie Bank compliance" loading="lazy">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Compliance Design · Macquarie</span>
+              <h2 class="project-title">7 days of risk remediation. Done in 24 hours.</h2>
+              <p class="project-desc">Turning a week-long compliance bottleneck into a self-service workflow — without simplifying the rules, only the experience.</p>
+            </div>
+          </a>
+
+          <!-- Project 5: Work Planner -->
+          <a href="work-planner.html" class="project-card">
+            <div class="project-image">
+              <img src="images/work-planner.jpg" alt="Work Planner — infrastructure planning platform" loading="lazy">
+            </div>
+            <div class="project-info">
+              <span class="project-tag">SaaS · Infrastructure Planning</span>
+              <h2 class="project-title">40% less time chasing other departments. 70% fewer wasted resources.</h2>
+              <p class="project-desc">Transforming fragmented spreadsheets and siloed GIS tools into a single web platform — so 15+ government and transit organisations could plan multi-year capital works without the coordination overhead.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="cta-title">Let's build great things together</h2>
+        <div class="cta-links">
+          <a href="mailto:jamesian.foo@gmail.com" class="cta-link">
+            jamesian.foo@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/james-foo/" class="cta-link cta-link--secondary" target="_blank" rel="noopener">
+            LinkedIn
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+              <path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">James Foo</span>
+        <span class="footer-role">Product Designer · Developer Experience</span>
+      </div>
+      <div class="footer-center">
+        <a href="mailto:jamesian.foo@gmail.com" class="footer-link">jamesian.foo@gmail.com</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer-right">
+        <span class="footer-meta">© 2026 &nbsp;·&nbsp; Built with Claude Code</span>
+        <a href="#top" class="back-to-top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

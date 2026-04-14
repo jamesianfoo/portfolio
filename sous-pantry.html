@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sous Pantry — Building an AI app solo and auditing the tool I built it with. A case study by James Foo.">
+  <title>Sous Pantry — James Foo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── RESET ─────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS ────────────────────────────────────────────────────────── */
+    :root {
+      --ink:        #0D1117;
+      --ink-2:      #3D4451;
+      --ink-3:      #6B7280;
+      --rule:       #E5E7EB;
+      --bg:         #FAFAF8;
+      --bg-warm:    #F4F1EB;
+      --accent:     #C85A2A;
+      --accent-lt:  #F5EDE8;
+      --teal:       #1A6B5C;
+      --teal-lt:    #E6F2EF;
+      --serif:      'DM Serif Display', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --mono:       'DM Mono', monospace;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── PORTFOLIO NAV ──────────────────────────────────────────────────── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 250, 248, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--ink);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0; right: 0;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 1px;
+    }
+
+    .nav-link--external {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ── MOBILE MENU ────────────────────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      padding: 3rem 2rem;
+      gap: 1.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu-link {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink-3);
+      transition: color var(--transition);
+    }
+
+    .mobile-menu-link:hover,
+    .mobile-menu-link.active {
+      color: var(--ink);
+    }
+
+    /* ── PAGE OFFSET ───────────────────────────────────────────────────── */
+    .page { padding-top: 0; }
+
+    /* ── HERO ───────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      padding: 6rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,90,42,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* back link in hero */
+    .hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 2rem;
+      transition: color var(--transition);
+    }
+
+    .hero-back:hover { color: rgba(255,255,255,0.75); }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      background: rgba(200,90,42,0.12);
+      border: 1px solid rgba(200,90,42,0.25);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      max-width: 720px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+    }
+
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── CONTENT ────────────────────────────────────────────────────────── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── SECTIONS ───────────────────────────────────────────────────────── */
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-3);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin: 2.5rem 0 0.75rem;
+      font-style: italic;
+    }
+
+    p { color: var(--ink-2); margin-bottom: 1.25rem; }
+    p:last-child { margin-bottom: 0; }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.875em;
+      background: var(--bg-warm);
+      border: 1px solid var(--rule);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--ink);
+    }
+
+    /* ── FEATURE PILLS ──────────────────────────────────────────────────── */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .feature-pill {
+      background: var(--teal-lt);
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 2px;
+      border: 1px solid rgba(26,107,92,0.2);
+    }
+
+    /* ── CALLOUT ────────────────────────────────────────────────────────── */
+    .callout {
+      background: var(--bg-warm);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.75rem;
+      margin: 2.5rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .callout p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ── CHAPTER CARD ───────────────────────────────────────────────────── */
+    .chapter {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .chapter-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .chapter h3 {
+      font-style: normal;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 1rem;
+      font-family: var(--sans);
+    }
+
+    .chapter p { font-size: 0.95rem; }
+    .chapter .callout { margin: 1.5rem 0 0; }
+    .chapter .callout p { font-size: 1rem; }
+
+    /* ── FIX CARDS ──────────────────────────────────────────────────────── */
+    .fixes {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .fix {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .fix-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-lt);
+      border: 1px solid rgba(200,90,42,0.2);
+      border-radius: 2px;
+      width: 28px; height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .fix-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .fix-desc {
+      font-size: 0.88rem;
+      color: var(--ink-3);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── STATUS GRID ────────────────────────────────────────────────────── */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .status-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.25rem;
+    }
+
+    .status-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-3);
+      margin-bottom: 6px;
+    }
+
+    .status-value {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .dot-green { background: #22C55E; }
+    .dot-amber { background: #F59E0B; }
+
+    .chapter-img {
+      margin-top: 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .chapter-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── SCREENSHOTS ─────────────────────────────────────────────────────── */
+    .screenshots {
+      padding: 4rem 0 4rem;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .screenshots-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+      max-width: 720px;
+      margin: 0 auto 0.75rem;
+      padding: 0 2rem;
+    }
+
+    .screenshots-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 400;
+      color: var(--ink);
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      padding: 0 2rem;
+      line-height: 1.25;
+    }
+
+    .screenshots-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 0 2rem 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .screenshots-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screenshot-item {
+      flex: 0 0 auto;
+      width: 260px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .screenshot-frame {
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .screenshot-caption {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--dust);
+      padding: 0 0.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .screenshots-scroll {
+        justify-content: center;
+        overflow-x: visible;
+        padding-bottom: 0;
+      }
+
+      .screenshot-item {
+        width: calc((min(1200px, 100vw) - 9rem) / 4);
+        max-width: 280px;
+      }
+    }
+
+    /* ── CLOSING ────────────────────────────────────────────────────────── */
+    .closing {
+      background: var(--ink);
+      color: #fff;
+      padding: 5rem 2rem;
+    }
+
+    .closing-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .closing h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .closing p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.05rem;
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .closing-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .closing-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--bg);
+      background: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.7rem 1.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .closing-cta:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .closing-cta--ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .closing-cta--ghost:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+      background: transparent;
+    }
+
+    /* ── PORTFOLIO FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--rule);
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .footer-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .footer-role {
+      font-size: 0.8125rem;
+      color: var(--ink-3);
+    }
+
+    .footer-center {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      transition: color var(--transition);
+    }
+
+    .footer-link:hover { color: var(--ink); }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.25rem;
+    }
+
+    .footer-meta {
+      font-size: 0.8125rem;
+      color: var(--ink-3);
+    }
+
+    .back-to-top {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-3);
+      transition: color var(--transition);
+    }
+
+    .back-to-top:hover { color: var(--ink); }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 4rem 1.25rem 3.5rem; }
+      .content { padding: 0 1.25rem; }
+      .hero-meta { gap: 1.25rem; }
+      .chapter { padding: 1.5rem; }
+      .fix { padding: 1rem 1.25rem; }
+      .closing { padding: 4rem 1.25rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .footer-right { align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body id="top">
+
+  <!-- PORTFOLIO NAV -->
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link">Home</a>
+    <a href="about.html" class="mobile-menu-link">About</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <a href="index.html" class="hero-back">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All work
+        </a>
+        <br />
+        <div class="hero-tag">WIP · Updated 2026</div>
+        <h1>Building an AI app solo —<br><em>and auditing the tool I built it with</em></h1>
+        <p class="hero-sub">Sous Pantry is an AI-powered pantry and meal planning app. This is the story of building it with Claude Code — and what that experience revealed about where the tool breaks down for non-engineers.</p>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <div class="meta-label">Platform</div>
+            <div class="meta-value">iOS · Android · Express.js</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Build tool</div>
+            <div class="meta-value">Claude Code</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Role</div>
+            <div class="meta-value">Solo designer &amp; builder</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Timeline</div>
+            <div class="meta-value">Nov 2025 – Present</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- THE PROBLEM -->
+    <section class="section">
+      <div class="content">
+        <div class="reveal">
+          <div class="section-label">Why This Exists</div>
+          <h2>The problem I lived every week</h2>
+          <p>I'd open the fridge after a long day and have no idea what was actually in there. Not roughly — truly no idea. Things buried at the back. Duplicates I'd bought because I forgot I already had them. Ingredients quietly expiring while I ordered takeaway instead.</p>
+          <p>And when I did try to cook, standing in front of a full pantry felt worse than an empty one. Too many options, no clear path. I'd scan the shelves looking for something that clicked, trying to mentally map what went with what — after a day that had already used up every bit of cognitive bandwidth I had.</p>
+          <p>The mental load of meal planning isn't the cooking. It's the inventory problem nobody has solved well. What do I have? What can I make with it? What am I missing? Three questions that should take seconds. Instead they take twenty minutes of staring, Googling, and second-guessing — or they don't happen at all and you over-buy at the weekend shop again.</p>
+          <p>Sous Pantry is my attempt to solve that. Not with a recipe app, not with a shopping list — with a kitchen that actually knows what's in it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PRODUCT -->
+    <section class="section">
+      <div class="content">
+        <div class="reveal">
+          <div class="section-label">The Product</div>
+          <h2>Sous Pantry</h2>
+          <p>Sous Pantry helps households reduce food waste and take the friction out of meal planning. Handful core workflows drive the experience:</p>
+          <div class="features">
+            <span class="feature-pill">Updated pantry list on-the-go knowing what you have</span>
+            <span class="feature-pill">Recipe suggestions based on current pantry inventory and preferences</span>
+            <span class="feature-pill">Assisting to restock shopping list based on current pantry gaps and suggested items</span>
+            <span class="feature-pill">Supermarket receipt import</span>
+          </div>
+          <p>The design challenge was building a genuinely useful product solo — no engineering co-founder, no agency — using AI as my primary collaborator. What I didn't expect was that the most valuable design work would happen not <em>inside</em> the product, but in observing the tool I was building it with.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP SCREENSHOTS -->
+    <section class="screenshots reveal">
+      <p class="screenshots-label">The App</p>
+      <h2 class="screenshots-heading">Pantry to Meal to Shopping. <br />One cohesive experience.</h2>
+      <div class="screenshots-scroll">
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="images/souspantry-1.png" alt="Sous Pantry — Home screen showing Kitchen Health and Fresh from Coles summary" loading="lazy">
+          </div>
+          <p class="screenshot-caption">Home</p>
+        </div>
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="images/souspantry-2.png" alt="Sous Pantry — My Pantry screen with categorised inventory list" loading="lazy">
+          </div>
+          <p class="screenshot-caption">My Pantry</p>
+        </div>
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="images/souspantry-3.png" alt="Sous Pantry — Plan & Cook AI chat suggesting steak recipes" loading="lazy">
+          </div>
+          <p class="screenshot-caption">Plan &amp; Cook</p>
+        </div>
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="images/souspantry-4.png" alt="Sous Pantry — Recipe detail showing all pantry ingredients matched" loading="lazy">
+          </div>
+          <p class="screenshot-caption">Recipe Detail</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PARALLEL STORY -->
+    <section class="section">
+      <div class="content">
+        <div class="reveal">
+          <div class="section-label">The Parallel Story</div>
+          <h2>Auditing Claude Code as a designer</h2>
+          <p>This case study is about two things: the app I was building, and the experience of building it. Every friction point I hit became a design observation. Every workaround I invented pointed to something missing.</p>
+          <p>What follows is an honest field report from a designer who spent months inside Claude Code — not as a developer, but as someone who thinks in systems, flows, and user journeys.</p>
+        </div>
+
+        <!-- CH 1 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 01</div>
+          <h3>I didn't know where to start — and nothing told me</h3>
+          <p>My first session with Claude felt like every other AI chat interface. I genuinely didn't understand what Claude Code <em>was</em>, or how it differed from Claude Chat, or what Claude Cowork was for. Three products, one brand, almost no explanation of how they relate.</p>
+          <p>I ended up doing what no product should require: I enrolled in external courses. Online classes on vibe-coding for designers. YouTube tutorials on Cursor terminal workflows. A separate course on iOS app building with Xcode and Claude Code. Three third-party learning experiences just to understand what Anthropic's own product did.</p>
+          <p>That's not a user problem. That's an onboarding gap.</p>
+          <div class="callout">
+            <p>"I had to take online classes to understand what Claude Code was. That's not a user problem — that's a missing first-run experience."</p>
+          </div>
+        </div>
+
+        <!-- CH 2 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 02</div>
+          <h3>Three platforms, one project, and a loop I couldn't escape</h3>
+          <p>My working setup: Claude Code in Cursor's terminal, Xcode for building and running the iOS app, and Claude Chat open in a browser tab for when things broke. Three windows. Three contexts. One feature.</p>
+          <p>For a while it was manageable. Then I hit the Plan &amp; Cook tab — where meal suggestions needed to match against live pantry inventory. Claude Code started looping. Builds succeeded. Outcomes didn't reflect the code. Working features got silently overwritten.</p>
+          <p>I ended up creating a <code>.cursorrules</code> file just to protect code that was already working — a config file acting as a guard rail against the tool I was relying on to build with. That felt backwards. Eventually the Cursor terminal degraded badly enough that I had to reset it entirely.</p>
+          <div class="callout">
+            <p>"I created a rules file to protect working code from the tool I was using to write it. That's a workaround. It should be a designed behaviour."</p>
+          </div>
+          <div class="chapter-img">
+            <img src="images/Story2.png" alt="Claude Code in Cursor terminal showing .cursorrules file and freezing issues" loading="lazy">
+          </div>
+        </div>
+
+        <!-- CH 3 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 03</div>
+          <h3>Three models, no map</h3>
+          <p>Somewhere mid-build I discovered there wasn't just one Claude — there were three. Haiku, Sonnet, Opus. Each apparently different, each with almost no explanation of what that difference meant in practice for a designer trying to ship a product.</p>
+          <p>I experimented with all three against real Sous Pantry build tasks. The differences weren't obvious enough to guide my decisions confidently. There was no moment where I thought <em>"this is clearly an Opus problem"</em> or <em>"Haiku is right for this."</em></p>
+          <p>The auto-sync receipt feature showed this most clearly. Claude Code in Cursor built it confidently and completely. The build succeeded. It just didn't work in the real world — and the tool didn't tell me why. It built what I asked for without flagging what it <em>couldn't</em> do, or what constraints existed outside the sandbox.</p>
+          <div class="callout">
+            <p>"Cursor's Claude Code built the feature confidently. It just didn't work. Claude Code in the Claude app told me why — and that's the more valuable thing."</p>
+          </div>
+        </div>
+
+        <!-- CH 4 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 04</div>
+          <h3>The moment everything clicked — accidentally</h3>
+          <p>Frustrated, I typed a question directly to the model inside Cursor: <em>"Which one are you — Chat or Code?"</em></p>
+          <p>It responded: <strong>Code.</strong></p>
+          <p>That single exchange unlocked something. I'd been managing platforms, not building a product. On a hunch, I opened the Claude app directly and found Claude Code. It asked me which folder to connect to — I didn't understand why at first, but I picked one. Then I asked whether it had access to my working files.</p>
+          <p>It did. No more Cursor. Less Xcode context-switching. One surface, direct file access, a tool that reasoned with me instead of just executing for me.</p>
+          <p>The workflow I'd been trying to build across three platforms had been sitting in the Claude app the whole time. I had no way to discover it.</p>
+          <div class="callout">
+            <p>"I asked the AI which one it was. That one question collapsed three months of platform confusion into one clear answer. That moment should have happened in minute one — not month three."</p>
+          </div>
+        </div>
+
+        <!-- CH 5 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 05</div>
+          <h3>No fuel gauge — working blind on borrowed time</h3>
+          <p>Every serious build session carried an invisible timer I couldn't see. Claude Code's usage limits reset on a rolling window, but there was no ambient signal — no progress bar, no "you've used 70% of your session" — nothing that let me plan my work around the constraint.</p>
+          <p>To check where I stood, I had to leave the build environment entirely, open the Claude Console in a separate browser tab, and manually check my usage. Half the time it hadn't updated yet. I'd go back to building, hit a wall mid-task, and only then discover the session had run out.</p>
+          <p>For a designer building complex features across iOS and Android simultaneously, this isn't just inconvenient — it breaks flow at the worst possible moment. You can't plan a build sprint around a limit you can't see.</p>
+          <div class="callout">
+            <p>"I had to leave my build, open a separate console page, and hope the number had updated. There's no designed feedback loop for something that directly controls how much you can work."</p>
+          </div>
+        </div>
+
+        <!-- CH 6 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 06</div>
+          <h3>Fixing errors across four tools — a workflow I built by accident</h3>
+          <p>When something broke in Claude Code inside Cursor, there was no designed path to resolution. The error existed in one place. The fix required four.</p>
+          <p>My accidental workflow: read the error in Cursor, manually copy it into a bash command in Terminal to inspect the exact line, switch to Claude Chat in a browser tab to get a plain-language explanation of what went wrong, then jump to Xcode to test whether the fix actually held.</p>
+          <p>Cursor → Terminal → Claude Chat → Xcode. Four context switches for one error. None of these tools knew about each other. None of them shared state. I was the integration layer, manually carrying information between surfaces that should have been connected.</p>
+          <p>The irony: I was using Claude Chat — a completely separate product — to debug work I was doing in Claude Code. The answer was always in the same model. The experience forced me to bounce between products to access it.</p>
+          <div class="callout">
+            <p>"I was the integration layer between four tools that didn't talk to each other. That's not a workflow — that's a workaround wearing a workflow's clothes."</p>
+          </div>
+        </div>
+
+        <!-- CH 7 -->
+        <div class="chapter reveal">
+          <div class="chapter-num">Chapter 07</div>
+          <h3>The non-developer path doesn't exist — so the market built one</h3>
+          <p>When I started, I had something most beginners don't: a design background, some understanding of codebases, and access to ADPList's AI Designer School — one of the few communities specifically teaching designers how to use tools like Claude Code. Without that, I genuinely don't know where I would have started.</p>
+          <p>That's the gap. There is no designed pathway inside Claude Code for someone who wants to build but doesn't think in terminals. No guided mode. No "start here if you're not an engineer." Nothing that says: here's what's possible for you, here's where to begin, here's what each tool is for.</p>
+          <p>The market has noticed. Replit, Lovable, Framer, Bolt — these platforms exist precisely because this gap is real. They've built the on-ramp that Claude Code hasn't. I tried Replit to test this firsthand. The experience was more approachable — until the paywalls arrived. Every meaningful action required an upgrade. The accessibility was a funnel, not a philosophy.</p>
+          <p>Claude Code is more powerful than any of them. But power without a designed entry point for non-engineers means the audience self-selects to people who already know how to start. That's a significant segment left behind.</p>
+          <div class="callout">
+            <p>"Replit, Lovable, Framer exist because Claude Code hasn't designed for the person who wants to build but doesn't speak terminal. That's not a criticism — it's the next design brief."</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- THE DESIGN AUDIT -->
+    <section class="section">
+      <div class="content reveal">
+        <div class="section-label">The Design Audit</div>
+        <h2>What I'd fix</h2>
+        <p>These aren't feature requests. They're designed experiences that don't exist yet — gaps I identified from the inside, as a user who lived through them.</p>
+
+        <div class="fixes">
+          <div class="fix">
+            <div class="fix-num">01</div>
+            <div class="fix-body">
+              <div class="fix-title">A first-run experience that explains the ecosystem</div>
+              <p class="fix-desc">Claude Chat, Claude Code, Claude Cowork — three tools, one brand, almost no designed explanation of how they relate. A two-minute interactive setup — "What are you trying to build? Here's which tool fits." — would have saved weeks of confusion and three external courses.</p>
+            </div>
+          </div>
+          <div class="fix">
+            <div class="fix-num">02</div>
+            <div class="fix-body">
+              <div class="fix-title">A visible signal for file access</div>
+              <p class="fix-desc">When Claude Code connected to my project folder it was transformative — but I discovered it by accident. A simple onboarding moment showing what Claude Code can now see would make this the first thing new users experience, not a hidden capability they stumble into.</p>
+            </div>
+          </div>
+          <div class="fix">
+            <div class="fix-num">03</div>
+            <div class="fix-body">
+              <div class="fix-title">Protected code / working state awareness</div>
+              <p class="fix-desc">Claude Code overwrote working features repeatedly because it had no concept of "this is good, don't touch it." A designed behaviour — flagging before modifying a previously-passing component — would eliminate the most frustrating part of my entire build experience.</p>
+            </div>
+          </div>
+          <div class="fix">
+            <div class="fix-num">04</div>
+            <div class="fix-body">
+              <div class="fix-title">A model selection guide that actually helps</div>
+              <p class="fix-desc">Haiku, Sonnet, Opus — three models with no designed explanation of when to use which. Even a single decision-tree tooltip with a concrete example per model would eliminate the confusion entirely. Right now users have to experiment their way to an answer Anthropic already knows.</p>
+            </div>
+          </div>
+          <div class="fix">
+            <div class="fix-num">05</div>
+            <div class="fix-body">
+              <div class="fix-title">Platform onboarding, not just tool onboarding</div>
+              <p class="fix-desc">The confusion wasn't just about how to use Claude Code — it was about which Claude to use. Onboarding that maps the ecosystem, even a single diagram, would reduce the activation energy for the exact users Anthropic needs to reach next: designers, PMs, and technical non-engineers who want to build.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENT STATUS -->
+    <section class="section">
+      <div class="content reveal">
+        <div class="section-label">Current Status</div>
+        <h2>Where Sous Pantry is now</h2>
+        <div class="status-grid">
+          <div class="status-card">
+            <div class="status-label">iOS build</div>
+            <div class="status-value"><span class="status-dot dot-amber"></span>Near-complete</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">Android</div>
+            <div class="status-value"><span class="status-dot dot-amber"></span>In progress</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">AI workflow</div>
+            <div class="status-value"><span class="status-dot dot-green"></span>Shipped</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">Receipt sync</div>
+            <div class="status-value"><span class="status-dot dot-amber"></span>In testing</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">Market</div>
+            <div class="status-value"><span class="status-dot dot-green"></span>Australia</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">Backend</div>
+            <div class="status-value"><span class="status-dot dot-green"></span>Express + Anthropic API</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.page -->
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-inner">
+      <h2>The model is remarkable.<br>The experience around it is where the next design work lives.</h2>
+      <p>A solo designer can ship a full-stack AI product in 2026. The tools exist. The capability is genuinely world-class.</p>
+      <p>But the onboarding, the platform clarity, the first-session success rate for non-engineers — that gap is real. I lived it. And it's exactly the problem I know how to solve.</p>
+      <div class="closing-links">
+        <a href="contact.html" class="closing-cta">Get in touch</a>
+        <a href="index.html" class="closing-cta closing-cta--ghost">← Back to all work</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- PORTFOLIO FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">James Foo</span>
+        <span class="footer-role">Product Designer · Developer Experience</span>
+      </div>
+      <div class="footer-center">
+        <a href="mailto:jamesian.foo@gmail.com" class="footer-link">jamesian.foo@gmail.com</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="footer-right">
+        <span class="footer-meta">© 2026 &nbsp;·&nbsp; Built with Claude Code</span>
+        <a href="#top" class="back-to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      const spans = toggle.querySelectorAll('span');
+      if (isOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        document.body.style.overflow = 'hidden';
+      } else {
+        spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

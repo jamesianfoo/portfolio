@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About James Foo — Product Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="case-study.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    .about-hero {
+      padding: var(--spacing-xl) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .about-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-hero-bio {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--color-text);
+      margin-bottom: 1rem;
+    }
+
+    .about-hero-image {
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--color-card-bg);
+      position: sticky;
+      top: 80px;
+    }
+
+    .about-hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-content {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .about-section {
+      margin-bottom: 4rem;
+    }
+
+    .about-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .about-section-title {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .pillar-card {
+      padding: 1.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .pillar-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .stack-card {
+      padding: 1.25rem;
+      background: var(--color-card-bg);
+      border-radius: 10px;
+    }
+
+    .stack-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .stack-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .stack-tool {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+    }
+
+    /* Personal */
+    .personal-body {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .personal-body p {
+      margin-bottom: 1rem;
+    }
+
+    .personal-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .interest-tag {
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero-image {
+        position: static;
+        max-width: 360px;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-hero {
+        padding: var(--spacing-lg) 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" id="top">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link">Home</a>
+    <a href="about.html" class="mobile-menu-link active">About</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-inner">
+          <div>
+            <h1 class="about-hero-title">Strategic Product &amp; Design Leader | d.MBA | Enterprise Platform Transformation</h1>
+            <p class="about-hero-bio">I'm a Product Designer specialising in Developer Experience, with 10+ years designing 0–1 platform builds and large-scale transformations in regulated financial and enterprise SaaS environments.</p>
+            <p class="about-hero-bio">Most recently as Head of Product Design at Macquarie's enterprise workflow platform, I drove an 80% adoption rate across 10,000+ global users and delivered a 90% reduction in manual processing time through AI-enabled automation — managing design strategy for SaaS platforms handling $130B in assets.</p>
+            <p class="about-hero-bio">I'm currently pursuing a Design MBA (d.MBA), deepening my focus on value propositions, unit economics, and business models — so every design decision I make is grounded in commercial reality.</p>
+          </div>
+          <div class="about-hero-image">
+            <img src="https://cdn.myportfolio.com/179a14b9849925e892fce24f702e624f/04494147-bcda-4a21-a028-031ac5927873_rw_1200.png?h=24903d6dbe158c19dfdab300fabfacf1" alt="James Foo" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="about-content">
+      <div class="container">
+
+        <!-- Design Pillars -->
+        <section class="about-section">
+          <p class="about-section-label">Design Pillars</p>
+          <h2 class="about-section-title">How I approach every problem</h2>
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <p class="pillar-number">01</p>
+              <p class="pillar-title">AI &amp; Agentic Workflows</p>
+              <p class="pillar-desc">Deep-diving into agentic orchestration — designing human-in-the-loop systems that keep people in control while automating the cognitive overhead that slows them down.</p>
+            </div>
+            <div class="pillar-card">
+              <p class="pillar-number">02</p>
+              <p class="pillar-title">Strategic ROI</p>
+              <p class="pillar-desc">I treat design as a commercial lever. Every decision is anchored in unit economics — reducing time-to-value, increasing adoption, and creating measurable outcomes for the business.</p>
+            </div>
+            <div class="pillar-card">
+              <p class="pillar-number">03</p>
+              <p class="pillar-title">System at Scale</p>
+              <p class="pillar-desc">I create design operations infrastructure — component libraries, design tokens, accessibility frameworks — that lets teams move fast without breaking consistency.</p>
+            </div>
+            <div class="pillar-card">
+              <p class="pillar-number">04</p>
+              <p class="pillar-title">Evidence-Based Design</p>
+              <p class="pillar-desc">I've led 200+ user interviews and embedded research into every phase of design. Every significant decision is validated before it ships, meeting WCAG 2.2 AA standards throughout.</p>
+            </div>
+          </div>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 3rem 0;">
+
+        <!-- Technical Stack -->
+        <section class="about-section">
+          <p class="about-section-label">Technical Stack</p>
+          <h2 class="about-section-title">Tools I work with</h2>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <p class="stack-category">Design &amp; Research</p>
+              <div class="stack-tools">
+                <span class="stack-tool">Figma</span>
+                <span class="stack-tool">FigJam</span>
+                <span class="stack-tool">Miro</span>
+                <span class="stack-tool">Paper</span>
+                <span class="stack-tool">Adobe CC</span>
+                <span class="stack-tool">InVision</span>
+                <span class="stack-tool">Google Stitch</span>
+              </div>
+            </div>
+            <div class="stack-card">
+              <p class="stack-category">Insights &amp; Validation</p>
+              <div class="stack-tools">
+                <span class="stack-tool">UserTesting.com</span>
+                <span class="stack-tool">Lookback</span>
+              </div>
+            </div>
+            <div class="stack-card">
+              <p class="stack-category">Emerging Tech</p>
+              <div class="stack-tools">
+                <span class="stack-tool">Claude</span>
+                <span class="stack-tool">Cursor</span>
+                <span class="stack-tool">Replit</span>
+                <span class="stack-tool">MS Visual Basic</span>
+              </div>
+            </div>
+            <div class="stack-card">
+              <p class="stack-category">Product &amp; Strategy</p>
+              <div class="stack-tools">
+                <span class="stack-tool">Jira</span>
+                <span class="stack-tool">Confluence</span>
+                <span class="stack-tool">Google Analytics</span>
+              </div>
+            </div>
+            <div class="stack-card">
+              <p class="stack-category">Collaboration</p>
+              <div class="stack-tools">
+                <span class="stack-tool">Storybook</span>
+                <span class="stack-tool">GitHub</span>
+                <span class="stack-tool">Slack</span>
+                <span class="stack-tool">MS Teams</span>
+                <span class="stack-tool">Zoom</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 3rem 0;">
+
+        <!-- Personal -->
+        <section class="about-section">
+          <p class="about-section-label">Beyond Work</p>
+          <h2 class="about-section-title">A bit about me</h2>
+          <div class="personal-body">
+            <p>At 18, I packed up and moved to Germany alone — an experience that shaped everything about how I approach the world. It taught me resilience, adaptability, and the value of genuinely connecting with people who see things differently than you do.</p>
+            <p>Outside of work, I prioritise time with my family above everything else. I train at the gym regularly, and when I need to switch off completely, you'll find me deep in a LEGO build, rewatching something from the Star Wars universe, or down a documentary rabbit hole with a very good coffee in hand.</p>
+          </div>
+          <div class="interests-list">
+            <span class="interest-tag">Family</span>
+            <span class="interest-tag">Fitness</span>
+            <span class="interest-tag">LEGO</span>
+            <span class="interest-tag">Star Wars</span>
+            <span class="interest-tag">Documentaries</span>
+            <span class="interest-tag">Coffee</span>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <section class="cta">
+      <div class="container">
+        <h2 class="cta-title">Let's build great things together</h2>
+        <a href="contact.html" class="cta-link">
+          Get in touch
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <a href="#top" class="back-to-top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
