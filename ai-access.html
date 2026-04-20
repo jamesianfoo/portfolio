@@ -159,6 +159,31 @@
 
         <hr class="cs-divider">
 
+        <!-- Stakeholder Influence -->
+        <section class="cs-section">
+          <p class="cs-section-label">Stakeholder Influence</p>
+          <h2 class="cs-section-title">Navigating the hard conversations</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem;">
+            <div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:10px;padding:20px 22px;">
+              <p style="font-size:11px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px;">On security</p>
+              <p style="font-size:14px;color:var(--color-text-primary);line-height:1.65;">The biggest challenge wasn't designing the AI — it was earning the right to ship it. Security stakeholders had a legitimate concern: what happens when the agent gets it wrong? What if access is granted to the wrong person, or an approver rubber-stamps a recommendation without scrutiny?</p>
+              <p style="font-size:14px;color:var(--color-text-primary);line-height:1.65;margin-top:12px;">Rather than defending the AI, I designed around the fear. Every concern they raised became a design constraint — the Approval Card was built to make approver scrutiny easier, not optional. Human override wasn't a fallback; it was the centrepiece. By the end of the session, the design was answering their questions before they asked them.</p>
+            </div>
+            <div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:10px;padding:20px 22px;">
+              <p style="font-size:11px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px;">On engineering prioritisation</p>
+              <p style="font-size:14px;color:var(--color-text-primary);line-height:1.65;">Getting engineering commitment was a different problem. Senior leadership and engineering teams were misaligned on AI priorities, and this project was competing against existing delivery commitments. Rather than escalating the disagreement, I reframed the ask — instead of requesting engineering resource for a full build, I proposed a focused proof of concept on AD Search specifically. Something tangible, scoped, and demonstrable to all 10,000 Macquarie staff.</p>
+              <p style="font-size:14px;color:var(--color-text-primary);line-height:1.65;margin-top:12px;">It landed. Leadership saw the potential immediately. Engineering had enough confidence to commit. The security doubts didn't disappear — but they became design inputs rather than blockers.</p>
+            </div>
+          </div>
+          <style>
+            @media (max-width: 720px) {
+              .si-grid { grid-template-columns: 1fr !important; }
+            }
+          </style>
+        </section>
+
+        <hr class="cs-divider">
+
         <!-- Problem -->
         <section class="cs-section">
           <p class="cs-section-label">The Problem</p>
