@@ -58,7 +58,8 @@
           <span class="cs-tag">Enterprise SaaS</span>
         </div>
         <h1 class="cs-hero-title">Less Friction, More Velocity: The Hot Bar</h1>
-        <p class="cs-hero-subtitle">Transforming 4–7 day deployment bottlenecks into 24-hour self-service workflows for global engineering, security, and technology teams.</p>
+        <p class="cs-hero-subtitle">Engineering teams at Macquarie were technically capable but systematically slowed — not by skill gaps, but by a platform experience that created friction at every turn.
+          The Hot Bar was one intervention in a broader experience strategy to make self-sufficiency the default for 6,000+ engineers globally. Designed as a pattern, not a feature, it established the interaction model for contextual guidance across the entire MAX Platform.s</p>
       </div>
     </section>
 
@@ -185,6 +186,237 @@
             <p class="cs-quote-text">"I finally got my release ready, and now a 'Legacy Risk Scorecard' block has appeared. It doesn't tell me who owns the scorecard or how to update it. My release is now stalled for 48 hours while I play detective across three different departments."</p>
             <p class="cs-quote-author">— Front-end Developer</p>
           </div>
+
+          <div class="cs-image" style="margin-top: 2rem;">
+            <img src="images/Affinity cluster.jpg" alt="Affinity cluster from engineer interviews — four themes: Lost Velocity, Onboarding Friction, Mental Load, Dead-end Feedback" loading="lazy">
+            <p class="cs-image-caption">Affinity cluster from 30+ engineer interviews — quotes grouped into four recurring themes: Lost Velocity, Onboarding Friction, Mental Load, and Dead-end Feedback.</p>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Journey Maps: Before & After -->
+        <section class="cs-section">
+          <p class="cs-section-label">Journey Map</p>
+          <h2 class="cs-section-title">Before &amp; after: a new hire's pre-deployment journey</h2>
+          <div class="cs-body">
+            <p>To pressure-test the problem and the proposed solution, I mapped the end-to-end journey for an engineer new to the platform — before the Hot Bar, and after.</p>
+          </div>
+
+          <style>
+            .jm-scope { --jm-text-primary:#1a1a1a; --jm-text-secondary:#555; --jm-text-tertiary:#888;
+              --jm-bg-primary:#ffffff; --jm-bg-secondary:#f7f7f7;
+              --jm-border-tertiary:#e5e5e5; --jm-border-secondary:#d0d0d0;
+              --jm-bg-danger:#fdecea; --jm-text-danger:#b42318; --jm-border-danger:#b42318;
+              --jm-bg-success:#e8f5e9; --jm-text-success:#1e7d32; --jm-border-success:#1e7d32;
+              --jm-bg-warning:#fff4e5; --jm-text-warning:#b54708; --jm-border-warning:#b54708;
+              --jm-bg-info:#e7f0ff; --jm-text-info:#1a56c4; --jm-border-info:#1a56c4;
+              font-family: var(--font-main);
+            }
+            .jm-scope .jm-wrap, .jm-scope .jm-wrap2 { padding: 8px 0 16px; font-size: 13px; overflow-x: auto; }
+            .jm-scope .jm-title, .jm-scope .jm-title2 { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--jm-text-tertiary); text-transform: uppercase; margin-bottom: 20px; }
+            .jm-scope .jm-grid, .jm-scope .jm-grid2 { display: grid; grid-template-columns: 108px repeat(6, 156px); gap: 0; min-width: 1050px; }
+            .jm-scope .jm-cell, .jm-scope .jm-cell2 { padding: 10px 12px; border-bottom: 0.5px solid var(--jm-border-tertiary); border-right: 0.5px solid var(--jm-border-tertiary); vertical-align: top; min-height: 60px; }
+            .jm-scope .jm-cell.lane-label, .jm-scope .jm-cell2.lane-label2 { background: var(--jm-bg-secondary); font-size: 11px; font-weight: 500; color: var(--jm-text-secondary); letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; border-right: 0.5px solid var(--jm-border-secondary); }
+            .jm-scope .jm-cell.stage-header, .jm-scope .jm-cell2.stage-header2 { background: var(--jm-bg-secondary); border-top: 0.5px solid var(--jm-border-tertiary); padding: 12px; }
+            .jm-scope .stage-num, .jm-scope .stage-num2 { font-size: 10px; color: var(--jm-text-tertiary); font-weight: 500; margin-bottom: 2px; }
+            .jm-scope .stage-name, .jm-scope .stage-name2 { font-size: 13px; font-weight: 500; color: var(--jm-text-primary); line-height: 1.3; }
+            .jm-scope .corner, .jm-scope .corner2 { background: var(--jm-bg-secondary); border-right: 0.5px solid var(--jm-border-secondary); border-bottom: 0.5px solid var(--jm-border-tertiary); border-top: 0.5px solid var(--jm-border-tertiary); }
+            .jm-scope .action-text, .jm-scope .action-text2 { color: var(--jm-text-primary); font-size: 12px; line-height: 1.5; margin: 0; }
+            .jm-scope .thought-text, .jm-scope .thought-text2 { color: var(--jm-text-secondary); font-size: 12px; line-height: 1.5; font-style: italic; margin: 0; }
+            .jm-scope .pain-tag { display: inline-block; background: var(--jm-bg-danger); color: var(--jm-text-danger); font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px 2px 2px 0; line-height: 1.4; }
+            .jm-scope .resolved-tag { display: inline-block; background: var(--jm-bg-success); color: var(--jm-text-success); font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px 2px 2px 0; line-height: 1.4; }
+            .jm-scope .hotbar-tag { display: inline-block; background: var(--jm-bg-info); color: var(--jm-text-info); font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px 2px 2px 0; line-height: 1.4; }
+            .jm-scope .system-tag, .jm-scope .system-tag2 { display: inline-block; background: var(--jm-bg-secondary); color: var(--jm-text-secondary); font-size: 11px; padding: 3px 8px; border-radius: 4px; margin: 2px 2px 2px 0; border: 0.5px solid var(--jm-border-tertiary); }
+            .jm-scope .system-tag2.primary { background: var(--jm-bg-info); color: var(--jm-text-info); border-color: transparent; }
+            .jm-scope .emotion-label, .jm-scope .emotion-label2 { background: var(--jm-bg-secondary); border-right: 0.5px solid var(--jm-border-secondary); border-bottom: 0.5px solid var(--jm-border-tertiary); font-size: 11px; font-weight: 500; color: var(--jm-text-secondary); letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; padding: 0 12px; }
+            .jm-scope .emotion-svg-wrap, .jm-scope .emotion-svg-wrap2 { grid-column: 2 / 8; background: var(--jm-bg-primary); border-bottom: 0.5px solid var(--jm-border-tertiary); padding: 0; }
+            .jm-scope .jm-legend { margin-top: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+            .jm-scope .jm-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--jm-text-tertiary); }
+            .jm-scope .jm-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+            .jm-scope .jm-legend-persona { margin-left: auto; font-size: 11px; color: var(--jm-text-tertiary); }
+            @media (max-width: 900px) {
+              .jm-scope .jm-hint { display: block; font-size: 11px; color: var(--jm-text-tertiary); margin-bottom: 8px; }
+            }
+            .jm-scope .jm-hint { display: none; }
+          </style>
+
+          <div class="jm-scope" style="margin-top: 1.5rem;">
+            <span class="jm-hint">Scroll horizontally to view the full journey →</span>
+            <div class="jm-wrap">
+              <p class="jm-title">User journey map — Pre-deployment checks (before: Hot Bar)</p>
+              <div class="jm-grid">
+                <div class="corner" style="border-top:0.5px solid var(--jm-border-tertiary)"></div>
+                <div class="jm-cell stage-header"><div class="stage-num">01</div><div class="stage-name">Code ready</div></div>
+                <div class="jm-cell stage-header"><div class="stage-num">02</div><div class="stage-name">Trigger deployment</div></div>
+                <div class="jm-cell stage-header"><div class="stage-num">03</div><div class="stage-name">Gate failure</div></div>
+                <div class="jm-cell stage-header"><div class="stage-num">04</div><div class="stage-name">Diagnose error</div></div>
+                <div class="jm-cell stage-header"><div class="stage-num">05</div><div class="stage-name">Seek resolution</div></div>
+                <div class="jm-cell stage-header" style="border-right:none"><div class="stage-num">06</div><div class="stage-name">Wait &amp; delay</div></div>
+
+                <div class="emotion-label" style="min-height:88px">Emotion</div>
+                <div class="emotion-svg-wrap" style="border-right:none">
+                  <svg width="100%" viewBox="0 0 936 88" style="display:block">
+                    <text x="8" y="18" font-size="10" fill="#888" font-family="var(--font-main)">Positive</text>
+                    <text x="8" y="78" font-size="10" fill="#888" font-family="var(--font-main)">Negative</text>
+                    <path d="M78 22 C156 22, 156 28, 234 30 C312 32, 312 46, 390 56 C468 66, 468 72, 546 74 C624 76, 624 74, 702 74 C780 74, 780 68, 858 64"
+                          fill="none" stroke="#b42318" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="78"  cy="22" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="234" cy="30" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="390" cy="56" r="4" fill="#fff4e5" stroke="#b54708" stroke-width="1"/>
+                    <circle cx="546" cy="74" r="4" fill="#fdecea" stroke="#b42318" stroke-width="1"/>
+                    <circle cx="702" cy="74" r="4" fill="#fdecea" stroke="#b42318" stroke-width="1"/>
+                    <circle cx="858" cy="64" r="4" fill="#fdecea" stroke="#b42318" stroke-width="1"/>
+                    <text x="78"  y="44" text-anchor="middle" font-size="10" fill="#555">Confident</text>
+                    <text x="234" y="44" text-anchor="middle" font-size="10" fill="#555">Hopeful</text>
+                    <text x="390" y="50" text-anchor="middle" font-size="10" fill="#b54708">Confused</text>
+                    <text x="546" y="68" text-anchor="middle" font-size="10" fill="#b42318">Frustrated</text>
+                    <text x="702" y="68" text-anchor="middle" font-size="10" fill="#b42318">Helpless</text>
+                    <text x="858" y="58" text-anchor="middle" font-size="10" fill="#b42318">Blocked</text>
+                  </svg>
+                </div>
+
+                <div class="jm-cell lane-label">Actions</div>
+                <div class="jm-cell"><p class="action-text">Code review approved. Ready to push to production.</p></div>
+                <div class="jm-cell"><p class="action-text">Triggers pipeline. Pre-deployment checks begin automatically.</p></div>
+                <div class="jm-cell"><p class="action-text">One or more gates turn red. Error label surfaces in legacy UI.</p></div>
+                <div class="jm-cell"><p class="action-text">Opens terminal, checks docs wiki, searches Slack, asks teammates.</p></div>
+                <div class="jm-cell"><p class="action-text">Finds a senior engineer. Explains situation. Waits for response.</p></div>
+                <div class="jm-cell" style="border-right:none"><p class="action-text">Sits idle. Release stalled. Senior engineer context-switches.</p></div>
+
+                <div class="jm-cell lane-label">Thoughts</div>
+                <div class="jm-cell"><p class="thought-text">"Finally ready to ship."</p></div>
+                <div class="jm-cell"><p class="thought-text">"This should be quick."</p></div>
+                <div class="jm-cell"><p class="thought-text">"What does 'Legacy Risk Scorecard' even mean?"</p></div>
+                <div class="jm-cell"><p class="thought-text">"I've been at this for two hours. Nothing makes sense."</p></div>
+                <div class="jm-cell"><p class="thought-text">"I hate having to ask again. They're going to think I don't know anything."</p></div>
+                <div class="jm-cell" style="border-right:none"><p class="thought-text">"My release has been stalled for 48 hours while I play detective."</p></div>
+
+                <div class="jm-cell lane-label">Pain points</div>
+                <div class="jm-cell"></div>
+                <div class="jm-cell"></div>
+                <div class="jm-cell">
+                  <span class="pain-tag">No human-readable error</span>
+                  <span class="pain-tag">No ownership info</span>
+                </div>
+                <div class="jm-cell">
+                  <span class="pain-tag">3+ systems to check</span>
+                  <span class="pain-tag">Fragmented context</span>
+                  <span class="pain-tag">No resolution path</span>
+                </div>
+                <div class="jm-cell">
+                  <span class="pain-tag">Shadow support loop</span>
+                  <span class="pain-tag">Senior time wasted</span>
+                </div>
+                <div class="jm-cell" style="border-right:none">
+                  <span class="pain-tag">4–7 day delay</span>
+                  <span class="pain-tag">Lost velocity</span>
+                </div>
+
+                <div class="jm-cell lane-label">Systems touched</div>
+                <div class="jm-cell"><span class="system-tag">GitHub</span><span class="system-tag">IDE</span></div>
+                <div class="jm-cell"><span class="system-tag">CI/CD pipeline</span><span class="system-tag">MAX platform</span></div>
+                <div class="jm-cell"><span class="system-tag">MAX platform</span><span class="system-tag">Error log</span></div>
+                <div class="jm-cell"><span class="system-tag">Terminal</span><span class="system-tag">Confluence</span><span class="system-tag">Slack</span></div>
+                <div class="jm-cell"><span class="system-tag">Slack DM</span><span class="system-tag">Email</span></div>
+                <div class="jm-cell" style="border-right:none"><span class="system-tag">Jira</span><span class="system-tag">Calendar</span></div>
+              </div>
+
+              <div class="jm-legend">
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#e8f5e9;border:1px solid #1e7d32"></div>Positive</div>
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#fff4e5;border:1px solid #b54708"></div>Neutral</div>
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#fdecea;border:1px solid #b42318"></div>Negative</div>
+                <div class="jm-legend-persona">Persona: Engineer (new hire) — pre-deployment checks, legacy system</div>
+              </div>
+            </div>
+
+            <div class="jm-wrap2" style="margin-top: 2rem;">
+              <p class="jm-title2">User journey map — Pre-deployment checks (after: Hot Bar)</p>
+              <div class="jm-grid2">
+                <div class="corner2" style="border-top:0.5px solid var(--jm-border-tertiary)"></div>
+                <div class="jm-cell2 stage-header2"><div class="stage-num2">01</div><div class="stage-name2">Code ready</div></div>
+                <div class="jm-cell2 stage-header2"><div class="stage-num2">02</div><div class="stage-name2">Trigger deployment</div></div>
+                <div class="jm-cell2 stage-header2"><div class="stage-num2">03</div><div class="stage-name2">Gate failure</div></div>
+                <div class="jm-cell2 stage-header2"><div class="stage-num2">04</div><div class="stage-name2">Hot Bar surfaces</div></div>
+                <div class="jm-cell2 stage-header2"><div class="stage-num2">05</div><div class="stage-name2">Self-resolve</div></div>
+                <div class="jm-cell2 stage-header2" style="border-right:none"><div class="stage-num2">06</div><div class="stage-name2">Deploy</div></div>
+
+                <div class="emotion-label2" style="min-height:88px">Emotion</div>
+                <div class="emotion-svg-wrap2" style="border-right:none">
+                  <svg width="100%" viewBox="0 0 936 88" style="display:block">
+                    <text x="8" y="18" font-size="10" fill="#888">Positive</text>
+                    <text x="8" y="78" font-size="10" fill="#888">Negative</text>
+                    <path d="M78 22 C156 22, 156 26, 234 28 C312 30, 312 42, 390 46 C468 50, 468 36, 546 28 C624 20, 624 16, 702 16 C780 16, 780 14, 858 14"
+                          fill="none" stroke="#1e7d32" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="78"  cy="22" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="234" cy="28" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="390" cy="46" r="4" fill="#fff4e5" stroke="#b54708" stroke-width="1"/>
+                    <circle cx="546" cy="28" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="702" cy="16" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <circle cx="858" cy="14" r="4" fill="#e8f5e9" stroke="#1e7d32" stroke-width="1"/>
+                    <text x="78"  y="44" text-anchor="middle" font-size="10" fill="#555">Confident</text>
+                    <text x="234" y="44" text-anchor="middle" font-size="10" fill="#555">Hopeful</text>
+                    <text x="390" y="62" text-anchor="middle" font-size="10" fill="#b54708">Momentary pause</text>
+                    <text x="546" y="44" text-anchor="middle" font-size="10" fill="#1e7d32">Informed</text>
+                    <text x="702" y="32" text-anchor="middle" font-size="10" fill="#1e7d32">Empowered</text>
+                    <text x="858" y="30" text-anchor="middle" font-size="10" fill="#1e7d32">Satisfied</text>
+                  </svg>
+                </div>
+
+                <div class="jm-cell2 lane-label2">Actions</div>
+                <div class="jm-cell2"><p class="action-text2">Code review approved. Ready to push to production.</p></div>
+                <div class="jm-cell2"><p class="action-text2">Triggers pipeline. Pre-deployment checks begin automatically.</p></div>
+                <div class="jm-cell2"><p class="action-text2">One or more gates turn red. Hot Bar appears inline.</p></div>
+                <div class="jm-cell2"><p class="action-text2">Reads plain-language explanation. Sees owner, sees action. Clicks one-click resolution link.</p></div>
+                <div class="jm-cell2"><p class="action-text2">Follows guided steps independently. No Slack. No senior engineer needed.</p></div>
+                <div class="jm-cell2" style="border-right:none"><p class="action-text2">Gate clears. Deployment proceeds. Done in under an hour.</p></div>
+
+                <div class="jm-cell2 lane-label2">Thoughts</div>
+                <div class="jm-cell2"><p class="thought-text2">"Finally ready to ship."</p></div>
+                <div class="jm-cell2"><p class="thought-text2">"This should be quick."</p></div>
+                <div class="jm-cell2"><p class="thought-text2">"A gate failed — but the Hot Bar is already telling me what happened."</p></div>
+                <div class="jm-cell2"><p class="thought-text2">"It's telling me exactly who owns it and what to do. That's all I needed."</p></div>
+                <div class="jm-cell2"><p class="thought-text2">"I didn't have to ask anyone. I just fixed it."</p></div>
+                <div class="jm-cell2" style="border-right:none"><p class="thought-text2">"The Hot Bar transformed this from a dead-end into a guided path to success."</p></div>
+
+                <div class="jm-cell2 lane-label2">Resolved</div>
+                <div class="jm-cell2"></div>
+                <div class="jm-cell2"></div>
+                <div class="jm-cell2">
+                  <span class="resolved-tag">Human-readable error</span>
+                  <span class="resolved-tag">Owner surfaced</span>
+                </div>
+                <div class="jm-cell2">
+                  <span class="resolved-tag">Context in one place</span>
+                  <span class="hotbar-tag">One-click action</span>
+                </div>
+                <div class="jm-cell2">
+                  <span class="resolved-tag">No shadow support</span>
+                  <span class="resolved-tag">Full autonomy</span>
+                </div>
+                <div class="jm-cell2" style="border-right:none">
+                  <span class="resolved-tag">&lt;1h resolution</span>
+                  <span class="resolved-tag">Velocity maintained</span>
+                </div>
+
+                <div class="jm-cell2 lane-label2">Systems touched</div>
+                <div class="jm-cell2"><span class="system-tag2">GitHub</span><span class="system-tag2">IDE</span></div>
+                <div class="jm-cell2"><span class="system-tag2">CI/CD pipeline</span><span class="system-tag2">MAX platform</span></div>
+                <div class="jm-cell2"><span class="system-tag2 primary">MAX + Hot Bar</span></div>
+                <div class="jm-cell2"><span class="system-tag2 primary">MAX + Hot Bar</span></div>
+                <div class="jm-cell2"><span class="system-tag2 primary">MAX + Hot Bar</span></div>
+                <div class="jm-cell2" style="border-right:none"><span class="system-tag2 primary">MAX + Hot Bar</span><span class="system-tag2">GitHub</span></div>
+              </div>
+
+              <div class="jm-legend">
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#e8f5e9;border:1px solid #1e7d32"></div>Positive</div>
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#fff4e5;border:1px solid #b54708"></div>Neutral</div>
+                <div class="jm-legend-item"><div class="jm-legend-dot" style="background:#e7f0ff;border:1px solid #1a56c4"></div>Hot Bar intervention</div>
+                <div class="jm-legend-persona">Persona: Engineer (new hire) — pre-deployment checks, with Hot Bar</div>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         <hr class="cs-divider">
@@ -199,6 +431,198 @@
             <li>Enable Developer Autonomy — Reduce shadow support dependency through self-service remediation</li>
             <li>Bridge the Onboarding Gap — Shorten the learning curve for new hires from 72 hours to under 24</li>
           </ul>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Design Decisions -->
+        <section class="cs-section">
+          <p class="cs-section-label">Design Decisions</p>
+          <h2 class="cs-section-title">What we considered — and what we rejected</h2>
+          <div class="cs-body">
+            <p>Before landing on the Hot Bar, we stress-tested three alternative directions. Each solved a piece of the problem but failed the core test: keep the engineer in-flow, at the point of failure.</p>
+          </div>
+
+          <style>
+            .dd-scope { --dd-text-primary:#1a1a1a; --dd-text-secondary:#555; --dd-text-tertiary:#888;
+              --dd-bg-primary:#ffffff; --dd-bg-secondary:#f7f7f7;
+              --dd-border-tertiary:#e5e5e5;
+              --dd-bg-danger:#fdecea; --dd-text-danger:#b42318;
+              --dd-bg-success:#e8f5e9; --dd-text-success:#1e7d32; --dd-border-success:#1e7d32;
+              font-family: var(--font-main); margin-top: 1.5rem;
+            }
+            .dd-scope .dd-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--dd-text-tertiary); margin-bottom: 20px; }
+            .dd-scope .dd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+            .dd-scope .dd-card { background: var(--dd-bg-primary); border: 0.5px solid var(--dd-border-tertiary); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+            .dd-scope .dd-card.ruled-out { opacity: 0.85; }
+            .dd-scope .dd-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; width: fit-content; }
+            .dd-scope .pill-out { background: var(--dd-bg-secondary); color: var(--dd-text-tertiary); }
+            .dd-scope .pill-win { background: var(--dd-bg-success); color: var(--dd-text-success); }
+            .dd-scope .dd-title { font-size: 13px; font-weight: 500; color: var(--dd-text-primary); line-height: 1.3; }
+            .dd-scope .dd-desc { font-size: 12px; color: var(--dd-text-secondary); line-height: 1.5; }
+            .dd-scope .dd-divider { border: none; border-top: 0.5px solid var(--dd-border-tertiary); margin: 2px 0; }
+            .dd-scope .dd-section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dd-text-tertiary); margin-bottom: 4px; }
+            .dd-scope .dd-reason { font-size: 12px; line-height: 1.5; color: var(--dd-text-danger); }
+            .dd-scope .dot-out { width: 5px; height: 5px; border-radius: 50%; background: var(--dd-text-tertiary); display: inline-block; margin-right: 8px; flex-shrink: 0; margin-top: 7px; }
+            .dd-scope .dot-win { width: 5px; height: 5px; border-radius: 50%; background: var(--dd-text-success); display: inline-block; margin-right: 8px; flex-shrink: 0; margin-top: 7px; }
+            .dd-scope .dd-bullets { display: flex; flex-direction: column; gap: 5px; }
+            .dd-scope .dd-bullet { display: flex; align-items: flex-start; font-size: 12px; line-height: 1.45; }
+            .dd-scope .chosen-row { /*background: var(--dd-bg-success);*/ border: 1.5px solid var(--dd-border-tertiary); border-radius: 10px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+            .dd-scope .chosen-title { font-size: 14px; font-weight: 500; color: var(--dd-text-success); margin-bottom: 6px; }
+            .dd-scope .chosen-desc { font-size: 12px; color: var(--dd-text-success); line-height: 1.5; opacity: 0.9; }
+            .dd-scope .chosen-bullets { display: flex; flex-direction: column; gap: 5px; }
+            .dd-scope .chosen-bullet { display: flex; align-items: flex-start; font-size: 12px; color: var(--dd-text-success); line-height: 1.45; }
+            @media (max-width: 720px) {
+              .dd-scope .dd-grid { grid-template-columns: 1fr; }
+              .dd-scope .chosen-row { grid-template-columns: 1fr; gap: 16px; }
+            }
+          </style>
+
+          <div class="dd-scope">
+            <div class="dd-grid">
+              <div class="dd-card ruled-out">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Dedicated error dashboard</div>
+                <div class="dd-desc">A separate page surfacing all failed gates, grouped by type, with links to resolution docs.</div>
+                <hr class="dd-divider">
+                <div class="dd-section-label">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Added another context switch — engineers would still leave their workflow to check it</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Research showed engineers ignored secondary dashboards; primary surface was the deployment view</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Created two sources of truth — the error log and the new dashboard</span></div>
+                </div>
+              </div>
+
+              <div class="dd-card ruled-out">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Email and messaging platform notifications</div>
+                <div class="dd-desc">Push failure alerts to engineers via emails and other messaging platforms with a summary and a link to the relevant gate.</div>
+                <hr class="dd-divider">
+                <div class="dd-section-label">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Moved the engineer even further from the point of failure — another tool, another tab</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Async nature meant delays; engineers expected immediate feedback after triggering a pipeline</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Messaging platforms are already overloaded — low signal-to-noise ratio meant alerts would be ignored</span></div>
+                </div>
+              </div>
+
+              <div class="dd-card ruled-out">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Enhanced tooltip system</div>
+                <div class="dd-desc">Hover tooltips on each gate status icon showing a short explanation and documentation link.</div>
+                <hr class="dd-divider">
+                <div class="dd-section-label">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Tooltips are ephemeral — engineers couldn't copy links or read longer resolution steps</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Hover interaction fails on touch devices and for engineers using keyboard navigation</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="dd-reason">Didn't support the density of information needed — ownership, steps, and links can't fit a tooltip</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chosen-row">
+              <div>
+                <div class="dd-pill pill-win" style="margin-bottom:10px">Chosen solution</div>
+                <div class="chosen-title">The Hot Bar — persistent contextual panel</div>
+                <div class="chosen-desc">A persistent, inline component that surfaces exactly at the point of failure — within the deployment view, no context switch required. Plain-language explanation, ownership, and a one-click action path, always visible when a gate is red.</div>
+              </div>
+              <div>
+                <div class="dd-section-label" style="color:var(--dd-text-success);opacity:0.7;margin-bottom:8px">Why it won</div>
+                <div class="chosen-bullets">
+                  <div class="chosen-bullet"><div class="dot-win"></div>Stays inside the engineer's existing workflow — no new tool, no new tab</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Persistent means readable — engineers can copy links, re-read steps, share with teammates</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Scalable pattern — the same component handles any gate type by swapping content, not structure</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Designed to WCAG 2.2 AA — keyboard navigable, screen reader labelled, no hover dependency</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Component Placement / Systems Thinking -->
+        <section class="cs-section">
+          <p class="cs-section-label">Systems Thinking</p>
+          <h2 class="cs-section-title">Placing the Hot Bar where the work happens</h2>
+          <div class="cs-body">
+            <p>The critical design decision was where to intervene. Rather than adding a new surface, we placed the Hot Bar inside the engineer's existing deployment view — at the exact point of failure.</p>
+          </div>
+
+          <div class="cs-image" style="margin-top: 1.5rem;">
+            <div style="background:#ffffff; border:0.5px solid #e5e5e5; border-radius:10px; padding:24px; max-width: 760px; margin: 0 auto;">
+              <svg width="100%" viewBox="0 0 680 524" role="img" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <title>Hot Bar component placement within MAX Platform</title>
+                <desc>System diagram showing the Hot Bar's position between pre-deployment gates and resolution outcomes, within the MAX Platform deployment workflow.</desc>
+                <defs>
+                  <marker id="dd-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </marker>
+                </defs>
+
+                <rect x="230" y="20" width="220" height="44" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="340" y="42" text-anchor="middle" dominant-baseline="central" fill="#444441" font-size="14" font-weight="500" font-family="var(--font-main)">Engineer</text>
+
+                <line x1="340" y1="64" x2="340" y2="98" stroke="#73726c" stroke-width="1.5" marker-end="url(#dd-arrow)"/>
+
+                <rect x="210" y="100" width="260" height="44" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="340" y="122" text-anchor="middle" dominant-baseline="central" fill="#444441" font-size="14" font-weight="500" font-family="var(--font-main)">CI/CD pipeline</text>
+
+                <line x1="340" y1="144" x2="340" y2="173" stroke="#73726c" stroke-width="1.5" marker-end="url(#dd-arrow)"/>
+
+                <rect x="48" y="175" width="584" height="244" rx="14" fill="none" stroke="#73726c" stroke-width="0.75" stroke-dasharray="6 4"/>
+                <text x="66" y="193" dominant-baseline="central" fill="#3d3d3a" font-size="12" font-family="var(--font-main)">MAX Platform</text>
+
+                <text x="129" y="210" text-anchor="middle" dominant-baseline="central" fill="#3d3d3a" font-size="12" font-family="var(--font-main)">Pre-deployment gates</text>
+
+                <rect x="63" y="218" width="132" height="30" rx="6" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="129" y="233" text-anchor="middle" dominant-baseline="central" fill="#5f5e5a" font-size="12" font-family="var(--font-main)">Security gate</text>
+
+                <rect x="63" y="254" width="132" height="30" rx="6" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="129" y="269" text-anchor="middle" dominant-baseline="central" fill="#5f5e5a" font-size="12" font-family="var(--font-main)">Compliance gate</text>
+
+                <rect x="63" y="290" width="132" height="30" rx="6" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="129" y="305" text-anchor="middle" dominant-baseline="central" fill="#5f5e5a" font-size="12" font-family="var(--font-main)">Risk scorecard</text>
+
+                <rect x="63" y="326" width="132" height="30" rx="6" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.5"/>
+                <text x="129" y="341" text-anchor="middle" dominant-baseline="central" fill="#5f5e5a" font-size="12" font-family="var(--font-main)">Config check</text>
+
+                <line x1="197" y1="284" x2="246" y2="284" stroke="#73726c" stroke-width="1.5" marker-end="url(#dd-arrow)"/>
+
+                <rect x="248" y="203" width="178" height="180" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="1"/>
+                <text x="332" y="225" text-anchor="middle" dominant-baseline="central" fill="#085041" font-size="14" font-weight="500" font-family="var(--font-main)">Hot Bar</text>
+                <text x="332" y="243" text-anchor="middle" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">In-workflow context layer</text>
+                <line x1="264" y1="257" x2="400" y2="257" stroke="#085041" stroke-width="1" opacity="0.5"/>
+                <text x="260" y="276" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">Readable error messages</text>
+                <text x="260" y="299" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">Ownership surfaced</text>
+                <text x="260" y="322" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">1-click resolution path</text>
+                <text x="260" y="345" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">WCAG 2.2 AA compliant</text>
+                <text x="260" y="366" dominant-baseline="central" fill="#0f6e56" font-size="12" font-family="var(--font-main)">No context switch required</text>
+
+                <line x1="418" y1="284" x2="452" y2="284" stroke="#73726c" stroke-width="1.5" marker-end="url(#dd-arrow)"/>
+
+                <text x="529" y="210" text-anchor="middle" dominant-baseline="central" fill="#3d3d3a" font-size="12" font-family="var(--font-main)">Resolution outcomes</text>
+
+                <rect x="454" y="218" width="150" height="30" rx="6" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.5"/>
+                <text x="529" y="233" text-anchor="middle" dominant-baseline="central" fill="#185fa5" font-size="12" font-family="var(--font-main)">Error explained</text>
+
+                <rect x="454" y="254" width="150" height="30" rx="6" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.5"/>
+                <text x="529" y="269" text-anchor="middle" dominant-baseline="central" fill="#185fa5" font-size="12" font-family="var(--font-main)">Owner identified</text>
+
+                <rect x="454" y="290" width="150" height="30" rx="6" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.5"/>
+                <text x="529" y="305" text-anchor="middle" dominant-baseline="central" fill="#185fa5" font-size="12" font-family="var(--font-main)">Action taken</text>
+
+                <rect x="454" y="326" width="150" height="30" rx="6" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.5"/>
+                <text x="529" y="341" text-anchor="middle" dominant-baseline="central" fill="#185fa5" font-size="12" font-family="var(--font-main)">Gate cleared</text>
+
+                <line x1="340" y1="419" x2="340" y2="453" stroke="#73726c" stroke-width="1.5" marker-end="url(#dd-arrow)"/>
+
+                <rect x="210" y="455" width="260" height="44" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.5"/>
+                <text x="340" y="477" text-anchor="middle" dominant-baseline="central" fill="#085041" font-size="14" font-weight="500" font-family="var(--font-main)">Production deployment</text>
+              </svg>
+            </div>
+            <p class="cs-image-caption">Hot Bar placement within MAX Platform — sitting between pre-deployment gates and resolution outcomes, inside the engineer's existing workflow.</p>
+          </div>
         </section>
 
         <hr class="cs-divider">
@@ -224,7 +648,152 @@
           </div>
 
           <div class="cs-image">
-            <img src="https://cdn.myportfolio.com/179a14b9849925e892fce24f702e624f/80e505eb-dc95-4ea5-9060-9b6ae09e2a96_rw_1200.png?h=a4b693b322471e2ede159032a48063f2" alt="Before and after: Legacy interface vs The Hot Bar with contextual guidance and action steps" loading="lazy">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+              <!-- BEFORE thumbnail -->
+              <div style="aspect-ratio:5/3;overflow:hidden;border-radius:12px;border:1px solid #2A3A4A;display:flex;flex-direction:column;box-sizing:border-box;font-family:var(--font-main);">
+                <div style="background:#1A1A1A;padding:0 20px;height:44px;display:flex;align-items:center;flex-shrink:0;">
+                  <span style="color:#9CA3AF;font-size:12px;letter-spacing:0.06em;">Internal Developer Platform</span>
+                </div>
+                <div style="flex:1;display:flex;overflow:hidden;">
+                  <div style="flex:1;background:#E8E9EB;padding:14px;overflow:hidden;display:flex;gap:10px;">
+                    <div style="flex:1;background:#fff;border-radius:6px;border:1px solid #D0D5DD;overflow:hidden;display:flex;flex-direction:column;">
+                      <table style="width:100%;border-collapse:collapse;">
+                        <thead><tr style="border-bottom:1px solid #E5E7EB;">
+                          <th style="text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:#374151;width:35%;">Build No.</th>
+                          <th style="text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:#374151;">PRN</th>
+                        </tr></thead>
+                        <tbody>
+                          <tr style="background:#EFF6FF;border-bottom:1px solid #E5E7EB;"><td style="padding:6px 12px;font-size:10px;color:#374151;font-weight:500;">10</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:10</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">9</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:9</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">8</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:8</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">7</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:7</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">6</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:6</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">5</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:5</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">4</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:4</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">3</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:3</td></tr>
+                          <tr><td style="padding:6px 12px;font-size:10px;color:#374151;">2</td><td style="padding:6px 12px;font-size:10px;color:#374151;">prn:123:service:app:branch:2</td></tr>
+                        </tbody>
+                      </table>
+                      <div style="padding:6px 12px;text-align:right;border-top:1px solid #F3F4F6;margin-top:auto;"><span style="font-size:10px;color:#9CA3AF;">‹ ›</span></div>
+                    </div>
+                    <div style="flex:1;background:#fff;border-radius:6px;border:1px solid #D0D5DD;overflow:hidden;">
+                      <table style="width:100%;border-collapse:collapse;">
+                        <thead><tr style="border-bottom:1px solid #E5E7EB;">
+                          <th style="text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:#374151;width:30%;">Status</th>
+                          <th style="text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:#374151;">Reason of Block</th>
+                        </tr></thead>
+                        <tbody>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Application inactive</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Invalid security assessment</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Invalid deployment configuration</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Invalid deployment configuration</td></tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;"><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Invalid deployment configuration</td></tr>
+                          <tr><td style="padding:6px 12px;font-size:10px;color:#374151;">Block</td><td style="padding:6px 12px;font-size:10px;color:#374151;">Invalid deployment configuration</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AFTER thumbnail -->
+              <div style="aspect-ratio:5/3;overflow:hidden;border-radius:12px;border:1px solid #2A3A4A;display:flex;flex-direction:column;box-sizing:border-box;font-family:var(--font-main);">
+                <div style="background:#1A1A1A;padding:0 20px;height:44px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                  <span style="color:#4A5568;font-size:12px;letter-spacing:0.06em;">Internal Developer Platform</span>
+                  <div style="display:flex;gap:18px;align-items:center;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#777" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="#777" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M12 8A4 4 0 0 1 8 12 4 4 0 0 1 4 8c0-.4.05-.8.15-1.2A3.5 3.5 0 0 0 8 9.5a3.5 3.5 0 0 0 3-1.7A4 4 0 0 1 12 8z" stroke="#777" stroke-width="1.5"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="2.5" stroke="#777" stroke-width="1.5"/><path d="M3 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#777" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="flex:1;display:flex;overflow:hidden;">
+                  <div style="width:42px;background:#1C2E3E;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:18px;flex-shrink:0;">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 8L9 2L16 8V16H12V12H6V16H2V8Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6.5" r="2.5" stroke="#6A849E" stroke-width="1.5"/><path d="M3.5 16c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 6L9 10L2 6L9 2Z" stroke="#6A849E" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 10L9 14L16 10" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="6" width="12" height="9" rx="2" stroke="#6A849E" stroke-width="1.5"/><circle cx="7" cy="10.5" r="1.2" fill="#6A849E"/><circle cx="11" cy="10.5" r="1.2" fill="#6A849E"/><path d="M9 3.5V6" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="3" r="0.8" fill="#6A849E"/></svg>
+                  </div>
+                  <div style="flex:1;background:#E8E9EB;padding:14px;overflow:hidden;display:flex;flex-direction:column;gap:10px;">
+                    <div style="background:#fff;border-radius:6px;border:1px solid #D0D5DD;overflow:hidden;flex-shrink:0;">
+                      <div style="background:#1C2E3E;padding:8px 12px;display:flex;gap:6px;">
+                        <div style="background:#fff;border:1.5px solid #DC2626;border-radius:5px;padding:5px 10px;display:flex;align-items:center;gap:5px;">
+                          <div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                          <div><div style="font-size:8px;color:#DC2626;font-weight:500;line-height:1;">Prod</div><div style="font-size:10px;color:#1A1A1A;font-weight:600;line-height:1.3;">Deployment Block</div></div>
+                        </div>
+                        <div style="background:#fff;border:1.5px solid #DC2626;border-radius:5px;padding:5px 10px;display:flex;align-items:center;gap:5px;">
+                          <div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                          <div><div style="font-size:8px;color:#DC2626;font-weight:500;line-height:1;">Risk Control</div><div style="font-size:10px;color:#1A1A1A;font-weight:600;line-height:1.3;">Overdue scorecards</div></div>
+                        </div>
+                        <div style="background:#fff;border:1.5px solid #16A34A;border-radius:5px;padding:5px 10px;display:flex;align-items:center;gap:5px;">
+                          <div style="width:14px;height:14px;border-radius:50%;background:#16A34A;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="M1 3.5L3 5.5L6 2" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                          <div><div style="font-size:8px;color:#16A34A;font-weight:500;line-height:1;">Non Production</div><div style="font-size:10px;color:#1A1A1A;font-weight:600;line-height:1.3;">Deployment Enabled</div></div>
+                        </div>
+                      </div>
+                      <table style="width:100%;border-collapse:collapse;">
+                        <thead><tr style="border-bottom:1px solid #E5E7EB;">
+                          <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;color:#374151;width:48px;">Status</th>
+                          <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;color:#374151;width:24%;">Reason of Block</th>
+                          <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;color:#374151;">Suggestion/Action</th>
+                          <th style="text-align:left;padding:6px 10px;font-size:10px;font-weight:500;color:#374151;width:21%;">Help</th>
+                        </tr></thead>
+                        <tbody>
+                          <tr style="border-bottom:1px solid #F3F4F6;">
+                            <td style="padding:5px 10px;text-align:center;"><div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:inline-flex;align-items:center;justify-content:center;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div></td>
+                            <td style="padding:5px 10px;font-size:10px;color:#2563EB;">Application inactive</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Application needs further review.</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Seek <span style="color:#2563EB;">Service Owner</span> advice</td>
+                          </tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;">
+                            <td style="padding:5px 10px;text-align:center;"><div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:inline-flex;align-items:center;justify-content:center;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div></td>
+                            <td style="padding:5px 10px;font-size:10px;color:#2563EB;">Invalid security assessment</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Resubmit or review your security assessment. Read <span style="color:#2563EB;">Security Guide.</span></td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;"><span style="color:#2563EB;">Contact</span> Security team</td>
+                          </tr>
+                          <tr style="border-bottom:1px solid #F3F4F6;">
+                            <td style="padding:5px 10px;text-align:center;"><div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:inline-flex;align-items:center;justify-content:center;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div></td>
+                            <td style="padding:5px 10px;font-size:10px;color:#2563EB;">Invalid deployment configuration</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Configuration changed on DD/MM/YYYY. Review config to match requirements.</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Check <span style="color:#2563EB;">logs</span> and verify again</td>
+                          </tr>
+                          <tr>
+                            <td style="padding:5px 10px;text-align:center;"><div style="width:14px;height:14px;border-radius:50%;background:#DC2626;display:inline-flex;align-items:center;justify-content:center;"><svg width="7" height="7" viewBox="0 0 7 7"><path d="M1.5 1.5L5.5 5.5M5.5 1.5L1.5 5.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div></td>
+                            <td style="padding:5px 10px;font-size:10px;color:#2563EB;">Leadership team approval needed</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Approval has expired. Please submit new request.</td>
+                            <td style="padding:5px 10px;font-size:10px;color:#374151;">Request approval <span style="color:#2563EB;">here</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div style="padding:5px 12px;text-align:right;border-top:1px solid #F3F4F6;"><span style="font-size:10px;color:#9CA3AF;">‹ ›</span></div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;">
+                      <div style="background:#fff;border-radius:6px;border:1px solid #D0D5DD;padding:10px;overflow:hidden;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                          <span style="font-size:11px;font-weight:500;color:#1A1A1A;">Request and Approvals</span>
+                          <span style="font-size:14px;color:#9CA3AF;line-height:1;">⋮</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:5px;">
+                          <div style="display:flex;gap:6px;font-size:10px;"><span style="color:#2563EB;font-weight:600;min-width:16px;">12</span><span style="color:#6B7280;">requests pending your approval</span></div>
+                          <div style="display:flex;gap:6px;font-size:10px;"><span style="color:#2563EB;font-weight:600;min-width:16px;">1</span><span style="color:#6B7280;">active request in progress</span></div>
+                          <div style="display:flex;gap:6px;font-size:10px;"><span style="color:#2563EB;font-weight:600;min-width:16px;">1</span><span style="color:#6B7280;">active application — &lt;name&gt; needs your review</span></div>
+                        </div>
+                      </div>
+                      <div style="background:#fff;border-radius:6px;border:1px solid #D0D5DD;padding:10px;overflow:hidden;">
+                        <div style="font-size:11px;font-weight:500;color:#1A1A1A;margin-bottom:6px;">Costing (Nov 2025)</div>
+                        <svg width="100%" viewBox="0 0 180 72" style="display:block;">
+                          <line x1="8" y1="8" x2="8" y2="64" stroke="#E5E7EB" stroke-width="0.5"/>
+                          <line x1="8" y1="64" x2="172" y2="64" stroke="#E5E7EB" stroke-width="0.5"/>
+                          <polyline points="8,14 50,22 90,28 130,18 172,36" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          <polyline points="8,56 50,46 90,40 130,32 172,16" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             <p class="cs-image-caption">Before: Legacy interface — passive ledger, no actionable guidance &nbsp;|&nbsp; After: The Hot Bar — contextual, persistent, actionable</p>
           </div>
 

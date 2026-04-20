@@ -58,7 +58,8 @@
           <span class="cs-tag">Active Directory</span>
         </div>
         <h1 class="cs-hero-title">Simplifying Macquarie Bank Access Requests with AI</h1>
-        <p class="cs-hero-subtitle">By modernising manual active directory requests into AI-assisted workflows, we reclaimed 1–4 hours per week for every user and reduced approver effort by 90%.</p>
+        <p class="cs-hero-subtitle">Getting 10,000 employees to trust an AI agent making access decisions on their behalf is a harder design problem than building the agent itself.
+          This case study is about that design challenge — how we replaced a fragmented, manual access request process with an agentic workflow that felt trustworthy, transparent, and faster. The AI handles the research and synthesis. Humans retain the final call. And the experience was designed so engineers could tell the difference.</p>
       </div>
     </section>
 
@@ -99,11 +100,11 @@
               <p class="cs-stat-label">Reduction in total effort for both requesters and approvers</p>
             </div>
             <div class="cs-stat">
-              <p class="cs-stat-value">1–4h</p>
+              <p class="cs-stat-value">up to 4 hours</p>
               <p class="cs-stat-label">Reclaimed per week per user</p>
             </div>
             <div class="cs-stat">
-              <p class="cs-stat-value">0</p>
+              <p class="cs-stat-value">Zero</p>
               <p class="cs-stat-label">Manual data-gathering steps — replaced by agent-led summaries</p>
             </div>
           </div>
@@ -210,6 +211,94 @@
             <p>Global brainstorming across APAC, NA, and EMEA regions surfaced many potential solutions. Through internal voting and structured ideation, conversational AI was identified as the highest-impact approach — shifting the burden from the user to the system.</p>
           </div>
 
+          <div class="cs-body" style="margin-top: 2rem;">
+            <p>Design decisions were validated at each stage through behavioural signals and productivity data — not just post-launch surveys. Legacy AD Search task completion rates, time-on-task measurements, and error rates from mismatched group selections formed the baseline. Prototype testing tracked intent interpretation accuracy and approver decision time against that baseline, ensuring the AI agent was reducing cognitive load in practice, not just in principle.</p>
+          </div>
+
+          <div class="v-wrap" style="margin-top: 1.5rem;">
+            <style>
+              .v-wrap { padding: 4px 0 24px; }
+              .v-label-val { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 16px; }
+              .v-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+              @media (max-width: 720px) { .v-grid { grid-template-columns: 1fr; } }
+              .v-card { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 10px; padding: 14px 16px; }
+              .v-stage { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 8px; }
+              .v-metric-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+              .v-val { font-size: 22px; font-weight: 500; line-height: 1; }
+              .v-val.v-danger  { color: #F87171; }
+              .v-val.v-warning { color: #FBBF24; }
+              .v-val.v-success { color: #4ADE80; }
+              .v-unit { font-size: 11px; color: #8A9BB0; }
+              .v-desc { font-size: 11px; color: #A0B0C0; line-height: 1.45; margin-top: 4px; }
+              .v-divider-val { border: none; border-top: 0.5px solid #2A3A4A; margin: 8px 0; }
+              .v-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+              .v-tag-before  { background: #3B1F1F; color: #F87171; }
+              .v-tag-during  { background: #3B2E0F; color: #FBBF24; }
+              .v-tag-after   { background: #1A3B2A; color: #4ADE80; }
+              .v-tag-method  { background: #1E2A38; color: #8A9BB0; }
+              .v-footnote { font-size: 11px; color: #8A9BB0; font-style: italic; }
+            </style>
+
+            <p class="v-label-val">Validation — indicative signals across design phases</p>
+
+            <div class="v-grid">
+
+              <div class="v-card">
+                <div class="v-stage">Baseline · legacy system</div>
+                <div class="v-metric-row">
+                  <span class="v-val v-danger">15%</span>
+                  <span class="v-unit">task completion rate</span>
+                </div>
+                <div class="v-desc">Task completion rates for first-attempt access requests were consistently low — engineers frequently abandoned mid-flow or submitted incorrect group requests requiring resubmission.</div>
+                <hr class="v-divider-val">
+                <div class="v-metric-row">
+                  <span class="v-val v-danger">45 to 90</span>
+                  <span class="v-unit">min avg time-on-task</span>
+                </div>
+                <div class="v-desc">Time-on-task was significant — navigating fragmented systems to complete a single request consumed a meaningful portion of an engineer's day.</div>
+                <span class="v-tag v-tag-before">Before</span>
+                <span class="v-tag v-tag-method">Qualitative research</span>
+              </div>
+
+              <div class="v-card">
+                <div class="v-stage">Prototype testing · design phase</div>
+                <div class="v-metric-row">
+                  <span class="v-val v-warning">75%</span>
+                  <span class="v-unit">Intent accuracy</span>
+                </div>
+                <div class="v-desc">Intent interpretation accuracy tested well in moderated sessions — participants described access needs in natural language and the agent consistently mapped to the correct group.</div>
+                <hr class="v-divider-val">
+                <div class="v-metric-row">
+                  <span class="v-val v-warning">4</span>
+                  <span class="v-unit">min avg decision time</span>
+                </div>
+                <div class="v-desc">Approver decision time dropped significantly in prototype sessions — the synthesised Approval Card eliminated the need to open external dashboards.</div>
+                <span class="v-tag v-tag-during">Prototype sessions</span>
+                <span class="v-tag v-tag-method">Moderated testing</span>
+              </div>
+
+              <div class="v-card">
+                <div class="v-stage">Post-launch · live system</div>
+                <div class="v-metric-row">
+                  <span class="v-val v-success">90%</span>
+                  <span class="v-unit">effort reduction</span>
+                </div>
+                <div class="v-desc">Combined reduction in time spent by both requesters and approvers — the only hard metric formally captured at launch.</div>
+                <hr class="v-divider-val">
+                <div class="v-metric-row">
+                  <span class="v-val v-success">Up to 4 hours</span>
+                  <span class="v-unit">reclaimed per user/week</span>
+                </div>
+                <div class="v-desc">Reported time savings per user per week across the 10,000+ person organisation.</div>
+                <span class="v-tag v-tag-after">After</span>
+                <span class="v-tag v-tag-method">Launch metrics</span>
+              </div>
+
+            </div>
+
+            <p class="v-footnote">Baseline and prototype signals are qualitative — drawn from 30+ user interviews and moderated testing sessions. Post-launch figures are the formally measured outcomes captured at time of delivery.</p>
+          </div>
+
           <div class="cs-image">
             <img src="https://cdn.myportfolio.com/179a14b9849925e892fce24f702e624f/3ef1d591-8421-4101-980d-b5431c9e3b8d_rw_1200.png?h=a903dc2949bf1faa39820ffd8eace3b9" alt="AI Access Request design — before state and ideation" loading="lazy">
             <p class="cs-image-caption">Research and ideation: mapping the journey from legacy portal to conversational AI</p>
@@ -249,6 +338,453 @@
 
         <hr class="cs-divider">
 
+        <!-- Design Decisions -->
+        <section class="cs-section">
+          <p class="cs-section-label">Design Decisions</p>
+          <h2 class="cs-section-title">AI interaction models considered</h2>
+          <div class="cs-body">
+            <p>Before landing on a conversational AI agent, we pressure-tested three alternative directions. Each solved a surface-level problem but left the core intent gap — and approver burden — untouched.</p>
+          </div>
+
+          <style>
+            .dd-scope { --dd-text-primary:#1a1a1a; --dd-text-secondary:#555; --dd-text-tertiary:#888;
+              --dd-bg-primary:#ffffff; --dd-bg-secondary:#f7f7f7;
+              --dd-border-tertiary:#e5e5e5;
+              --dd-text-danger:#b42318;
+              --dd-bg-success:#e8f5e9; --dd-text-success:#1e7d32; --dd-border-success:#1e7d32;
+              --dd-bg-info:#e7f0ff; --dd-text-info:#1a56c4;
+              --dd-bg-warning:#fff4e5; --dd-text-warning:#b54708;
+              font-family: var(--font-main); margin-top: 1.5rem;
+            }
+            .dd-scope .dd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+            .dd-scope .dd-card { background: var(--dd-bg-primary); border: 0.5px solid var(--dd-border-tertiary); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; opacity: 0.9; }
+            .dd-scope .dd-pill { display: inline-flex; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; width: fit-content; }
+            .dd-scope .pill-out { background: var(--dd-bg-secondary); color: var(--dd-text-tertiary); }
+            .dd-scope .pill-win { background: var(--dd-border-success); color: #ffffff; }
+            .dd-scope .dd-title { font-size: 13px; font-weight: 500; color: var(--dd-text-primary); line-height: 1.3; }
+            .dd-scope .dd-desc { font-size: 12px; color: var(--dd-text-secondary); line-height: 1.5; }
+            .dd-scope .dd-divider { border: none; border-top: 0.5px solid var(--dd-border-tertiary); margin: 2px 0; }
+            .dd-scope .dd-slabel { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dd-text-tertiary); margin-bottom: 4px; }
+            .dd-scope .dd-bullets { display: flex; flex-direction: column; gap: 5px; }
+            .dd-scope .dd-bullet { display: flex; align-items: flex-start; font-size: 12px; line-height: 1.45; }
+            .dd-scope .dot-out { width: 5px; height: 5px; border-radius: 50%; background: var(--dd-text-tertiary); display: inline-block; margin-right: 8px; flex-shrink: 0; margin-top: 7px; }
+            .dd-scope .dot-win { width: 5px; height: 5px; border-radius: 50%; background: var(--dd-text-success); display: inline-block; margin-right: 8px; flex-shrink: 0; margin-top: 7px; }
+            .dd-scope .reason-out { color: var(--dd-text-danger); }
+            .dd-scope .chosen-row { background: var(--dd-bg-success); border-radius: 10px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+            .dd-scope .chosen-title { font-size: 14px; font-weight: 500; color: var(--dd-text-success); margin-bottom: 6px; }
+            .dd-scope .chosen-desc { font-size: 12px; color: var(--dd-text-success); line-height: 1.5; opacity: 0.9; }
+            .dd-scope .chosen-bullet { display: flex; align-items: flex-start; font-size: 12px; color: var(--dd-text-success); line-height: 1.45; }
+
+            .tf-scope { --tf-text-primary:#1a1a1a; --tf-text-secondary:#555; --tf-text-tertiary:#888;
+              --tf-bg-primary:#ffffff; --tf-bg-secondary:#f7f7f7;
+              --tf-border-tertiary:#e5e5e5;
+              --tf-text-info:#1a56c4; --tf-bg-info:#e7f0ff;
+              --tf-text-warning:#b54708;
+              --tf-text-success:#1e7d32; --tf-bg-success:#e8f5e9;
+              font-family: var(--font-main); margin-top: 1.5rem;
+            }
+            .tf-scope .tf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+            .tf-scope .tf-card { background: var(--tf-bg-primary); border: 0.5px solid var(--tf-border-tertiary); border-radius: 10px; padding: 16px; }
+            .tf-scope .tf-num { font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: 8px; }
+            .tf-scope .tf-num.info { color: var(--tf-text-info); }
+            .tf-scope .tf-num.warning { color: var(--tf-text-warning); }
+            .tf-scope .tf-num.success { color: var(--tf-text-success); }
+            .tf-scope .tf-principle { font-size: 13px; font-weight: 500; color: var(--tf-text-primary); margin-bottom: 6px; line-height: 1.3; }
+            .tf-scope .tf-desc { font-size: 12px; color: var(--tf-text-secondary); line-height: 1.5; margin-bottom: 10px; }
+            .tf-scope .tf-divider { border: none; border-top: 0.5px solid var(--tf-border-tertiary); margin: 10px 0; }
+            .tf-scope .tf-slabel { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tf-text-tertiary); margin-bottom: 6px; }
+            .tf-scope .tf-example { font-size: 12px; color: var(--tf-text-secondary); line-height: 1.5; font-style: italic; }
+            .tf-scope .tf-boundary { background: var(--tf-bg-secondary); border-radius: 10px; padding: 20px; }
+            .tf-scope .tf-boundary-title { font-size: 12px; font-weight: 500; color: var(--tf-text-primary); margin-bottom: 12px; }
+            .tf-scope .tf-row { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 0; align-items: center; margin-bottom: 8px; }
+            .tf-scope .tf-ai { background: var(--tf-bg-info); border-radius: 6px; padding: 8px 12px; font-size: 11px; color: var(--tf-text-info); line-height: 1.4; }
+            .tf-scope .tf-human { background: var(--tf-bg-success); border-radius: 6px; padding: 8px 12px; font-size: 11px; color: var(--tf-text-success); line-height: 1.4; }
+            .tf-scope .tf-arrow { text-align: center; font-size: 12px; color: var(--tf-text-tertiary); }
+            .tf-scope .tf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+            .tf-scope .tf-col-label { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 12px; border-radius: 6px; margin-bottom: 6px; text-align: center; }
+            .tf-scope .col-ai { background: var(--tf-bg-info); color: var(--tf-text-info); }
+            .tf-scope .col-human { background: var(--tf-bg-success); color: var(--tf-text-success); }
+
+            @media (max-width: 720px) {
+              .dd-scope .dd-grid, .tf-scope .tf-grid { grid-template-columns: 1fr; }
+              .dd-scope .chosen-row { grid-template-columns: 1fr; gap: 16px; }
+              .tf-scope .tf-row { grid-template-columns: 1fr; gap: 4px; }
+              .tf-scope .tf-arrow { display: none; }
+            }
+          </style>
+
+          <div class="dd-scope">
+            <div class="dd-grid">
+              <div class="dd-card">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Enhanced form with smart suggestions</div>
+                <div class="dd-desc">Upgrade the existing AD Search form with autocomplete, inline recommendations, and a simplified field set.</div>
+                <hr class="dd-divider">
+                <div class="dd-slabel">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Still required users to know what they were searching for — the core problem remained</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Autocomplete helps with known terms; engineers often didn't know the correct group names</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Didn't reduce approver burden — decisions still required manual context gathering</span></div>
+                </div>
+              </div>
+
+              <div class="dd-card">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Guided wizard flow</div>
+                <div class="dd-desc">A multi-step wizard asking structured questions to route the engineer to the right access group via decision tree.</div>
+                <hr class="dd-divider">
+                <div class="dd-slabel">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Decision tree logic couldn't handle the complexity of 10,000+ security groups</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">High maintenance overhead — every new group or policy required wizard updates</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Still required the engineer to understand their own access needs — the intent gap persisted</span></div>
+                </div>
+              </div>
+
+              <div class="dd-card">
+                <div class="dd-pill pill-out">Ruled out</div>
+                <div class="dd-title">Self-service catalogue</div>
+                <div class="dd-desc">A searchable catalogue of pre-approved access packages, allowing engineers to browse and self-select.</div>
+                <hr class="dd-divider">
+                <div class="dd-slabel">Why we ruled it out</div>
+                <div class="dd-bullets">
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Browsing 10,000+ groups was the original problem — a catalogue didn't solve discoverability</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Pre-packaged bundles created shadow IT risk — engineers would over-request to avoid repeat requests</span></div>
+                  <div class="dd-bullet"><div class="dot-out"></div><span class="reason-out">Approvers still lacked synthesised context — decision quality didn't improve</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chosen-row">
+              <div>
+                <div class="dd-pill pill-win" style="margin-bottom:10px">Chosen solution</div>
+                <div class="chosen-title">Conversational AI with agentic data synthesis</div>
+                <div class="chosen-desc">Engineers describe what they need in natural language. An AI agent translates intent into the correct access request, proactively gathers risk context from multiple sources, and surfaces a single Approval Card — giving approvers everything they need in one view.</div>
+              </div>
+              <div>
+                <div class="dd-slabel" style="color:var(--dd-text-success);opacity:0.7;margin-bottom:8px">Why it won</div>
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <div class="chosen-bullet"><div class="dot-win"></div>Solves the intent gap — users describe a goal, not a group name</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Shifts cognitive burden from human to agent — approvers decide, they don't research</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Scales without maintenance — LLM handles new groups and policies without rule updates</div>
+                  <div class="chosen-bullet"><div class="dot-win"></div>Human-in-the-loop preserved — final approval always requires human sign-off</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Trust Framework -->
+        <section class="cs-section">
+          <p class="cs-section-label">Trust Framework</p>
+          <h2 class="cs-section-title">Designing for trust</h2>
+          <div class="cs-body">
+            <p>The core design challenge wasn't conversational AI — it was making automated decision-making feel legible to the people affected by it. Three principles guided every interaction decision.</p>
+          </div>
+
+          <div class="tf-scope">
+            <div class="tf-grid">
+              <div class="tf-card">
+                <div class="tf-num success">01</div>
+                <div class="tf-principle">Explainability over efficiency</div>
+                <div class="tf-desc">The AI agent could synthesise access decisions faster without showing its reasoning — but users needed to understand why a recommendation was made to trust it.</div>
+                <hr class="tf-divider">
+                <div class="tf-slabel">Design response</div>
+                <div class="tf-example">Every Approval Card surfaces the risk signals the agent evaluated — not just the conclusion. Approvers see what the AI saw before deciding.</div>
+              </div>
+
+              <div class="tf-card">
+                <div class="tf-num success">02</div>
+                <div class="tf-principle">Graceful human override</div>
+                <div class="tf-desc">Any approval step could be escalated or rejected without friction. The design never trapped users inside an AI decision path — exits were always visible and always one step away.</div>
+                <hr class="tf-divider">
+                <div class="tf-slabel">Design response</div>
+                <div class="tf-example">Override actions were treated as first-class interactions, not edge cases. Escalate and reject sat beside Approve, not buried in menus.</div>
+              </div>
+
+              <div class="tf-card">
+                <div class="tf-num success">03</div>
+                <div class="tf-principle">Transparent failure states</div>
+                <div class="tf-desc">When the agent lacked confidence or hit an edge case, it said so explicitly rather than presenting a low-confidence result as fact. Uncertainty was surfaced, not hidden.</div>
+                <hr class="tf-divider">
+                <div class="tf-slabel">Design response</div>
+                <div class="tf-example">"I'm not certain which group applies here — here are three options with confidence levels" was a designed state, not an error.</div>
+              </div>
+            </div>
+
+            <div class="tf-boundary">
+              <div class="tf-boundary-title">AI vs human responsibility boundary — by task type</div>
+              <div class="tf-cols">
+                <div class="tf-col-label col-ai">AI handles autonomously</div>
+                <div class="tf-col-label col-human">Human retains control</div>
+              </div>
+              <div class="tf-row">
+                <div class="tf-ai"><b>Intent interpretation</b> — translating natural language to access group</div>
+                <div class="tf-arrow">→</div>
+                <div class="tf-human">Final approval or rejection of the access request</div>
+              </div>
+              <div class="tf-row">
+                <div class="tf-ai"><b>Risk data synthesis</b> — aggregating signals from multiple security systems</div>
+                <div class="tf-arrow">→</div>
+                <div class="tf-human">Escalation decisions on high-risk or ambiguous requests</div>
+              </div>
+              <div class="tf-row" style="margin-bottom:0">
+                <div class="tf-ai"><b>Status tracking</b> — notifying requesters of progress at each stage</div>
+                <div class="tf-arrow">→</div>
+                <div class="tf-human">Policy exceptions and override justifications</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Before & After -->
+        <section class="cs-section">
+          <p class="cs-section-label">Before &amp; After</p>
+          <h2 class="cs-section-title">From blank form to guided conversation</h2>
+          <div class="cs-body">
+            <p>The legacy Active Directory search asked engineers to name a group they'd never heard of. The redesigned experience starts from intent — and hands approvers a synthesised summary instead of a raw string.</p>
+          </div>
+
+          <style>
+            .ba-scope { --ba-text-primary:#1a1a1a; --ba-text-secondary:#555; --ba-text-tertiary:#888;
+              --ba-bg-primary:#ffffff; --ba-bg-secondary:#f7f7f7;
+              --ba-border-tertiary:#e5e5e5; --ba-border-secondary:#d0d0d0;
+              --ba-bg-danger:#fdecea; --ba-text-danger:#b42318;
+              --ba-bg-info:#e7f0ff; --ba-text-info:#1a56c4;
+              font-family: var(--font-main); margin-top: 1.5rem;
+            }
+            .ba-scope .ba-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ba-text-tertiary); margin-bottom: 14px; }
+            .ba-scope .ba-before-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+            @media (max-width: 760px) {
+              .ba-scope .ba-before-grid { grid-template-columns: 1fr; }
+            }
+          </style>
+
+          <div class="ba-scope">
+            <p class="ba-label">Before — legacy AD search interface</p>
+            <div class="ba-before-grid">
+              <div style="background:var(--ba-bg-primary);border:0.5px solid var(--ba-border-tertiary);border-radius:10px;overflow:hidden;">
+                <div style="background:var(--ba-bg-secondary);padding:10px 14px;border-bottom:0.5px solid var(--ba-border-tertiary);">
+                  <div style="font-size:12px;font-weight:500;color:var(--ba-text-primary);">Active Directory Search</div>
+                  <div style="font-size:11px;color:var(--ba-text-tertiary);margin-top:2px;">Security group access request</div>
+                </div>
+                <div style="padding:14px;display:flex;flex-direction:column;gap:12px;">
+                  <div>
+                    <div style="font-size:11px;color:var(--ba-text-secondary);margin-bottom:4px;">Search security groups</div>
+                    <div style="border:0.5px solid var(--ba-border-secondary);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ba-text-tertiary);background:var(--ba-bg-primary);">Type a group name or AD name...</div>
+                  </div>
+                  <div>
+                    <div style="font-size:11px;color:var(--ba-text-secondary);margin-bottom:4px;">Access type</div>
+                    <div style="border:0.5px solid var(--ba-border-secondary);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ba-text-tertiary);background:var(--ba-bg-primary);display:flex;justify-content:space-between;align-items:center;"><span>Select access type</span><span style="font-size:10px;">▾</span></div>
+                  </div>
+                  <div>
+                    <div style="font-size:11px;color:var(--ba-text-secondary);margin-bottom:4px;">Justification</div>
+                    <div style="border:0.5px solid var(--ba-border-secondary);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ba-text-tertiary);background:var(--ba-bg-primary);height:52px;">Enter business justification...</div>
+                  </div>
+                  <div style="display:flex;gap:8px;padding-top:4px;">
+                    <div style="background:var(--ba-bg-info);color:var(--ba-text-info);border-radius:6px;padding:7px 16px;font-size:12px;font-weight:500;">Submit request</div>
+                    <div style="background:var(--ba-bg-secondary);color:var(--ba-text-secondary);border-radius:6px;padding:7px 16px;font-size:12px;">Cancel</div>
+                  </div>
+                </div>
+                <div style="padding:10px 14px;border-top:0.5px solid var(--ba-border-tertiary);background:var(--ba-bg-secondary);">
+                  <div style="font-size:10px;color:var(--ba-text-tertiary);">Search results will appear here after query</div>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="background:var(--ba-bg-danger);border-radius:10px;padding:14px 16px;">
+                  <div style="font-size:10px;font-weight:500;color:var(--ba-text-danger);margin-bottom:8px;letter-spacing:0.04em;text-transform:uppercase;">Three compounding pain points</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;gap:8px;align-items:flex-start;"><div style="width:5px;height:5px;border-radius:50%;background:var(--ba-text-danger);flex-shrink:0;margin-top:6px;"></div><div style="font-size:12px;color:var(--ba-text-danger);line-height:1.45;">Engineers had to know the exact AD or group name — intent couldn't be described</div></div>
+                    <div style="display:flex;gap:8px;align-items:flex-start;"><div style="width:5px;height:5px;border-radius:50%;background:var(--ba-text-danger);flex-shrink:0;margin-top:6px;"></div><div style="font-size:12px;color:var(--ba-text-danger);line-height:1.45;">Approvers received no synthesised context — they gathered risk data manually from multiple dashboards</div></div>
+                    <div style="display:flex;gap:8px;align-items:flex-start;"><div style="width:5px;height:5px;border-radius:50%;background:var(--ba-text-danger);flex-shrink:0;margin-top:6px;"></div><div style="font-size:12px;color:var(--ba-text-danger);line-height:1.45;">7+ day delays stemmed from communication gaps between requesters and approvers, not system limitations</div></div>
+                  </div>
+                </div>
+
+                <div style="background:var(--ba-bg-secondary);border-radius:10px;padding:14px 16px;">
+                  <div style="font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ba-text-tertiary);margin-bottom:10px;">Approver experience — before</div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <div style="background:var(--ba-bg-primary);border:0.5px solid var(--ba-border-tertiary);border-radius:6px;padding:8px 12px;">
+                      <div style="font-size:11px;font-weight:500;color:var(--ba-text-primary);margin-bottom:2px;">Access request — John Smith</div>
+                      <div style="font-size:11px;color:var(--ba-text-tertiary);">AD Group: AD=GRP-APAC-TRADE-DESK-01</div>
+                      <div style="font-size:11px;color:var(--ba-text-tertiary);">Justification: "Need access for project"</div>
+                      <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+                        <div style="font-size:10px;color:var(--ba-text-tertiary);background:var(--ba-bg-secondary);padding:2px 8px;border-radius:20px;border:0.5px solid var(--ba-border-tertiary);">No risk summary</div>
+                        <div style="font-size:10px;color:var(--ba-text-tertiary);background:var(--ba-bg-secondary);padding:2px 8px;border-radius:20px;border:0.5px solid var(--ba-border-tertiary);">No policy context</div>
+                      </div>
+                    </div>
+                    <div style="font-size:11px;color:var(--ba-text-tertiary);text-align:center;padding:4px 0;">Approver opens 3 separate dashboards to gather context ↓</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="ba-label" style="margin-top:28px;">After — requester: conversational access request</p>
+            <div style="aspect-ratio:5/3;overflow:hidden;border-radius:12px;border:1px solid #2A3A4A;display:flex;box-sizing:border-box;">
+              <div style="width:46px;background:#1A1E2E;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:18px;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 8L9 2L16 8V16H12V12H6V16H2V8Z" stroke="#6A849E" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6.5" r="2.5" stroke="#6A849E" stroke-width="1.5"/><path d="M3.5 16c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 6L9 10L2 6L9 2Z" stroke="#6A849E" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 10L9 14L16 10" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="6" width="12" height="9" rx="2" stroke="white" stroke-width="1.5"/><circle cx="7" cy="10.5" r="1.2" fill="white"/><circle cx="11" cy="10.5" r="1.2" fill="white"/><path d="M9 3.5V6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="3" r="0.8" fill="white"/></svg>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;background:#CBCBCB;overflow:hidden;font-family:var(--font-main);">
+                <div style="background:#F0F0F0;padding:10px 16px;border-bottom:1px solid #B8B8B8;flex-shrink:0;">
+                  <div style="font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:6px;">TechBot</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="border:1px solid #B8B8B8;border-radius:4px;padding:3px 10px;font-size:11px;color:#374151;background:#fff;display:flex;align-items:center;gap:4px;">User Access Agent <span style="font-size:9px;color:#888;">▾</span></div>
+                    <div style="background:#60A5FA;border-radius:4px;padding:3px 12px;font-size:11px;color:#fff;font-weight:500;">New Chat</div>
+                    <div style="font-size:11px;color:#60A5FA;">RESET</div>
+                  </div>
+                </div>
+                <div style="flex:1;display:flex;overflow:hidden;">
+                  <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden;">
+                    <div style="display:flex;justify-content:flex-end;">
+                      <div style="background:#D4F0A0;border-radius:16px 16px 4px 16px;padding:10px 14px;font-size:12px;color:#1A1A1A;max-width:65%;">Can I have access to Zoom tools?</div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                      <div style="font-size:11px;color:#4A5568;padding-left:2px;">TechBot · User Access Agent</div>
+                      <div style="background:#fff;border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:12px;color:#374151;line-height:1.5;max-width:85%;">
+                        I've found the right access group for you. Here's a summary of what I'll be requesting on your behalf — please confirm to proceed.
+                        <div style="margin-top:10px;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+                          <div style="background:#F8FAFC;padding:8px 12px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;">
+                            <div style="font-size:11px;font-weight:600;color:#1A1A1A;">Access request summary</div>
+                            <div style="background:#DCFCE7;border-radius:20px;padding:2px 8px;font-size:10px;color:#16A34A;font-weight:500;">Low risk</div>
+                          </div>
+                          <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Access group</div>
+                              <div style="font-size:11px;color:#1A1A1A;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">GRP-ZOOM-USERS-ALL</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Policy match</div>
+                              <div style="font-size:11px;color:#16A34A;">Confirmed · Standard access</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Approver</div>
+                              <div style="font-size:11px;color:#374151;">IT Security · Auto-assigned</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Est. approval time</div>
+                              <div style="font-size:11px;color:#374151;">~2 hours</div>
+                            </div>
+                          </div>
+                          <div style="padding:8px 12px;border-top:1px solid #E5E7EB;display:flex;gap:6px;">
+                            <div style="background:#16A34A;border-radius:4px;padding:5px 14px;font-size:11px;color:#fff;font-weight:500;">Request access</div>
+                            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:4px;padding:5px 14px;font-size:11px;color:#374151;">Start again</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="width:160px;background:#BBBBBB;padding:12px;flex-shrink:0;">
+                    <div style="font-size:12px;font-weight:600;color:#1A1A1A;margin-bottom:10px;">Your Chats</div>
+                    <div style="background:#A8A8A8;border-radius:4px;padding:6px 8px;">
+                      <div style="font-size:11px;color:#1A1A1A;font-weight:500;">Can I have access to Zoom...</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 12px;flex-shrink:0;background:#CBCBCB;">
+                  <div style="background:#fff;border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;">
+                    <span style="font-size:12px;color:#9CA3AF;">Ask away</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2L9 14L7 9L2 7L14 2Z" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="ba-label" style="margin-top:28px;">After — approver: synthesised Approval Card</p>
+            <div style="aspect-ratio:5/3;overflow:hidden;border-radius:12px;border:1px solid #2A3A4A;display:flex;box-sizing:border-box;">
+              <div style="width:46px;background:#1A1E2E;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:18px;flex-shrink:0;">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 8L9 2L16 8V16H12V12H6V16H2V8Z" stroke="#6A849E" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6.5" r="2.5" stroke="#6A849E" stroke-width="1.5"/><path d="M3.5 16c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#6A849E" stroke-width="1.5"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 6L9 10L2 6L9 2Z" stroke="#6A849E" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 10L9 14L16 10" stroke="#6A849E" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="6" width="12" height="9" rx="2" stroke="white" stroke-width="1.5"/><circle cx="7" cy="10.5" r="1.2" fill="white"/><circle cx="11" cy="10.5" r="1.2" fill="white"/><path d="M9 3.5V6" stroke="white" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="3" r="0.8" fill="white"/></svg>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;background:#CBCBCB;overflow:hidden;font-family:var(--font-main);">
+                <div style="background:#F0F0F0;padding:10px 16px;border-bottom:1px solid #B8B8B8;flex-shrink:0;">
+                  <div style="font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:6px;">TechBot</div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="border:1px solid #B8B8B8;border-radius:4px;padding:3px 10px;font-size:11px;color:#374151;background:#fff;display:flex;align-items:center;gap:4px;">Approval Agent <span style="font-size:9px;color:#888;">▾</span></div>
+                    <div style="background:#60A5FA;border-radius:4px;padding:3px 12px;font-size:11px;color:#fff;font-weight:500;">New Chat</div>
+                    <div style="font-size:11px;color:#60A5FA;">RESET</div>
+                  </div>
+                </div>
+                <div style="flex:1;display:flex;overflow:hidden;">
+                  <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden;">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                      <div style="font-size:11px;color:#4A5568;padding-left:2px;">TechBot · Approval Agent</div>
+                      <div style="background:#fff;border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:12px;color:#374151;line-height:1.5;max-width:92%;">
+                        You have a pending access request that requires your approval. I've gathered all relevant context from Security, Risk, and Directory services — no additional research needed.
+                        <div style="margin-top:10px;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;">
+                          <div style="background:#F8FAFC;padding:8px 12px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;">
+                            <div style="font-size:11px;font-weight:600;color:#1A1A1A;">Approval Card · REQ-2891</div>
+                            <div style="background:#DCFCE7;border-radius:20px;padding:2px 8px;font-size:10px;color:#16A34A;font-weight:500;">Low risk · Auto-assessed</div>
+                          </div>
+                          <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;border-bottom:1px solid #E5E7EB;">
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Requester</div>
+                              <div style="font-size:11px;color:#1A1A1A;font-weight:500;">James Smith · Engineering</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Access group</div>
+                              <div style="font-size:11px;color:#1A1A1A;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">GRP-ZOOM-USERS-ALL</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Stated intent</div>
+                              <div style="font-size:11px;color:#374151;">"Need access to Zoom tools"</div>
+                            </div>
+                            <div>
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:2px;">Policy match</div>
+                              <div style="font-size:11px;color:#16A34A;">Confirmed · Standard access</div>
+                            </div>
+                          </div>
+                          <div style="padding:10px 12px;border-bottom:1px solid #E5E7EB;">
+                            <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:#9CA3AF;margin-bottom:6px;">Risk signals — 3 sources checked</div>
+                            <div style="display:flex;flex-direction:column;gap:4px;">
+                              <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#16A34A;flex-shrink:0;"></div><span style="font-size:11px;color:#374151;">Security posture — No open vulnerabilities or compliance flags</span></div>
+                              <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#16A34A;flex-shrink:0;"></div><span style="font-size:11px;color:#374151;">Access history — First request for this group, no prior escalations</span></div>
+                              <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#16A34A;flex-shrink:0;"></div><span style="font-size:11px;color:#374151;">Group audit — Last reviewed 14 days ago, active and compliant</span></div>
+                            </div>
+                          </div>
+                          <div style="padding:8px 12px;display:flex;gap:6px;">
+                            <div style="background:#16A34A;border-radius:4px;padding:5px 14px;font-size:11px;color:#fff;font-weight:500;">Approve</div>
+                            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:4px;padding:5px 14px;font-size:11px;color:#374151;">Reject</div>
+                            <div style="background:#fff;border:1px solid #E5E7EB;border-radius:4px;padding:5px 14px;font-size:11px;color:#374151;">Escalate</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="width:160px;background:#BBBBBB;padding:12px;flex-shrink:0;">
+                    <div style="font-size:12px;font-weight:600;color:#1A1A1A;margin-bottom:10px;">Your Chats</div>
+                    <div style="background:#A8A8A8;border-radius:4px;padding:6px 8px;margin-bottom:6px;">
+                      <div style="font-size:11px;color:#1A1A1A;font-weight:500;">REQ-2891 · Pending</div>
+                      <div style="font-size:10px;color:#4A5568;margin-top:2px;">James Smith · Zoom access</div>
+                    </div>
+                    <div style="padding:6px 8px;">
+                      <div style="font-size:10px;color:#6B7280;">1 pending approval</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 12px;flex-shrink:0;background:#CBCBCB;">
+                  <div style="background:#fff;border-radius:6px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;">
+                    <span style="font-size:12px;color:#9CA3AF;">Ask away</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2L9 14L7 9L2 7L14 2Z" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
         <!-- Impact -->
         <section class="cs-section">
           <p class="cs-section-label">Impact</p>
@@ -260,17 +796,62 @@
               <p class="cs-stat-label">Reduction in total effort for both requesters and approvers</p>
             </div>
             <div class="cs-stat">
-              <p class="cs-stat-value">1–4h</p>
+              <p class="cs-stat-value">up to 4 hours</p>
               <p class="cs-stat-label">Reclaimed per week per user</p>
             </div>
             <div class="cs-stat">
-              <p class="cs-stat-value">0</p>
+              <p class="cs-stat-value">Zero</p>
               <p class="cs-stat-label">Manual data-gathering steps — replaced by agent-led summaries</p>
             </div>
           </div>
 
           <div class="cs-body" style="margin-top: 2rem;">
             <p>By transforming a legacy bottleneck into a high-velocity technology backbone using governance-by-design principles, the access management process went from a week-long ordeal to a frictionless, AI-assisted workflow. Engineers spend their time building — not waiting.</p>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <!-- Pattern Adoption -->
+        <section class="cs-section">
+          <div class="pa-wrap">
+            <style>
+              .pa-wrap { padding: 4px 0 24px; }
+              .pa-label-pa { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 16px; }
+              .pa-hero { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; }
+              .pa-hero-title { font-size: 13px; font-weight: 500; color: #E0E8F0; margin-bottom: 6px; }
+              .pa-hero-text { font-size: 12px; color: #A0B0C0; line-height: 1.6; }
+              .pa-grid-pa { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+              @media (max-width: 720px) { .pa-grid-pa { grid-template-columns: 1fr; } }
+              .pa-card { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 10px; padding: 14px 16px; }
+              .pa-card-title { font-size: 12px; font-weight: 500; color: #E0E8F0; margin-bottom: 5px; line-height: 1.3; }
+              .pa-card-desc { font-size: 11px; color: #A0B0C0; line-height: 1.5; }
+              .pa-tag-pa { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 8px; background: #1A2D40; color: #60A5FA; }
+              .pa-tag-pa-green { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-top: 8px; background: #1A3B2A; color: #4ADE80; }
+            </style>
+
+            <p class="pa-label-pa">Beyond the metrics — what it unlocked</p>
+
+            <div class="pa-hero">
+              <div class="pa-hero-title">A pattern, not just a product</div>
+              <div class="pa-hero-text">The intent-based request flow and synthesised Request & Approval Card established by this project were designed as reusable components from the outset — not one-off solutions. The interaction model was documented as a platform standard within MAX, intended to be adopted by other workflow teams without redesigning from scratch. At the time of handover, conversations were already underway to apply the same pattern to adjacent approval workflows.</div>
+            </div>
+
+            <div class="pa-grid-pa">
+
+              <div class="pa-card">
+                <div class="pa-card-title">Interaction model documented as platform standard</div>
+                <div class="pa-card-desc">The conversational AI + Approval Card pattern was captured in the MAX design system — giving other teams a defined starting point for agentic workflow design rather than solving the trust and transparency problem from scratch.</div>
+                <span class="pa-tag-pa-green">Design system contribution</span>
+              </div>
+
+              <div class="pa-card">
+                <div class="pa-card-title">Adjacent workflows identified for adoption</div>
+                <div class="pa-card-desc">Software licence provisioning, environment access, and vendor onboarding were identified as natural candidates for the same pattern at time of project handover — with the access management case study as the reference implementation.</div>
+                <span class="pa-tag-pa">Identified at handover</span>
+              </div>
+
+            </div>
           </div>
         </section>
 
