@@ -219,9 +219,114 @@
           <br /><br/>
 
           <section class="cs-section">
-            <p class="cs-section-label">Colours and Icons assessbility compliance</p>
-                  <img src="images/risk-control-colours.png" alt="Risk Control status system redesign" loading="lazy" width="77%">
-                  <p class="cs-image-caption">New icons and colours ambiguity to clear semantic status labels to align WCAG compliance</p>
+            <div class="cc-wrap">
+              <style>
+                .cc-wrap { padding: 4px 0 24px; font-family: var(--font-sans); }
+                .cc-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 16px; }
+                .cc-table { width: 100%; border-collapse: collapse; }
+                .cc-table td, .cc-table th { padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: middle; }
+                .cc-row-label { font-size: 12px; color: var(--color-text-secondary); width: 110px; white-space: nowrap; }
+                .cc-swatch { height: 36px; border-radius: 4px; }
+                .cc-status-label { font-size: 13px; color: var(--color-text-primary); }
+                .cc-def { font-size: 11px; color: var(--color-text-secondary); line-height: 1.5; }
+                .cc-icon-cell { text-align: center; }
+                .cc-dark-row td { background: #1A1A1A; }
+                .cc-dark-row .cc-row-label { color: #9CA3AF; }
+                .cc-caption { font-size: 11px; color: var(--color-text-tertiary); margin-top: 16px; font-style: italic; }
+                .icon-circle { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+              </style>
+
+              <p class="cc-label">Colours and Icons Accessibility Compliance</p>
+
+              <table class="cc-table">
+                <thead>
+                  <tr>
+                    <td style="width:110px;border-bottom:0.5px solid var(--color-border-tertiary);"></td>
+                    <td><div class="cc-swatch" style="background:#E84040;"></div></td>
+                    <td><div class="cc-swatch" style="background:#F5A623;"></div></td>
+                    <td><div class="cc-swatch" style="background:#4CAF50;"></div></td>
+                    <td><div class="cc-swatch" style="background:#BB55D0;"></div></td>
+                    <td><div class="cc-swatch" style="background:#9E9E9E;"></div></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cc-row-label">Status label</td>
+                    <td><span class="cc-status-label">Overdue</span></td>
+                    <td><span class="cc-status-label">At Risk</span></td>
+                    <td><span class="cc-status-label">On Track</span></td>
+                    <td><span class="cc-status-label">LT Approved</span></td>
+                    <td><span class="cc-status-label">No Data</span></td>
+                  </tr>
+                  <tr>
+                    <td class="cc-row-label">Icon (Light)</td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#FEE2E2;border:2px solid #E84040;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#E84040" stroke-width="1.5"/><path d="M4 4L10 10M10 4L4 10" stroke="#E84040" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#FEF3C7;border:2px solid #F5A623;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#F5A623"/><path d="M7 4V7.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="9.5" r="0.8" fill="#fff"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#DCFCE7;border:2px solid #4CAF50;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#4CAF50"/><path d="M4 7L6.5 9.5L10 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#F3E8FF;border:2px solid #BB55D0;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7A4 4 0 0 1 4.5 10.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round"/><path d="M3 7A4 4 0 0 1 9.5 3.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round"/><path d="M11 5.5V7H9.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#F3F4F6;border:2px solid #9E9E9E;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#9E9E9E"/><path d="M4.5 7H9.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="cc-dark-row">
+                    <td class="cc-row-label" style="border-radius:4px 0 0 4px;">Icon (Dark)</td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#3D1515;border:2px solid #E84040;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#E84040" stroke-width="1.5"/><path d="M4 4L10 10M10 4L4 10" stroke="#E84040" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#3D2E0A;border:2px solid #F5A623;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#F5A623"/><path d="M7 4V7.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="9.5" r="0.8" fill="#fff"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#0D2E11;border:2px solid #4CAF50;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#4CAF50"/><path d="M4 7L6.5 9.5L10 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell">
+                      <div class="icon-circle" style="background:#2D1535;border:2px solid #BB55D0;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7A4 4 0 0 1 4.5 10.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round"/><path d="M3 7A4 4 0 0 1 9.5 3.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round"/><path d="M11 5.5V7H9.5" stroke="#BB55D0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                    </td>
+                    <td class="cc-icon-cell" style="border-radius:0 4px 4px 0;">
+                      <div class="icon-circle" style="background:#2A2A2A;border:2px solid #9E9E9E;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="#9E9E9E"/><path d="M4.5 7H9.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cc-row-label" style="padding-top:12px;">Definition</td>
+                    <td class="cc-def" style="padding-top:12px;">Status is non-compliant; outdated; need immediate fix.</td>
+                    <td class="cc-def" style="padding-top:12px;">Status is at risk; plan to fix as soon as possible to avoid going overdue.</td>
+                    <td class="cc-def" style="padding-top:12px;">Status is compliant; progressing well.</td>
+                    <td class="cc-def" style="padding-top:12px;">Status overdue date is extended for a good reason.</td>
+                    <td class="cc-def" style="padding-top:12px;">Status with no data.</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="cc-caption">New icons and colours — from ambiguity to clear semantic status labels aligned to WCAG compliance.</p>
+            </div>
           </section>
 
         </section>
