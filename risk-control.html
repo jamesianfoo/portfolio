@@ -136,30 +136,68 @@
           <p class="cs-section-label">The Problem</p>
           <h2 class="cs-section-title">Eight compounding challenges undermining risk management</h2>
 
-          <div class="cs-problem-grid">
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">Lack of Clarity</p>
-              <p class="cs-problem-desc">Risk statuses were ambiguous. Engineers weren't sure what a given state meant or what action to take.</p>
+          <div class="ri-wrap">
+            <style>
+              .ri-wrap { padding: 4px 0 24px; }
+              .ri-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 16px; }
+              .ri-insight { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 20px 24px; margin-bottom: 16px; }
+              .ri-insight-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 8px; }
+              .ri-insight-text { font-size: 15px; font-weight: 500; color: var(--color-text-primary); line-height: 1.5; }
+              .ri-insight-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; margin-top: 8px; }
+              .ri-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+              @media (max-width: 720px) { .ri-grid { grid-template-columns: repeat(2, 1fr); } }
+              .ri-symptom { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+              .ri-symptom-label { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 4px; }
+              .ri-symptom-text { font-size: 11px; color: var(--color-text-secondary); line-height: 1.45; }
+              .ri-arrow { text-align: center; font-size: 18px; color: var(--color-text-tertiary); margin: 12px 0 14px; }
+            </style>
+
+            <p class="ri-label">Research synthesis — from symptoms to insight</p>
+
+            <div style="margin-bottom:12px;">
+              <div style="font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:8px;letter-spacing:0.04em;">Eight symptoms surfaced in research</div>
+              <div class="ri-grid">
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Clarity</div>
+                  <div class="ri-symptom-text">Ambiguous status labels — engineers couldn't tell what a state meant</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Cognitive load</div>
+                  <div class="ri-symptom-text">Dense tables forced mental parsing before any action could be taken</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Workflow</div>
+                  <div class="ri-symptom-text">Multi-screen navigation with no unified remediation view</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Bottlenecks</div>
+                  <div class="ri-symptom-text">7-day average cycle blocking downstream release timelines</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Predictability</div>
+                  <div class="ri-symptom-text">No deadline visibility until risk became urgent</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Security exposure</div>
+                  <div class="ri-symptom-text">Slow cycles left known risks unaddressed for longer than necessary</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Guidance</div>
+                  <div class="ri-symptom-text">No contextual help — engineers asked five people for answers</div>
+                </div>
+                <div class="ri-symptom">
+                  <div class="ri-symptom-label">Accessibility</div>
+                  <div class="ri-symptom-text">Colour-only status coding — 50% misinterpretation rate</div>
+                </div>
+              </div>
             </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">High Cognitive Load</p>
-              <p class="cs-problem-desc">Dense tables with excessive data forced engineers to mentally parse large amounts of information just to find what needed attention.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">Inefficient Workflows</p>
-              <p class="cs-problem-desc">The remediation process required navigating multiple screens and systems, with no unified view of what needed to be done and by when.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">Operational Bottlenecks</p>
-              <p class="cs-problem-desc">Teams couldn't move fast enough. A 7-day average remediation cycle was creating real downstream impact on release timelines.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">Lack of Predictability</p>
-              <p class="cs-problem-desc">Teams had no visibility into upcoming risk deadlines until they became urgent. Reactive firefighting replaced proactive management.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">Elevated Security Vulnerability</p>
-              <p class="cs-problem-desc">Slow remediation cycles left known risks unaddressed for longer than necessary, increasing the organisation's exposure window.</p>
+
+            <div class="ri-arrow">↓</div>
+
+            <div class="ri-insight">
+              <div class="ri-insight-label">Underlying insight</div>
+              <div class="ri-insight-text">"The system was designed to report risk — not resolve it."</div>
+              <div class="ri-insight-sub">Every symptom traced back to the same root cause: the interface surfaced compliance data as information to be read, not as actions to be taken. Engineers knew what the system said. They didn't know what to do next. Redesigning around resolution — not reporting — became the strategic direction for both design concepts.</div>
             </div>
           </div>
         </section>
