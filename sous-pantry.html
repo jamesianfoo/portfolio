@@ -796,7 +796,7 @@
         </a>
         <br />
         <div class="hero-tag">WIP · Updated 2026</div>
-        <h1>Building an AI app solo —<br><em>and auditing the tool I built it with</em></h1>
+        <h1>Building a full-stack AI app solo — <em>and discovering where AI-native tooling breaks down for non-engineers</em></h1>
         <p class="hero-sub">Sous Pantry is an AI-powered pantry and meal planning app. This is the story of building it with Claude Code — and what that experience revealed about where the tool breaks down for non-engineers.</p>
         <div class="hero-meta">
           <div class="meta-item">
@@ -848,6 +848,128 @@
             <span class="feature-pill">Supermarket receipt import</span>
           </div>
           <p>The design challenge was building a genuinely useful product solo — no engineering co-founder, no agency — using AI as my primary collaborator. What I didn't expect was that the most valuable design work would happen not <em>inside</em> the product, but in observing the tool I was building it with.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN DECISIONS -->
+    <section class="section">
+      <div class="content">
+        <div class="reveal">
+
+<style>
+  .sp-wrap { padding: 4px 0 24px; font-family: inherit; }
+  .sp-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 20px; }
+  .sp-insight { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+  .sp-insight-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 8px; }
+  .sp-insight-text { font-size: 15px; font-weight: 500; color: #E0E8F0; line-height: 1.5; }
+  .sp-insight-sub { font-size: 12px; color: #A0B0C0; line-height: 1.6; margin-top: 8px; }
+  .sp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .sp-card { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 12px; padding: 16px; }
+  .sp-persona-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .sp-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+  .av-green { background: #1A3B2A; color: #4ADE80; }
+  .av-amber { background: #3B2E0F; color: #FBBF24; }
+  .av-blue  { background: #1A2D40; color: #60A5FA; }
+  .sp-persona-name { font-size: 12px; font-weight: 500; color: #E0E8F0; margin: 0; }
+  .sp-persona-sub  { font-size: 10px; color: #8A9BB0; margin: 0; }
+  .sp-divider { border: none; border-top: 0.5px solid #2A3A4A; margin: 8px 0; }
+  .sp-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-bottom: 8px; }
+  .tag-organised { background: #1A3B2A; color: #4ADE80; }
+  .tag-winging   { background: #3B2E0F; color: #FBBF24; }
+  .tag-me        { background: #1A2D40; color: #60A5FA; }
+  .sp-behaviour { font-size: 11px; color: #A0B0C0; line-height: 1.5; }
+  .sp-implication { font-size: 11px; color: #E0E8F0; line-height: 1.5; margin-top: 6px; font-style: italic; }
+  .sp-decision { background: #222D3F; border-radius: 12px; padding: 16px 20px; }
+  .sp-decision-title { font-size: 12px; font-weight: 500; color: #E0E8F0; margin-bottom: 8px; }
+  .sp-decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sp-decision-item { font-size: 11px; color: #A0B0C0; line-height: 1.5; }
+  .sp-decision-item strong { color: #E0E8F0; font-weight: 500; display: block; margin-bottom: 2px; }
+  @media (max-width: 720px) {
+    .sp-grid { grid-template-columns: 1fr; }
+    .sp-decision-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="sp-wrap">
+  <p class="sp-label">Key design decisions — informed by research</p>
+
+  <div class="sp-insight">
+    <div class="sp-insight-label">The Mum Test — what research revealed</div>
+    <div class="sp-insight-text">"Pantry chaos isn't a personality flaw. It's a universal household condition."</div>
+    <div class="sp-insight-sub">Interviewed working mums and dads about how they manage their pantry, shop, and decide what to cook. The finding wasn't what I expected — organisation wasn't a personality trait, it was a function of time and cognitive load. Almost no one truly knew what they had. The rare organised household was the exception, not the norm. My own experience — somewhere between the two extremes — turned out to be the exact middle of the spectrum Sous Pantry needed to design for.</div>
+  </div>
+
+  <div class="sp-grid">
+
+    <div class="sp-card">
+      <div class="sp-persona-header">
+        <div class="sp-avatar av-green">M</div>
+        <div>
+          <p class="sp-persona-name">The organised mum</p>
+          <p class="sp-persona-sub">Rare · ~10% of households</p>
+        </div>
+      </div>
+      <span class="sp-tag tag-organised">Organised</span>
+      <hr class="sp-divider">
+      <div class="sp-behaviour">Shops with a list. Knows roughly what's in the pantry. Restocks deliberately. Meal plans weekly — or at least attempts to.</div>
+      <div class="sp-implication">→ Sous Pantry still reduces effort but isn't solving a crisis. Not the primary user.</div>
+    </div>
+
+    <div class="sp-card">
+      <div class="sp-persona-header">
+        <div class="sp-avatar av-amber">D</div>
+        <div>
+          <p class="sp-persona-name">The winging dad</p>
+          <p class="sp-persona-sub">Common · majority of households</p>
+        </div>
+      </div>
+      <span class="sp-tag tag-winging">Winging it</span>
+      <hr class="sp-divider">
+      <div class="sp-behaviour">No list. Doesn't know what's in the pantry. Shops by memory and mood. Over-buys duplicates. Decides what to cook by staring at shelves.</div>
+      <div class="sp-implication">→ The highest-friction user. Every Sous Pantry feature exists to solve this scenario.</div>
+    </div>
+
+    <div class="sp-card">
+      <div class="sp-persona-header">
+        <div class="sp-avatar av-blue">Me</div>
+        <div>
+          <p class="sp-persona-name">The in-between</p>
+          <p class="sp-persona-sub">The design target · most households</p>
+        </div>
+      </div>
+      <span class="sp-tag tag-me">Primary persona</span>
+      <hr class="sp-divider">
+      <div class="sp-behaviour">Tries to stay on top of it. Sometimes succeeds. Knows roughly what's there but not precisely. Buys duplicates occasionally. Cooks well when organised, orders takeaway when not.</div>
+      <div class="sp-implication">→ This is who Sous Pantry is designed for. Capable, just under-supported by their tools.</div>
+    </div>
+
+  </div>
+
+  <div class="sp-decision">
+    <div class="sp-decision-title">What this changed in the design</div>
+    <div class="sp-decision-grid">
+      <div class="sp-decision-item">
+        <strong>Onboarding via photo scan — not manual entry</strong>
+        Research confirmed nobody would manually enter a full pantry inventory. The entry point had to be frictionless — point, scan, done. Manual entry exists but it's not the designed default.
+      </div>
+      <div class="sp-decision-item">
+        <strong>AI suggestions matched to what you actually have</strong>
+        "What can I make tonight?" is the real question. Not "show me recipes." Matching suggestions to live inventory — not a generic recipe library — became the core AI workflow.
+      </div>
+      <div class="sp-decision-item">
+        <strong>Shopping list generated from gaps, not wishes</strong>
+        Most shopping apps are wishlists. Research showed the real need was restocking gaps — things you've run out of or are running low on. The list builds itself from pantry state, not from manual additions.
+      </div>
+      <div class="sp-decision-item">
+        <strong>Designed for the middle — not the extremes</strong>
+        The organised mum doesn't need Sous Pantry. The completely chaotic household won't change habits. The "in-between" — capable but under-supported — is the person who'll actually use and benefit from this.
+      </div>
+    </div>
+  </div>
+
+</div>
+
         </div>
       </div>
     </section>
@@ -1035,6 +1157,23 @@
       </div>
     </section>
 
+    
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-inner">
+      <h2>The model is remarkable.<br>The experience around it is where the next design work lives.</h2>
+      <p>A solo designer can ship a full-stack AI product in 2026. The tools exist. The capability is genuinely world-class.</p>
+      <p>But the onboarding, the platform clarity, the first-session success rate for non-engineers — that gap is real. I lived it. And it's exactly the problem I know how to solve.</p>
+      <p>Next: completing Sous Pantry and shipping it publicly.</p>
+      <div class="closing-links">
+        <a href="contact.html" class="closing-cta">Get in touch</a>
+        <a href="index.html" class="closing-cta closing-cta--ghost">← Back to all work</a>
+      </div>
+    </div>
+  </section>
+
+
+
     <!-- CURRENT STATUS -->
     <section class="section">
       <div class="content reveal">
@@ -1071,19 +1210,7 @@
 
   </div><!-- /.page -->
 
-  <!-- CLOSING -->
-  <section class="closing">
-    <div class="closing-inner">
-      <h2>The model is remarkable.<br>The experience around it is where the next design work lives.</h2>
-      <p>A solo designer can ship a full-stack AI product in 2026. The tools exist. The capability is genuinely world-class.</p>
-      <p>But the onboarding, the platform clarity, the first-session success rate for non-engineers — that gap is real. I lived it. And it's exactly the problem I know how to solve.</p>
-      <p>Next: completing Sous Pantry and shipping it publicly.</p>
-      <div class="closing-links">
-        <a href="contact.html" class="closing-cta">Get in touch</a>
-        <a href="index.html" class="closing-cta closing-cta--ghost">← Back to all work</a>
-      </div>
-    </div>
-  </section>
+
 
   </main>
 
