@@ -140,13 +140,13 @@
             <style>
               .ri-wrap { padding: 4px 0 24px; }
               .ri-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 16px; }
-              .ri-insight { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 20px 24px; margin-bottom: 16px; }
+              .ri-insight { background: #ffd1d1; border: 1px solid var(--color-border-secondary); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
               .ri-insight-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 8px; }
               .ri-insight-text { font-size: 15px; font-weight: 500; color: var(--color-text-primary); line-height: 1.5; }
               .ri-insight-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; margin-top: 8px; }
               .ri-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
               @media (max-width: 720px) { .ri-grid { grid-template-columns: repeat(2, 1fr); } }
-              .ri-symptom { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+              .ri-symptom { background: #feeef0; border: 1px solid #de8585; border-radius: 10px; padding: 10px 12px; }
               .ri-symptom-label { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 4px; }
               .ri-symptom-text { font-size: 11px; color: var(--color-text-secondary); line-height: 1.45; }
               .ri-arrow { text-align: center; font-size: 18px; color: var(--color-text-tertiary); margin: 12px 0 14px; }
@@ -220,14 +220,32 @@
         <section class="cs-section">
           <p class="cs-section-label">Strategy</p>
           <h2 class="cs-section-title">Six design objectives</h2>
-          <ul class="cs-list cs-list--numbered">
-            <li>Reduce confusion and cognitive load through clearer information hierarchy</li>
-            <li>Improve clarity and visual scanning so engineers can instantly identify what needs action</li>
-            <li>Convert risk data into actionable insights — not just information, but direction</li>
-            <li>Build a self-service remediation experience that reduces dependency on manual coordination</li>
-            <li>Provide consistent guidance and documentation at the point of action</li>
-            <li>Surface risk before it becomes a release blocker — proactive, not reactive</li>
-          </ul>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:1rem;">
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">01</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Reduce confusion and cognitive load through clearer information hierarchy</div>
+            </div>
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">02</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Improve clarity and visual scanning so engineers can instantly identify what needs action</div>
+            </div>
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">03</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Convert risk data into actionable insights — not just information, but direction</div>
+            </div>
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">04</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Build a self-service remediation experience that reduces dependency on manual coordination</div>
+            </div>
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">05</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Provide consistent guidance and documentation at the point of action</div>
+            </div>
+            <div style="background:var(--color-background-secondary);border-radius:10px;padding:14px 16px;">
+              <div style="font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;">06</div>
+              <div style="font-size:13px;color:var(--color-text-primary);line-height:1.5;">Surface risk before it becomes a release blocker — proactive, not reactive</div>
+            </div>
+          </div>
         </section>
 
         <hr class="cs-divider">
@@ -394,7 +412,7 @@
             </div>
           </div>
 
-          <div class="cs-image-grid" style="grid-template-columns:1fr;">
+          <div class="cs-image-grid" style="grid-template-columns:1fr;max-width:40%;">
 
             <div class="cs-image">
               <div style="padding:0;">
