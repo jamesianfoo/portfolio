@@ -390,7 +390,7 @@
     }
 
     .chapter p { font-size: 0.95rem; }
-    .chapter .callout { margin: 1.5rem 0 0; }
+    .chapter .callout { margin: 1.5rem 0 1.5rem; }
     .chapter .callout p { font-size: 1rem; }
 
     /* ── FIX CARDS ──────────────────────────────────────────────────────── */
@@ -907,7 +907,7 @@
         <div class="sp-avatar av-green">M</div>
         <div>
           <p class="sp-persona-name">The organised mum</p>
-          <p class="sp-persona-sub">Rare · ~10% of households</p>
+          <p class="sp-persona-sub">Rare<br/>~10% of households</p>
         </div>
       </div>
       <span class="sp-tag tag-organised">Organised</span>
@@ -921,7 +921,7 @@
         <div class="sp-avatar av-amber">D</div>
         <div>
           <p class="sp-persona-name">The winging dad</p>
-          <p class="sp-persona-sub">Common · majority of households</p>
+          <p class="sp-persona-sub">Common<br/>majority of households</p>
         </div>
       </div>
       <span class="sp-tag tag-winging">Winging it</span>
@@ -935,7 +935,7 @@
         <div class="sp-avatar av-blue">Me</div>
         <div>
           <p class="sp-persona-name">The in-between</p>
-          <p class="sp-persona-sub">The design target · most households</p>
+          <p class="sp-persona-sub">The design target<br/>most households</p>
         </div>
       </div>
       <span class="sp-tag tag-me">Primary persona</span>
@@ -1026,6 +1026,7 @@
           <div class="callout">
             <p>"I had to take online classes to understand what Claude Code was. That's not a user problem — that's a missing first-run experience."</p>
           </div>
+          <p>For any AI tooling product, the first-session experience is the product. If a capable user needs three external courses to understand what they're using, the onboarding isn't incomplete — it's absent. This is the highest-leverage design problem in the AI tools category right now.</p>
         </div>
 
         <!-- CH 2 -->
@@ -1038,6 +1039,7 @@
           <div class="callout">
             <p>"I created a rules file to protect working code from the tool I was using to write it. That's a workaround. It should be a designed behaviour."</p>
           </div>
+          <p>The multi-surface problem isn't unique to Claude Code. Any AI-assisted development workflow that spans more than one tool creates integration debt that the user has to carry. Designing for session continuity — keeping context alive across surfaces — is the next frontier for AI developer tools.</p>
           <div class="chapter-img">
             <img src="images/Story2.png" alt="Claude Code in Cursor terminal showing .cursorrules file and freezing issues" loading="lazy">
           </div>
@@ -1053,6 +1055,7 @@
           <div class="callout">
             <p>"Cursor's Claude Code built the feature confidently. It just didn't work. Claude Code in the Claude app told me why — and that's the more valuable thing."</p>
           </div>
+          <p>Model selection is becoming a core UX problem across the entire AI tools category. As capabilities diverge between models, the design challenge shifts from "how do we explain the difference" to "how do we make the right model invisible — automatically chosen based on what the user is trying to do."</p>
         </div>
 
         <!-- CH 4 -->
@@ -1067,6 +1070,7 @@
           <div class="callout">
             <p>"I asked the AI which one it was. That one question collapsed three months of platform confusion into one clear answer. That moment should have happened in minute one — not month three."</p>
           </div>
+          <p>Discovery by accident is a design failure. The most powerful capability in a tool should be the most discoverable one — not something a user stumbles into after months of frustration. Progressive disclosure, not hidden depth, is the pattern AI tooling products need to adopt.</p>
         </div>
 
         <!-- CH 5 -->
@@ -1079,6 +1083,7 @@
           <div class="callout">
             <p>"I had to leave my build, open a separate console page, and hope the number had updated. There's no designed feedback loop for something that directly controls how much you can work."</p>
           </div>
+          <p>Usage limits are a business reality for AI products. But an invisible constraint is a broken experience. Every AI tool with a usage model needs a designed feedback loop — one that helps users plan their work around the constraint rather than discover it mid-task.</p>
         </div>
 
         <!-- CH 6 -->
@@ -1092,6 +1097,7 @@
           <div class="callout">
             <p>"I was the integration layer between four tools that didn't talk to each other. That's not a workflow — that's a workaround wearing a workflow's clothes."</p>
           </div>
+          <p>The error-resolution workflow is where AI tooling products lose their most motivated users. When the fix to a problem requires four context switches, the tool has failed — not the user. AI-native development tools need to own the full error lifecycle — from detection to explanation to resolution — without exporting that burden to the user.</p>
         </div>
 
         <!-- CH 7 -->
@@ -1105,6 +1111,7 @@
           <div class="callout">
             <p>"Replit, Lovable, Framer exist because Claude Code hasn't designed for the person who wants to build but doesn't speak terminal. That's not a criticism — it's the next design brief."</p>
           </div>
+          <p>Every AI coding tool faces the same strategic question: who is this for? The answer shapes everything — onboarding, interaction model, error language, session design. Tools that default to developers will keep developers. Tools that design for the builder who doesn't speak terminal will define the next wave of AI-native creation.</p>
         </div>
 
       </div>
