@@ -133,48 +133,25 @@
 
           <!-- Project 2: Watch Tower -->
           <a href="watchtower.html" class="project-card">
-            <div class="project-image" style="background:#13181f;padding:24px 20px 20px;display:flex;flex-direction:column;gap:12px;min-height:200px;">
-              <!-- Header row -->
-              <div style="display:flex;align-items:center;justify-content:space-between;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <div style="width:28px;height:28px;background:#1e2a3a;border-radius:6px;display:flex;align-items:center;justify-content:center;">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="0" width="6" height="4" rx="1" fill="#4a7fa5"/><rect x="2" y="4" width="10" height="8" rx="1" fill="#4a7fa5"/><rect x="4" y="6" width="2" height="3" rx="0.5" fill="#13181f"/><rect x="8" y="6" width="2" height="3" rx="0.5" fill="#13181f"/></svg>
+            <div class="project-image" style="background:#0f1623;overflow:hidden;display:flex;align-items:center;padding:32px 0 32px 28px;gap:0;min-height:220px;position:relative;">
+              <!-- Left: text -->
+              <div style="flex:0 0 42%;z-index:1;">
+                <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3a5270;margin:0 0 10px;">Developer Experience</p>
+                <h3 style="font-size:20px;font-weight:700;color:#e0e8f0;line-height:1.25;margin:0;">Less friction,<br>more velocity.</h3>
+              </div>
+              <!-- Right: laptop mockup, cropped/overflowing -->
+              <div style="flex:1;position:relative;align-self:stretch;overflow:hidden;">
+                <div style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:140%;min-width:280px;">
+                  <!-- Laptop lid -->
+                  <div style="background:#1c2535;border:2px solid #2a3a4a;border-bottom:none;border-radius:8px 8px 0 0;padding:6px 6px 0;box-shadow:0 -4px 24px rgba(0,0,0,0.4);">
+                    <div style="width:5px;height:5px;border-radius:50%;background:#2a3a4a;margin:0 auto 5px;"></div>
+                    <div style="border-radius:4px 4px 0 0;overflow:hidden;max-height:140px;">
+                      <img src="images/WatchTower-light.png" alt="Watch Tower interface" style="width:100%;display:block;object-fit:cover;object-position:top;">
+                    </div>
                   </div>
-                  <span style="font-size:12px;font-weight:600;color:#e0e8f0;">Watch Tower</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:5px;background:#2d1515;border:1px solid #5c2020;border-radius:5px;padding:3px 8px;">
-                  <div style="width:6px;height:6px;border-radius:50%;background:#e53e3e;"></div>
-                  <span style="font-size:10px;font-weight:600;color:#fc8181;letter-spacing:0.04em;">Deployment blocked</span>
-                </div>
-              </div>
-              <!-- Progress bar -->
-              <div style="display:flex;gap:2px;height:5px;border-radius:4px;overflow:hidden;">
-                <div style="width:28%;background:#e53e3e;"></div>
-                <div style="width:18%;background:#d69e2e;"></div>
-                <div style="flex:1;background:#38a169;border-radius:0 3px 3px 0;"></div>
-              </div>
-              <!-- Status pills -->
-              <div style="display:flex;gap:6px;">
-                <span style="font-size:10px;color:#fc8181;background:#2d1515;border:1px solid #5c2020;border-radius:20px;padding:2px 8px;">3 Blocked</span>
-                <span style="font-size:10px;color:#f6ad55;background:#2d1f0a;border:1px solid #5c3a0a;border-radius:20px;padding:2px 8px;">2 At risk</span>
-                <span style="font-size:10px;color:#68d391;background:#0d2b18;border:1px solid #1a5c33;border-radius:20px;padding:2px 8px;">Non-prod clear</span>
-              </div>
-              <!-- Cards row -->
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;flex:1;">
-                <div style="background:#2d1515;border:1px solid #5c2020;border-radius:7px;padding:8px 8px 10px;">
-                  <div style="font-size:8px;font-weight:700;color:#fc8181;letter-spacing:0.07em;margin-bottom:5px;">BLOCKED</div>
-                  <div style="font-size:10px;font-weight:600;color:#e0e8f0;line-height:1.3;">Application inactive</div>
-                  <div style="font-size:9px;color:#6b7f93;margin-top:4px;line-height:1.3;">Seek advice →</div>
-                </div>
-                <div style="background:#2d1515;border:1px solid #5c2020;border-radius:7px;padding:8px 8px 10px;">
-                  <div style="font-size:8px;font-weight:700;color:#fc8181;letter-spacing:0.07em;margin-bottom:5px;">BLOCKED</div>
-                  <div style="font-size:10px;font-weight:600;color:#e0e8f0;line-height:1.3;">Invalid security assessment</div>
-                  <div style="font-size:9px;color:#6b7f93;margin-top:4px;line-height:1.3;">Contact Security →</div>
-                </div>
-                <div style="background:#0d2b18;border:1px solid #1a5c33;border-radius:7px;padding:8px 8px 10px;">
-                  <div style="font-size:8px;font-weight:700;color:#68d391;letter-spacing:0.07em;margin-bottom:5px;">CLEAR</div>
-                  <div style="font-size:10px;font-weight:600;color:#e0e8f0;line-height:1.3;">Non-production enabled</div>
-                  <div style="font-size:9px;color:#6b7f93;margin-top:4px;line-height:1.3;">View details →</div>
+                  <!-- Laptop base -->
+                  <div style="background:#161f2c;height:7px;border-radius:0 0 3px 3px;border:2px solid #2a3a4a;border-top:none;"></div>
+                  <div style="background:#111820;height:4px;border-radius:0 0 6px 6px;width:112%;margin-left:-6%;border:1px solid #222f3e;border-top:none;"></div>
                 </div>
               </div>
             </div>
