@@ -354,6 +354,13 @@ img {
   flex-wrap: wrap;
 }
 
+.cta-squares {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--spacing-lg);
+}
+
 .cta-link {
   display: inline-flex;
   align-items: center;
