@@ -333,7 +333,7 @@ img {
 
 /* CTA */
 .cta {
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-xl) 0 0;
   text-align: center;
   border-top: 1px solid var(--color-border);
 }
