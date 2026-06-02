@@ -201,6 +201,7 @@ img {
   line-height: 1.1;
   max-width: 850px;
   margin-bottom: var(--spacing-md);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .hero-subtitle {
@@ -209,6 +210,7 @@ img {
   max-width: 640px;
   line-height: 1.7;
   margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .hero-ai-line {
