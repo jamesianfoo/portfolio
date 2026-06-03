@@ -463,6 +463,17 @@ img {
   color: var(--color-text);
 }
 
+.footer-rlinks {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-dot {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
 /* Animations */
 .fade-in {
   opacity: 0;

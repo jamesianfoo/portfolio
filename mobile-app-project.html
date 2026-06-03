@@ -724,6 +724,9 @@
 
     .back-to-top:hover { color: var(--ink); }
 
+    .footer-rlinks { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-dot { font-size: 0.8125rem; color: var(--ink-3); }
+
     /* ── SCROLL REVEAL ──────────────────────────────────────────────────── */
     .reveal {
       opacity: 0;
@@ -1223,16 +1226,17 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
-        <span class="footer-name">James Foo</span>
-        <span class="footer-role">Product Designer · Developer Experience</span>
+        <span class="footer-name">James Foo Design © 2026</span>
+        <span class="footer-role">Product Designer · Developer Experience • AI-native workflow</span>
       </div>
-      <div class="footer-center">
-        <a href="contact.html" class="footer-link">Contact</a>
-        <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
+      <div class="footer-center"></div>
       <div class="footer-right">
-        <span class="footer-meta">© 2026 &nbsp;·&nbsp; Built with Claude Code</span>
-        <a href="#top" class="back-to-top">Back to top ↑</a>
+        <div class="footer-rlinks">
+          <a href="contact.html" class="footer-link">Get in touch</a>
+          <span class="footer-dot">·</span>
+          <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top &uarr;</a>
       </div>
     </div>
   </footer>
