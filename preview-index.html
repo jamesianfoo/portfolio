@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1S8HD8B3K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1S8HD8B3K');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="James Foo — Product Designer specialising in Developer Experience and AI-native workflows.">
+  <title>PREVIEW — James Foo hero</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    /* Hero — deconstructed statement (Option B) — preview only */
+    .hero-contact { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; font-size:13px; color:var(--color-text-secondary); font-weight:500; margin-bottom:2.75rem; }
+    .hero-contact .hc-left { display:flex; flex-direction:column; gap:3px; }
+    .hero-contact .hc-right { display:flex; flex-direction:column; gap:3px; text-align:right; align-items:flex-end; }
+    .hc-name { color:var(--color-text); font-weight:700; }
+    .hero-contact a { color:var(--color-text-secondary); text-decoration:none; border-bottom:1px solid var(--color-border); padding-bottom:1px; transition:color var(--transition),border-color var(--transition); }
+    .hero-contact a:hover { color:var(--color-text); border-color:var(--color-text); }
+    .hero-statement { font-family:var(--font-display); font-weight:400; font-size:clamp(2.2rem,5.6vw,4.4rem); line-height:1.12; letter-spacing:-0.01em; width:60%; }
+    .hero-statement .hs-where { font-family:var(--font-main); font-weight:600; font-size:0.42em; color:var(--color-text-secondary); text-transform:lowercase; vertical-align:middle; }
+    .hero-statement em { font-style:italic; color:var(--color-text-secondary); }
+    .hero-statement u { text-decoration-thickness:2px; text-underline-offset:6px; text-decoration-color:#f59e0b; }
+    .hero-statement .ti { display:inline-block; height:0.66em; width:0.66em; vertical-align:-0.05em; margin:0 0.03em 0 0.14em; background:currentColor; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center; -webkit-mask-size:contain; mask-size:contain; }
+    .hero-statement .ti--cx { -webkit-mask-image:url('images/icon-complexity.svg'); mask-image:url('images/icon-complexity.svg'); }
+    .hero-statement .ti--hu { -webkit-mask-image:url('images/icon-humans.svg'); mask-image:url('images/icon-humans.svg'); }
+    .hero-cta { display:flex; gap:12px; margin-top:2.75rem; }
+    .hero-btn { font-size:14px; font-weight:600; padding:10px 20px; border-radius:100px; border:1px solid var(--color-text); color:var(--color-text); text-decoration:none; transition:opacity var(--transition); }
+    .hero-btn--solid { background:var(--color-text); color:#fff; }
+    .hero-btn:hover { opacity:0.85; }
+    @media (max-width:780px) { .hero-statement { width:100%; } }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="header" id="top">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link active">Home</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+    <!-- Hero Section — Option B -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-contact">
+          <div class="hc-left">
+            <span class="hc-name">James Foo</span>
+            <span>Lead Product Designer</span>
+          </div>
+          <div class="hc-right">
+            <span>Australia · <span id="hero-clock">—</span> AEST</span>
+            <span><a href="https://www.linkedin.com/in/james-foo/" target="_blank" rel="noopener">linkedin.com/in/james-foo</a></span>
+          </div>
+        </div>
+        <h1 class="hero-statement">I design <span class="hs-where">where</span> <em>complexity</em><span class="ti ti--cx" aria-hidden="true"></span> meets humans<span class="ti ti--hu" aria-hidden="true"></span> — enterprise systems, <u>AI-native</u> workflows &amp; developer tools.</h1>
+        <div class="hero-cta">
+          <a href="contact.html" class="hero-btn hero-btn--solid">Get in touch</a>
+          <a href="https://www.linkedin.com/in/james-foo/" class="hero-btn" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+    <script>
+      (function(){
+        function tick(){
+          try{
+            var t=new Date().toLocaleTimeString('en-AU',{timeZone:'Australia/Sydney',hour:'2-digit',minute:'2-digit',hour12:false});
+            var el=document.getElementById('hero-clock'); if(el)el.textContent=t;
+          }catch(e){}
+        }
+        tick(); setInterval(tick,10000);
+      })();
+    </script>
+
+
+    
+<!-- FIVE DIMENSIONS — paste after "Currently building Sous Pantry" paragraph -->
+<section style="margin: 4rem 0; padding: 3rem 0; border-top: 0.5px solid #e5e7eb; border-bottom: 0.5px solid #e5e7eb;">
+  <div class="container">
+  <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; margin: 0 0 1rem;">Design leadership philosophy</p>
+
+  <h2 style="font-size: 2rem; font-weight: 600; line-height: 1.25; color: #111827; margin: 0 0 1rem;">Great design leadership is never just one thing.</h2>
+
+  <p style="font-size: 1rem; color: #6b7280; line-height: 1.75; max-width: 600px; margin: 0 0 2.5rem;">After years of leading design across global organisations, I've come to believe that the best design leaders don't just make great products — they build the conditions and culture for great products to exist, alongside great designers. That takes five distinct capabilities, held in balance at once.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem;">
+
+    <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem;">
+      <p style="font-size: 1.75rem; font-weight: 600; color: #d1d5db; margin: 0 0 1rem; line-height: 1;">01</p>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a227; margin: 0 0 0.75rem;">Strategy</p>
+      <p style="font-size: 13px; color: #6b7280; line-height: 1.65; margin: 0;">Setting direction with intention. Building a shared design vision and roadmap in genuine collaboration with leadership — driving meaningful change rather than reacting to daily noise.</p>
+    </div>
+
+    <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem;">
+      <p style="font-size: 1.75rem; font-weight: 600; color: #d1d5db; margin: 0 0 1rem; line-height: 1;">02</p>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a227; margin: 0 0 0.75rem;">Experience</p>
+      <p style="font-size: 13px; color: #6b7280; line-height: 1.65; margin: 0;">Owning craft and quality. Pushing for human-centred thinking across the business and defining what "good" actually means for your organisation — then holding that bar.</p>
+    </div>
+
+    <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem;">
+      <p style="font-size: 1.75rem; font-weight: 600; color: #d1d5db; margin: 0 0 1rem; line-height: 1;">03</p>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a227; margin: 0 0 0.75rem;">Systems</p>
+      <p style="font-size: 13px; color: #6b7280; line-height: 1.65; margin: 0;">Designing beyond the screen. Building components, patterns, and design languages that scale — so consistency becomes the default, not the exception, across every surface and team.</p>
+    </div>
+
+    <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem;">
+      <p style="font-size: 1.75rem; font-weight: 600; color: #d1d5db; margin: 0 0 1rem; line-height: 1;">04</p>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a227; margin: 0 0 0.75rem;">People</p>
+      <p style="font-size: 13px; color: #6b7280; line-height: 1.65; margin: 0;">Leading with care. Hiring with intention, fostering a design culture where people do their best work, giving feedback that actually lands, and always developing the next generation of design leaders.</p>
+    </div>
+
+    <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem;">
+      <p style="font-size: 1.75rem; font-weight: 600; color: #d1d5db; margin: 0 0 1rem; line-height: 1;">05</p>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a227; margin: 0 0 0.75rem;">AI-native thinking</p>
+      <p style="font-size: 13px; color: #6b7280; line-height: 1.65; margin: 0;">Designing for the AI era — not just with AI tools. Understanding how intelligence changes the interaction model, building trust into every decision point, and ensuring humans stay meaningfully in control.</p>
+    </div>
+
+  </div>
+  </div>
+</section>
+<!-- END FIVE DIMENSIONS -->
+
+
+
+    <!-- Projects Grid -->
+    <section class="projects">
+      <div class="container">
+        <div style="margin-bottom: 2.5rem;">
+          <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; margin: 0 0 0.75rem;">Selected Work</p>
+          <h2 style="font-size: 2rem; font-weight: 600; line-height: 1.25; color: #111827; margin: 0;">Four and a half projects, no two alike.</h2>
+        </div>
+        <div class="projects-grid">
+
+          <!-- Watch Tower -->
+          <a href="watchtower.html" class="project-card">
+            <div class="project-image" style="background:#0f1623;aspect-ratio:unset;display:flex;flex-direction:column;justify-content:center;padding:44px 40px;min-height:360px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7290;margin:0 0 18px;">Developer Experience</p>
+              <div style="width:36px;height:3px;border-radius:2px;background:#3b82f6;margin:0 0 18px;"></div>
+              <h3 style="font-size:28px;font-weight:700;color:#e8eef5;line-height:1.22;margin:0 0 18px;letter-spacing:-0.01em;">Put the fix where<br>the work happens.</h3>
+              <p style="font-size:11.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:0;text-transform:uppercase;">Platform strategy · Enterprise scale</p>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Developer Experience</span>
+              <h2 class="project-title">Faster deployments. Less friction, more velocity.</h2>
+              <p class="project-desc">An experience strategy to make thousands of users self-sufficient at deployment — and the pattern that changed how the entire developer platform surfaces guidance.</p>
+            </div>
+          </a>
+
+          <!-- Project 3: AI Access Requests -->
+          <a href="ai-access.html" class="project-card">
+            <div class="project-image" style="background:#0f1623;aspect-ratio:unset;display:flex;flex-direction:column;justify-content:center;padding:44px 40px;min-height:360px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7290;margin:0 0 18px;">AI Experience Design</p>
+              <div style="width:36px;height:3px;border-radius:2px;background:#8b5cf6;margin:0 0 18px;"></div>
+              <h3 style="font-size:28px;font-weight:700;color:#e8eef5;line-height:1.22;margin:0 0 18px;letter-spacing:-0.01em;">Make intent<br>the interface.</h3>
+              <p style="font-size:11.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:0;text-transform:uppercase;">AI experience · Enterprise governance</p>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">AI Experience Design</span>
+              <h2 class="project-title">Simplifying Enterprise Access Requests with AI</h2>
+              <p class="project-desc">Replacing fragmented access requests with an AI agent that interprets intent, synthesises risk data, and hands approvers a single decision — not a research task.</p>
+            </div>
+          </a>
+
+          <!-- Project 4: Compliance Remediation -->
+          <a href="risk-control.html" class="project-card">
+            <div class="project-image" style="background:#0f1623;aspect-ratio:unset;display:flex;flex-direction:column;justify-content:center;padding:44px 40px;min-height:360px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7290;margin:0 0 18px;">Compliance Design</p>
+              <div style="width:36px;height:3px;border-radius:2px;background:#10b981;margin:0 0 18px;"></div>
+              <h3 style="font-size:28px;font-weight:700;color:#e8eef5;line-height:1.22;margin:0 0 18px;letter-spacing:-0.01em;">Make rigour the path<br>of least resistance.</h3>
+              <p style="font-size:11.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:0;text-transform:uppercase;">Enterprise design · Regulated finance</p>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Enterprise Experience Design</span>
+              <h2 class="project-title">From bottleneck to self-service — the rules stayed, the friction didn't.</h2>
+              <p class="project-desc">Turning a week-long compliance bottleneck into a self-service workflow — without simplifying the rules, only the experience.</p>
+            </div>
+          </a>
+
+          <!-- Project 5: Work Planner -->
+          <a href="work-planner.html" class="project-card">
+            <div class="project-image" style="background:#0f1623;aspect-ratio:unset;display:flex;flex-direction:column;justify-content:center;padding:44px 40px;min-height:360px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#5a7290;margin:0 0 18px;">SaaS · Infrastructure Planning</p>
+              <div style="width:36px;height:3px;border-radius:2px;background:#f59e0b;margin:0 0 18px;"></div>
+              <h3 style="font-size:28px;font-weight:700;color:#e8eef5;line-height:1.22;margin:0 0 18px;letter-spacing:-0.01em;">Make coordination the default,<br>not the overhead.</h3>
+              <p style="font-size:11.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:0;text-transform:uppercase;">SaaS strategy · Public infrastructure</p>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">SaaS · Infrastructure Planning</span>
+              <h2 class="project-title">40% less time chasing other departments. 70% fewer wasted resources.</h2>
+              <p class="project-desc">Transforming fragmented spreadsheets and siloed GIS tools into a single web platform — so 15+ government and transit organisations could plan multi-year capital works without the coordination overhead.</p>
+            </div>
+          </a>
+
+          <!-- Sous Pantry -->
+          <a href="mobile-app-project.html" class="project-card project-card--wide">
+            <div class="project-image" style="background:#0f4226;display:flex;align-items:center;justify-content:center;padding:40px;">
+              <div role="img" aria-label="Sous Pantry logo" style="width:min(60%,320px);aspect-ratio:542/214;background:#ece7d8;-webkit-mask:url('images/souspantry-logo.png') center/contain no-repeat;mask:url('images/souspantry-logo.png') center/contain no-repeat;"></div>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">WIP · Solo Build</span>
+              <h2 class="project-title">One designer. One AI. One full-stack app.</h2>
+              <p class="project-desc">Designing and building a full-stack AI app entirely solo — from UX strategy to iOS, Android, and an Express/Anthropic API backend.</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="cta-title">Let's build great things together</h2>
+        <div class="cta-links">
+          <a href="contact.html" class="cta-link">
+            Get in touch
+          </a>
+          <a href="https://www.linkedin.com/in/james-foo/" class="cta-link cta-link--secondary" target="_blank" rel="noopener">
+            LinkedIn
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+              <path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <img src="images/squares-cta.svg" alt="" aria-hidden="true" class="cta-squares">
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">James Foo Design © 2026</span>
+        <span class="footer-role">Product Designer · Developer Experience • AI-native workflow</span>
+      </div>
+      <div class="footer-center"></div>
+      <div class="footer-right">
+        <div class="footer-rlinks">
+          <a href="contact.html" class="footer-link">Get in touch</a>
+          <span class="footer-dot">·</span>
+          <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
