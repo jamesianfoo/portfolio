@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Hero mockups — James Foo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111317; --muted:#6b7280; --rule:#e5e7eb; --bg:#ffffff;
+    --blue:#3b82f6; --violet:#8b5cf6; --emerald:#10b981; --amber:#f59e0b; --navy:#0f1623;
+    --serif:'DM Serif Display',Georgia,serif; --sans:'DM Sans',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .pagebar{padding:14px 32px;border-bottom:1px solid var(--rule);font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  .vlabel{margin:64px 0 18px;padding-top:30px;border-top:1px solid var(--rule);}
+  .vlabel h2{font-size:14px;font-weight:700;letter-spacing:.02em;}
+  .vlabel p{font-size:13px;color:var(--muted);margin-top:3px;max-width:680px;}
+
+  /* shared contact header */
+  .contact{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:var(--muted);font-weight:500;margin-bottom:48px;}
+  .contact b{color:var(--ink);font-weight:700;}
+  .contact a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px;transition:.2s;}
+  .contact a:hover{color:var(--ink);border-color:var(--ink);}
+  .contact .col{display:flex;flex-direction:column;gap:4px;}
+  .contact .col.r{text-align:right;align-items:flex-end;}
+
+  /* ===== Variant A — vertical deconstructed stack ===== */
+  .stackA{display:flex;flex-direction:column;line-height:.96;}
+  .stackA span{display:block;width:max-content;}
+  .w-i{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,5vw,3.4rem);color:var(--muted);}
+  .w-big{font-family:var(--serif);font-size:clamp(3.2rem,9vw,6.2rem);letter-spacing:-.01em;}
+  .w-bigi{font-family:var(--serif);font-style:italic;font-size:clamp(3.2rem,9vw,6.2rem);letter-spacing:-.01em;}
+  .w-sm{font-family:var(--sans);font-weight:600;font-size:clamp(1.1rem,2.4vw,1.7rem);color:var(--muted);text-transform:lowercase;margin:6px 0;}
+  .w-sans{font-family:var(--sans);font-weight:700;font-size:clamp(2.6rem,7vw,4.8rem);letter-spacing:-.02em;}
+  .star{color:var(--amber);}
+  .ai{color:var(--blue);font-family:var(--serif);font-style:italic;}
+  .indent1{margin-left:8%;}
+  .indent2{margin-left:18%;}
+  .indent3{margin-left:30%;}
+
+  /* ===== Variant B — compact messy paragraph ===== */
+  .stackB{font-family:var(--serif);font-size:clamp(2.2rem,6.5vw,4.6rem);line-height:1.04;letter-spacing:-.01em;max-width:14ch;}
+  .stackB .s{font-family:var(--sans);font-weight:600;font-size:.42em;color:var(--muted);text-transform:lowercase;vertical-align:middle;}
+  .stackB em{font-style:italic;color:var(--muted);}
+  .stackB .acc{color:var(--emerald);}
+  .stackB .rot{display:inline-block;transform:rotate(-3deg);}
+  .stackB u{text-decoration-thickness:2px;text-underline-offset:6px;text-decoration-color:var(--amber);}
+
+  .foot{margin-top:40px;display:flex;gap:12px;}
+  .btn{font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 18px;border-radius:100px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;transition:.2s;}
+  .btn.solid{background:var(--ink);color:#fff;}
+  .btn:hover{opacity:.85;}
+  .note{font-size:11px;color:#9ca3af;margin-top:6px;}
+</style>
+</head>
+<body>
+  <div class="pagebar">Private preview · two hero directions · pick one (or mix) and tell me</div>
+
+  <!-- VARIANT A -->
+  <div class="wrap">
+    <div class="vlabel"><h2>A · Deconstructed stack</h2><p>Closest to Emanuel's — each word on its own line, mixed serif/italic/sans, an accent asterisk, staggered indents. Bold and editorial.</p></div>
+
+    <div class="contact">
+      <div class="col">
+        <span><b>James Foo</b></span>
+        <span>Lead Product Designer</span>
+      </div>
+      <div class="col r">
+        <span>Australia · <span id="clk">—</span> AEST</span>
+        <span><a href="#">linkedin.com/in/james-foo</a> · <a href="#">jamesian.foo@gmail.com</a></span>
+      </div>
+    </div>
+
+    <div class="stackA">
+      <span class="w-i">I</span>
+      <span class="w-bigi">design</span>
+      <span class="w-sm indent1">where</span>
+      <span class="w-big indent1">complexity</span>
+      <span class="w-sm indent2">meets</span>
+      <span class="w-sans indent2">humans<span class="star">*</span></span>
+      <span class="w-sm indent1">across</span>
+      <span class="w-big">enterprise&nbsp;systems,</span>
+      <span class="w-bigi indent1"><span class="ai">AI-native</span>&nbsp;workflows</span>
+      <span class="w-sm indent1">&amp;</span>
+      <span class="w-sans indent2">developer&nbsp;tools.</span>
+    </div>
+    <div class="foot">
+      <a class="btn solid" href="#">Get in touch</a>
+      <a class="btn" href="#">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <!-- VARIANT B -->
+  <div class="wrap">
+    <div class="vlabel"><h2>B · Compact messy statement</h2><p>Same playful spirit, tighter footprint — flows in a few lines with inline italics, an accent word, a tilted word and an underline. Less wall-of-words, more controlled.</p></div>
+
+    <div class="contact">
+      <div class="col">
+        <span><b>James Foo</b></span>
+        <span>Lead Product Designer</span>
+      </div>
+      <div class="col r">
+        <span>Australia · <span id="clk2">—</span> AEST</span>
+        <span><a href="#">linkedin.com/in/james-foo</a> · <a href="#">jamesian.foo@gmail.com</a></span>
+      </div>
+    </div>
+
+    <div class="stackB">
+      I design <span class="s">where</span> <em>complexity</em> meets <span class="rot">humans</span><span class="acc">*</span> — enterprise systems, <u>AI-native</u> workflows &amp; developer tools.
+    </div>
+    <div class="foot">
+      <a class="btn solid" href="#">Get in touch</a>
+      <a class="btn" href="#">LinkedIn ↗</a>
+    </div>
+    <p class="note">* the asterisk / accent colour ties back to your thesis-card accents (blue · violet · emerald · amber).</p>
+  </div>
+
+  <div style="height:80px"></div>
+<script>
+  function tick(){
+    try{
+      var t=new Date().toLocaleTimeString('en-AU',{timeZone:'Australia/Sydney',hour:'2-digit',minute:'2-digit',hour12:false});
+      var a=document.getElementById('clk'), b=document.getElementById('clk2');
+      if(a)a.textContent=t; if(b)b.textContent=t;
+    }catch(e){}
+  }
+  tick(); setInterval(tick,10000);
+</script>
+</body>
+</html>
