@@ -37,6 +37,14 @@
     .hero-btn { font-size:14px; font-weight:600; padding:10px 20px; border-radius:100px; border:1px solid var(--color-text); color:var(--color-text); text-decoration:none; transition:opacity var(--transition); }
     .hero-btn--solid { background:var(--color-text); color:#fff; }
     .hero-btn:hover { opacity:0.85; }
+    /* mixed-type adjustments */
+    .hero-statement .hs-sys { font-family: system-ui, sans-serif; }
+    .hero-statement .hs-mono { font-family: monospace; font-size: 0.92em; letter-spacing: -0.02em; }
+    /* nav title + local time */
+    .nav-brand { display: inline-flex; align-items: center; gap: 8px; }
+    .nav-title { font-size: 0.875rem; color: var(--color-text-secondary); font-weight: 500; }
+    .nav-time { font-size: 0.8125rem; color: var(--color-text-secondary); font-weight: 500; }
+    @media (max-width: 860px) { .nav-title, .nav-time { display: none; } }
     @media (max-width:780px) { .hero-statement { width:100%; } }
   </style>
 </head>
@@ -44,7 +52,11 @@
   <!-- Navigation -->
   <header class="header" id="top">
     <nav class="nav">
-      <a href="index.html" class="nav-logo">James Foo</a>
+      <span class="nav-brand">
+        <a href="index.html" class="nav-logo">James Foo</a>
+        <span class="nav-title">| Lead Product Designer</span>
+      </span>
+      <span class="nav-time">Australia · <span id="nav-clock">—</span> AEST</span>
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -84,7 +96,7 @@
             <span><a href="https://www.linkedin.com/in/james-foo/" target="_blank" rel="noopener">linkedin.com/in/james-foo</a></span>
           </div>
         </div>
-        <h1 class="hero-statement">I design <span class="hs-where">where</span> <em>complexity</em><span class="ti ti--cx" aria-hidden="true"></span> meets humans<span class="ti ti--hu" aria-hidden="true"></span> — enterprise systems, <u>AI-native</u> workflows &amp; developer tools.</h1>
+        <h1 class="hero-statement">I design <span class="hs-where">where</span> <em>complexity</em><span class="ti ti--cx" aria-hidden="true"></span> meets humans<span class="ti ti--hu" aria-hidden="true"></span> — <span class="hs-sys">enterprise systems</span>, <u>AI-native</u> workflows &amp; <span class="hs-mono">developer tools.</span></h1>
         <div class="hero-cta">
           <a href="contact.html" class="hero-btn hero-btn--solid">Get in touch</a>
           <a href="https://www.linkedin.com/in/james-foo/" class="hero-btn" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -97,6 +109,7 @@
           try{
             var t=new Date().toLocaleTimeString('en-AU',{timeZone:'Australia/Sydney',hour:'2-digit',minute:'2-digit',hour12:false});
             var el=document.getElementById('hero-clock'); if(el)el.textContent=t;
+            var nv=document.getElementById('nav-clock'); if(nv)nv.textContent=t;
           }catch(e){}
         }
         tick(); setInterval(tick,10000);
