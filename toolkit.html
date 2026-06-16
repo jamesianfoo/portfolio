@@ -1,0 +1,3723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://t.contentsquare.net/uxa/5cf9ea0190371.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1S8HD8B3K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1S8HD8B3K');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Toolkit — James Foo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .toolkit-wrap { font-family: Inter, system-ui, sans-serif; }
+* { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: Inter, system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <header class="header" id="top">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="toolkit.html" class="nav-link">My Toolkit</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link">Home</a>
+    <a href="about.html" class="mobile-menu-link">About</a>
+    <a href="toolkit.html" class="mobile-menu-link">My Toolkit</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+    <div class="toolkit-wrap">
+<div id="root"></div>
+<script>
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(["exports", "react"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require("react"));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.React);
+    global.thinkingToolkit = mod.exports;
+  }
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this, function (_exports, _react) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = App;
+  function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+  // ── STYLES ────────────────────────────────────────────────────────────────────
+  const G = {
+    ink: "#0a0a0a",
+    white: "#ffffff",
+    off: "#fafafa",
+    surf: "#f4f4f4",
+    bdr: "#e0e0e0",
+    bdr2: "#b0b0b0",
+    muted: "#767676",
+    faint: "#d0d0d0",
+    live: "#0057ff",
+    liveS: "#eef2ff"
+  };
+  const s = {
+    // Typography
+    mono: {
+      fontFamily: "'JetBrains Mono', 'Courier New', monospace"
+    },
+    serif: {
+      fontFamily: "'Raleway', system-ui, sans-serif",
+      fontWeight: 600,
+      letterSpacing: "-0.5px"
+    },
+    sans: {
+      fontFamily: "'Inter', system-ui, sans-serif"
+    },
+    // Layout helpers
+    row: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexWrap: "wrap"
+    },
+    col: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 12
+    },
+    g2: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 10
+    }
+  };
+  function css(obj) {
+    return obj;
+  }
+
+  // ── DATA ─────────────────────────────────────────────────────────────────────
+  const TOOLS = [{
+    id: "sot",
+    n: "01",
+    name: "Second-Order Thinking",
+    tag: "Consequences",
+    desc: "Map the ripple effects of your decisions. Most people stop at what happens next — this forces you to ask what happens after that.",
+    next: ["decisionmatrix", "forcefield"]
+  }, {
+    id: "eisenhower",
+    n: "02",
+    name: "Eisenhower Matrix",
+    tag: "Prioritisation",
+    desc: "Sort your tasks by urgency and importance. Stop spending all day in the urgent but not important quadrant.",
+    next: ["okr", "feedbackloop"]
+  }, {
+    id: "decisionmatrix",
+    n: "03",
+    name: "Decision Matrix",
+    tag: "Comparison",
+    desc: "Take the gut feeling out of big choices. Score your options against what actually matters and let the numbers guide you.",
+    next: ["sot", "blueocean"]
+  }, {
+    id: "circles",
+    n: "04",
+    name: "Connection Circles",
+    tag: "Systems",
+    desc: "Map how things affect each other. Draw cause-and-effect links to find feedback loops, bottlenecks, and leverage points.",
+    next: ["forcefield", "firstprinciples"]
+  }, {
+    id: "conflict",
+    n: "05",
+    name: "Conflict Resolution",
+    tag: "Win-win",
+    desc: "Find the shared interests hiding underneath positions and surface solutions that work for everyone involved.",
+    next: ["perspective", "ladder"]
+  }, {
+    id: "ladder",
+    n: "06",
+    name: "Ladder of Inference",
+    tag: "Reasoning",
+    desc: "Trace your thinking from raw facts to belief to action. Catch where you jumped to a conclusion before you act on it.",
+    next: ["conflict", "perspective"]
+  }, {
+    id: "ooda",
+    n: "07",
+    name: "OODA Loop",
+    tag: "Speed",
+    desc: "Observe, Orient, Decide, Act. The decision cycle used by fighter pilots and fast-moving teams to outpace opponents.",
+    next: ["forcefield", "decisionmatrix"]
+  }, {
+    id: "firstprinciples",
+    n: "08",
+    name: "First Principles",
+    tag: "Decomposition",
+    desc: "Strip a problem to irreducible truths, then build your solution from scratch rather than from convention.",
+    next: ["inversion", "decisionmatrix"]
+  }, {
+    id: "inversion",
+    n: "09",
+    name: "Inversion",
+    tag: "Risk",
+    desc: "Instead of how do I succeed, ask how do I guarantee failure — then systematically avoid every answer on that list.",
+    next: ["firstprinciples", "forcefield"]
+  }, {
+    id: "feedbackloop",
+    n: "10",
+    name: "Feedback Loop Design",
+    tag: "Learning",
+    desc: "Build deliberate systems to learn faster. Define signals, set cadence, close the loop with a specific action trigger.",
+    next: ["okr", "eisenhower"]
+  }, {
+    id: "perspective",
+    n: "11",
+    name: "Perspective Taking",
+    tag: "Empathy",
+    desc: "Steelman the other side before you disagree. Map how the other person sees the world, fully and not as a caricature.",
+    next: ["conflict", "ladder"]
+  }, {
+    id: "forcefield",
+    n: "12",
+    name: "Force Field Analysis",
+    tag: "Change",
+    desc: "Map forces driving and resisting a change. Weaken resistance instead of pushing harder — it is more efficient.",
+    next: ["blueocean", "decisionmatrix"]
+  }, {
+    id: "blueocean",
+    n: "13",
+    name: "Blue Ocean Strategy",
+    tag: "Strategy",
+    desc: "Stop competing for the same territory. Map your strategy canvas to find uncontested market space.",
+    next: ["forcefield", "okr"]
+  }, {
+    id: "okr",
+    n: "14",
+    name: "OKRs & Goal Stacking",
+    tag: "Goals",
+    desc: "Connect daily actions to long-term outcomes. Objectives give direction; Key Results tell you when you arrived.",
+    next: ["eisenhower", "feedbackloop"]
+  }];
+  const GUIDES = [{
+    id: "premortem",
+    type: "Failure Prevention",
+    title: "The Pre-Mortem Method",
+    time: "30-45 min",
+    desc: "Imagine your project has already failed. Now figure out why, before it happens."
+  }, {
+    id: "polarity",
+    type: "Paradox Management",
+    title: "Polarity Mapping",
+    time: "45-60 min",
+    desc: "Some problems cannot be solved, only managed. Learn the difference and stop fighting yourself."
+  }, {
+    id: "systems",
+    type: "Leverage & Change",
+    title: "Systems Thinking Mastery",
+    time: "1-2 hrs",
+    desc: "Find the small interventions that produce large, lasting results."
+  }, {
+    id: "creative",
+    type: "Idea Generation",
+    title: "Creative Problem-Solving Toolkit",
+    time: "20-90 min",
+    desc: "Six techniques that professional creatives use when the obvious answers are not working."
+  }, {
+    id: "biases",
+    type: "Thinking Errors",
+    title: "Cognitive Biases Field Guide",
+    time: "Reference",
+    desc: "The 20 biases that most distort decisions in professional life, with practical counters."
+  }, {
+    id: "aicollab",
+    type: "Working with AI",
+    title: "AI Collaboration Toolkit",
+    time: "Reference",
+    desc: "Prompting frameworks and workflow patterns that make AI 10x more useful."
+  }, {
+    id: "journal",
+    type: "Calibration Practice",
+    title: "The Decision Journal",
+    time: "Ongoing",
+    desc: "Track your predictions over time. The only way to get genuinely better at deciding."
+  }];
+
+  // ── SHARED COMPONENTS ─────────────────────────────────────────────────────────
+  function Eyebrow({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        letterSpacing: "3px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 10
+      }
+    }, children);
+  }
+  function H2({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("h2", {
+      style: {
+        ...s.serif,
+        fontSize: 32,
+        fontWeight: 700,
+        letterSpacing: "-1px",
+        marginBottom: 8,
+        lineHeight: 1.1
+      }
+    }, children);
+  }
+  function Tagline({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 14,
+        fontWeight: 300,
+        color: G.muted,
+        fontStyle: "italic",
+        lineHeight: 1.65,
+        marginBottom: 28,
+        paddingBottom: 24,
+        borderBottom: `1px solid ${G.bdr}`
+      }
+    }, children);
+  }
+  function SecHead({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("h3", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        fontWeight: 500,
+        letterSpacing: "2.5px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 14,
+        paddingBottom: 7,
+        borderBottom: `1px solid ${G.bdr}`
+      }
+    }, children);
+  }
+  function P({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 14,
+        fontWeight: 300,
+        lineHeight: 1.75,
+        color: "#222",
+        marginBottom: 10
+      }
+    }, children);
+  }
+  function Lbl({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("label", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 6,
+        display: "block"
+      }
+    }, children);
+  }
+  function Inp({
+    id,
+    value,
+    onChange,
+    placeholder,
+    rows,
+    type,
+    style,
+    ...rest
+  }) {
+    const base = {
+      width: "100%",
+      fontFamily: "'Inter', sans-serif",
+      fontSize: 13,
+      fontWeight: 300,
+      padding: "8px 11px",
+      border: `1px solid ${G.bdr}`,
+      borderRadius: 2,
+      background: G.white,
+      color: G.ink,
+      lineHeight: 1.55,
+      ...style
+    };
+    if (rows) return /*#__PURE__*/React.createElement("textarea", _extends({
+      id: id,
+      value: value,
+      onChange: onChange,
+      placeholder: placeholder,
+      rows: rows,
+      style: {
+        ...base,
+        resize: "none"
+      }
+    }, rest));
+    return /*#__PURE__*/React.createElement("input", _extends({
+      id: id,
+      type: type || "text",
+      value: value,
+      onChange: onChange,
+      placeholder: placeholder,
+      style: base
+    }, rest));
+  }
+  function Workspace({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.off,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 4,
+        padding: 24,
+        marginTop: 8
+      }
+    }, children);
+  }
+  function BtnPrimary({
+    onClick,
+    children,
+    style
+  }) {
+    return /*#__PURE__*/React.createElement("button", {
+      onClick: onClick,
+      style: {
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        fontWeight: 500,
+        padding: "7px 16px",
+        background: G.ink,
+        color: G.white,
+        border: "none",
+        borderRadius: 2,
+        cursor: "pointer",
+        letterSpacing: "0.02em",
+        ...style
+      }
+    }, children);
+  }
+  function BtnGhost({
+    onClick,
+    children,
+    style
+  }) {
+    return /*#__PURE__*/React.createElement("button", {
+      onClick: onClick,
+      style: {
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        fontWeight: 500,
+        padding: "7px 16px",
+        background: "transparent",
+        color: G.ink,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        cursor: "pointer",
+        letterSpacing: "0.02em",
+        ...style
+      }
+    }, children);
+  }
+  function FeedbackBlue({
+    msg
+  }) {
+    if (!msg) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.liveS,
+        border: `1px solid ${G.live}`,
+        borderRadius: 2,
+        padding: "12px 14px",
+        marginTop: 14,
+        fontSize: 13,
+        lineHeight: 1.65,
+        color: G.live,
+        fontWeight: 500
+      }
+    }, msg);
+  }
+  function FeedbackInk({
+    msg
+  }) {
+    if (!msg) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.off,
+        borderLeft: `2px solid ${G.ink}`,
+        padding: "12px 14px",
+        marginTop: 14,
+        fontSize: 13,
+        lineHeight: 1.65,
+        color: "#222"
+      }
+    }, msg);
+  }
+  function NextPanel({
+    curId,
+    onOpen
+  }) {
+    const t = TOOLS.find(x => x.id === curId);
+    if (!t) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        overflow: "hidden",
+        marginTop: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        color: G.muted,
+        background: G.surf,
+        borderBottom: `1px solid ${G.bdr}`,
+        padding: "8px 14px"
+      }
+    }, "What to do next"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 14px",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 7,
+        alignItems: "center"
+      }
+    }, t.next.slice(0, 2).map(nid => {
+      const nt = TOOLS.find(x => x.id === nid);
+      if (!nt) return null;
+      return /*#__PURE__*/React.createElement("button", {
+        key: nid,
+        onClick: () => onOpen(nid),
+        style: {
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 5,
+          fontSize: 12,
+          fontWeight: 500,
+          padding: "6px 12px",
+          border: `1.5px solid ${G.ink}`,
+          borderRadius: 2,
+          background: G.white,
+          color: G.ink,
+          cursor: "pointer",
+          fontFamily: "'Inter',sans-serif"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          ...s.mono,
+          fontSize: 9,
+          color: G.muted
+        }
+      }, nt.n), " ", nt.name);
+    })), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 11,
+        fontWeight: 300,
+        color: G.muted,
+        fontStyle: "italic",
+        padding: "0 14px 10px"
+      }
+    }, "Or save your work using the PDF button above."));
+  }
+  function ExBox({
+    label,
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.off,
+        borderLeft: `2px solid ${G.ink}`,
+        padding: "13px 16px",
+        margin: "14px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 6
+      }
+    }, label || "Example"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 13,
+        fontWeight: 300,
+        lineHeight: 1.65,
+        color: G.ink
+      }
+    }, children));
+  }
+  function InsBox({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.liveS,
+        border: `1px solid ${G.live}`,
+        borderRadius: 2,
+        padding: "13px 16px",
+        margin: "14px 0"
+      }
+    }, /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 13,
+        fontWeight: 500,
+        color: G.live,
+        margin: 0,
+        lineHeight: 1.6
+      }
+    }, children));
+  }
+  function Step({
+    n,
+    title,
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 14,
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        fontWeight: 500,
+        color: G.muted,
+        flexShrink: 0,
+        marginTop: 2,
+        width: 22
+      }
+    }, n), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        marginBottom: 5
+      }
+    }, title), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 13.5,
+        fontWeight: 300,
+        lineHeight: 1.65,
+        color: "#444",
+        margin: 0
+      }
+    }, children)));
+  }
+  function KCGrid({
+    items
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8,
+        marginTop: 10
+      }
+    }, items.map((item, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: "11px 13px",
+        background: G.white
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        display: "block",
+        fontSize: 12.5,
+        fontWeight: 600,
+        marginBottom: 3
+      }
+    }, item.title), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: G.muted,
+        lineHeight: 1.5,
+        fontWeight: 300
+      }
+    }, item.desc))));
+  }
+
+  // ── TOOL: SECOND ORDER THINKING ───────────────────────────────────────────────
+  function ToolSOT({
+    curId,
+    onOpen
+  }) {
+    const [vals, setVals] = (0, _react.useState)(["", "", "", "", ""]);
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const labels = ["Decision", "1st Order", "2nd Order", "3rd Order", "Unintended"];
+    const phs = ["What decision are you making?", "Immediate, obvious consequences?", "What happens as a result of those consequences?", "Further ripple effects on people, systems, culture?", "Most surprising or uncomfortable consequence?"];
+    const bgs = ["#0a0a0a", "#333", "#555", "#888", "#ccc"];
+    const cols = ["white", "white", "white", "white", "#333"];
+    const set = (i, v) => {
+      const n = [...vals];
+      n[i] = v;
+      setVals(n);
+    };
+    const copy = () => {
+      const text = labels.map((l, i) => l + ": " + vals[i]).join("\n\n");
+      navigator.clipboard.writeText(text).then(() => {
+        setMsg("Copied to clipboard");
+        setShowNext(true);
+        setTimeout(() => setMsg(""), 2000);
+      });
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Thinking Framework"), /*#__PURE__*/React.createElement(H2, null, "Second-Order Thinking"), /*#__PURE__*/React.createElement(Tagline, null, "Most people think one move ahead. The best thinkers play the whole game."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Every decision has consequences \u2014 and those consequences have consequences too. First-order thinking asks what happens. Second-order asks and then what, repeatedly.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your decision map"), /*#__PURE__*/React.createElement(Workspace, null, labels.map((lbl, i) => /*#__PURE__*/React.createElement("div", {
+      key: i
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 10,
+        marginBottom: 4
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        fontWeight: 500,
+        padding: "4px 8px",
+        borderRadius: 2,
+        background: bgs[i],
+        color: cols[i],
+        whiteSpace: "nowrap",
+        marginTop: 10,
+        flexShrink: 0,
+        width: 86,
+        textAlign: "center",
+        letterSpacing: 1
+      }
+    }, lbl), /*#__PURE__*/React.createElement("textarea", {
+      value: vals[i],
+      onChange: e => set(i, e.target.value),
+      placeholder: phs[i],
+      rows: 2,
+      style: {
+        flex: 1,
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        fontWeight: 300,
+        padding: "8px 11px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        color: G.ink,
+        resize: "none",
+        lineHeight: 1.55
+      }
+    })), i < labels.length - 1 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        fontSize: 14,
+        color: G.faint,
+        margin: "-2px 0 -2px 94px"
+      }
+    }, "\u2193"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginTop: 14
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: copy
+    }, "Copy summary"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => setVals(["", "", "", "", ""])
+    }, "Clear")), msg && /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 12,
+        color: G.live,
+        marginTop: 8
+      }
+    }, msg), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "When to use this"), /*#__PURE__*/React.createElement(P, null, "Use before major decisions: hiring, strategy pivots, pricing changes, technology choices. Charlie Munger attributed much of Berkshire Hathaway's success to this habit.")));
+  }
+
+  // ── TOOL: EISENHOWER ──────────────────────────────────────────────────────────
+  function ToolEisenhower() {
+    const [items, setItems] = (0, _react.useState)({
+      q1: [],
+      q2: [],
+      q3: [],
+      q4: []
+    });
+    const [inputs, setInputs] = (0, _react.useState)({
+      q1: "",
+      q2: "",
+      q3: "",
+      q4: ""
+    });
+    const qs = [{
+      id: "q1",
+      bg: "#0a0a0a",
+      dark: true,
+      ttl: "Do Now · Urgent + Important"
+    }, {
+      id: "q2",
+      bg: "#2a2a2a",
+      dark: true,
+      ttl: "Schedule · Not Urgent + Important"
+    }, {
+      id: "q3",
+      bg: "#e8e8e8",
+      dark: false,
+      ttl: "Delegate · Urgent + Not Important"
+    }, {
+      id: "q4",
+      bg: "#f4f4f4",
+      dark: false,
+      ttl: "Eliminate · Not Urgent + Not Important"
+    }];
+    const add = q => {
+      const v = inputs[q].trim();
+      if (!v) return;
+      setItems(prev => ({
+        ...prev,
+        [q]: [...prev[q], v]
+      }));
+      setInputs(prev => ({
+        ...prev,
+        [q]: ""
+      }));
+    };
+    const del = (q, i) => setItems(prev => ({
+      ...prev,
+      [q]: prev[q].filter((_, j) => j !== i)
+    }));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Prioritisation"), /*#__PURE__*/React.createElement(H2, null, "Eisenhower Matrix"), /*#__PURE__*/React.createElement(Tagline, null, "What is truly important is rarely urgent. What is urgent is rarely truly important."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Sort every task into four quadrants based on urgency and importance. Then act accordingly: Do, Schedule, Delegate, or Eliminate.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your matrix"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        textAlign: "center",
+        color: G.muted,
+        letterSpacing: 1,
+        marginBottom: 6
+      }
+    }, "URGENT right \xB7 IMPORTANT top"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 6,
+        minHeight: 360
+      }
+    }, qs.map(q => /*#__PURE__*/React.createElement("div", {
+      key: q.id,
+      style: {
+        background: q.bg,
+        borderRadius: 2,
+        padding: 12,
+        display: "flex",
+        flexDirection: "column",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        fontWeight: 500,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: q.dark ? "rgba(255,255,255,.45)" : "#666",
+        marginBottom: 2
+      }
+    }, q.ttl), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        overflowY: "auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: 3
+      }
+    }, items[q.id].map((t, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        fontSize: 12,
+        fontWeight: 300,
+        padding: "4px 7px",
+        background: q.dark ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.6)",
+        borderRadius: 2,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 4,
+        color: q.dark ? "rgba(255,255,255,.85)" : G.ink
+      }
+    }, /*#__PURE__*/React.createElement("span", null, t), /*#__PURE__*/React.createElement("button", {
+      onClick: () => del(q.id, i),
+      style: {
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        fontSize: 12,
+        color: q.dark ? "rgba(255,255,255,.3)" : "rgba(0,0,0,.25)",
+        flexShrink: 0
+      }
+    }, "\u2715")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      value: inputs[q.id],
+      onChange: e => setInputs(p => ({
+        ...p,
+        [q.id]: e.target.value
+      })),
+      onKeyDown: e => e.key === "Enter" && add(q.id),
+      placeholder: "Add task...",
+      style: {
+        flex: 1,
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        padding: "5px 9px",
+        border: `1px solid ${q.dark ? "rgba(255,255,255,.15)" : "rgba(0,0,0,.12)"}`,
+        borderRadius: 2,
+        background: q.dark ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.8)",
+        color: q.dark ? G.white : G.ink
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: () => add(q.id),
+      style: {
+        width: 26,
+        height: 26,
+        borderRadius: 2,
+        border: "none",
+        background: q.dark ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.1)",
+        cursor: "pointer",
+        fontSize: 16,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+        color: q.dark ? G.white : G.ink
+      }
+    }, "+")))))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The key insight"), /*#__PURE__*/React.createElement(P, null, "The second quadrant \u2014 important but not urgent \u2014 is where strategic work lives: planning, learning, relationship-building. It never screams for attention. Protect time for it deliberately.")));
+  }
+
+  // ── TOOL: DECISION MATRIX ─────────────────────────────────────────────────────
+  function ToolDM() {
+    const [opts, setOpts] = (0, _react.useState)([]);
+    const [crits, setCrits] = (0, _react.useState)([]);
+    const [oi, setOi] = (0, _react.useState)("");
+    const [ci, setCi] = (0, _react.useState)("");
+    const [scores, setScores] = (0, _react.useState)({});
+    const [weights, setWeights] = (0, _react.useState)({});
+    const [built, setBuilt] = (0, _react.useState)(false);
+    const [buildErr, setBuildErr] = (0, _react.useState)("");
+    const addOpt = () => {
+      if (oi.trim()) {
+        setOpts(p => [...p, oi.trim()]);
+        setOi("");
+        setBuildErr("");
+      }
+    };
+    const addCrit = () => {
+      if (ci.trim()) {
+        setCrits(p => [...p, ci.trim()]);
+        setCi("");
+        setBuildErr("");
+      }
+    };
+    const example = () => {
+      setOpts(["Option A", "Option B", "Option C"]);
+      setCrits(["Cost", "Impact", "Speed"]);
+      setBuilt(true);
+      setBuildErr("");
+    };
+    const doBuild = () => {
+      if (!opts.length && !crits.length) {
+        setBuildErr("Add at least one option and one criterion first — or click Load example.");
+        return;
+      }
+      if (!opts.length) {
+        setBuildErr("Add at least one option.");
+        return;
+      }
+      if (!crits.length) {
+        setBuildErr("Add at least one criterion.");
+        return;
+      }
+      setBuilt(true);
+      setBuildErr("");
+    };
+    const getScore = (ci, oi) => scores[ci + "_" + oi] ?? 5;
+    const getWeight = ci => weights[ci] ?? 1;
+    const setScore = (ci, oi, v) => setScores(p => ({
+      ...p,
+      [ci + "_" + oi]: parseFloat(v) || 0
+    }));
+    const setWeight = (ci, v) => setWeights(p => ({
+      ...p,
+      [ci]: parseFloat(v) || 1
+    }));
+    const totals = opts.map((o, oi) => crits.reduce((s, c, ci) => s + getWeight(ci) * getScore(ci, oi), 0));
+    const maxTotal = Math.max(...totals);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Comparison"), /*#__PURE__*/React.createElement(H2, null, "Decision Matrix"), /*#__PURE__*/React.createElement(Tagline, null, "Take the gut feeling out of big choices. Give your options a fair fight."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "List options and criteria. Score each option 1-10 per criterion, weighted by importance. Highest weighted total wins \u2014 or reveals what you actually care about.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your matrix"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Options (press Enter)"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5,
+        flexWrap: "wrap",
+        minHeight: 38,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 5,
+        background: G.white,
+        marginBottom: 0
+      }
+    }, opts.map((o, i) => /*#__PURE__*/React.createElement("span", {
+      key: i,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 3,
+        background: G.ink,
+        color: G.white,
+        fontSize: 11,
+        fontFamily: "'JetBrains Mono',monospace",
+        padding: "3px 9px",
+        borderRadius: 2
+      }
+    }, o, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setOpts(p => p.filter((_, j) => j !== i)),
+      style: {
+        background: "none",
+        border: "none",
+        color: G.white,
+        cursor: "pointer",
+        fontSize: 13,
+        lineHeight: 1,
+        opacity: .6
+      }
+    }, "x"))), /*#__PURE__*/React.createElement("input", {
+      value: oi,
+      onChange: e => setOi(e.target.value),
+      onKeyDown: e => e.key === "Enter" && addOpt(),
+      placeholder: "e.g. Job offer A",
+      style: {
+        border: "none",
+        background: "transparent",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        color: G.ink,
+        minWidth: 80,
+        flex: 1
+      }
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Criteria (press Enter)"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5,
+        flexWrap: "wrap",
+        minHeight: 38,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 5,
+        background: G.white
+      }
+    }, crits.map((c, i) => /*#__PURE__*/React.createElement("span", {
+      key: i,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 3,
+        background: G.ink,
+        color: G.white,
+        fontSize: 11,
+        fontFamily: "'JetBrains Mono',monospace",
+        padding: "3px 9px",
+        borderRadius: 2
+      }
+    }, c, /*#__PURE__*/React.createElement("button", {
+      onClick: () => setCrits(p => p.filter((_, j) => j !== i)),
+      style: {
+        background: "none",
+        border: "none",
+        color: G.white,
+        cursor: "pointer",
+        fontSize: 13,
+        lineHeight: 1,
+        opacity: .6
+      }
+    }, "x"))), /*#__PURE__*/React.createElement("input", {
+      value: ci,
+      onChange: e => setCi(e.target.value),
+      onKeyDown: e => e.key === "Enter" && addCrit(),
+      placeholder: "e.g. Salary, Growth",
+      style: {
+        border: "none",
+        background: "transparent",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        color: G.ink,
+        minWidth: 80,
+        flex: 1
+      }
+    })))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: doBuild
+    }, "Build matrix"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: example
+    }, "Load example"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        setOpts([]);
+        setCrits([]);
+        setBuilt(false);
+        setScores({});
+        setWeights({});
+        setBuildErr("");
+      }
+    }, "Clear")), buildErr && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#c00",
+        marginBottom: 10,
+        padding: "8px 12px",
+        background: "#fff0f0",
+        border: "1px solid #fcc",
+        borderRadius: 2
+      }
+    }, buildErr), built && opts.length > 0 && crits.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        overflowX: "auto"
+      }
+    }, /*#__PURE__*/React.createElement("table", {
+      style: {
+        width: "100%",
+        borderCollapse: "collapse",
+        fontSize: 13
+      }
+    }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: G.muted,
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`,
+        textAlign: "left",
+        background: G.off
+      }
+    }, "Criterion"), /*#__PURE__*/React.createElement("th", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: G.muted,
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`,
+        background: G.off
+      }
+    }, "Wt"), opts.map((o, i) => /*#__PURE__*/React.createElement("th", {
+      key: i,
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: G.muted,
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`,
+        background: G.off
+      }
+    }, o)))), /*#__PURE__*/React.createElement("tbody", null, crits.map((c, ci) => /*#__PURE__*/React.createElement("tr", {
+      key: ci
+    }, /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`,
+        fontWeight: 500
+      }
+    }, c), /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      value: getWeight(ci),
+      onChange: e => setWeight(ci, e.target.value),
+      min: "1",
+      max: "5",
+      style: {
+        width: 48,
+        padding: "3px 6px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontFamily: "'JetBrains Mono',monospace",
+        fontSize: 12,
+        textAlign: "center",
+        background: G.white
+      }
+    })), opts.map((o, oi) => /*#__PURE__*/React.createElement("td", {
+      key: oi,
+      style: {
+        padding: "7px 10px",
+        borderBottom: `1px solid ${G.bdr}`
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      value: getScore(ci, oi),
+      onChange: e => setScore(ci, oi, e.target.value),
+      min: "1",
+      max: "10",
+      style: {
+        width: 54,
+        padding: "3px 6px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontFamily: "'JetBrains Mono',monospace",
+        fontSize: 12,
+        textAlign: "center",
+        background: G.white
+      }
+    })))))), /*#__PURE__*/React.createElement("tfoot", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+      colSpan: 2,
+      style: {
+        padding: "7px 10px",
+        fontWeight: 600
+      }
+    }, "Total"), totals.map((t, i) => /*#__PURE__*/React.createElement("td", {
+      key: i,
+      style: {
+        padding: "7px 10px",
+        fontFamily: "'JetBrains Mono',monospace",
+        fontWeight: 700,
+        fontSize: 13,
+        color: t === maxTotal ? G.live : G.ink
+      }
+    }, t.toFixed(1), t === maxTotal ? " ★" : "")))))))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Reading the result"), /*#__PURE__*/React.createElement(P, null, "If the matrix winner differs from your gut, that is signal \u2014 your criteria do not fully capture what you care about. Update and re-run.")));
+  }
+
+  // ── TOOL: CONNECTION CIRCLES ──────────────────────────────────────────────────
+  function ToolCircles() {
+    const canvasRef = (0, _react.useRef)(null);
+    const [mode, setMode] = (0, _react.useState)("node");
+    const nodes = (0, _react.useRef)([]);
+    const edges = (0, _react.useRef)([]);
+    const sel = (0, _react.useRef)(null);
+    const drag = (0, _react.useRef)(null);
+    const off = (0, _react.useRef)({
+      x: 0,
+      y: 0
+    });
+    const draw = (0, _react.useCallback)(() => {
+      const c = canvasRef.current;
+      if (!c) return;
+      const ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+      edges.current.forEach(e => {
+        const dx = e.to.x - e.from.x,
+          dy = e.to.y - e.from.y,
+          len = Math.hypot(dx, dy);
+        if (!len) return;
+        const sx = e.from.x + dx / len * 28,
+          sy = e.from.y + dy / len * 28,
+          ex = e.to.x - dx / len * 30,
+          ey = e.to.y - dy / len * 30;
+        const ang = Math.atan2(dy, dx);
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex, ey);
+        ctx.strokeStyle = G.ink;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(ex, ey);
+        ctx.lineTo(ex - 10 * Math.cos(ang - .4), ey - 10 * Math.sin(ang - .4));
+        ctx.lineTo(ex - 10 * Math.cos(ang + .4), ey - 10 * Math.sin(ang + .4));
+        ctx.closePath();
+        ctx.fillStyle = G.ink;
+        ctx.fill();
+      });
+      nodes.current.forEach(n => {
+        const isSel = sel.current === n;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 26, 0, Math.PI * 2);
+        ctx.fillStyle = isSel ? G.ink : G.white;
+        ctx.fill();
+        ctx.strokeStyle = isSel ? G.ink : G.bdr;
+        ctx.lineWidth = isSel ? 2 : 1.5;
+        ctx.stroke();
+        ctx.fillStyle = isSel ? G.white : G.ink;
+        ctx.font = "11px Inter,sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        const words = n.label.split(" ");
+        if (words.length < 3 && n.label.length <= 10) {
+          ctx.fillText(n.label, n.x, n.y);
+        } else {
+          ctx.fillText(words.slice(0, Math.ceil(words.length / 2)).join(" "), n.x, n.y - 7);
+          ctx.fillText(words.slice(Math.ceil(words.length / 2)).join(" "), n.x, n.y + 7);
+        }
+      });
+    }, []);
+    (0, _react.useEffect)(() => {
+      const c = canvasRef.current;
+      if (!c) return;
+      c.width = c.parentElement.clientWidth || 680;
+      c.height = 300;
+      draw();
+    }, [draw]);
+    const atPos = (x, y) => nodes.current.find(n => Math.hypot(n.x - x, n.y - y) < 28);
+    const onClick = e => {
+      if (mode === "drag") return;
+      const r = canvasRef.current.getBoundingClientRect(),
+        x = e.clientX - r.left,
+        y = e.clientY - r.top;
+      if (mode === "node") {
+        const l = prompt("Node label:");
+        if (l) {
+          nodes.current.push({
+            x,
+            y,
+            label: l
+          });
+          draw();
+        }
+      } else {
+        const hit = atPos(x, y);
+        if (!hit) return;
+        if (!sel.current) {
+          sel.current = hit;
+          draw();
+        } else if (sel.current !== hit) {
+          edges.current.push({
+            from: sel.current,
+            to: hit
+          });
+          sel.current = null;
+          draw();
+        }
+      }
+    };
+    const onDown = e => {
+      if (mode !== "drag") return;
+      const r = canvasRef.current.getBoundingClientRect(),
+        x = e.clientX - r.left,
+        y = e.clientY - r.top;
+      drag.current = atPos(x, y);
+      if (drag.current) off.current = {
+        x: x - drag.current.x,
+        y: y - drag.current.y
+      };
+    };
+    const onMove = e => {
+      if (!drag.current) return;
+      const r = canvasRef.current.getBoundingClientRect();
+      drag.current.x = e.clientX - r.left - off.current.x;
+      drag.current.y = e.clientY - r.top - off.current.y;
+      draw();
+    };
+    const modes = [{
+      id: "node",
+      lbl: "+ Add"
+    }, {
+      id: "connect",
+      lbl: "→ Connect"
+    }, {
+      id: "drag",
+      lbl: "✥ Move"
+    }];
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Systems"), /*#__PURE__*/React.createElement(H2, null, "Connection Circles"), /*#__PURE__*/React.createElement(Tagline, null, "Every complex problem is a web, not a line. Draw the web."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Add key elements as nodes. Draw arrows to show how they influence each other. Look for feedback loops, bottlenecks, and leverage points.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your map"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 10
+      }
+    }, modes.map(m => /*#__PURE__*/React.createElement("button", {
+      key: m.id,
+      onClick: () => {
+        setMode(m.id);
+        sel.current = null;
+        draw();
+      },
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        padding: "6px 12px",
+        borderRadius: 2,
+        border: `1px solid ${mode === m.id ? G.ink : G.bdr}`,
+        background: mode === m.id ? G.ink : G.white,
+        color: mode === m.id ? G.white : G.muted,
+        cursor: "pointer"
+      }
+    }, m.lbl)), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        nodes.current = [];
+        edges.current = [];
+        sel.current = null;
+        draw();
+      },
+      style: {
+        marginLeft: "auto"
+      }
+    }, "Clear")), /*#__PURE__*/React.createElement("canvas", {
+      ref: canvasRef,
+      onClick: onClick,
+      onMouseDown: onDown,
+      onMouseMove: onMove,
+      onMouseUp: () => {
+        drag.current = null;
+      },
+      style: {
+        width: "100%",
+        height: 300,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.off,
+        cursor: "crosshair",
+        display: "block"
+      }
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 11,
+        fontWeight: 300,
+        color: G.muted,
+        fontStyle: "italic",
+        marginTop: 6
+      }
+    }, mode === "node" ? "Click canvas to add a labelled node" : mode === "connect" ? "Click source then destination to draw an arrow" : "Click and drag nodes to reposition"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "What to look for"), /*#__PURE__*/React.createElement(P, null, "Reinforcing loops amplify \u2014 virtuous or vicious cycles. Balancing loops self-correct. Delays between nodes are where most surprises hide.")));
+  }
+
+  // ── TOOL: CONFLICT RESOLUTION ─────────────────────────────────────────────────
+  function ToolConflict({
+    curId,
+    onOpen
+  }) {
+    const [vals, setVals] = (0, _react.useState)({
+      goal: "",
+      apos: "",
+      aint: "",
+      bpos: "",
+      bint: "",
+      assume: ""
+    });
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const set = k => e => setVals(p => ({
+      ...p,
+      [k]: e.target.value
+    }));
+    const gen = () => {
+      setMsg(`Shared goal: ${vals.goal || "[not defined]"}\n\nA needs: ${vals.aint || "[not filled]"}\nB needs: ${vals.bint || "[not filled]"}\n\nCan both needs be met through a third option neither party considered? Can you phase a solution so both parties' real needs are met simultaneously?${vals.assume ? "\n\nAssumption to challenge: " + vals.assume : ""}`);
+      setShowNext(true);
+    };
+    const clear = () => {
+      setVals({
+        goal: "",
+        apos: "",
+        aint: "",
+        bpos: "",
+        bint: "",
+        assume: ""
+      });
+      setMsg("");
+      setShowNext(false);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Negotiation"), /*#__PURE__*/React.createElement(H2, null, "Conflict Resolution"), /*#__PURE__*/React.createElement(Tagline, null, "Beneath every conflict, there are needs. Find those, and solutions appear."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "People argue over positions but share underlying interests. Map both sides, find shared ground, and generate solutions that satisfy everyone's real needs.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Map the conflict"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.col
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Shared goal (what both sides ultimately want)"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.goal,
+      onChange: set("goal"),
+      placeholder: "e.g. A successful product that serves customers well"
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 14,
+        background: G.off
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.serif,
+        fontSize: 15,
+        fontWeight: 400,
+        marginBottom: 10
+      }
+    }, "Party A"), /*#__PURE__*/React.createElement(Lbl, null, "Their position"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.apos,
+      onChange: set("apos"),
+      placeholder: "e.g. Ship in 2 weeks",
+      rows: 2
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, "Their interests"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.aint,
+      onChange: set("aint"),
+      placeholder: "e.g. Needs to hit Q3 revenue target",
+      rows: 2
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 14,
+        background: G.off
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.serif,
+        fontSize: 15,
+        fontWeight: 400,
+        marginBottom: 10
+      }
+    }, "Party B"), /*#__PURE__*/React.createElement(Lbl, null, "Their position"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.bpos,
+      onChange: set("bpos"),
+      placeholder: "e.g. Need 6 more weeks for QA",
+      rows: 2
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, "Their interests"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.bint,
+      onChange: set("bint"),
+      placeholder: "e.g. Does not want to ship something buggy",
+      rows: 2
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Core assumption creating the conflict"), /*#__PURE__*/React.createElement(Inp, {
+      value: vals.assume,
+      onChange: set("assume"),
+      placeholder: "e.g. We assume speed and quality are mutually exclusive...",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: gen
+    }, "Find win-win options"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: clear
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackInk, {
+      msg: /*#__PURE__*/React.createElement("span", {
+        style: {
+          whiteSpace: "pre-wrap"
+        }
+      }, msg)
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The key question"), /*#__PURE__*/React.createElement(P, null, "What assumption, if challenged, would dissolve the conflict entirely? The conflict often evaporates when you question either/or thinking.")));
+  }
+
+  // ── TOOL: LADDER OF INFERENCE ─────────────────────────────────────────────────
+  function ToolLadder({
+    curId,
+    onOpen
+  }) {
+    const RUNGS = [{
+      lbl: "Observable facts & data",
+      ph: "What actually happened? What would a camera record?"
+    }, {
+      lbl: "Selected data (what I noticed)",
+      ph: "What did you focus on? What did you ignore?"
+    }, {
+      lbl: "Interpreted meaning",
+      ph: "What meaning did you add to that data?"
+    }, {
+      lbl: "Assumptions",
+      ph: "What are you taking as true that led to that interpretation?"
+    }, {
+      lbl: "Conclusions",
+      ph: "What conclusion did you draw?"
+    }, {
+      lbl: "Beliefs formed",
+      ph: "What does this reinforce or create in your belief system?"
+    }, {
+      lbl: "Actions taken",
+      ph: "What did you do — or plan to do — based on this?"
+    }];
+    const [vals, setVals] = (0, _react.useState)(RUNGS.map(() => ""));
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const set = (i, v) => {
+      const n = [...vals];
+      n[i] = v;
+      setVals(n);
+    };
+    const check = () => {
+      const filled = vals.filter(v => v.trim()).length;
+      let m = "";
+      if (!filled) m = "Fill in at least one rung to get started.";else if (!vals[0]) m = "Start at the bottom — what actually, concretely happened?";else if (!vals[3]) m = "You skipped Assumptions — the most important rung. What are you taking as true that might not be?";else m = "Good ladder. At which rung did you first start interpreting rather than observing? Is your interpretation the only possible one?";
+      setMsg(m);
+      if (filled >= 3) setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Reasoning"), /*#__PURE__*/React.createElement(H2, null, "Ladder of Inference"), /*#__PURE__*/React.createElement(Tagline, null, "You did not react to what happened. You reacted to what you thought it meant."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "We constantly move from raw data to action, skipping rungs. Each skip is where bias and misreading enters. The Ladder makes each step explicit so you can find exactly where you went wrong.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Trace your thinking (bottom to top)"), /*#__PURE__*/React.createElement(Workspace, null, RUNGS.map((r, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        flexShrink: 0,
+        width: 32
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 20,
+        height: 20,
+        borderRadius: "50%",
+        border: `1.5px solid ${G.ink}`,
+        background: G.white,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...s.mono,
+        fontSize: 9,
+        fontWeight: 600,
+        flexShrink: 0,
+        marginTop: 13
+      }
+    }, RUNGS.length - i), i < RUNGS.length - 1 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 1,
+        flex: 1,
+        background: G.bdr,
+        minHeight: 12
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        paddingBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, r.lbl), /*#__PURE__*/React.createElement(Inp, {
+      value: vals[i],
+      onChange: e => set(i, e.target.value),
+      placeholder: r.ph,
+      rows: 2
+    })))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginTop: 14
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Check my ladder"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        setVals(RUNGS.map(() => ""));
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackBlue, {
+      msg: msg
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The reflexive loop"), /*#__PURE__*/React.createElement(P, null, "Your beliefs (rung 6) influence what data you select (rung 2) next time. This is how people get locked into a worldview. The Ladder helps you break that loop deliberately.")));
+  }
+
+  // ── TOOLS 07-14 (compact state-based) ────────────────────────────────────────
+  function mkFields(defs) {
+    return function FieldForm({
+      onSubmit,
+      onClear,
+      feedbackType
+    }) {
+      const [vals, setVals] = (0, _react.useState)(defs.map(() => ""));
+      const [msg, setMsg] = (0, _react.useState)("");
+      const [showNext, setShowNext] = (0, _react.useState)(false);
+      const set = (i, v) => {
+        const n = [...vals];
+        n[i] = v;
+        setVals(n);
+      };
+      const submit = () => {
+        const r = onSubmit(vals);
+        setMsg(r.msg);
+        if (r.next) setShowNext(true);
+      };
+      return /*#__PURE__*/React.createElement(React.Fragment, null, defs.map((d, i) => /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          marginBottom: 12
+        }
+      }, /*#__PURE__*/React.createElement(Lbl, null, d.lbl), d.rows ? /*#__PURE__*/React.createElement(Inp, {
+        value: vals[i],
+        onChange: e => set(i, e.target.value),
+        placeholder: d.ph,
+        rows: d.rows
+      }) : /*#__PURE__*/React.createElement(Inp, {
+        value: vals[i],
+        onChange: e => set(i, e.target.value),
+        placeholder: d.ph
+      }))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          ...s.row,
+          marginTop: 4
+        }
+      }, /*#__PURE__*/React.createElement(BtnPrimary, {
+        onClick: submit
+      }, defs.submitLabel || "Analyse"), /*#__PURE__*/React.createElement(BtnGhost, {
+        onClick: () => {
+          setVals(defs.map(() => ""));
+          setMsg("");
+          setShowNext(false);
+          onClear && onClear();
+        }
+      }, "Clear")), msg && (feedbackType === "blue" ? /*#__PURE__*/React.createElement(FeedbackBlue, {
+        msg: msg
+      }) : /*#__PURE__*/React.createElement(FeedbackInk, {
+        msg: msg
+      })), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+        curId: null,
+        onOpen: () => {}
+      }));
+    };
+  }
+  function ToolOODA({
+    curId,
+    onOpen
+  }) {
+    const [o, sO] = (0, _react.useState)("");
+    const [or_, sOr] = (0, _react.useState)("");
+    const [d, sD] = (0, _react.useState)("");
+    const [a, sA] = (0, _react.useState)("");
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const check = () => {
+      const m = !o ? "Start with Observe — raw facts only, no interpretation." : !or_ ? "You skipped Orient — what mental model are you using to make sense of what you observed?" : !d ? "Good orientation. Now commit to a specific decision." : !a ? "You have a decision — now specify the action precisely: who, what, by when?" : "Complete loop. Act — and immediately begin observing the outcome. Your next cycle starts the moment you do.";
+      setMsg(m);
+      setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Speed & Adaptation"), /*#__PURE__*/React.createElement(H2, null, "OODA Loop"), /*#__PURE__*/React.createElement(Tagline, null, "Speed is not about moving fast \u2014 it is about cycling faster than the situation changes."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Observe (gather raw data), Orient (make sense through your mental models), Decide (choose), Act (execute), then loop. The most overlooked stage is Orient \u2014 it shapes what you even see in Observe.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Run your OODA cycle"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "01 \xB7 Observe \u2014 raw facts only"), /*#__PURE__*/React.createElement(Inp, {
+      value: o,
+      onChange: e => sO(e.target.value),
+      placeholder: "What can you directly perceive? No interpretation yet.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "02 \xB7 Orient \u2014 what does it mean?"), /*#__PURE__*/React.createElement(Inp, {
+      value: or_,
+      onChange: e => sOr(e.target.value),
+      placeholder: "Filter through your mental models and past experience.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "03 \xB7 Decide \u2014 what will you do?"), /*#__PURE__*/React.createElement(Inp, {
+      value: d,
+      onChange: e => sD(e.target.value),
+      placeholder: "Best option given current information. Not perfect \u2014 fast.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "04 \xB7 Act \u2014 execute"), /*#__PURE__*/React.createElement(Inp, {
+      value: a,
+      onChange: e => sA(e.target.value),
+      placeholder: "Who does what, by when? Then loop.",
+      rows: 3
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginTop: 14
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Review my loop"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        sO("");
+        sOr("");
+        sD("");
+        sA("");
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackBlue, {
+      msg: msg
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The key insight"), /*#__PURE__*/React.createElement(P, null, "You can win not by having better information, but by cycling faster \u2014 making your opponent's model of reality go stale before they can act on it.")));
+  }
+  function ToolFP({
+    curId,
+    onOpen
+  }) {
+    const [v, sv] = (0, _react.useState)({
+      prob: "",
+      assume: "",
+      chal: "",
+      truths: "",
+      sol: ""
+    });
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const set = k => e => sv(p => ({
+      ...p,
+      [k]: e.target.value
+    }));
+    const check = () => {
+      const m = !v.prob ? "Define the problem first — as a question, no solution assumed." : !v.assume ? "List your assumptions. You cannot challenge what you have not named." : !v.chal ? "Now challenge each assumption. Ask: is this actually required?" : !v.truths ? "What remains after removing convention? That is your first principles." : !v.sol ? "Build back up — given only your first principles, what is the most direct path?" : "Complete. Could you defend this to someone who knew nothing about how it is normally done? If yes, you have broken free of analogy.";
+      setMsg(m);
+      setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Decomposition"), /*#__PURE__*/React.createElement(H2, null, "First Principles"), /*#__PURE__*/React.createElement(Tagline, null, "Reasoning by analogy copies the past. Reasoning from first principles creates the future."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Strip a problem to what is fundamentally and verifiably true, then build a solution from those truths. Musk used this to cut rocket costs 90%.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Break it down"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.col
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "The problem (as a question, no solution baked in)"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.prob,
+      onChange: set("prob"),
+      placeholder: "e.g. Why does X cost so much?"
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Current assumptions \u2014 everything you are taking as given"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.assume,
+      onChange: set("assume"),
+      placeholder: "List inherited beliefs, industry norms, received wisdom. These are your targets.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Challenge each \u2014 is this actually necessary?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.chal,
+      onChange: set("chal"),
+      placeholder: "For each assumption: what would you need to prove it is required?",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Irreducible truths \u2014 what remains?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.truths,
+      onChange: set("truths"),
+      placeholder: "Usually simpler and fewer than expected.",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Build back up \u2014 what solution follows?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.sol,
+      onChange: set("sol"),
+      placeholder: "Ignore what has been done before. What is the most direct path from your truths to your goal?",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Analyse"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        sv({
+          prob: "",
+          assume: "",
+          chal: "",
+          truths: "",
+          sol: ""
+        });
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackInk, {
+      msg: msg
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The 5-Why drill"), /*#__PURE__*/React.createElement(P, null, "For each assumption, ask why is this true five times. The fifth answer is usually a first principle \u2014 or reveals the assumption was never actually necessary.")));
+  }
+  function ToolInversion({
+    curId,
+    onOpen
+  }) {
+    const [g, sg] = (0, _react.useState)("");
+    const [f, sf] = (0, _react.useState)("");
+    const [a, sa] = (0, _react.useState)("");
+    const [h, sh] = (0, _react.useState)("");
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const check = () => {
+      const m = !g ? "Define your goal first." : !f ? "Invert it — how do you guarantee failure? Be specific and ruthless." : !a ? "Re-invert: what must you do, stop, or protect against?" : !h ? "Final step: are any failure modes already present in your current approach?" : h.length > 5 ? "You identified something already present. Address that first — before adding new tactics." : "Clean inversion. Combine with your positive plan for a more resilient strategy.";
+      setMsg(m);
+      setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Mental Model"), /*#__PURE__*/React.createElement(H2, null, "Inversion"), /*#__PURE__*/React.createElement(Tagline, null, "All I want to know is where I am going to die \u2014 so I will never go there."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Instead of how do I succeed, ask how do I guarantee failure \u2014 then avoid everything on that list. Surfaces risks that forward-thinking systematically misses.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your inversion"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.col
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Your goal"), /*#__PURE__*/React.createElement(Inp, {
+      value: g,
+      onChange: e => sg(e.target.value),
+      placeholder: "What are you trying to achieve?"
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.ink,
+        borderRadius: 2,
+        padding: 14
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, {
+      style: {
+        color: "rgba(255,255,255,.45)"
+      }
+    }, "How to guarantee failure"), /*#__PURE__*/React.createElement("textarea", {
+      value: f,
+      onChange: e => sf(e.target.value),
+      placeholder: "List every way to make this fail. Be specific and ruthless.",
+      rows: 4,
+      style: {
+        width: "100%",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        fontWeight: 300,
+        padding: "8px 11px",
+        border: "1px solid rgba(255,255,255,.15)",
+        borderRadius: 2,
+        background: "rgba(255,255,255,.07)",
+        color: G.white,
+        resize: "none",
+        lineHeight: 1.55
+      }
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Re-invert \u2014 what must you do, stop, or protect against?"), /*#__PURE__*/React.createElement(Inp, {
+      value: a,
+      onChange: e => sa(e.target.value),
+      placeholder: "Flip each failure mode into a preventive action.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Honest check \u2014 anything on the failure list you are currently doing?"), /*#__PURE__*/React.createElement(Inp, {
+      value: h,
+      onChange: e => sh(e.target.value),
+      placeholder: "This is the uncomfortable part.",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Run the inversion"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        sg("");
+        sf("");
+        sa("");
+        sh("");
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackBlue, {
+      msg: msg
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Use alongside positive planning"), /*#__PURE__*/React.createElement(P, null, "Inversion complements optimistic planning. The failure list often contains your most actionable insights.")));
+  }
+  function ToolFL({
+    curId,
+    onOpen
+  }) {
+    const [v, sv] = (0, _react.useState)({
+      goal: "",
+      sig: "",
+      std: "",
+      cad: "",
+      acc: "",
+      trig: ""
+    });
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const set = k => e => sv(p => ({
+      ...p,
+      [k]: e.target.value
+    }));
+    const check = () => {
+      const issues = [];
+      if (!v.goal) issues.push("Define what you are improving.");
+      if (!v.sig) issues.push("Missing signal — without measurement you cannot tell if you are on track.");
+      if (!v.std) issues.push("Missing standard — set a specific threshold, not just better.");
+      if (!v.cad) issues.push("Missing cadence — when will you actually review this?");
+      if (!v.trig) issues.push("Missing action trigger — pre-commit: if X, then I will Y.");
+      setMsg(issues.length ? issues.map(i => "⚠ " + i).join("\n") : "Well-formed loop. Set your first review in your calendar right now — a loop without a schedule is not real.");
+      if (!issues.length) setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Learning System"), /*#__PURE__*/React.createElement(H2, null, "Feedback Loop Design"), /*#__PURE__*/React.createElement(Tagline, null, "Experience without reflection is just time passing. Reflection without action is just journalling."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "A loop needs: a signal (what you measure), a standard (what good looks like), a cadence (when you review), and an action trigger (what you do when off track). Most loops fail at the last one.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Design your loop"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.col
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "What behaviour or outcome are you improving?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.goal,
+      onChange: set("goal"),
+      placeholder: "Be narrow. Response time on urgent messages \u2014 not improve communication.",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Signal \u2014 how will you measure it?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.sig,
+      onChange: set("sig"),
+      placeholder: "Specific and observable, not self-reported only.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Standard \u2014 what does on track look like?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.std,
+      onChange: set("std"),
+      placeholder: "A specific threshold, not just better.",
+      rows: 3
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Review cadence"), /*#__PURE__*/React.createElement("select", {
+      value: v.cad,
+      onChange: set("cad"),
+      style: {
+        width: "100%",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        padding: "8px 11px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        color: G.ink,
+        height: 40
+      }
+    }, /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, "Select cadence..."), /*#__PURE__*/React.createElement("option", null, "Daily"), /*#__PURE__*/React.createElement("option", null, "Weekly"), /*#__PURE__*/React.createElement("option", null, "Fortnightly"), /*#__PURE__*/React.createElement("option", null, "Monthly"), /*#__PURE__*/React.createElement("option", null, "Quarterly"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Who keeps you honest?"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.acc,
+      onChange: set("acc"),
+      placeholder: "Peer, manager, coach, or public commitment.",
+      rows: 2
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Action trigger \u2014 if off track, you will..."), /*#__PURE__*/React.createElement(Inp, {
+      value: v.trig,
+      onChange: set("trig"),
+      placeholder: "If [signal] is [off standard], then I will [specific action]. Pre-commit.",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Validate loop"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        sv({
+          goal: "",
+          sig: "",
+          std: "",
+          cad: "",
+          acc: "",
+          trig: ""
+        });
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackInk, {
+      msg: /*#__PURE__*/React.createElement("span", {
+        style: {
+          whiteSpace: "pre-wrap"
+        }
+      }, msg)
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Reinforcing vs balancing"), /*#__PURE__*/React.createElement(P, null, "Reinforcing loops amplify \u2014 skills lead to confidence lead to practice lead to more skills. Balancing loops self-correct and resist change. Know which type you are designing.")));
+  }
+  function ToolPT({
+    curId,
+    onOpen
+  }) {
+    const [v, sv] = (0, _react.useState)({
+      sit: "",
+      info: "",
+      inc: "",
+      hist: "",
+      vals: "",
+      steel: "",
+      shift: ""
+    });
+    const [msg, setMsg] = (0, _react.useState)("");
+    const [showNext, setShowNext] = (0, _react.useState)(false);
+    const set = k => e => sv(p => ({
+      ...p,
+      [k]: e.target.value
+    }));
+    const check = () => {
+      const m = !v.sit ? "Describe the situation first." : !v.info ? "Start with information asymmetry — what might they know that you do not?" : !v.steel ? "The steelman is the heart of this exercise. Write their strongest argument." : !v.shift ? "Last step: what changed? If nothing shifted, either your steelman was not strong enough — or you have confirmed your position with new rigour." : v.shift.length > 10 ? "The fact that something shifted is the sign this worked. Is there a conversation you should now have?" : "Perspective mapped. Would the other person recognise your steelman as their own argument?";
+      setMsg(m);
+      setShowNext(true);
+    };
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Empathy & Reasoning"), /*#__PURE__*/React.createElement(H2, null, "Perspective Taking"), /*#__PURE__*/React.createElement(Tagline, null, "You cannot steelman a position you have caricatured. Make their argument better than they can."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Epistemic empathy: understanding how another person's context, incentives, and worldview make their position rational from where they stand.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Map the perspective"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.col
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "The situation or disagreement"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.sit,
+      onChange: set("sit"),
+      placeholder: "What is the context? What position do you hold that differs?",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.off,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 14
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, "Step inside their perspective"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2,
+        marginTop: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Information they have that you lack"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.info,
+      onChange: set("info"),
+      placeholder: "What do they see from their vantage point?",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Their incentives and pressures"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.inc,
+      onChange: set("inc"),
+      placeholder: "What does success look like for them?",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Past experience shaping their view"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.hist,
+      onChange: set("hist"),
+      placeholder: "What have they been burned by before?",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Their values and non-negotiables"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.vals,
+      onChange: set("vals"),
+      placeholder: "What do they fundamentally care about?",
+      rows: 3
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "The steelman \u2014 their strongest argument"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.steel,
+      onChange: set("steel"),
+      placeholder: "Write it so they would say: yes, that is exactly my point.",
+      rows: 3
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "What this changes about your view"), /*#__PURE__*/React.createElement(Inp, {
+      value: v.shift,
+      onChange: set("shift"),
+      placeholder: "What did you learn? Where were you wrong?",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: check
+    }, "Check my steelman"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        sv({
+          sit: "",
+          info: "",
+          inc: "",
+          hist: "",
+          vals: "",
+          steel: "",
+          shift: ""
+        });
+        setMsg("");
+        setShowNext(false);
+      }
+    }, "Clear")), msg && /*#__PURE__*/React.createElement(FeedbackInk, {
+      msg: msg
+    }), showNext && /*#__PURE__*/React.createElement(NextPanel, {
+      curId: curId,
+      onOpen: onOpen
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The test"), /*#__PURE__*/React.createElement(P, null, "Show your steelman to someone who holds the opposing view. If they say that is fair \u2014 you did it right. If not, go back and fix.")));
+  }
+  function ToolFF() {
+    const [drive, setDrive] = (0, _react.useState)([]);
+    const [resist, setResist] = (0, _react.useState)([]);
+    const [di, setDi] = (0, _react.useState)("");
+    const [ds, setDs] = (0, _react.useState)(3);
+    const [ri, setRi] = (0, _react.useState)("");
+    const [rs, setRs] = (0, _react.useState)(3);
+    const [change, setChange] = (0, _react.useState)("");
+    const addD = () => {
+      if (di.trim()) {
+        setDrive(p => [...p, {
+          label: di.trim(),
+          score: ds
+        }]);
+        setDi("");
+      }
+    };
+    const addR = () => {
+      if (ri.trim()) {
+        setResist(p => [...p, {
+          label: ri.trim(),
+          score: rs
+        }]);
+        setRi("");
+      }
+    };
+    const dt = drive.reduce((s, f) => s + f.score, 0),
+      rt = resist.reduce((s, f) => s + f.score, 0),
+      tot = dt + rt;
+    const verdict = dt > rt + 2 ? "Likely to succeed" : rt > dt + 2 ? "High resistance — address first" : "Balanced";
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Change Management"), /*#__PURE__*/React.createElement(H2, null, "Force Field Analysis"), /*#__PURE__*/React.createElement(Tagline, null, "Change fails not because the idea is wrong \u2014 but because the forces against it were never mapped."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Lewin: any change is a tug-of-war between driving and restraining forces. The most efficient lever is usually to reduce resistance, not add more drive.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Map your forces"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, "The change you are proposing"), /*#__PURE__*/React.createElement(Inp, {
+      value: change,
+      onChange: e => setChange(e.target.value),
+      placeholder: "Be specific. e.g. Adopt a new design system across all teams by Q3."
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.g2,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "Driving forces \u2192"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      value: di,
+      onChange: e => setDi(e.target.value),
+      onKeyDown: e => e.key === "Enter" && addD(),
+      placeholder: "Add driving force...",
+      style: {
+        flex: 1,
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        padding: "5px 9px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        height: 36
+      }
+    }), /*#__PURE__*/React.createElement("select", {
+      value: ds,
+      onChange: e => setDs(parseInt(e.target.value)),
+      style: {
+        width: 48,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontSize: 12,
+        padding: "0 4px"
+      }
+    }, [1, 2, 3, 4, 5].map(n => /*#__PURE__*/React.createElement("option", {
+      key: n
+    }, n))), /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: addD,
+      style: {
+        padding: "5px 10px"
+      }
+    }, "+")), drive.map((f, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        padding: "5px 8px",
+        background: G.off,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontSize: 12,
+        fontWeight: 300,
+        marginBottom: 3
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        fontWeight: 600,
+        minWidth: 16
+      }
+    }, f.score), /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: 1
+      }
+    }, f.label), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setDrive(p => p.filter((_, j) => j !== i)),
+      style: {
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        fontSize: 12,
+        color: G.faint
+      }
+    }, "\u2715")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "\u2190 Restraining forces"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      value: ri,
+      onChange: e => setRi(e.target.value),
+      onKeyDown: e => e.key === "Enter" && addR(),
+      placeholder: "Add restraining force...",
+      style: {
+        flex: 1,
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        padding: "5px 9px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        height: 36
+      }
+    }), /*#__PURE__*/React.createElement("select", {
+      value: rs,
+      onChange: e => setRs(parseInt(e.target.value)),
+      style: {
+        width: 48,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontSize: 12,
+        padding: "0 4px"
+      }
+    }, [1, 2, 3, 4, 5].map(n => /*#__PURE__*/React.createElement("option", {
+      key: n
+    }, n))), /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: addR,
+      style: {
+        padding: "5px 10px"
+      }
+    }, "+")), resist.map((f, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        padding: "5px 8px",
+        background: G.off,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        fontSize: 12,
+        fontWeight: 300,
+        marginBottom: 3
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        fontWeight: 600,
+        minWidth: 16
+      }
+    }, f.score), /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: 1
+      }
+    }, f.label), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setResist(p => p.filter((_, j) => j !== i)),
+      style: {
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        fontSize: 12,
+        color: G.faint
+      }
+    }, "\u2715"))))), tot > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.off,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        ...s.mono,
+        fontSize: 9,
+        color: G.muted,
+        marginBottom: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "DRIVING"), /*#__PURE__*/React.createElement("span", null, verdict), /*#__PURE__*/React.createElement("span", null, "RESTRAINING")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 10,
+        background: G.bdr,
+        borderRadius: 2,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: "100%",
+        background: G.ink,
+        width: dt / tot * 100 + "%",
+        transition: "width .3s"
+      }
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        ...s.mono,
+        fontSize: 12,
+        fontWeight: 600,
+        marginTop: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", null, dt), /*#__PURE__*/React.createElement("span", null, rt))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginTop: 10
+      }
+    }, /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        setDrive([]);
+        setResist([]);
+        setChange("");
+      }
+    }, "Clear all")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Strategic insight"), /*#__PURE__*/React.createElement(P, null, "Focus on restraining forces with the highest scores and most addressability. Removing resistance has a multiplying effect on all existing driving forces simultaneously.")));
+  }
+  function ToolBO() {
+    const [factors, setFactors] = (0, _react.useState)([]);
+    const [scores, setScores] = (0, _react.useState)({});
+    const [inp, setInp] = (0, _react.useState)("");
+    const [errc, setErrc] = (0, _react.useState)("");
+    const add = () => {
+      if (inp.trim() && !factors.includes(inp.trim())) {
+        const f = inp.trim();
+        setFactors(p => [...p, f]);
+        setScores(p => ({
+          ...p,
+          [f]: {
+            you: 5,
+            a: 5,
+            b: 5
+          }
+        }));
+        setInp("");
+      }
+    };
+    const defaults = () => {
+      const fs = ["Price", "Quality", "Speed", "Features", "Brand", "Support"];
+      setFactors(fs);
+      const sc = {};
+      fs.forEach(f => {
+        sc[f] = {
+          you: Math.floor(Math.random() * 4) + 4,
+          a: Math.floor(Math.random() * 3) + 5,
+          b: Math.floor(Math.random() * 4) + 3
+        };
+      });
+      setScores(sc);
+    };
+    const upd = (f, p, v) => setScores(prev => ({
+      ...prev,
+      [f]: {
+        ...prev[f],
+        [p]: parseInt(v)
+      }
+    }));
+    const pls = [{
+      k: "you",
+      c: G.ink,
+      lbl: "You"
+    }, {
+      k: "a",
+      c: "#b0b0b0",
+      lbl: "A"
+    }, {
+      k: "b",
+      c: "#767676",
+      lbl: "B"
+    }];
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Strategy"), /*#__PURE__*/React.createElement(H2, null, "Blue Ocean Strategy Canvas"), /*#__PURE__*/React.createElement(Tagline, null, "Stop competing for the same territory. Create water where there are no sharks."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "The strategy canvas maps how companies compete across industry factors. Eliminate, Reduce, Raise, or Create factors to break the value-cost trade-off and find uncontested space.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Your canvas"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      value: inp,
+      onChange: e => setInp(e.target.value),
+      onKeyDown: e => e.key === "Enter" && add(),
+      placeholder: "Add a competing factor...",
+      style: {
+        flex: 1,
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        padding: "7px 11px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        height: 38
+      }
+    }), /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: add
+    }, "Add"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: defaults
+    }, "Defaults"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        setFactors([]);
+        setScores({});
+        setErrc("");
+      }
+    }, "Clear")), factors.length === 0 && /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 12,
+        color: G.muted,
+        fontWeight: 300
+      }
+    }, "Add factors above or click Defaults to load a sample canvas."), factors.map(f => {
+      const sc = scores[f] || {
+        you: 5,
+        a: 5,
+        b: 5
+      };
+      return /*#__PURE__*/React.createElement("div", {
+        key: f,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "8px 0",
+          borderBottom: `1px solid ${G.bdr}`
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12,
+          fontWeight: 500,
+          width: 90,
+          flexShrink: 0
+        }
+      }, f), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: 3,
+          flex: 1
+        }
+      }, pls.map(p => /*#__PURE__*/React.createElement("div", {
+        key: p.k,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "range",
+        min: "1",
+        max: "10",
+        value: sc[p.k],
+        onChange: e => upd(f, p.k, e.target.value),
+        style: {
+          width: 80,
+          accentColor: p.c
+        }
+      }), /*#__PURE__*/React.createElement("span", {
+        style: {
+          ...s.mono,
+          fontSize: 10,
+          width: 14
+        }
+      }, sc[p.k]), /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: 5,
+          borderRadius: 2,
+          background: p.c,
+          width: sc[p.k] * 8
+        }
+      }), /*#__PURE__*/React.createElement("span", {
+        style: {
+          ...s.mono,
+          fontSize: 9,
+          color: G.muted
+        }
+      }, p.lbl)))));
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 14
+      }
+    }, /*#__PURE__*/React.createElement(Lbl, null, "ERRC moves (Eliminate \xB7 Reduce \xB7 Raise \xB7 Create)"), /*#__PURE__*/React.createElement(Inp, {
+      value: errc,
+      onChange: e => setErrc(e.target.value),
+      placeholder: "Eliminate: [...]\nReduce: [...]\nRaise: [...]\nCreate: [...]",
+      rows: 4
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The four actions"), /*#__PURE__*/React.createElement(P, null, "Blue Ocean is not about being better \u2014 it is about being different in a way that opens new demand. A canvas where you score above competitors on everything is a wish list, not a strategy.")));
+  }
+  function ToolOKR() {
+    const [objs, setObjs] = (0, _react.useState)([]);
+    const [vision, setVision] = (0, _react.useState)("");
+    const [annual, setAnnual] = (0, _react.useState)("");
+    const [quarter, setQuarter] = (0, _react.useState)("");
+    const addObj = () => setObjs(p => [...p, {
+      id: Date.now() + "",
+      obj: "",
+      krs: ["", ""]
+    }]);
+    const delObj = id => setObjs(p => p.filter(o => o.id !== id));
+    const upObj = (id, v) => setObjs(p => p.map(o => o.id === id ? {
+      ...o,
+      obj: v
+    } : o));
+    const upKR = (id, i, v) => setObjs(p => p.map(o => o.id === id ? {
+      ...o,
+      krs: o.krs.map((k, j) => j === i ? v : k)
+    } : o));
+    const example = () => setObjs([{
+      id: "ex",
+      obj: "Establish myself as a recognised voice in design leadership",
+      krs: ["Publish 12 original articles in 90 days", "Grow LinkedIn audience by 500 targeted followers", "Receive 3 inbound interview requests from target companies"]
+    }]);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Goal Setting"), /*#__PURE__*/React.createElement(H2, null, "OKRs & Goal Stacking"), /*#__PURE__*/React.createElement(Tagline, null, "Busy is not the same as purposeful. Align what you do daily to what you care about most."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How it works"), /*#__PURE__*/React.createElement(P, null, "Objectives are qualitative and inspiring \u2014 where are we going? Key Results are quantitative and time-bound \u2014 how do we know we got there? Both halves are required.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Build your OKRs"), /*#__PURE__*/React.createElement(Workspace, null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        marginBottom: 12
+      }
+    }, objs.map(o => /*#__PURE__*/React.createElement("div", {
+      key: o.id,
+      style: {
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.ink,
+        padding: "10px 14px",
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        color: "rgba(255,255,255,.4)",
+        whiteSpace: "nowrap",
+        letterSpacing: 1
+      }
+    }, "OBJ"), /*#__PURE__*/React.createElement("input", {
+      value: o.obj,
+      onChange: e => upObj(o.id, e.target.value),
+      placeholder: "Inspiring, qualitative direction...",
+      style: {
+        flex: 1,
+        background: "rgba(255,255,255,.08)",
+        border: "1px solid rgba(255,255,255,.12)",
+        borderRadius: 2,
+        padding: "5px 9px",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 13,
+        color: G.white
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: () => delObj(o.id),
+      style: {
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        color: "rgba(255,255,255,.3)",
+        fontSize: 14
+      }
+    }, "\u2715")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "10px 14px",
+        background: G.off,
+        display: "flex",
+        flexDirection: "column",
+        gap: 6
+      }
+    }, o.krs.map((kr, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        color: G.muted,
+        whiteSpace: "nowrap"
+      }
+    }, "KR ", i + 1), /*#__PURE__*/React.createElement("input", {
+      value: kr,
+      onChange: e => upKR(o.id, i, e.target.value),
+      placeholder: "Measurable, specific, time-bound...",
+      style: {
+        flex: 1,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        padding: "5px 9px",
+        fontFamily: "'Inter',sans-serif",
+        fontSize: 12,
+        fontWeight: 300,
+        background: G.white,
+        color: G.ink
+      }
+    }))))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.row,
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement(BtnPrimary, {
+      onClick: addObj
+    }, "+ Add Objective"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: example
+    }, "Load example"), /*#__PURE__*/React.createElement(BtnGhost, {
+      onClick: () => {
+        setObjs([]);
+        setVision("");
+        setAnnual("");
+        setQuarter("");
+      }
+    }, "Clear")), /*#__PURE__*/React.createElement(Lbl, null, "Goal stack \u2014 link to longer horizons"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "3-5 year vision"), /*#__PURE__*/React.createElement(Inp, {
+      value: vision,
+      onChange: e => setVision(e.target.value),
+      placeholder: "Who do you want to be?",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "12-month milestone"), /*#__PURE__*/React.createElement(Inp, {
+      value: annual,
+      onChange: e => setAnnual(e.target.value),
+      placeholder: "What makes this year a success?",
+      rows: 2
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Lbl, null, "This quarter"), /*#__PURE__*/React.createElement(Inp, {
+      value: quarter,
+      onChange: e => setQuarter(e.target.value),
+      placeholder: "Your current OKR period focus",
+      rows: 2
+    }))))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Scoring"), /*#__PURE__*/React.createElement(P, null, "Google scores OKRs 0.0 to 1.0. A score of 0.7 is considered success \u2014 if you are consistently hitting 1.0, your Key Results are not ambitious enough.")));
+  }
+
+  // ── GUIDE CONTENT ─────────────────────────────────────────────────────────────
+  function GuidePremortem() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Failure Prevention"), /*#__PURE__*/React.createElement(H2, null, "The Pre-Mortem Method"), /*#__PURE__*/React.createElement(Tagline, null, "A post-mortem explains why you failed. A pre-mortem helps you not fail in the first place."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "The core idea"), /*#__PURE__*/React.createElement(P, null, "Developed by Gary Klein, the pre-mortem projects forward to a hypothetical failure then works backwards to explain it. Short-circuits optimism bias and surfaces what people privately worry about but will not say in optimistic planning meetings.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Step by step"), /*#__PURE__*/React.createElement(Step, {
+      n: "01",
+      title: "Set the scene"
+    }, "Imagine it is 12 months from now. This project has failed \u2014 badly. Not a minor setback. What happened?"), /*#__PURE__*/React.createElement(Step, {
+      n: "02",
+      title: "Write independently"
+    }, "Each person writes their own failure list silently, for 5-7 minutes. Independence prevents groupthink."), /*#__PURE__*/React.createElement(Step, {
+      n: "03",
+      title: "Share and aggregate"
+    }, "Go round the room. Each person reads one reason. Capture all without debate. Patterns emerge."), /*#__PURE__*/React.createElement(Step, {
+      n: "04",
+      title: "Revise your plan"
+    }, "For each risk cluster: what would we add, remove, or change to prevent this?"), /*#__PURE__*/React.createElement(ExBox, null, "A product team runs a pre-mortem before launch. Three people independently write: users did not understand onboarding. The team adds a walkthrough they had cut for time. Activation is 40% higher than their previous launch.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Why it works"), /*#__PURE__*/React.createElement(P, null, "Klein's research shows this technique increases the ability to correctly identify future failure reasons by 30%. It gives psychological permission to voice concerns that would never surface otherwise.")));
+  }
+  function GuidePolarity() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Paradox Management"), /*#__PURE__*/React.createElement(H2, null, "Polarity Mapping"), /*#__PURE__*/React.createElement(Tagline, null, "Not every tension is a problem to solve. Some are polarities to manage."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "The core idea"), /*#__PURE__*/React.createElement(P, null, "Barry Johnson: distinguish between problems (which have solutions) and polarities (ongoing tensions between two interdependent values). Classic polarities: stability vs change, individual vs team, short-term vs long-term. Fighting a polarity exhausts you. Managing it is what leaders do.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "How to map a polarity"), /*#__PURE__*/React.createElement(Step, {
+      n: "01",
+      title: "Name the poles"
+    }, "Identify the two values in tension. Both must be legitimate. If one is clearly wrong, it is a problem, not a polarity."), /*#__PURE__*/React.createElement(Step, {
+      n: "02",
+      title: "Map upsides"
+    }, "List positive outcomes when each pole is well-represented. Both sides have real benefits."), /*#__PURE__*/React.createElement(Step, {
+      n: "03",
+      title: "Map downsides"
+    }, "List what goes wrong when each pole is over-emphasised at the expense of the other."), /*#__PURE__*/React.createElement(Step, {
+      n: "04",
+      title: "Find action steps"
+    }, "What actions help you leverage each upside and correct when you have swung too far?"), /*#__PURE__*/React.createElement(ExBox, {
+      label: "Design example"
+    }, "A team maps Moving Fast vs Getting It Right. They build a quality dial \u2014 explicit standards for which contexts demand which \u2014 instead of fighting the perennial debate.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "The signal"), /*#__PURE__*/React.createElement(P, null, "You keep cycling back to the same tension no matter what you decide. That is not a failure of execution \u2014 it is a signal you are managing a polarity. Stop trying to solve it. Start managing the cycle intentionally.")));
+  }
+  function GuideSystems() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Leverage & Change"), /*#__PURE__*/React.createElement(H2, null, "Systems Thinking Mastery"), /*#__PURE__*/React.createElement(Tagline, null, "Small changes in the right place beat large changes in the wrong place every time."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "The core idea"), /*#__PURE__*/React.createElement(P, null, "From Donella Meadows: a system is elements connected by relationships producing a function. Most interventions fail because they target the wrong part. Meadows identified 12 leverage points ranked from least to most powerful.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Key leverage points"), /*#__PURE__*/React.createElement(KCGrid, {
+      items: [{
+        title: "Constants & numbers",
+        desc: "Changing flow size. Most common, least powerful."
+      }, {
+        title: "Feedback loops",
+        desc: "Strength and direction of balancing and reinforcing loops. More powerful than numbers."
+      }, {
+        title: "Information flows",
+        desc: "Who gets what data, when. Missing information causes most system failures."
+      }, {
+        title: "Rules",
+        desc: "Incentives, constraints, laws. Whoever controls the rules controls the system."
+      }, {
+        title: "Goals",
+        desc: "The purpose the system is serving. What is it actually optimising for?"
+      }, {
+        title: "Paradigm",
+        desc: "The shared assumptions the system operates from. Shift the paradigm, shift everything."
+      }]
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Practical steps"), /*#__PURE__*/React.createElement(Step, {
+      n: "01",
+      title: "Draw stocks and flows"
+    }, "What accumulates? What flows in and out? People, money, energy, trust, knowledge."), /*#__PURE__*/React.createElement(Step, {
+      n: "02",
+      title: "Find feedback loops"
+    }, "What reinforces what? What self-corrects? Use Connection Circles to map this."), /*#__PURE__*/React.createElement(Step, {
+      n: "03",
+      title: "Locate the delays"
+    }, "Where does feedback take time to arrive? These are your blindspots and surprises."), /*#__PURE__*/React.createElement(ExBox, null, "A company wants to improve retention. Most attempts: add more support staff (numbers). Higher leverage: build a feedback loop where cases auto-create product bug tickets (information flow). Highest: shift the goal from close tickets fast to prevent tickets (goal).")));
+  }
+  function GuideBiases() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Thinking Errors"), /*#__PURE__*/React.createElement(H2, null, "Cognitive Biases Field Guide"), /*#__PURE__*/React.createElement(Tagline, null, "You cannot eliminate biases. But you can design systems that catch them."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "The most consequential biases"), /*#__PURE__*/React.createElement(KCGrid, {
+      items: [{
+        title: "Confirmation bias",
+        desc: "Seeking information that confirms existing beliefs. Counter: steelman the opposing view first."
+      }, {
+        title: "Sunk cost fallacy",
+        desc: "Continuing because of what you have spent. Counter: If I were starting today, would I choose this?"
+      }, {
+        title: "Availability heuristic",
+        desc: "Overweighting memorable events. Counter: look at base rates before vivid examples."
+      }, {
+        title: "Anchoring",
+        desc: "Over-relying on the first number encountered. Counter: generate your own estimate before seeing external data."
+      }, {
+        title: "Planning fallacy",
+        desc: "Underestimating time and cost. Counter: reference class forecasting — what did similar projects actually take?"
+      }, {
+        title: "Groupthink",
+        desc: "Social pressure suppresses dissent. Counter: assign a devil's advocate. Run a pre-mortem."
+      }, {
+        title: "Status quo bias",
+        desc: "Preferring the current state. Counter: reframe as what is the cost of not changing?"
+      }, {
+        title: "Attribution error",
+        desc: "Attributing others' actions to character, yours to circumstance. Counter: what situational pressures might explain this?"
+      }]
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "System-level counters"), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "Pre-commit to criteria"
+    }, "Decide what good looks like before you see the options. Fights anchoring and confirmation bias."), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "Seek disconfirming evidence"
+    }, "For your most important beliefs, actively search for evidence that would prove them wrong."), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "Track your predictions"
+    }, "Keep a decision journal. Calibration is a skill you build over years."), /*#__PURE__*/React.createElement(InsBox, null, "Bias awareness alone does not fix bias. What works: slowing down, using checklists, getting outside perspectives, and creating structural checks before high-stakes decisions.")));
+  }
+  function GuideAI() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Working with AI"), /*#__PURE__*/React.createElement(H2, null, "AI Collaboration Toolkit"), /*#__PURE__*/React.createElement(Tagline, null, "AI does not replace thinking. It amplifies it \u2014 in both directions. Use it well."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Core prompting frameworks"), /*#__PURE__*/React.createElement(Step, {
+      n: "01",
+      title: "Role + Task + Format"
+    }, "Act as a senior product strategist. Critique this brief. Give me a structured list with priority order."), /*#__PURE__*/React.createElement(Step, {
+      n: "02",
+      title: "Chain of Thought"
+    }, "Add let us think through this step by step for complex reasoning. Reduces errors on multi-step problems."), /*#__PURE__*/React.createElement(Step, {
+      n: "03",
+      title: "Negative constraints"
+    }, "Do not use jargon. Do not give generic advice. Do not list more than 5 items. Constraints improve output quality dramatically."), /*#__PURE__*/React.createElement(Step, {
+      n: "04",
+      title: "Steel-manning prompts"
+    }, "What is the strongest argument against my position? Forces genuine critique rather than validation."), /*#__PURE__*/React.createElement(Step, {
+      n: "05",
+      title: "Iterative refinement"
+    }, "Treat the first output as a draft. Now make it 30% shorter. The real value is in iteration, not the first response.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "Mental models"), /*#__PURE__*/React.createElement(KCGrid, {
+      items: [{
+        title: "AI as thinking partner",
+        desc: "Not an answer machine. Use it to stress-test thinking, not replace it."
+      }, {
+        title: "You are the editor",
+        desc: "AI generates. You decide. Keep editorial control and bring your domain judgment."
+      }, {
+        title: "Context is everything",
+        desc: "The more specific your context, the more useful the output. Garbage in, garbage out."
+      }, {
+        title: "Know its failure modes",
+        desc: "Confident hallucination, recency blindness, sycophancy. Verify anything high-stakes independently."
+      }]
+    })));
+  }
+  function GuideCreative() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Idea Generation"), /*#__PURE__*/React.createElement(H2, null, "Creative Problem-Solving Toolkit"), /*#__PURE__*/React.createElement(Tagline, null, "Creativity is not a personality trait. It is a set of techniques \u2014 and you can learn them."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Six techniques"), /*#__PURE__*/React.createElement(Step, {
+      n: "01",
+      title: "Reverse Brainstorming"
+    }, "How do we make X dramatically worse? Generate the worst ideas, then reverse each one. The reversal often reveals solutions you would never have found directly."), /*#__PURE__*/React.createElement(Step, {
+      n: "02",
+      title: "SCAMPER"
+    }, "Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse. Apply each verb to your problem or product."), /*#__PURE__*/React.createElement(Step, {
+      n: "03",
+      title: "Random Stimulus"
+    }, "Open a dictionary to a random word. Force a connection to your problem. The irrelevant constraint breaks mental fixation."), /*#__PURE__*/React.createElement(Step, {
+      n: "04",
+      title: "Analogical Thinking"
+    }, "Who has already solved a version of this? Look in adjacent industries. Steal the structure, not the surface."), /*#__PURE__*/React.createElement(Step, {
+      n: "05",
+      title: "Constraints Sprint"
+    }, "Solve this with zero budget. Constraints force creativity and eliminate the safe answer."), /*#__PURE__*/React.createElement(Step, {
+      n: "06",
+      title: "How Might We"
+    }, "Reframe every problem as How might we...? Generate 20 HMW questions before picking one to solve."), /*#__PURE__*/React.createElement(InsBox, null, "The best creative sessions separate divergence (generate without judgment) from convergence (evaluate and select). Never do both at once.")));
+  }
+  function GuideJournal() {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Calibration Practice"), /*#__PURE__*/React.createElement(H2, null, "The Decision Journal"), /*#__PURE__*/React.createElement(Tagline, null, "The person most likely to deceive you about your track record is you."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement(SecHead, null, "Why most people do not improve"), /*#__PURE__*/React.createElement(P, null, "We remember successes more than failures. We rewrite memories to make past decisions look better than they were. Without external records, you cannot actually improve \u2014 you just feel like you have.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(SecHead, null, "What to record"), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "The decision"
+    }, "What are you deciding? What are the options? What did you choose?"), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "The reasoning"
+    }, "Why are you making this choice? What information do you have? What do you not know?"), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "The prediction"
+    }, "What do you expect to happen? Put a number on it: 60% chance this hire works out in the first year."), /*#__PURE__*/React.createElement(Step, {
+      n: "\u2192",
+      title: "Review date"
+    }, "When will you come back and evaluate what actually happened? Set a calendar reminder now."), /*#__PURE__*/React.createElement(InsBox, null, "Review your entries quarterly. Look for patterns: what types of decisions do you consistently overestimate? Where are you confident but wrong? These are your blindspots.")));
+  }
+
+  // ── MODAL CONTENT ROUTER ──────────────────────────────────────────────────────
+  function ToolContent({
+    id,
+    onOpen
+  }) {
+    const map = {
+      sot: /*#__PURE__*/React.createElement(ToolSOT, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      eisenhower: /*#__PURE__*/React.createElement(ToolEisenhower, null),
+      decisionmatrix: /*#__PURE__*/React.createElement(ToolDM, null),
+      circles: /*#__PURE__*/React.createElement(ToolCircles, null),
+      conflict: /*#__PURE__*/React.createElement(ToolConflict, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      ladder: /*#__PURE__*/React.createElement(ToolLadder, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      ooda: /*#__PURE__*/React.createElement(ToolOODA, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      firstprinciples: /*#__PURE__*/React.createElement(ToolFP, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      inversion: /*#__PURE__*/React.createElement(ToolInversion, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      feedbackloop: /*#__PURE__*/React.createElement(ToolFL, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      perspective: /*#__PURE__*/React.createElement(ToolPT, {
+        curId: id,
+        onOpen: onOpen
+      }),
+      forcefield: /*#__PURE__*/React.createElement(ToolFF, null),
+      blueocean: /*#__PURE__*/React.createElement(ToolBO, null),
+      okr: /*#__PURE__*/React.createElement(ToolOKR, null)
+    };
+    return map[id] || /*#__PURE__*/React.createElement("p", null, "Tool not found.");
+  }
+  function GuideContent({
+    id
+  }) {
+    const map = {
+      premortem: /*#__PURE__*/React.createElement(GuidePremortem, null),
+      polarity: /*#__PURE__*/React.createElement(GuidePolarity, null),
+      systems: /*#__PURE__*/React.createElement(GuideSystems, null),
+      creative: /*#__PURE__*/React.createElement(GuideCreative, null),
+      biases: /*#__PURE__*/React.createElement(GuideBiases, null),
+      aicollab: /*#__PURE__*/React.createElement(GuideAI, null),
+      journal: /*#__PURE__*/React.createElement(GuideJournal, null)
+    };
+    return map[id] || /*#__PURE__*/React.createElement("p", null, "Guide coming soon.");
+  }
+
+  // ── MAIN APP ──────────────────────────────────────────────────────────────────
+  function App() {
+    const [modal, setModal] = (0, _react.useState)(null); // {type:'tool'|'guide', id:string}
+    const [showUnsaved, setShowUnsaved] = (0, _react.useState)(false);
+    const bodyHasContent = (0, _react.useRef)(false);
+    const openTool = id => {
+      setModal({
+        type: "tool",
+        id
+      });
+      setShowUnsaved(false);
+    };
+    const openGuide = id => {
+      setModal({
+        type: "guide",
+        id
+      });
+      setShowUnsaved(false);
+    };
+    const tryClose = () => {
+      if (bodyHasContent.current) {
+        setShowUnsaved(true);
+      } else {
+        setModal(null);
+      }
+    };
+    const forceClose = () => {
+      setModal(null);
+      setShowUnsaved(false);
+      bodyHasContent.current = false;
+    };
+    const curTool = modal?.type === "tool" ? TOOLS.find(t => t.id === modal.id) : null;
+    const curGuide = modal?.type === "guide" ? GUIDES.find(g => g.id === modal.id) : null;
+    const modalLabel = curTool ? `${curTool.n} · ${curTool.name}` : curGuide ? curGuide.type.toUpperCase() : "";
+    const font = "'Inter', system-ui, sans-serif";
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: font,
+        background: G.white,
+        color: G.ink,
+        minHeight: "100vh"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "64px 48px 48px",
+        borderBottom: `1px solid ${G.bdr}`,
+        marginBottom: 48
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        letterSpacing: "3px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 16
+      }
+    }, "Mental Models for Better Decisions"), /*#__PURE__*/React.createElement("h1", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: "clamp(38px,6vw,64px)",
+        fontWeight: 700,
+        lineHeight: 1.03,
+        letterSpacing: "-2px",
+        marginBottom: 20
+      }
+    }, "Think clearly.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("em", {
+      style: {
+        fontStyle: "italic",
+        fontWeight: 300
+      }
+    }, "Act decisively.")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 15,
+        fontWeight: 300,
+        lineHeight: 1.7,
+        color: G.muted,
+        maxWidth: 520
+      }
+    }, "Fourteen interactive frameworks and seven deep-dive guides \u2014 everything you need to think better and decide with confidence.")), [{
+      label: "Core Tools",
+      count: "06 frameworks",
+      ids: TOOLS.slice(0, 6)
+    }, {
+      label: "More Tools",
+      count: "08 frameworks",
+      ids: TOOLS.slice(6)
+    }].map(sec => /*#__PURE__*/React.createElement("div", {
+      key: sec.label,
+      style: {
+        marginBottom: 48
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 48px",
+        marginBottom: 24,
+        display: "flex",
+        alignItems: "baseline",
+        gap: 14
+      }
+    }, /*#__PURE__*/React.createElement("h2", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 24,
+        fontWeight: 700,
+        letterSpacing: "-0.5px"
+      }
+    }, sec.label), /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        color: G.muted
+      }
+    }, sec.count)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 1,
+        background: G.bdr,
+        margin: "0 48px 28px"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(320px,1fr))",
+        gap: 1,
+        margin: "0 48px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 4,
+        overflow: "hidden",
+        background: G.bdr
+      }
+    }, sec.label === "Core Tools" && /*#__PURE__*/React.createElement("div", {
+      onClick: () => window.open("JamesFoo-design-kpi-tree.html", "_blank"),
+      style: {
+        background: G.white,
+        cursor: "pointer",
+        transition: "opacity .12s",
+        padding: 0
+      },
+      onMouseEnter: e => e.currentTarget.style.opacity = "0.88",
+      onMouseLeave: e => e.currentTarget.style.opacity = "1"
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "24px 24px 10px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        color: G.faint
+      }
+    }, "00"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        padding: "3px 8px",
+        border: "1px solid rgba(0,0,0,.2)",
+        color: G.muted,
+        borderRadius: 2
+      }
+    }, "Reference")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 24px 24px"
+      }
+    }, /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 19,
+        fontWeight: 700,
+        letterSpacing: "-0.3px",
+        marginBottom: 8,
+        lineHeight: 1.2,
+        color: G.ink
+      }
+    }, "Design KPI Tree"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 13,
+        fontWeight: 300,
+        lineHeight: 1.65,
+        color: G.muted,
+        marginBottom: 18
+      }
+    }, "Connect business objectives to design initiatives and UX metrics. An interactive reference for design leadership."), /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        fontSize: 12,
+        fontWeight: 500,
+        color: G.ink
+      }
+    }, "Open tool ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 18,
+        height: 1,
+        background: G.ink,
+        position: "relative",
+        display: "inline-block"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        right: 0,
+        top: -3,
+        width: 6,
+        height: 6,
+        borderTop: `1px solid ${G.ink}`,
+        borderRight: `1px solid ${G.ink}`,
+        transform: "rotate(45deg)",
+        display: "inline-block"
+      }
+    }))))), sec.ids.map(t => /*#__PURE__*/React.createElement("div", {
+      key: t.id,
+      onClick: () => openTool(t.id),
+      style: {
+        background: G.white,
+        cursor: "pointer",
+        transition: "background .12s",
+        padding: 0
+      },
+      onMouseEnter: e => e.currentTarget.style.background = G.off,
+      onMouseLeave: e => e.currentTarget.style.background = G.white
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "24px 24px 10px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        color: G.faint
+      }
+    }, t.n), /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        padding: "3px 8px",
+        border: `1px solid ${G.bdr}`,
+        color: G.muted,
+        borderRadius: 2
+      }
+    }, t.tag)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 24px 24px"
+      }
+    }, /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 19,
+        fontWeight: 700,
+        letterSpacing: "-0.3px",
+        marginBottom: 8,
+        lineHeight: 1.2
+      }
+    }, t.name), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 13,
+        fontWeight: 300,
+        lineHeight: 1.65,
+        color: G.muted,
+        marginBottom: 18
+      }
+    }, t.desc), /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        fontSize: 12,
+        fontWeight: 500,
+        color: G.ink
+      }
+    }, "Open tool ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 18,
+        height: 1,
+        background: G.ink,
+        position: "relative",
+        display: "inline-block"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        right: 0,
+        top: -3,
+        width: 6,
+        height: 6,
+        borderTop: `1px solid ${G.ink}`,
+        borderRight: `1px solid ${G.ink}`,
+        transform: "rotate(45deg)",
+        display: "inline-block"
+      }
+    }))))))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 80
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 48px",
+        marginBottom: 24,
+        display: "flex",
+        alignItems: "baseline",
+        gap: 14
+      }
+    }, /*#__PURE__*/React.createElement("h2", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 24,
+        fontWeight: 700,
+        letterSpacing: "-0.5px"
+      }
+    }, "Guides & Library"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 11,
+        color: G.muted
+      }
+    }, "07 deep dives")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 1,
+        background: G.bdr,
+        margin: "0 48px 28px"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "0 48px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))",
+        gap: 1,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 4,
+        overflow: "hidden",
+        background: G.bdr
+      }
+    }, GUIDES.map(g => /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      onClick: () => openGuide(g.id),
+      style: {
+        background: G.white,
+        padding: 24,
+        cursor: "pointer",
+        transition: "background .12s"
+      },
+      onMouseEnter: e => e.currentTarget.style.background = G.off,
+      onMouseLeave: e => e.currentTarget.style.background = G.white
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        ...s.mono,
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        color: G.muted,
+        marginBottom: 10
+      }
+    }, g.type), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontFamily: "'Raleway', sans-serif",
+        fontSize: 17,
+        fontWeight: 700,
+        marginBottom: 8,
+        lineHeight: 1.25,
+        letterSpacing: "-0.3px"
+      }
+    }, g.title), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 12,
+        fontWeight: 300,
+        lineHeight: 1.65,
+        color: G.muted,
+        marginBottom: 16
+      }
+    }, g.desc), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        color: G.faint
+      }
+    }, g.time), /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 18,
+        height: 1,
+        background: G.faint,
+        position: "relative",
+        display: "inline-block"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        right: 0,
+        top: -3,
+        width: 6,
+        height: 6,
+        borderTop: `1px solid ${G.faint}`,
+        borderRight: `1px solid ${G.faint}`,
+        transform: "rotate(45deg)",
+        display: "inline-block"
+      }
+    })))))))), modal && /*#__PURE__*/React.createElement("div", {
+      onClick: e => {
+        if (e.target === e.currentTarget) tryClose();
+      },
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(10,10,10,.72)",
+        zIndex: 200,
+        backdropFilter: "blur(5px)",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        padding: "32px 16px",
+        overflowY: "auto"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.white,
+        borderRadius: 4,
+        width: "100%",
+        maxWidth: 820,
+        border: `1px solid ${G.bdr2}`,
+        overflow: "hidden",
+        animation: "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "11px 16px 11px 20px",
+        borderBottom: `1px solid ${G.bdr}`,
+        background: G.white
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        ...s.mono,
+        fontSize: 10,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        color: G.muted
+      }
+    }, modalLabel), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => window.print(),
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 5,
+        fontFamily: font,
+        fontSize: 11,
+        fontWeight: 500,
+        padding: "5px 12px",
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        color: G.muted,
+        cursor: "pointer"
+      }
+    }, /*#__PURE__*/React.createElement("svg", {
+      width: "13",
+      height: "13",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+    }), /*#__PURE__*/React.createElement("polyline", {
+      points: "14 2 14 8 20 8"
+    })), "Save PDF"), /*#__PURE__*/React.createElement("button", {
+      onClick: tryClose,
+      style: {
+        width: 28,
+        height: 28,
+        border: `1px solid ${G.bdr}`,
+        borderRadius: 2,
+        background: G.white,
+        cursor: "pointer",
+        fontSize: 14,
+        color: G.muted,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, "\u2715"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 3,
+        background: G.ink
+      }
+    }), showUnsaved && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: G.ink,
+        padding: "10px 20px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 12,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,255,255,.7)",
+        fontFamily: font
+      }
+    }, "You have unsaved work \u2014 closing will clear all inputs."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => window.print(),
+      style: {
+        fontFamily: font,
+        fontSize: 11,
+        fontWeight: 600,
+        padding: "5px 12px",
+        background: G.white,
+        color: G.ink,
+        border: "none",
+        borderRadius: 2,
+        cursor: "pointer"
+      }
+    }, "Save PDF first"), /*#__PURE__*/React.createElement("button", {
+      onClick: forceClose,
+      style: {
+        fontFamily: font,
+        fontSize: 11,
+        padding: "5px 12px",
+        background: "transparent",
+        color: "rgba(255,255,255,.5)",
+        border: "1px solid rgba(255,255,255,.2)",
+        borderRadius: 2,
+        cursor: "pointer"
+      }
+    }, "Discard & close"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => setShowUnsaved(false),
+      style: {
+        fontFamily: font,
+        fontSize: 11,
+        padding: "5px 8px",
+        background: "transparent",
+        color: "rgba(255,255,255,.35)",
+        border: "none",
+        cursor: "pointer",
+        textDecoration: "underline"
+      }
+    }, "Keep working"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "36px 40px 48px",
+        overflowY: "auto",
+        maxHeight: "calc(90vh - 90px)"
+      }
+    }, modal.type === "tool" && /*#__PURE__*/React.createElement(ToolContent, {
+      id: modal.id,
+      onOpen: openTool
+    }), modal.type === "guide" && /*#__PURE__*/React.createElement(GuideContent, {
+      id: modal.id
+    })))));
+  }
+});
+var AppComponent = thinkingToolkit.default;
+var rootEl = document.getElementById('root');
+var root = ReactDOM.createRoot(rootEl);
+root.render(React.createElement(AppComponent));
+</script>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-name"><strong>James Foo Design &copy; 2026</strong> &nbsp;<span style="font-weight: 400;">|&nbsp; Product Designer &middot; Developer Experience &bull; AI-native workflow</span></span>
+        <span class="footer-role">Let all that you do be done in love. <em>1 Corinthians 16:14</em></span>
+      </div>
+      <div class="footer-center"></div>
+      <div class="footer-right">
+        <div class="footer-rlinks">
+          <a href="contact.html" class="footer-link">Get in touch</a>
+          <span class="footer-dot">&middot;</span>
+          <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

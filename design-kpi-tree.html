@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://t.contentsquare.net/uxa/5cf9ea0190371.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1S8HD8B3K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1S8HD8B3K');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive tool for connecting business objectives to design initiatives and UX metrics. Built by James Foo, product designer.">
+  <title>Design KPI Tree — James Foo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f4;
+  --gray-200: #e0e0e0;
+  --gray-400: #b0b0b0;
+  --gray-600: #767676;
+  --gray-800: #333333;
+  --accent: #0a0a0a;
+  --accent-light: #f4f4f4;
+  --accent-mid: #333333;
+  --purple: #0a0a0a;
+  --purple-light: #f4f4f4;
+  --blue: #0057ff;
+  --blue-light: #eef2ff;
+  --font: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --radius: 2px;
+  --radius-lg: 4px;
+  --shadow-sm: none;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--white); color: var(--black); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--black); padding: 0 2rem; position: sticky; top: 0; background: var(--white); z-index: 100; }
+.site-header-inner { max-width: 1040px; margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 700; color: var(--black); text-decoration: none; letter-spacing: -0.3px; }
+.logo span { font-weight: 300; font-style: italic; }
+.header-link { font-size: 13px; color: var(--gray-600); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.15s; }
+.header-link:hover { color: var(--black); }
+
+/* Hero */
+.hero { max-width: 1040px; margin: 0 auto; padding: 2.5rem 2rem 2rem; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.hero-eyebrow::before { display: none; }
+.hero h1 { font-family: 'Raleway', sans-serif; font-size: clamp(28px, 4vw, 46px); font-weight: 700; letter-spacing: -0.05em; line-height: 1.08; color: var(--black); max-width: 600px; margin-bottom: 1.25rem; }
+.hero h1 em { font-style: italic; font-weight: 300; color: var(--black); }
+.hero-desc { font-size: 15px; font-weight: 300; color: var(--gray-600); line-height: 1.7; margin-bottom: 2rem; }
+
+
+/* Mode bar */
+.mode-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 1.75rem; flex-wrap: wrap; }
+.mode-label { font-size: 12px; color: var(--gray-400); font-weight: 500; white-space: nowrap; margin-right: 4px; }
+.mode-sep { width: 1px; height: 20px; background: var(--gray-200); margin: 0 4px; }
+.preset-btn { font-family: var(--font); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: var(--radius); border: 1px solid var(--gray-200); background: transparent; color: var(--gray-600); cursor: pointer; transition: all 0.12s; white-space: nowrap; }
+.preset-btn:hover { border-color: var(--gray-400); color: var(--black); }
+.preset-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.canvas-btn { font-family: var(--font); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: var(--radius); border: 1px solid var(--gray-400); background: transparent; color: var(--gray-600); cursor: pointer; transition: all 0.12s; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.canvas-btn:hover { border-color: var(--black); color: var(--black); }
+.canvas-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+/* Build toolbar (canvas mode only) */
+.build-toolbar { display: none; align-items: center; gap: 8px; margin-bottom: 1rem; padding: 10px 14px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); flex-wrap: wrap; }
+.build-toolbar.visible { display: flex; }
+.build-toolbar-label { font-size: 11px; font-weight: 500; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-400); white-space: nowrap; margin-right: 4px; }
+.add-btn { font-family: var(--font); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px; border: 1px solid; cursor: pointer; transition: all 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 5px; background: transparent; }
+.add-btn.obj  { border-color: #1a6b4a; color: #1a6b4a; }
+.add-btn.obj:hover  { background: #1a6b4a; color: #fff; }
+.add-btn.init { border-color: #4f46a8; color: #4f46a8; }
+.add-btn.init:hover { background: #4f46a8; color: #fff; }
+.add-btn.met  { border-color: #1d5fa8; color: #1d5fa8; }
+.add-btn.met:hover  { background: #1d5fa8; color: #fff; }
+.build-sep { width: 1px; height: 20px; background: var(--gray-200); }
+.clear-btn { font-family: var(--font); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--gray-200); color: var(--gray-600); background: transparent; cursor: pointer; transition: all 0.15s; }
+.clear-btn:hover { border-color: var(--black); color: var(--black); }
+
+/* Tree card */
+.tree-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; overflow-x: auto; min-height: 380px; }
+.tree-card svg { display: block; min-width: 620px; }
+.node-group { cursor: pointer; }
+.node-group rect { transition: opacity 0.15s; }
+.node-group:hover rect { opacity: 0.86; }
+.node-group:focus { outline: none; }
+.node-group:focus-visible rect { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Canvas empty state */
+.canvas-hint { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; gap: 10px; }
+.canvas-hint-icon { width: 40px; height: 40px; border-radius: 10px; border: 1.5px dashed var(--gray-200); display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 20px; }
+.canvas-hint p { font-size: 13px; color: var(--gray-400); text-align: center; max-width: 260px; line-height: 1.6; }
+
+/* Legend */
+.legend-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--gray-600); }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* Detail panel */
+.detail-panel { display: none; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+.detail-panel.open { display: block; }
+.detail-header { padding: 1.25rem 1.5rem 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.detail-eyebrow { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 5px; }
+.detail-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--black); line-height: 1.3; }
+.close-btn { background: none; border: none; cursor: pointer; color: var(--gray-400); font-size: 20px; line-height: 1; padding: 2px 4px; border-radius: 4px; transition: color 0.15s, background 0.15s; flex-shrink: 0; margin-top: -2px; }
+.close-btn:hover { color: var(--black); background: var(--gray-50); }
+.tabs { display: flex; border-bottom: 1px solid var(--gray-100); padding: 0 1.5rem; margin-top: 1rem; }
+.tab-btn { font-family: var(--font); font-size: 13px; font-weight: 500; color: var(--gray-400); background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 0; margin-right: 20px; cursor: pointer; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
+.tab-btn:hover { color: var(--black); }
+.tab-btn.active { color: var(--black); border-bottom-color: var(--black); }
+.tab-content { padding: 1.25rem 1.5rem 1.5rem; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.tag { font-family: var(--mono); font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: var(--radius); background: var(--gray-100); border: 1px solid var(--gray-200); color: var(--gray-800); letter-spacing: 0.08em; }
+.detail-desc { font-size: 14px; font-weight: 300; color: #333333; line-height: 1.75; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.metric-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px 16px; }
+.metric-name { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 5px; }
+.metric-value { font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--black); margin-bottom: 2px; }
+.metric-target { font-family: var(--mono); font-size: 11px; color: var(--gray-600); margin-bottom: 8px; }
+.bar-track { height: 4px; background: var(--gray-200); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.bar-fill { height: 4px; border-radius: 2px; transition: width 0.4s ease; }
+.research-block { background: var(--gray-50); border-left: 3px solid #1a6b4a; padding: 14px 16px; font-size: 14px; color: var(--gray-600); line-height: 1.7; }
+.research-label { font-family: var(--mono); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #1a6b4a; margin-bottom: 8px; }
+
+/* Modal (add node) */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.7); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-800); padding: 1.75rem; width: 100%; max-width: 440px; }
+.modal h2 { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+.modal-sub { font-size: 13px; color: var(--gray-400); margin-bottom: 1.25rem; }
+.form-row { margin-bottom: 1rem; }
+.form-label { font-size: 12px; font-weight: 500; color: var(--gray-600); margin-bottom: 5px; display: block; }
+.form-input, .form-select, .form-textarea { width: 100%; font-family: var(--font); font-size: 13px; color: var(--black); background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 8px 10px; transition: border-color 0.15s; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--black); }
+.form-textarea { resize: vertical; min-height: 72px; line-height: 1.55; }
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239c9890' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+.form-row-inline { display: flex; gap: 10px; }
+.form-row-inline .form-row { flex: 1; margin-bottom: 0; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.25rem; }
+.btn-cancel { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: var(--radius); border: 1px solid var(--gray-200); background: transparent; color: var(--gray-600); cursor: pointer; transition: all 0.15s; }
+.btn-cancel:hover { border-color: var(--gray-400); color: var(--black); }
+.btn-add { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: var(--radius); border: none; background: var(--black); color: var(--white); cursor: pointer; transition: opacity 0.15s; }
+.btn-add:hover { opacity: 0.82; }
+
+/* Two-column layout */
+.page-body { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start; }
+
+/* How it works — left sidebar (wide) */
+.how-sidebar { position: sticky; top: 24px; }
+.section-title { font-size: 10px; font-weight: 500; font-family: var(--mono); letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 1.5rem; }
+.how-stack { display: flex; flex-direction: column; gap: 0; }
+.how-card { padding: 1rem 0 1rem 1rem; border-left: 1.5px solid var(--gray-100); position: relative; }
+.how-card::before { content: ''; position: absolute; left: -4px; top: 1.1rem; width: 7px; height: 7px; border-radius: 50%; background: var(--gray-200); border: 1.5px solid var(--white); }
+.how-card:first-child::before { background: var(--black); }
+.how-num { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--gray-600); margin-bottom: 5px; letter-spacing: 0.08em; }
+.how-card h3 { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--black); line-height: 1.3; }
+.how-card p { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
+
+/* How it works — top strip (narrow) */
+.how-strip { display: none; }
+.how-strip-inner { display: flex; gap: 0; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; }
+.how-strip-inner::-webkit-scrollbar { display: none; }
+.how-strip .how-card { min-width: 180px; max-width: 200px; flex-shrink: 0; border-left: none; border-top: 1.5px solid var(--gray-100); padding: 0.875rem 1rem 0 0; }
+.how-strip .how-card::before { display: none; }
+
+@media (max-width: 860px) {
+  .page-body { grid-template-columns: 1fr; gap: 0; padding: 0 1.25rem 4rem; }
+  .how-sidebar { display: none; }
+  .how-strip { display: block; padding: 0 0 1.5rem; border-bottom: 1px solid var(--gray-100); margin-bottom: 1.75rem; }
+  .tool-col { min-width: 0; }
+}
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--gray-200); padding: 2rem; }
+.site-footer-inner { max-width: 1040px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-text { font-size: 12px; color: var(--gray-400); }
+.footer-link { font-size: 12px; color: var(--gray-400); text-decoration: none; border-bottom: 1px solid var(--gray-200); transition: color 0.15s, border-color 0.15s; }
+.footer-link:hover { color: var(--black); border-color: var(--black); }
+
+@media (max-width: 640px) {
+  .hero { padding: 2.5rem 1.25rem 1.5rem; }
+  .tree-card { padding: 1rem; }
+  .detail-header { padding: 1rem 1.25rem 0; }
+  .tab-content { padding: 1rem 1.25rem 1.25rem; }
+  .tabs { padding: 0 1.25rem; }
+  .site-footer-inner { justify-content: center; }
+  .modal { padding: 1.25rem; }
+  .form-row-inline { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  /* Thinking Toolkit alignment — headings use Raleway */
+  h1, h2, h3, .modal h2 {
+    font-family: 'Raleway', system-ui, sans-serif;
+  }
+  .how-card h3 {
+    font-family: 'Raleway', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  /* Sharp focus states */
+  :focus-visible {
+    outline: 2px solid var(--black);
+    outline-offset: 2px;
+  }
+  /* Metric value font */
+  .metric-value {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  </style>
+</head>
+<body>
+  <header class="header" id="top">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">James Foo</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="toolkit.html" class="nav-link">My Toolkit</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
+          LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="index.html" class="mobile-menu-link">Home</a>
+    <a href="about.html" class="mobile-menu-link">About</a>
+    <a href="toolkit.html" class="mobile-menu-link">My Toolkit</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <main>
+<section class="hero">
+  <p class="hero-eyebrow">Design KPI Tree</p>
+  <h1>Connect design work to <em>outcomes</em> that matter</h1>
+  <p class="hero-desc">Most design teams are great at shipping. Few are great at proving what it changed. This tool maps business objectives → design initiatives → UX metrics, so the impact of design is visible — not assumed.</p>
+</section>
+
+<main class="page-body">
+
+  <!-- How it works — narrow strip (top on mobile) -->
+  <div class="how-strip">
+    <p class="section-title">How it works</p>
+    <div class="how-strip-inner">
+      <div class="how-card"><div class="how-num">01</div><h3>Start with the business objective</h3><p>Every design decision should be traceable to something the business cares about.</p></div>
+      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets — specific UX improvements you believe will move the objective.</p></div>
+      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics — start with user needs, then find what proves the need was met.</p></div>
+      <div class="how-card"><div class="how-num">04</div><h3>Track and report visibly</h3><p>Design impact belongs in the same rooms where product and engineering report their numbers.</p></div>
+    </div>
+  </div>
+
+  <!-- How it works — wide sidebar (left on desktop) -->
+  <aside class="how-sidebar" aria-label="How the tree works">
+    <p class="section-title">How it works</p>
+    <div class="how-stack">
+      <div class="how-card"><div class="how-num">01</div><h3>Start with the business objective</h3><p>Every design decision should be traceable to something the business cares about. If you can't draw that line, you're designing without a brief.</p></div>
+      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets — specific UX improvements you believe will move the objective. Make them concrete enough to be testable.</p></div>
+      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics — start with user needs. Then find the metric that confirms the need was met. UMUX-Lite, SUS, CES, TFV all have specific jobs.</p></div>
+      <div class="how-card"><div class="how-num">04</div><h3>Track and report visibly</h3><p>Design impact shouldn't live in a Notion doc. It belongs in the same rooms where product and engineering report their numbers.</p></div>
+    </div>
+  </aside>
+
+  <!-- Tool column (right on desktop, bottom on mobile) -->
+  <div class="tool-col">
+
+  <div class="mode-bar">
+    <button class="canvas-btn" id="canvas-toggle-btn" onclick="toggleCanvas(this)">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><rect x="1" y="1" width="4.5" height="4.5" rx="1.2" stroke="currentColor" stroke-width="1.2"/><rect x="7.5" y="1" width="4.5" height="4.5" rx="1.2" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="7.5" width="4.5" height="4.5" rx="1.2" stroke="currentColor" stroke-width="1.2"/><rect x="7.5" y="7.5" width="4.5" height="4.5" rx="1.2" stroke="currentColor" stroke-width="1.2"/></svg>
+      Build your own
+    </button>
+    <div class="mode-sep"></div>
+    <span class="mode-label">Example</span>
+    <button class="preset-btn active" data-preset="ecommerce" onclick="loadPreset('ecommerce',this)">Consumer app</button>
+    <button class="preset-btn" data-preset="enterprise" onclick="loadPreset('enterprise',this)">Enterprise SaaS</button>
+  </div>
+
+  <!-- Build toolbar (canvas mode) -->
+  <div class="build-toolbar" id="build-toolbar">
+    <span class="build-toolbar-label">Add node</span>
+    <button class="add-btn obj" onclick="openModal('objective')">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 3v5M3 5.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Objective
+    </button>
+    <button class="add-btn init" onclick="openModal('initiative')">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><rect x="1" y="1" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 3v5M3 5.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Initiative
+    </button>
+    <button class="add-btn met" onclick="openModal('metric')">
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><rect x="1" y="1" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 3v5M3 5.5h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Metric
+    </button>
+    <div class="build-sep"></div>
+    <button class="clear-btn" onclick="clearCanvas()">Clear all</button>
+  </div>
+
+  <div class="tree-card">
+    <svg id="tree-svg" width="100%" viewBox="0 0 900 380" role="img" aria-label="Design KPI Tree">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M2 1.5L7.5 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <g id="tree-g"></g>
+      <g id="canvas-hint-g"></g>
+    </svg>
+  </div>
+
+  <div class="legend-row" id="legend-row">
+    <div class="legend-item"><div class="legend-dot" style="background:#1a6b4a"></div>Business objective</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4f46a8"></div>Design initiative</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1d5fa8"></div>UX metric</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2d8a61;border-radius:50%"></div>On track</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d48c20;border-radius:50%"></div>Needs attention</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c94a2c;border-radius:50%"></div>Off track</div>
+  </div>
+
+  <div class="detail-panel" id="detail-panel">
+    <div class="detail-header">
+      <div>
+        <div class="detail-eyebrow" id="detail-eyebrow"></div>
+        <div class="detail-title" id="detail-title"></div>
+      </div>
+      <button class="close-btn" onclick="closeDetail()" aria-label="Close">&times;</button>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview',this)">Overview</button>
+      <button class="tab-btn" data-tab="metrics" onclick="switchTab('metrics',this)">Metrics</button>
+      <button class="tab-btn" data-tab="research" onclick="switchTab('research',this)">Research method</button>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="pane-overview"></div>
+      <div class="tab-pane" id="pane-metrics"></div>
+      <div class="tab-pane" id="pane-research"></div>
+    </div>
+  </div>
+
+  </div><!-- /tool-col -->
+
+</main>
+
+
+
+<!-- Add Node Modal -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <h2 id="modal-title"></h2>
+    <p class="modal-sub" id="modal-sub"></p>
+    <div class="form-row">
+      <label class="form-label" for="f-label">Label <span style="color:var(--black)">*</span></label>
+      <input class="form-input" id="f-label" type="text" placeholder="e.g. Reduce checkout friction" maxlength="60">
+    </div>
+    <div class="form-row">
+      <label class="form-label" for="f-desc">Description</label>
+      <textarea class="form-textarea" id="f-desc" placeholder="What does this node represent? Why does it matter?"></textarea>
+    </div>
+    <div id="f-parent-row" class="form-row" style="display:none">
+      <label class="form-label" for="f-parent">Connects to initiative</label>
+      <select class="form-select" id="f-parent">
+        <option value="">— none —</option>
+      </select>
+    </div>
+    <div id="f-metric-rows" style="display:none">
+      <div class="form-row-inline" style="display:flex;gap:10px;margin-bottom:1rem">
+        <div style="flex:1">
+          <label class="form-label" for="f-value">Current value</label>
+          <input class="form-input" id="f-value" type="text" placeholder="e.g. 54%">
+        </div>
+        <div style="flex:1">
+          <label class="form-label" for="f-target">Target</label>
+          <input class="form-input" id="f-target" type="text" placeholder="e.g. > 72%">
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="f-status">Status</label>
+        <select class="form-select" id="f-status">
+          <option value="good">On track</option>
+          <option value="warning" selected>Needs attention</option>
+          <option value="danger">Off track</option>
+        </select>
+      </div>
+    </div>
+    <div id="f-tags-row" class="form-row">
+      <label class="form-label" for="f-tags">Tags <span style="color:var(--gray-400);font-weight:400">(comma separated)</span></label>
+      <input class="form-input" id="f-tags" type="text" placeholder="e.g. Conversion, UX scorecard">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-add" onclick="commitNode()">Add to tree</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+const PRESETS = {
+  ecommerce: {
+    name:"Consumer app",
+    objective:{ label:"Increase checkout\ncompletion rate", fill:"#1a6b4a", textFill:"#d4ede2" },
+    initiatives:[
+      { id:"i1", label:"Reduce checkout\nfriction", tags:["Conversion","Friction"], desc:"Streamline the checkout flow: fewer steps, smarter defaults, removing any moment where a user has to stop and think unnecessarily.", metrics:[{name:"Steps to checkout",value:"5",target:"≤3",pct:60,color:"#b0b0b0"},{name:"Form abandonment",value:"34%",target:"<15%",pct:44,color:"#b0b0b0"},{name:"Error field rate",value:"22%",target:"<8%",pct:36,color:"#b0b0b0"}], research:"Session replay analysis of abandoned checkouts. Identify top 3 exit points. Unmoderated usability test with real products in cart." },
+      { id:"i2", label:"Build purchase\nconfidence", tags:["Trust","Conversion"], desc:"Design moments that reduce purchase anxiety: clear returns policy, trust signals, and review placement at the moment of decision.", metrics:[{name:"Add-to-cart → checkout",value:"48%",target:">65%",pct:74,color:"#767676"},{name:"Trust signal view rate",value:"41%",target:">70%",pct:59,color:"#b0b0b0"},{name:"Review read before buy",value:"67%",target:">80%",pct:84,color:"#2a2a2a"}], research:"Heatmap + scroll depth analysis on product pages. A/B test trust badge placement. Survey: 'What almost stopped you from buying?'" },
+      { id:"i3", label:"Improve cart\nrecovery", tags:["Retention","Recovery"], desc:"Design a recovery experience for users who abandon — email re-engagement, persistent cart state, and in-session friction warnings.", metrics:[{name:"Cart recovery rate",value:"11%",target:">22%",pct:50,color:"#b0b0b0"},{name:"Cart persistence (7d)",value:"78%",target:">95%",pct:82,color:"#767676"},{name:"Re-engage click rate",value:"18%",target:">30%",pct:60,color:"#b0b0b0"}], research:"A/B test cart recovery email timing and subject lines. Track persistent cart usage. Exit-intent survey: 'What changed your mind?'" },
+    ],
+    metrics:[
+      { id:"m1", label:"Checkout\ncompletion rate", parent:"i1,i2", status:"warning", tags:["Conversion","HEART"], desc:"Of users who begin checkout, what % complete? Industry median mobile ~55%, desktop ~70%. Design can move this significantly.", metrics:[{name:"Mobile checkout",value:"47%",target:">65%",pct:72,color:"#767676"},{name:"Desktop checkout",value:"61%",target:">78%",pct:78,color:"#767676"},{name:"Guest vs signed-in",value:"49%/68%",target:"<10pt gap",pct:55,color:"#b0b0b0"}], research:"Funnel analysis by step. Segment by device, traffic source, cart value. Replay sessions of users who abandoned at payment." },
+      { id:"m2", label:"Time on task\n(checkout)", parent:"i1", status:"danger", tags:["Efficiency","Friction"], desc:"Average time from 'checkout' click to order confirmation. A direct proxy for friction — long times signal confusion, hesitation, or unnecessary steps.", metrics:[{name:"Median checkout time",value:"4m 12s",target:"<2m 30s",pct:60,color:"#b0b0b0"},{name:"Address entry time",value:"1m 38s",target:"<45s",pct:46,color:"#b0b0b0"},{name:"Payment entry time",value:"58s",target:"<40s",pct:69,color:"#767676"}], research:"Session analytics segmented by step. Compare autofill-enabled vs not. Replay the slowest 20% of sessions." },
+      { id:"m3", label:"CES (customer\neffort score)", parent:"i1,i2", status:"danger", tags:["Effort","Survey"], desc:"Measures how much effort users feel they had to expend. The best predictor of repeat purchase intent. Lower effort = higher loyalty.", metrics:[{name:"Overall CES",value:"3.8/7",target:">5.5",pct:69,color:"#b0b0b0"},{name:"Checkout CES",value:"3.4/7",target:">5.0",pct:68,color:"#b0b0b0"},{name:"Return process CES",value:"4.1/7",target:">5.5",pct:75,color:"#767676"}], research:"2-question CES survey triggered 24h post-purchase. Segment by channel. Track monthly trend." },
+      { id:"m4", label:"Cart abandonment\nrate", parent:"i1,i3", status:"danger", tags:["Abandonment","Conversion"], desc:"% of users who add to cart but don't complete purchase. Industry average is ~70% — but that's not a target, it's a baseline to beat.", metrics:[{name:"Overall abandonment",value:"68%",target:"<50%",pct:74,color:"#767676"},{name:"Mobile abandonment",value:"74%",target:"<55%",pct:74,color:"#767676"},{name:"High-value cart",value:"61%",target:"<40%",pct:66,color:"#767676"}], research:"Exit-intent survey on cart page. Session replay of cart-to-exit. A/B test: price transparency (total inc. shipping shown early)." },
+    ]
+  },
+  enterprise: {
+    name:"Enterprise SaaS",
+    objective:{ label:"Accelerate time to\nproduct value (TTV)", fill:"#1a6b4a", textFill:"#d4ede2" },
+    initiatives:[
+      { id:"i1", label:"Redesign activation\n& onboarding", tags:["Activation","Onboarding"], desc:"Eliminate the dead zone between sign-up and first value moment. Design guided, role-aware onboarding that surfaces the right feature at the right time.", metrics:[{name:"Days to first value",value:"9.4d",target:"<5d",pct:53,color:"#b0b0b0"},{name:"Onboarding completion",value:"44%",target:">75%",pct:59,color:"#b0b0b0"},{name:"Feature activation",value:"38%",target:">65%",pct:58,color:"#b0b0b0"}], research:"'First value' interview series with recently onboarded users (n=10). What was the moment they knew it was working? Map that to the current UX flow." },
+      { id:"i2", label:"Simplify complex\nworkflows", tags:["Complexity","WorkflowDesign"], desc:"Enterprise products accumulate complexity. Systematically identify and simplify the most-used workflows using progressive disclosure and smart defaults.", metrics:[{name:"Workflow completion",value:"67%",target:">88%",pct:76,color:"#767676"},{name:"Steps per task",value:"7.2",target:"<4.0",pct:56,color:"#b0b0b0"},{name:"Power user shortcuts",value:"18%",target:">40%",pct:45,color:"#b0b0b0"}], research:"Top Task Analysis with 20+ users across roles. Identify the 20% of tasks that generate 80% of usage. Redesign those first." },
+      { id:"i3", label:"Improve admin &\nreporting surfaces", tags:["Admin","Reporting"], desc:"Enterprise buyers need to justify spend. If admins can't see ROI clearly in the product, renewal is at risk regardless of core product quality.", metrics:[{name:"Admin weekly active",value:"31%",target:">60%",pct:52,color:"#b0b0b0"},{name:"Report export rate",value:"22%",target:">45%",pct:49,color:"#b0b0b0"},{name:"Renewal tied to data",value:"41%",target:">70%",pct:59,color:"#b0b0b0"}], research:"Admin role-specific interviews (n=8). 'Show me how you prove value to your team.' Map the data they reach for to what the product currently surfaces." },
+    ],
+    metrics:[
+      { id:"m1", label:"Time to first\nvalue (TFV)", parent:"i1", status:"danger", tags:["Activation","Retention"], desc:"Days from account creation to completing a meaningful task. The most important retention predictor in B2B SaaS.", metrics:[{name:"Median TFV",value:"9.4d",target:"<5d",pct:53,color:"#b0b0b0"},{name:"Admin users TFV",value:"12.1d",target:"<6d",pct:50,color:"#b0b0b0"},{name:"Power users TFV",value:"6.3d",target:"<4d",pct:63,color:"#767676"}], research:"Define 'first value' event in data warehouse. Segment by plan, company size, onboarding path. Interview users who reached value fast vs slow." },
+      { id:"m2", label:"SUS score\n(perceived usability)", parent:"i1,i2", status:"warning", tags:["Usability","Survey"], desc:"System Usability Scale — 10-item questionnaire, 0–100. Below 68 = below average. Above 80 = excellent. Tracks overall usability health across versions.", metrics:[{name:"Overall SUS",value:"61",target:">75",pct:81,color:"#767676"},{name:"Admin module SUS",value:"54",target:">70",pct:77,color:"#767676"},{name:"Core workflow SUS",value:"66",target:">78",pct:85,color:"#2a2a2a"}], research:"10-item SUS survey sent quarterly to active users (n=100+). Run per-module SUS after major releases. Track trend, not snapshot." },
+      { id:"m3", label:"Feature adoption\nrate", parent:"i2", status:"danger", tags:["Adoption","Engagement"], desc:"% of accounts that have used a defined core feature within 30 days. Low adoption means users are paying for something they're not using — a retention risk.", metrics:[{name:"Core feature (30d)",value:"38%",target:">65%",pct:58,color:"#b0b0b0"},{name:"Collaboration features",value:"24%",target:">50%",pct:48,color:"#b0b0b0"},{name:"Integration features",value:"19%",target:">40%",pct:48,color:"#b0b0b0"}], research:"Product analytics: activation funnel per feature. 'Sleeping feature' analysis: what % of paid accounts have never used X?" },
+      { id:"m4", label:"NPS (net promoter\nscore)", parent:"i1,i2,i3", status:"warning", tags:["Loyalty","Survey"], desc:"Would your users recommend this? NPS catches the overall relationship quality between product and user over time. Design can move it through reliability, clarity, and care.", metrics:[{name:"Overall NPS",value:"18",target:">40",pct:45,color:"#b0b0b0"},{name:"Promoters (9–10)",value:"29%",target:">50%",pct:58,color:"#b0b0b0"},{name:"Detractors (0–6)",value:"22%",target:"<12%",pct:55,color:"#b0b0b0"}], research:"Quarterly NPS survey to all active users. Segment passives vs detractors — interview 5 from each group. Detractor themes drive design roadmap." },
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   CANVAS STATE
+═══════════════════════════════════════════════ */
+let canvasMode = false;
+let canvasData = { objective: null, initiatives: [], metrics: [] };
+let pendingNodeType = null;
+
+/* ═══════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════ */
+const SVG_W = 900;
+const OBJ_W = 230, OBJ_H = 54, OBJ_Y = 20;
+const INIT_H = 52, INIT_Y = 140, INIT_GAP = 14;
+const MET_H  = 52, MET_Y  = 268, MET_GAP  = 12;
+const STATUS_COLORS = { danger:'#c94a2c', warning:'#d48c20', good:'#2d8a61' };
+
+function svgNS(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k,v] of Object.entries(attrs)) el.setAttribute(k, v);
+  return el;
+}
+function svgText(str, x, y, size, weight, fill, anchor='middle') {
+  const t = svgNS('text',{x,y,'font-size':size,'font-weight':weight,fill,'font-family':"'Inter',sans-serif",'text-anchor':anchor,'dominant-baseline':'central'});
+  t.textContent = str; return t;
+}
+function multiline(str, cx, cy, size, weights, fill) {
+  const lines = str.split('\n');
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  const lh = size * 1.4;
+  const startY = cy - ((lines.length - 1) * lh) / 2;
+  lines.forEach((line, i) => {
+    const w = Array.isArray(weights) ? (weights[i] || weights[0]) : weights;
+    g.appendChild(svgText(line, cx, startY + i*lh, size, w, fill));
+  });
+  return g;
+}
+function curve(x1,y1,x2,y2,stroke,dashed=false) {
+  const my = (y1+y2)/2;
+  const p = svgNS('path',{d:`M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}`,fill:'none',stroke,'stroke-width':'0.8',opacity:'0.55','marker-end':'url(#arr)'});
+  if(dashed) p.setAttribute('stroke-dasharray','3 2');
+  return p;
+}
+function layerLabel(txt, x, y, fill) {
+  const el = svgNS('text',{x,y,'font-size':'10','font-weight':'500',fill,'font-family':"'DM Mono',monospace",'letter-spacing':'0.08em','opacity':'0.65'});
+  el.textContent = txt.toUpperCase(); return el;
+}
+
+function renderPreset(key) {
+  const p = PRESETS[key];
+  const g = document.getElementById('tree-g');
+  g.innerHTML = '';
+  document.getElementById('canvas-hint-g').innerHTML = '';
+
+  const ni = p.initiatives.length, nm = p.metrics.length;
+  const initW = Math.min(170, Math.floor((SVG_W-60-(ni-1)*INIT_GAP)/ni));
+  const metW  = Math.min(158, Math.floor((SVG_W-60-(nm-1)*MET_GAP)/nm));
+  const initTot = ni*initW+(ni-1)*INIT_GAP, metTot = nm*metW+(nm-1)*MET_GAP;
+  const isx = (SVG_W-initTot)/2, msx = (SVG_W-metTot)/2;
+  const OBJ_X = (SVG_W-OBJ_W)/2;
+
+  document.getElementById('tree-svg').setAttribute('viewBox',`0 0 ${SVG_W} ${MET_Y+MET_H+28}`);
+
+  // Objective
+  const go = document.createElementNS('http://www.w3.org/2000/svg','g');
+  go.setAttribute('class','node-group'); go.setAttribute('tabindex','0'); go.setAttribute('role','button');
+  go.appendChild(svgNS('rect',{x:OBJ_X,y:OBJ_Y,width:OBJ_W,height:OBJ_H,rx:'2',fill:p.objective.fill,'stroke-width':'0'}));
+  go.appendChild(multiline(p.objective.label,OBJ_X+OBJ_W/2,OBJ_Y+OBJ_H/2,13,['600','400'],p.objective.textFill));
+  go.addEventListener('click',()=>showDetail('obj',p));
+  g.appendChild(go);
+
+  g.appendChild(layerLabel('Design initiatives', isx, INIT_Y-10, '#4f46a8'));
+  g.appendChild(layerLabel('UX metrics', msx, MET_Y-10, '#1d5fa8'));
+
+  p.initiatives.forEach((node,i) => {
+    const nx = isx+i*(initW+INIT_GAP), cx = nx+initW/2;
+    g.appendChild(curve(OBJ_X+OBJ_W/2, OBJ_Y+OBJ_H, cx, INIT_Y, '#6b55c8'));
+    const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+    grp.setAttribute('class','node-group'); grp.setAttribute('tabindex','0'); grp.setAttribute('role','button');
+    grp.appendChild(svgNS('rect',{x:nx,y:INIT_Y,width:initW,height:INIT_H,rx:'2',fill:'#4f46a8','stroke-width':'0'}));
+    grp.appendChild(multiline(node.label,cx,INIT_Y+INIT_H/2,12,['500','400'],'#e8e7f8'));
+    grp.addEventListener('click',()=>showDetail(node.id,p,'initiative',i));
+    g.appendChild(grp);
+  });
+
+  p.metrics.forEach((node,i) => {
+    const mx = msx+i*(metW+MET_GAP), mcx = mx+metW/2;
+    (node.parent||'').split(',').map(s=>s.trim()).filter(Boolean).forEach(pid => {
+      const pi = p.initiatives.findIndex(n=>n.id===pid);
+      if(pi<0) return;
+      g.appendChild(curve(isx+pi*(initW+INIT_GAP)+initW/2, INIT_Y+INIT_H, mcx, MET_Y, '#1d5fa8', true));
+    });
+    const sc = STATUS_COLORS[node.status||'good'];
+    const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+    grp.setAttribute('class','node-group'); grp.setAttribute('tabindex','0'); grp.setAttribute('role','button');
+    grp.appendChild(svgNS('rect',{x:mx,y:MET_Y,width:metW,height:MET_H,rx:'2',fill:'#1d5fa8','stroke-width':'0'}));
+    grp.appendChild(multiline(node.label,mcx,MET_Y+MET_H/2,11,['500','400'],'#e0ecf9'));
+    grp.appendChild(svgNS('circle',{cx:mx+metW-10,cy:MET_Y+10,r:'4',fill:sc}));
+    grp.addEventListener('click',()=>showDetail(node.id,p,'metric',i));
+    g.appendChild(grp);
+  });
+}
+
+function renderCanvas() {
+  const g = document.getElementById('tree-g');
+  const hint = document.getElementById('canvas-hint-g');
+  g.innerHTML = ''; hint.innerHTML = '';
+
+  const d = canvasData;
+  const hasAnything = d.objective || d.initiatives.length || d.metrics.length;
+
+  if (!hasAnything) {
+    // Empty state hint
+    document.getElementById('tree-svg').setAttribute('viewBox',`0 0 ${SVG_W} 380`);
+    const hx = SVG_W/2, hy = 160;
+    // dashed box
+    hint.appendChild(svgNS('rect',{x:hx-32,y:hy-32,width:64,height:64,rx:'2',fill:'none',stroke:'#e0e0e0','stroke-width':'1.5','stroke-dasharray':'5 3'}));
+    const plus = svgNS('text',{x:hx,y:hy,'font-size':'28','font-weight':'300',fill:'#e0e0e0','text-anchor':'middle','dominant-baseline':'central'});
+    plus.textContent = '+'; hint.appendChild(plus);
+    const t1 = svgNS('text',{x:hx,y:hy+56,'font-size':'13','font-weight':'500',fill:'#b0b0b0','text-anchor':'middle','font-family':"'Inter',sans-serif"});
+    t1.textContent = 'Start by adding a business objective'; hint.appendChild(t1);
+    const t2 = svgNS('text',{x:hx,y:hy+76,'font-size':'12',fill:'#b0b0b0','text-anchor':'middle','font-family':"'Inter',sans-serif"});
+    t2.textContent = 'Then add initiatives and metrics using the toolbar above'; hint.appendChild(t2);
+    return;
+  }
+
+  const ni = d.initiatives.length || 1;
+  const nm = d.metrics.length || 1;
+  const svgH = (d.metrics.length ? MET_Y+MET_H+28 : d.initiatives.length ? INIT_Y+INIT_H+28 : OBJ_Y+OBJ_H+28);
+  document.getElementById('tree-svg').setAttribute('viewBox',`0 0 ${SVG_W} ${svgH}`);
+
+  const initW = Math.min(170, Math.floor((SVG_W-60-(ni-1)*INIT_GAP)/ni));
+  const metW  = Math.min(158, Math.floor((SVG_W-60-(nm-1)*MET_GAP)/nm));
+  const isx = (SVG_W - (d.initiatives.length*(initW+INIT_GAP)-INIT_GAP)) / 2;
+  const msx = (SVG_W - (d.metrics.length*(metW+MET_GAP)-MET_GAP)) / 2;
+  const OBJ_X = (SVG_W-OBJ_W)/2;
+
+  // Objective
+  if (d.objective) {
+    const go = document.createElementNS('http://www.w3.org/2000/svg','g');
+    go.setAttribute('class','node-group'); go.setAttribute('tabindex','0'); go.setAttribute('role','button');
+    go.appendChild(svgNS('rect',{x:OBJ_X,y:OBJ_Y,width:OBJ_W,height:OBJ_H,rx:'2',fill:'#0a0a0a','stroke-width':'0'}));
+    go.appendChild(multiline(d.objective.label,OBJ_X+OBJ_W/2,OBJ_Y+OBJ_H/2,13,['600','400'],'#d4ede2'));
+    go.addEventListener('click',()=>showCanvasDetail('objective',null));
+    g.appendChild(go);
+  }
+
+  if (d.initiatives.length) {
+    g.appendChild(layerLabel('Design initiatives', isx, INIT_Y-10, '#4f46a8'));
+    d.initiatives.forEach((node,i) => {
+      const nx = isx+i*(initW+INIT_GAP), cx = nx+initW/2;
+      if(d.objective) g.appendChild(curve(OBJ_X+OBJ_W/2,OBJ_Y+OBJ_H,cx,INIT_Y,'#6b55c8'));
+      const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+      grp.setAttribute('class','node-group'); grp.setAttribute('tabindex','0'); grp.setAttribute('role','button');
+      grp.appendChild(svgNS('rect',{x:nx,y:INIT_Y,width:initW,height:INIT_H,rx:'2',fill:'#4f46a8','stroke-width':'0'}));
+      grp.appendChild(multiline(node.label,cx,INIT_Y+INIT_H/2,12,['500','400'],'#e8e7f8'));
+      grp.addEventListener('click',()=>showCanvasDetail('initiative',i));
+      g.appendChild(grp);
+    });
+  }
+
+  if (d.metrics.length) {
+    g.appendChild(layerLabel('UX metrics', msx, MET_Y-10, '#1d5fa8'));
+    d.metrics.forEach((node,i) => {
+      const mx = msx+i*(metW+MET_GAP), mcx = mx+metW/2;
+      if (node.parent !== undefined && node.parent !== '') {
+        const pi = d.initiatives.findIndex(n=>n.id===node.parent);
+        if (pi>=0) g.appendChild(curve(isx+pi*(initW+INIT_GAP)+initW/2,INIT_Y+INIT_H,mcx,MET_Y,'#1d5fa8',true));
+      } else if(d.initiatives.length===0 && d.objective) {
+        g.appendChild(curve(OBJ_X+OBJ_W/2,OBJ_Y+OBJ_H,mcx,MET_Y,'#1d5fa8',true));
+      }
+      const sc = STATUS_COLORS[node.status||'good'];
+      const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+      grp.setAttribute('class','node-group'); grp.setAttribute('tabindex','0'); grp.setAttribute('role','button');
+      grp.appendChild(svgNS('rect',{x:mx,y:MET_Y,width:metW,height:MET_H,rx:'2',fill:'#1d5fa8','stroke-width':'0'}));
+      grp.appendChild(multiline(node.label,mcx,MET_Y+MET_H/2,11,['500','400'],'#e0ecf9'));
+      grp.appendChild(svgNS('circle',{cx:mx+metW-10,cy:MET_Y+10,r:'4',fill:sc}));
+      grp.addEventListener('click',()=>showCanvasDetail('metric',i));
+      g.appendChild(grp);
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   MODE SWITCHING
+═══════════════════════════════════════════════ */
+function loadPreset(key, btn) {
+  if (canvasMode) {
+    canvasMode = false;
+    document.getElementById('canvas-toggle-btn').classList.remove('active');
+    document.getElementById('build-toolbar').classList.remove('visible');
+  }
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  closeDetail();
+  renderPreset(key);
+}
+
+function toggleCanvas(btn) {
+  canvasMode = !canvasMode;
+  btn.classList.toggle('active', canvasMode);
+  document.getElementById('build-toolbar').classList.toggle('visible', canvasMode);
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  closeDetail();
+  if (canvasMode) renderCanvas();
+  else {
+    // revert to first preset
+    const first = document.querySelector('.preset-btn');
+    if(first) { first.classList.add('active'); renderPreset(first.dataset.preset); }
+  }
+}
+
+function clearCanvas() {
+  if (!confirm('Clear all nodes from your canvas?')) return;
+  canvasData = { objective: null, initiatives: [], metrics: [] };
+  closeDetail();
+  renderCanvas();
+}
+
+/* ═══════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════ */
+function openModal(type) {
+  pendingNodeType = type;
+  const titles = { objective:'Add business objective', initiative:'Add design initiative', metric:'Add UX metric' };
+  const subs = { objective:'The top-level outcome this tree is trying to move.', initiative:'A specific design bet that serves the objective.', metric:'The UX or business metric that proves your initiative worked.' };
+  document.getElementById('modal-title').textContent = titles[type];
+  document.getElementById('modal-sub').textContent = subs[type];
+  document.getElementById('f-label').value = '';
+  document.getElementById('f-desc').value = '';
+  document.getElementById('f-tags').value = '';
+
+  const parentRow = document.getElementById('f-parent-row');
+  const metricRows = document.getElementById('f-metric-rows');
+  parentRow.style.display = 'none';
+  metricRows.style.display = 'none';
+
+  if (type === 'metric') {
+    metricRows.style.display = 'block';
+    document.getElementById('f-value').value = '';
+    document.getElementById('f-target').value = '';
+    document.getElementById('f-status').value = 'warning';
+    if (canvasData.initiatives.length) {
+      parentRow.style.display = 'block';
+      const sel = document.getElementById('f-parent');
+      sel.innerHTML = '<option value="">— none —</option>';
+      canvasData.initiatives.forEach(n => {
+        const op = document.createElement('option');
+        op.value = n.id; op.textContent = n.label.replace('\n',' ');
+        sel.appendChild(op);
+      });
+    }
+  }
+
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('f-label').focus(), 50);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  pendingNodeType = null;
+}
+
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+function commitNode() {
+  const label = document.getElementById('f-label').value.trim();
+  if (!label) { document.getElementById('f-label').focus(); return; }
+  const desc  = document.getElementById('f-desc').value.trim();
+  const tags  = document.getElementById('f-tags').value.split(',').map(s=>s.trim()).filter(Boolean);
+
+  if (pendingNodeType === 'objective') {
+    canvasData.objective = { label, desc, tags };
+  } else if (pendingNodeType === 'initiative') {
+    const id = 'i' + (canvasData.initiatives.length + 1) + '_' + Date.now();
+    canvasData.initiatives.push({ id, label, desc, tags, metrics:[] });
+  } else if (pendingNodeType === 'metric') {
+    const id = 'm' + (canvasData.metrics.length + 1) + '_' + Date.now();
+    const value  = document.getElementById('f-value').value.trim();
+    const target = document.getElementById('f-target').value.trim();
+    const status = document.getElementById('f-status').value;
+    const parent = document.getElementById('f-parent') ? document.getElementById('f-parent').value : '';
+    canvasData.metrics.push({ id, label, desc, tags, value, target, status, parent });
+  }
+
+  closeModal();
+  renderCanvas();
+}
+
+/* ═══════════════════════════════════════════════
+   DETAIL PANEL
+═══════════════════════════════════════════════ */
+function showDetail(id, p, type, idx) {
+  let node, eyebrow;
+  if (id==='obj') {
+    node = { label:p.objective.label.replace('\n',' '), tags:['Business objective'], desc:'The top-level business outcome that all design initiatives must serve. Every KPI in the tree exists to move this number.', metrics:[], research:'Align with product and engineering on how this objective is measured. Make sure design has a seat at the table when the objective is defined.' };
+    eyebrow = 'Business objective · ' + p.name;
+  } else if (type==='initiative') {
+    node = p.initiatives[idx]; eyebrow = 'Design initiative · ' + p.name;
+  } else {
+    node = p.metrics[idx]; eyebrow = 'UX metric · ' + p.name;
+  }
+  renderDetail(node, eyebrow);
+}
+
+function showCanvasDetail(type, idx) {
+  let node, eyebrow;
+  if (type==='objective') {
+    const o = canvasData.objective;
+    node = { label:o.label.replace('\n',' '), tags:o.tags||['Business objective'], desc:o.desc||'The business outcome this tree is designed to move.', metrics:[], research:'Define how this objective is measured and agree on it with stakeholders before designing anything below it.' };
+    eyebrow = 'Business objective · Your tree';
+  } else if (type==='initiative') {
+    const n = canvasData.initiatives[idx];
+    node = { label:n.label.replace('\n',' '), tags:n.tags||[], desc:n.desc||'', metrics:[], research:'Define the UX research method you will use to validate this initiative.' };
+    eyebrow = 'Design initiative · Your tree';
+  } else {
+    const n = canvasData.metrics[idx];
+    const hasNum = n.value || n.target;
+    node = { label:n.label.replace('\n',' '), tags:n.tags||[], desc:n.desc||'', research:'Define the data source and measurement cadence for this metric.', metrics: hasNum ? [{name:'Current',value:n.value||'—',target:n.target||'—',pct:50,color:STATUS_COLORS[n.status||'warning']}] : [] };
+    eyebrow = 'UX metric · Your tree';
+  }
+  renderDetail(node, eyebrow);
+}
+
+function renderDetail(node, eyebrow) {
+  document.getElementById('detail-eyebrow').textContent = eyebrow;
+  document.getElementById('detail-title').textContent = (node.label||'').replace('\n',' ');
+
+  const tagsHtml = (node.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('pane-overview').innerHTML = `<div class="tag-row">${tagsHtml}</div><p class="detail-desc">${node.desc||'No description added.'}</p>`;
+
+  const mHtml = (node.metrics||[]).length
+    ? `<div class="metrics-grid">${node.metrics.map(m=>`<div class="metric-card"><div class="metric-name">${m.name}</div><div class="metric-value" style="color:${m.color}">${m.value}</div><div class="metric-target">Target: ${m.target}</div><div class="bar-track"><div class="bar-fill" style="width:${m.pct}%;background:${m.color}"></div></div></div>`).join('')}</div>`
+    : `<p class="detail-desc" style="color:var(--gray-400)">No sub-metrics defined for this node.</p>`;
+  document.getElementById('pane-metrics').innerHTML = mHtml;
+
+  document.getElementById('pane-research').innerHTML = `<div class="research-block"><div class="research-label">Recommended approach</div>${node.research||'No research method defined.'}</div>`;
+
+  switchTab('overview', document.querySelector('.tab-btn[data-tab="overview"]'));
+  const panel = document.getElementById('detail-panel');
+  panel.classList.add('open');
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else { const b=document.querySelector(`.tab-btn[data-tab="${name}"]`); if(b) b.classList.add('active'); }
+  const pane=document.getElementById('pane-'+name); if(pane) pane.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+renderPreset('ecommerce');
+</script>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="footer-name"><strong>James Foo Design &copy; 2026</strong> &nbsp;<span style="font-weight: 400;">|&nbsp; Product Designer &middot; Developer Experience &bull; AI-native workflow</span></span>
+        <span class="footer-role">Let all that you do be done in love. <em>1 Corinthians 16:14</em></span>
+      </div>
+      <div class="footer-center"></div>
+      <div class="footer-right">
+        <div class="footer-rlinks">
+          <a href="contact.html" class="footer-link">Get in touch</a>
+          <span class="footer-dot">&middot;</span>
+          <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <a href="#top" class="back-to-top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
