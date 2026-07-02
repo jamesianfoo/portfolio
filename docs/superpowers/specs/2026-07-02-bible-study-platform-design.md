@@ -151,7 +151,7 @@ If a mentee unsubscribes their iCal feed from their calendar app, they lose sess
 
 ### 🚩 Mentor account recovery
 If the mentor loses access to their phone number, there's no fallback to recover the account. As Admin, James would need a manual recovery path.
-**Decision needed:** Should Admin have a "reset mentor phone number" capability, or handle this via Firebase console?
+**Resolved:** Both Mentor and Admin can reset a phone number via the app.
 
 ### 🚩 Session created with wrong number of weeks
 If the mentor sets 10 weeks but the series should end at 8, there's no "shorten series" option — only cancel remaining.
