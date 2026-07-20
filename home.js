@@ -238,19 +238,73 @@
       }
     });
 
-    tl.to('.loader-name span', {
-      y: 0, duration: 0.9, ease: 'power4.out', stagger: 0.045, delay: 0.15
-    })
-    .to('.loader-tag', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.4')
+    /* ---- "Welcome", written by hand ----
+       Each letter path draws in sequence; an amber pen nib rides
+       the tip of the stroke via getPointAtLength. */
+    var strokes = gsap.utils.toArray('#loader .lw-stroke');
+    var swash = document.querySelector('#loader .lw-swash');
+    var pen = document.querySelector('#loader .lw-pen');
+
+    function prepPath(p) {
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.style.visibility = 'visible';
+      return len;
+    }
+
+    function drawTween(p, len, dur, ease) {
+      var state = { t: 0 };
+      return gsap.to(state, {
+        t: 1, duration: dur, ease: ease || 'power1.inOut',
+        onStart: function () {
+          if (pen) {
+            var pt = p.getPointAtLength(0);
+            gsap.set(pen, { attr: { cx: pt.x, cy: pt.y }, opacity: 1 });
+          }
+        },
+        onUpdate: function () {
+          p.style.strokeDashoffset = len * (1 - state.t);
+          if (pen) {
+            var pt = p.getPointAtLength(len * state.t);
+            pen.setAttribute('cx', pt.x);
+            pen.setAttribute('cy', pt.y);
+          }
+        }
+      });
+    }
+
+    tl.add(function () {}, 0.25); // beat of dark before the pen touches down
+
+    strokes.forEach(function (p, i) {
+      var len = prepPath(p);
+      // single continuous word → one long, deliberate write (~3s);
+      // multiple letter paths → quick strokes in sequence
+      var dur = strokes.length === 1
+        ? Math.max(2.4, Math.min(3.2, len / 550))
+        : Math.max(0.24, Math.min(0.6, len / 320));
+      tl.add(drawTween(p, len, dur, strokes.length === 1 ? 'power1.inOut' : undefined), i === 0 ? 0.3 : '-=0.03');
+    });
+
+    if (swash) {
+      var swLen = prepPath(swash);
+      tl.add(drawTween(swash, swLen, 0.5, 'power2.out'), '+=0.1');
+    }
+
+    if (pen) {
+      tl.to(pen, { scale: 2.2, opacity: 0, transformOrigin: '50% 50%', duration: 0.35, ease: 'power2.out' });
+    }
+
+    tl.to('.loader-tag', { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.6')
     .to(counter, {
-      v: 100, duration: 1.15, ease: 'power2.inOut',
+      v: 100, duration: 2.2, ease: 'power2.inOut',
       onUpdate: function () {
         if (count) count.textContent = String(Math.round(counter.v)).padStart(2, '0');
       }
-    }, 0.2)
-    .to('.loader-name span', {
-      y: '-110%', duration: 0.7, ease: 'power3.in', stagger: 0.03
-    }, '+=0.15')
+    }, 0.3)
+    .to('.loader-word', {
+      yPercent: -130, opacity: 0, duration: 0.7, ease: 'power3.in'
+    }, '+=0.25')
     .to('.loader-tag, .loader-count', { opacity: 0, duration: 0.3 }, '<')
     .to(loader, {
       yPercent: -100, duration: 0.85, ease: 'power4.inOut'

@@ -36,21 +36,35 @@ body.home::after {
 
 .js .loader { display: flex; }
 
-.loader-name {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2.1rem, 7vw, 4.6rem);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  overflow: hidden;
+.loader-word {
+  display: block;
+  width: clamp(230px, 42vw, 430px);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
 }
 
-.loader-name span {
-  display: inline-block;
-  transform: translateY(110%);
+.lw-stroke {
+  stroke: var(--night-text);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.loader-name .it { font-style: italic; color: var(--signal); }
+.lw-swash {
+  stroke: var(--signal);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.lw-pen {
+  fill: var(--signal);
+  opacity: 0; /* revealed by JS when the pen touches down */
+}
+
+/* no-JS / no-GSAP: the word simply shows, fully written */
+.js .loader .lw-stroke,
+.js .loader .lw-swash { visibility: hidden; }
 
 .loader-tag {
   font-family: var(--font-mono);
