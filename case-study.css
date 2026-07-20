@@ -377,6 +377,340 @@
   line-height: 1.5;
 }
 
+/* Code panel — API structures, architecture snippets */
+.cs-code {
+  margin: 2rem 0;
+  padding: 1.75rem 2rem;
+  background: var(--night);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.cs-code pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  color: var(--night-text-2);
+  white-space: pre;
+}
+
+.cs-code .cs-code-hl { color: var(--night-text); }
+.cs-code .cs-code-accent { color: var(--signal); }
+
+/* Timeline strip */
+.cs-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 1.5rem;
+  border-left: 2px solid var(--line);
+}
+
+.cs-timeline-item {
+  position: relative;
+  padding: 0 0 1.75rem 1.75rem;
+}
+
+.cs-timeline-item:last-child { padding-bottom: 0; }
+
+.cs-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+}
+
+.cs-timeline-item.is-highlight::before { background: var(--signal); border-color: var(--signal); }
+
+.cs-timeline-range {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  margin-bottom: 0.3rem;
+}
+
+.cs-timeline-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.cs-timeline-desc {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* Link buttons row */
+.cs-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.cs-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--ink);
+  border-radius: 100px;
+  color: var(--ink);
+  transition: background var(--transition), color var(--transition);
+}
+
+.cs-link-btn:hover { background: var(--ink); color: var(--paper); }
+
+.cs-link-btn--soon {
+  border-color: var(--line);
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.cs-link-btn--soon:hover { background: none; color: var(--ink-3); }
+
+/* Checkmark list — achievements */
+.cs-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.cs-check-list li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.cs-check-list li::before {
+  content: '✓';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--signal);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1em;
+}
+
+/* ============================================================
+   RELATED CARDS v3 — miniature homepage work cards
+   (night tile + accent glow + project motif + index + tag pill)
+   ============================================================ */
+.cs-related-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.cs-related-card:hover {
+  border-color: var(--card-accent, var(--signal));
+  box-shadow: 0 22px 54px rgba(18, 17, 16, 0.16);
+}
+
+.cs-related-visual {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 80% at 65% 30%, color-mix(in srgb, var(--card-accent, #E8930C) 16%, transparent), transparent 65%),
+    var(--night);
+  min-height: 220px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-related-visual--sous {
+  background:
+    radial-gradient(ellipse 90% 80% at 70% 25%, rgba(236, 231, 216, 0.12), transparent 65%),
+    #0C301D;
+}
+
+.cs-related-index {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--night-text-2);
+}
+
+.cs-related-tagpill {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--night-text-2);
+  border: 1px solid rgba(244, 241, 232, 0.16);
+  border-radius: 100px;
+  padding: 4px 10px;
+  max-width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-related-motif {
+  width: min(62%, 200px);
+  height: auto;
+  color: var(--card-accent, var(--signal));
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-related-card:hover .cs-related-motif {
+  transform: scale(1.07) rotate(-2deg);
+}
+
+.cs-related-souslogo {
+  width: min(62%, 190px);
+  aspect-ratio: 542 / 214;
+  background: #ECE7D8;
+  -webkit-mask: url('images/souspantry-logo.png') center / contain no-repeat;
+  mask: url('images/souspantry-logo.png') center / contain no-repeat;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-related-card:hover .cs-related-souslogo { transform: scale(1.06); }
+
+.cs-related-info { padding: 1.25rem 1.35rem 1.4rem; }
+
+.cs-related-tag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--signal));
+  margin-bottom: 0.55rem;
+  display: block;
+}
+
+.cs-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.cs-related-link i {
+  font-style: normal;
+  color: var(--card-accent, var(--signal));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-related-card:hover .cs-related-link { color: var(--color-text); }
+.cs-related-card:hover .cs-related-link i { transform: translateX(5px); }
+
+/* ============================================================
+   HIGHLIGHT NOTE — e.g. "Brightly is now Siemens"
+   ============================================================ */
+.cs-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 1.75rem 0 0;
+  padding: 1.1rem 1.35rem;
+  background: color-mix(in srgb, var(--signal) 9%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--signal) 45%, transparent);
+  border-left: 3px solid var(--signal);
+  border-radius: 12px;
+}
+
+.cs-note-icon { flex-shrink: 0; color: var(--signal); margin-top: 2px; }
+
+.cs-note-text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+.cs-note-text a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+
+.cs-note-text a:hover { color: var(--signal); }
+
+/* ============================================================
+   IMPACT STATS v2 — night cards, accent-lit, animated
+   ============================================================ */
+.cs-stat {
+  position: relative;
+  background: var(--night);
+  border: none;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem 1.6rem;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+
+.cs-stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cs-accent, var(--signal));
+  transform: scaleY(var(--bar-scale, 1));
+  transform-origin: top;
+}
+
+.cs-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(18, 17, 16, 0.22);
+}
+
+.cs-stat-value {
+  font-family: var(--font-mono);
+  font-size: clamp(1.15rem, 1.9vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--cs-accent, var(--signal));
+  margin-bottom: 0.6rem;
+}
+
+.cs-stat-label {
+  font-size: 0.8125rem;
+  color: var(--night-text-2);
+  line-height: 1.55;
+}
+
 /* Back link */
 .cs-back {
   display: inline-flex;

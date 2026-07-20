@@ -13,763 +13,23 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study: Building a full-stack AI mobile app solo — and discovering where AI-native tooling breaks down for non-engineers. An AI product design & DevEx audit by James Foo.">
-  <title>Sous Pantry — AI App Case Study | AI-Native Product Design | James Foo</title>
+  <meta name="description" content="Case study: Shipping Sous Pantry solo across iOS and Android — an AI-native meal planning app built with light spec-driven development and Claude Code. By James Foo, Lead Product Designer.">
+  <title>Sous Pantry — AI-Native Meal Planning App | Solo iOS + Android Build | James Foo</title>
+  <link rel="stylesheet" href="styles.css?v=jf30">
+  <link rel="stylesheet" href="case-study.css?v=jf30">
+  <link rel="stylesheet" href="sous.css?v=jf30">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-
-    /* ── RESET ─────────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── TOKENS ────────────────────────────────────────────────────────── */
-    :root {
-      --ink:        #0D1117;
-      --ink-2:      #3D4451;
-      --ink-3:      #6B7280;
-      --rule:       #E5E7EB;
-      --bg:         #FAFAF8;
-      --bg-warm:    #F4F1EB;
-      --accent:     #C85A2A;
-      --accent-lt:  #F5EDE8;
-      --teal:       #1A6B5C;
-      --teal-lt:    #E6F2EF;
-      --serif:      'DM Serif Display', Georgia, serif;
-      --sans:       'DM Sans', system-ui, sans-serif;
-      --mono:       'DM Mono', monospace;
-      --transition: 0.25s ease;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ── PORTFOLIO NAV ──────────────────────────────────────────────────── */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250, 250, 248, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .nav-logo {
-      font-family: var(--sans);
-      font-weight: 700;
-      font-size: 1.125rem;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ink-3);
-      transition: color var(--transition);
-      position: relative;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--ink);
-    }
-
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0; right: 0;
-      height: 2px;
-      background: var(--ink);
-      border-radius: 1px;
-    }
-
-    .nav-link--external {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .nav-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--ink);
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-
-    /* ── MOBILE MENU ────────────────────────────────────────────────────── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px; left: 0; right: 0; bottom: 0;
-      background: var(--bg);
-      z-index: 99;
-      flex-direction: column;
-      padding: 3rem 2rem;
-      gap: 1.5rem;
-    }
-
-    .mobile-menu.open { display: flex; }
-
-    .mobile-menu-link {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--ink-3);
-      transition: color var(--transition);
-    }
-
-    .mobile-menu-link:hover,
-    .mobile-menu-link.active {
-      color: var(--ink);
-    }
-
-    /* ── PAGE OFFSET ───────────────────────────────────────────────────── */
-    .page { padding-top: 0; }
-
-    /* ── HERO ───────────────────────────────────────────────────────────── */
-    .hero {
-      background: var(--ink);
-      color: #fff;
-      padding: 6rem 2rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,90,42,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    /* back link in hero */
-    .hero-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 2rem;
-      transition: color var(--transition);
-    }
-
-    .hero-back:hover { color: rgba(255,255,255,0.75); }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      background: rgba(200,90,42,0.12);
-      border: 1px solid rgba(200,90,42,0.25);
-      padding: 4px 12px;
-      border-radius: 2px;
-    }
-
-    .hero-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      line-height: 1.1;
-      color: #fff;
-      margin-bottom: 1.25rem;
-      max-width: 720px;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.6);
-      max-width: 600px;
-      line-height: 1.65;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 2rem;
-    }
-
-    .meta-label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 4px;
-    }
-
-    .meta-value {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.8);
-    }
-
-    /* ── CONTENT ────────────────────────────────────────────────────────── */
-    .content {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── SECTIONS ───────────────────────────────────────────────────────── */
-    .section {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .section:last-child { border-bottom: none; }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink-3);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      line-height: 1.2;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-    }
-
-    h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--ink);
-      margin: 2.5rem 0 0.75rem;
-      font-style: italic;
-    }
-
-    p { color: var(--ink-2); margin-bottom: 1.25rem; }
-    p:last-child { margin-bottom: 0; }
-
-    code {
-      font-family: var(--mono);
-      font-size: 0.875em;
-      background: var(--bg-warm);
-      border: 1px solid var(--rule);
-      padding: 1px 6px;
-      border-radius: 3px;
-      color: var(--ink);
-    }
-
-    /* ── FEATURE PILLS ──────────────────────────────────────────────────── */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 1.5rem 0 2rem;
-    }
-
-    .feature-pill {
-      background: var(--teal-lt);
-      color: var(--teal);
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 2px;
-      border: 1px solid rgba(26,107,92,0.2);
-    }
-
-    /* ── CALLOUT ────────────────────────────────────────────────────────── */
-    .callout {
-      background: var(--bg-warm);
-      border-left: 3px solid var(--accent);
-      padding: 1.5rem 1.75rem;
-      margin: 2.5rem 0;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .callout p {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--ink);
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    /* ── CHAPTER CARD ───────────────────────────────────────────────────── */
-    .chapter {
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 2rem;
-      margin: 2rem 0;
-    }
-
-    .chapter-num {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .chapter h3 {
-      font-style: normal;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin: 0 0 1rem;
-      font-family: var(--sans);
-    }
-
-    .chapter p { font-size: 0.95rem; }
-    .chapter .callout { margin: 1.5rem 0 1.5rem; }
-    .chapter .callout p { font-size: 1rem; }
-
-    /* ── FIX CARDS ──────────────────────────────────────────────────────── */
-    .fixes {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .fix {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 1.25rem 1.5rem;
-    }
-
-    .fix-num {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-lt);
-      border: 1px solid rgba(200,90,42,0.2);
-      border-radius: 2px;
-      width: 28px; height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .fix-title {
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .fix-desc {
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    /* ── STATUS GRID ────────────────────────────────────────────────────── */
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .status-card {
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 1.25rem;
-    }
-
-    .status-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink-3);
-      margin-bottom: 6px;
-    }
-
-    .status-value {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .status-dot {
-      display: inline-block;
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      margin-right: 6px;
-      vertical-align: middle;
-      position: relative;
-      top: -1px;
-    }
-
-    .dot-green { background: #22C55E; }
-    .dot-amber { background: #F59E0B; }
-
-    .chapter-img {
-      margin-top: 1.5rem;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .chapter-img img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── SCREENSHOTS ─────────────────────────────────────────────────────── */
-    .screenshots {
-      padding: 4rem 0 4rem;
-      background: var(--bg);
-      overflow: hidden;
-    }
-
-    .screenshots-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--dust);
-      max-width: 720px;
-      margin: 0 auto 0.75rem;
-      padding: 0 2rem;
-    }
-
-    .screenshots-heading {
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      font-weight: 400;
-      color: var(--ink);
-      max-width: 720px;
-      margin: 0 auto 2.5rem;
-      padding: 0 2rem;
-      line-height: 1.25;
-    }
-
-    .screenshots-scroll {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding: 0 2rem 1rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .screenshots-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .screenshot-item {
-      flex: 0 0 auto;
-      width: 260px;
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .screenshot-frame {
-      border-radius: 36px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .screenshot-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .screenshot-caption {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--dust);
-      padding: 0 0.25rem;
-    }
-
-    @media (min-width: 900px) {
-      .screenshots-scroll {
-        justify-content: center;
-        overflow-x: visible;
-        padding-bottom: 0;
-      }
-
-      .screenshot-item {
-        width: calc((min(1200px, 100vw) - 9rem) / 4);
-        max-width: 280px;
-      }
-    }
-
-    /* ── CLOSING ────────────────────────────────────────────────────────── */
-    .closing {
-      background: var(--ink);
-      color: #fff;
-      padding: 5rem 2rem;
-    }
-
-    .closing-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .closing h2 {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: #fff;
-      margin-bottom: 1.25rem;
-      line-height: 1.2;
-    }
-
-    .closing p {
-      color: rgba(255,255,255,0.6);
-      font-size: 1.05rem;
-      max-width: 580px;
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
-    }
-
-    .closing-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .closing-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--bg);
-      background: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.7rem 1.4rem;
-      border-radius: 4px;
-      border: 1px solid var(--accent);
-      transition: background var(--transition), color var(--transition);
-    }
-
-    .closing-cta:hover {
-      background: transparent;
-      color: var(--accent);
-    }
-
-    .closing-cta--ghost {
-      background: transparent;
-      color: rgba(255,255,255,0.6);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .closing-cta--ghost:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.5);
-      background: transparent;
-    }
-
-    /* ── PORTFOLIO FOOTER ───────────────────────────────────────────────── */
-    .footer {
-      padding: 1.75rem 0;
-      border-top: 1px solid var(--rule);
-      background: var(--bg);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .footer-name {
-      font-size: 0.9375rem;
-      font-weight: 400;
-      color: var(--ink);
-    }
-
-    .footer-role {
-      font-size: 0.8125rem;
-      color: var(--ink-3);
-    }
-
-    .footer-center {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ink-3);
-      transition: color var(--transition);
-    }
-
-    .footer-link:hover { color: var(--ink); }
-
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.25rem;
-    }
-
-    .footer-meta {
-      font-size: 0.8125rem;
-      color: var(--ink-3);
-    }
-
-    .back-to-top {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--ink-3);
-      transition: color var(--transition);
-    }
-
-    .back-to-top:hover { color: var(--ink); }
-
-    .footer-rlinks { display: flex; align-items: center; gap: 0.6rem; }
-    .footer-dot { font-size: 0.8125rem; color: var(--ink-3); }
-
-    /* ── SCROLL REVEAL ──────────────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding: 4rem 1.25rem 3.5rem; }
-      .content { padding: 0 1.25rem; }
-      .hero-meta { gap: 1.25rem; }
-      .chapter { padding: 1.5rem; }
-      .fix { padding: 1rem 1.25rem; }
-      .closing { padding: 4rem 1.25rem; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .footer-right { align-items: flex-start; }
-    }
-
-  </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-<body id="top">
+<body>
 
-  <!-- PORTFOLIO NAV -->
-  <header class="header">
+  <header class="header" id="top">
     <nav class="nav">
       <a href="index.html" class="nav-logo">James Foo</a>
       <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="toolkit.html" class="nav-link">My Toolkit</a>
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
           LinkedIn
@@ -782,457 +42,625 @@
     </nav>
   </header>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
     <a href="index.html" class="mobile-menu-link">Home</a>
     <a href="about.html" class="mobile-menu-link">About</a>
-    <a href="toolkit.html" class="mobile-menu-link">My Toolkit</a>
     <a href="contact.html" class="mobile-menu-link">Contact</a>
     <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 
   <main>
-  <div class="page">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <a href="index.html" class="hero-back">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <!-- ============ HERO ============ -->
+    <section class="sp-hero">
+      <!-- floating line-art ingredients -->
+      <span class="sp-float" style="top:12%; left:6%; width:44px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M18 20 L34 36 M18 20 Q14 12 20 8 M18 20 Q10 16 8 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 20 L34 36 Q38 40 34 42 Q30 44 28 40 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="sp-float" style="top:22%; right:10%; width:38px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="26" rx="13" ry="16" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      <span class="sp-float" style="bottom:24%; left:12%; width:40px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M10 38 Q8 16 38 10 Q36 40 14 36 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 34 Q22 24 32 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+      <span class="sp-float" style="bottom:14%; right:16%; width:52px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="18" width="28" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M6 22 L10 22 M38 22 L42 22 M16 18 L16 12 M32 18 L32 12 M22 12 Q24 8 26 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="sp-float" style="top:55%; right:5%; width:36px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="28" r="12" stroke="currentColor" stroke-width="2"/><path d="M24 16 Q23 10 28 8 M24 16 Q28 12 32 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="sp-float" style="top:8%; left:42%; width:34px;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 6 L24 18 M24 18 Q14 22 16 36 M24 18 Q34 22 32 36 M24 18 Q20 24 20 38 M24 18 Q28 24 28 38" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 36 Q24 44 32 36" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+
+      <div class="container sp-hero-inner">
+        <a href="index.html" class="sp-hero-back" data-hero-fade>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All work
         </a>
-        <br />
-        <div class="hero-tag">Live on App Store · Updated 2026</div>
-        <h1>Building a full-stack AI app solo — <em>and discovering where AI-native tooling breaks down for non-engineers</em></h1>
-        <p class="hero-sub">Sous Pantry is an AI-powered pantry and meal planning app. This is the story of building it with Claude Code — and what that experience revealed about where the tool breaks down for non-engineers.</p>
-        <div class="hero-meta">
-          <div class="meta-item">
-            <div class="meta-label">Platform</div>
-            <div class="meta-value">iOS · Android · Express.js</div>
+        <div class="sp-logo" role="img" aria-label="Sous Pantry logo" data-hero-fade></div>
+        <h1 class="sp-hero-title">
+          <span class="sp-line"><span class="sp-line-inner">One designer.</span></span>
+          <span class="sp-line"><span class="sp-line-inner">One AI.</span></span>
+          <span class="sp-line"><span class="sp-line-inner">One <em>full-stack app.</em></span></span>
+        </h1>
+        <p class="sp-hero-sub" data-hero-fade>Shipped Sous Pantry solo across iOS (Swift) and Android (React Native) using light spec-driven development and rapid prototyping with Claude Code — research to multi-platform production in eight months, with zero rework between prototype and shipping.</p>
+        <div class="sp-chips" data-hero-fade>
+          <span class="sp-chip sp-chip--live">Live on the App Store</span>
+          <span class="sp-chip">iOS + Android</span>
+          <span class="sp-chip">Built with Claude Code</span>
+          <span class="sp-chip">Solo, end to end</span>
+        </div>
+        <div class="sp-hero-cta" data-hero-fade>
+          <a href="https://apps.apple.com/us/app/sous-pantry-grocery-tracker/id6761744392" class="btn btn--light-solid" target="_blank" rel="noopener" data-magnetic><span>Get it on the App Store</span><span aria-hidden="true">↗</span></a>
+          <button type="button" class="btn btn--light" data-gate data-magnetic><span>View the code</span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7 V5 a2.5 2.5 0 0 1 5 0 V7" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="sp-scroll-cue" aria-hidden="true">
+        Scroll
+        <span class="sp-scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- ============ RECIPE CARD ============ -->
+    <section class="sp-recipe">
+      <div class="container">
+        <div class="sp-recipe-grid">
+          <div class="sp-recipe-cell" data-reveal>
+            <p class="sp-recipe-label">Serves</p>
+            <p class="sp-recipe-value">2 platforms</p>
+            <p class="sp-recipe-note">iOS (Swift) + Android (React Native), one shared backend</p>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">Build tool</div>
-            <div class="meta-value">Claude Code</div>
+          <div class="sp-recipe-cell" data-reveal data-reveal-delay="70">
+            <p class="sp-recipe-label">Prep time</p>
+            <p class="sp-recipe-value">4 months</p>
+            <p class="sp-recipe-note">Research, ideation, competitor analysis &amp; learning the tools</p>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">Role</div>
-            <div class="meta-value">Solo designer &amp; builder</div>
+          <div class="sp-recipe-cell" data-reveal data-reveal-delay="140">
+            <p class="sp-recipe-label">Cook time</p>
+            <p class="sp-recipe-value">6 weeks</p>
+            <p class="sp-recipe-note">Focused iOS implementation + 2 weeks QA, launched June 2025</p>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">Timeline</div>
-            <div class="meta-value">December 2025 – Present</div>
+          <div class="sp-recipe-cell" data-reveal data-reveal-delay="210">
+            <p class="sp-recipe-label">Ready in</p>
+            <p class="sp-recipe-value">8 months</p>
+            <p class="sp-recipe-note">Concept to multi-platform — Android shipping July 2025</p>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- THE PROBLEM -->
-    <section class="section">
-      <div class="content">
-        <div class="reveal">
-          <div class="section-label">Why This Exists</div>
-          <h2>The problem I lived every week</h2>
-          <p>I'd open the fridge after a long day and have no idea what was actually in there. Not roughly — truly no idea. Things buried at the back. Duplicates I'd bought because I forgot I already had them. Ingredients quietly expiring while I ordered takeaway instead.</p>
-          <p>And when I did try to cook, standing in front of a full pantry felt worse than an empty one. Too many options, no clear path. I'd scan the shelves looking for something that clicked, trying to mentally map what went with what — after a day that had already used up every bit of cognitive bandwidth I had.</p>
-          <p>The mental load of meal planning isn't the cooking. It's the inventory problem nobody has solved well. What do I have? What can I make with it? What am I missing? Three questions that should take seconds. Instead they take twenty minutes of staring, Googling, and second-guessing — or they don't happen at all and you over-buy at the weekend shop again.</p>
-          <p>Sous Pantry is my attempt to solve that. Not with a recipe app, not with a shopping list — with a kitchen that actually knows what's in it.</p>
-        </div>
+    <!-- ============ MARQUEE ============ -->
+    <div class="sp-marquee" aria-hidden="true">
+      <div class="sp-marquee-track">
+        <span class="sp-marquee-seg">Scan the pantry <i>✺</i> Ask the AI <i>✺</i> Cook the meal <i>✺</i> Skip the waste <i>✺</i> </span><span class="sp-marquee-seg">Scan the pantry <i>✺</i> Ask the AI <i>✺</i> Cook the meal <i>✺</i> Skip the waste <i>✺</i> </span><span class="sp-marquee-seg">Scan the pantry <i>✺</i> Ask the AI <i>✺</i> Cook the meal <i>✺</i> Skip the waste <i>✺</i> </span>
       </div>
-    </section>
-
-    <!-- THE PRODUCT -->
-    <section class="section">
-      <div class="content">
-        <div class="reveal">
-          <div class="section-label">The Product</div>
-          <h2>Sous Pantry</h2>
-          <p>Sous Pantry helps households reduce food waste and take the friction out of meal planning. A handful of core workflows drive the experience:</p>
-          <div class="features">
-            <span class="feature-pill">Up-to-date pantry list so you always know what you have</span>
-            <span class="feature-pill">Recipe suggestions based on current pantry inventory and preferences</span>
-            <span class="feature-pill">Assisted restocking of your shopping list based on pantry gaps and suggested items</span>
-            <span class="feature-pill">Supermarket receipt import</span>
-          </div>
-          <p>The design challenge was building a genuinely useful product solo — no engineering co-founder, no agency — using AI as my primary collaborator. What I didn't expect was that the most valuable design work would happen not <em>inside</em> the product, but in observing the tool I was building it with.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- DESIGN DECISIONS -->
-    <section class="section">
-      <div class="content">
-        <div class="reveal">
-
-<style>
-  .sp-wrap { padding: 4px 0 24px; font-family: inherit; }
-  .sp-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 20px; }
-  .sp-insight { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
-  .sp-insight-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #8A9BB0; margin-bottom: 8px; }
-  .sp-insight-text { font-size: 15px; font-weight: 500; color: #E0E8F0; line-height: 1.5; }
-  .sp-insight-sub { font-size: 12px; color: #A0B0C0; line-height: 1.6; margin-top: 8px; }
-  .sp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .sp-card { background: #1C2333; border: 0.5px solid #2A3A4A; border-radius: 12px; padding: 16px; }
-  .sp-persona-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .sp-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
-  .av-green { background: #1A3B2A; color: #4ADE80; }
-  .av-amber { background: #3B2E0F; color: #FBBF24; }
-  .av-blue  { background: #1A2D40; color: #60A5FA; }
-  .sp-persona-name { font-size: 12px; font-weight: 500; color: #E0E8F0; margin: 0; }
-  .sp-persona-sub  { font-size: 10px; color: #8A9BB0; margin: 0; }
-  .sp-divider { border: none; border-top: 0.5px solid #2A3A4A; margin: 8px 0; }
-  .sp-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-bottom: 8px; }
-  .tag-organised { background: #1A3B2A; color: #4ADE80; }
-  .tag-winging   { background: #3B2E0F; color: #FBBF24; }
-  .tag-me        { background: #1A2D40; color: #60A5FA; }
-  .sp-behaviour { font-size: 11px; color: #A0B0C0; line-height: 1.5; }
-  .sp-implication { font-size: 11px; color: #E0E8F0; line-height: 1.5; margin-top: 6px; font-style: italic; }
-  .sp-decision { background: #222D3F; border-radius: 12px; padding: 16px 20px; }
-  .sp-decision-title { font-size: 12px; font-weight: 500; color: #E0E8F0; margin-bottom: 8px; }
-  .sp-decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .sp-decision-item { font-size: 11px; color: #A0B0C0; line-height: 1.5; }
-  .sp-decision-item strong { color: #E0E8F0; font-weight: 500; display: block; margin-bottom: 2px; }
-  @media (max-width: 720px) {
-    .sp-grid { grid-template-columns: 1fr; }
-    .sp-decision-grid { grid-template-columns: 1fr; }
-  }
-</style>
-
-<div class="sp-wrap">
-  <p class="sp-label">Key design decisions — informed by research</p>
-
-  <div class="sp-insight">
-    <div class="sp-insight-label">The Mum Test — what research revealed</div>
-    <div class="sp-insight-text">"Pantry chaos isn't a personality flaw. It's a universal household condition."</div>
-    <div class="sp-insight-sub">Interviewed working mums and dads about how they manage their pantry, shop, and decide what to cook. The finding wasn't what I expected — organisation wasn't a personality trait, it was a function of time and cognitive load. Almost no one truly knew what they had. The rare organised household was the exception, not the norm. My own experience — somewhere between the two extremes — turned out to be the exact middle of the spectrum Sous Pantry needed to design for.</div>
-  </div>
-
-  <div class="sp-grid">
-
-    <div class="sp-card">
-      <div class="sp-persona-header">
-        <div class="sp-avatar av-green">M</div>
-        <div>
-          <p class="sp-persona-name">The organised mum</p>
-          <p class="sp-persona-sub">Rare<br/>~10% of households</p>
-        </div>
-      </div>
-      <span class="sp-tag tag-organised">Organised</span>
-      <hr class="sp-divider">
-      <div class="sp-behaviour">Shops with a list. Knows roughly what's in the pantry. Restocks deliberately. Meal plans weekly — or at least attempts to.</div>
-      <div class="sp-implication">→ Sous Pantry still reduces effort but isn't solving a crisis. Not the primary user.</div>
     </div>
 
-    <div class="sp-card">
-      <div class="sp-persona-header">
-        <div class="sp-avatar av-amber">D</div>
-        <div>
-          <p class="sp-persona-name">The winging dad</p>
-          <p class="sp-persona-sub">Common<br/>majority of households</p>
-        </div>
-      </div>
-      <span class="sp-tag tag-winging">Winging it</span>
-      <hr class="sp-divider">
-      <div class="sp-behaviour">No list. Doesn't know what's in the pantry. Shops by memory and mood. Over-buys duplicates. Decides what to cook by staring at shelves.</div>
-      <div class="sp-implication">→ The highest-friction user. Every Sous Pantry feature exists to solve this scenario.</div>
-    </div>
-
-    <div class="sp-card">
-      <div class="sp-persona-header">
-        <div class="sp-avatar av-blue">Me</div>
-        <div>
-          <p class="sp-persona-name">The in-between</p>
-          <p class="sp-persona-sub">The design target<br/>most households</p>
-        </div>
-      </div>
-      <span class="sp-tag tag-me">Primary persona</span>
-      <hr class="sp-divider">
-      <div class="sp-behaviour">Tries to stay on top of it. Sometimes succeeds. Knows roughly what's there but not precisely. Buys duplicates occasionally. Cooks well when organised, orders takeaway when not.</div>
-      <div class="sp-implication">→ This is who Sous Pantry is designed for. Capable, just under-supported by their tools.</div>
-    </div>
-
-  </div>
-
-  <div class="sp-decision">
-    <div class="sp-decision-title">What this changed in the design</div>
-    <div class="sp-decision-grid">
-      <div class="sp-decision-item">
-        <strong>Onboarding via photo scan — not manual entry</strong>
-        Research confirmed nobody would manually enter a full pantry inventory. The entry point had to be frictionless — point, scan, done. Manual entry exists but it's not the designed default.
-      </div>
-      <div class="sp-decision-item">
-        <strong>AI suggestions matched to what you actually have</strong>
-        "What can I make tonight?" is the real question. Not "show me recipes." Matching suggestions to live inventory — not a generic recipe library — became the core AI workflow.
-      </div>
-      <div class="sp-decision-item">
-        <strong>Shopping list generated from gaps, not wishes</strong>
-        Most shopping apps are wishlists. Research showed the real need was restocking gaps — things you've run out of or are running low on. The list builds itself from pantry state, not from manual additions.
-      </div>
-      <div class="sp-decision-item">
-        <strong>Designed for the middle — not the extremes</strong>
-        The organised mum doesn't need Sous Pantry. The completely chaotic household won't change habits. The "in-between" — capable but under-supported — is the person who'll actually use and benefit from this.
-      </div>
-    </div>
-  </div>
-
-</div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- APP SCREENSHOTS -->
-    <section class="screenshots reveal">
-      <p class="screenshots-label">The App</p>
-      <h2 class="screenshots-heading">Pantry to Meal to Shopping. <br />One cohesive experience.</h2>
-      <div class="screenshots-scroll">
-        <div class="screenshot-item">
-          <div class="screenshot-frame">
-            <img src="images/souspantry-app-home.jpg" alt="Sous Pantry — Home dashboard with cooking streak and weekly savings" loading="lazy">
+    <!-- ============ PROBLEM ============ -->
+    <section class="sp-section">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>The problem</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Meal planning apps solve <em>the wrong friction.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Most meal planning apps either require tedious manual data entry, suggest meals with ingredients you don't have, or don't connect to your actual shopping workflow. Users want to reduce food waste and simplify meal decisions — but existing solutions create <strong>more</strong> friction, not less.</p>
+        <div class="cs-problem-grid" style="margin-top:2.25rem;">
+          <div class="cs-problem-card" data-reveal>
+            <p class="cs-problem-title">Manual entry, high abandonment</p>
+            <p class="cs-problem-desc">Tracking a pantry by hand is tedious enough that most people give up within a week.</p>
           </div>
-          <p class="screenshot-caption">Home</p>
-        </div>
-        <div class="screenshot-item">
-          <div class="screenshot-frame">
-            <img src="images/souspantry-app-reminders.jpg" alt="Sous Pantry — Reminders showing expiring pantry items" loading="lazy">
+          <div class="cs-problem-card" data-reveal data-reveal-delay="80">
+            <p class="cs-problem-title">Suggestions that ignore reality</p>
+            <p class="cs-problem-desc">Meal ideas built from a generic recipe database, not what's actually in your kitchen.</p>
           </div>
-          <p class="screenshot-caption">Reminders</p>
-        </div>
-        <div class="screenshot-item">
-          <div class="screenshot-frame">
-            <img src="images/souspantry-app-pantry.jpg" alt="Sous Pantry — My Pantry screen with categorised inventory list" loading="lazy">
-          </div>
-          <p class="screenshot-caption">Your Pantry</p>
-        </div>
-        <div class="screenshot-item">
-          <div class="screenshot-frame">
-            <img src="images/souspantry-app-plancook.jpg" alt="Sous Pantry — Plan &amp; Cook AI chat suggesting recipes from your pantry" loading="lazy">
-          </div>
-          <p class="screenshot-caption">Plan &amp; Cook</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE PARALLEL STORY -->
-    <section class="section">
-      <div class="content">
-        <div class="reveal">
-          <div class="section-label">The Parallel Story</div>
-          <h2>Auditing Claude Code as a designer</h2>
-          <p>This case study is about two things: the app I was building, and the experience of building it. Every friction point I hit became a design observation. Every workaround I invented pointed to something missing.</p>
-          <p>What follows is an honest field report from a designer who spent months inside Claude Code — not as a developer, but as someone who thinks in systems, flows, and user journeys.</p>
-        </div>
-
-        <!-- CH 1 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 01</div>
-          <h3>I didn't know where to start — and nothing told me</h3>
-          <p>My first session with Claude felt like every other AI chat interface. I genuinely didn't understand what Claude Code <em>was</em>, or how it differed from Claude Chat, or what Claude Cowork was for. Three products, one brand, almost no explanation of how they relate.</p>
-          <p>I ended up doing what no product should require: I enrolled in external courses. Online classes on vibe-coding for designers. YouTube tutorials on Cursor terminal workflows. A separate course on iOS app building with Xcode and Claude Code. Three third-party learning experiences just to understand what Anthropic's own product did.</p>
-          <p>That's not a user problem. That's an onboarding gap.</p>
-          <div class="callout">
-            <p>"I had to take online classes to understand what Claude Code was. That's not a user problem — that's a missing first-run experience."</p>
-          </div>
-          <p>For any AI tooling product, the first-session experience is the product. If a capable user needs three external courses to understand what they're using, the onboarding isn't incomplete — it's absent. This is the highest-leverage design problem in the AI tools category right now.</p>
-        </div>
-
-        <!-- CH 2 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 02</div>
-          <h3>Three platforms, one project, and a loop I couldn't escape</h3>
-          <p>My working setup: Claude Code in Cursor's terminal, Xcode for building and running the iOS app, and Claude Chat open in a browser tab for when things broke. Three windows. Three contexts. One feature.</p>
-          <p>For a while it was manageable. Then I hit the Plan &amp; Cook tab — where meal suggestions needed to match against live pantry inventory. Claude Code started looping. Builds succeeded. Outcomes didn't reflect the code. Working features got silently overwritten.</p>
-          <p>I ended up creating a <code>.cursorrules</code> file just to protect code that was already working — a config file acting as a guard rail against the tool I was relying on to build with. That felt backwards. Eventually the Cursor terminal degraded badly enough that I had to reset it entirely.</p>
-          <div class="callout">
-            <p>"I created a rules file to protect working code from the tool I was using to write it. That's a workaround. It should be a designed behaviour."</p>
-          </div>
-          <p>The multi-surface problem isn't unique to Claude Code. Any AI-assisted development workflow that spans more than one tool creates integration debt that the user has to carry. Designing for session continuity — keeping context alive across surfaces — is the next frontier for AI developer tools.</p>
-          <div class="chapter-img">
-            <img src="images/Story2.png" alt="Claude Code in Cursor terminal showing .cursorrules file and freezing issues" loading="lazy">
-          </div>
-        </div>
-
-        <!-- CH 3 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 03</div>
-          <h3>Three models, no map</h3>
-          <p>Somewhere mid-build I discovered there wasn't just one Claude — there were three. Haiku, Sonnet, Opus. Each apparently different, each with almost no explanation of what that difference meant in practice for a designer trying to ship a product.</p>
-          <p>I experimented with all three against real Sous Pantry build tasks. The differences weren't obvious enough to guide my decisions confidently. There was no moment where I thought <em>"this is clearly an Opus problem"</em> or <em>"Haiku is right for this."</em></p>
-          <p>The auto-sync receipt feature showed this most clearly. Claude Code in Cursor built it confidently and completely. The build succeeded. It just didn't work in the real world — and the tool didn't tell me why. It built what I asked for without flagging what it <em>couldn't</em> do, or what constraints existed outside the sandbox.</p>
-          <div class="callout">
-            <p>"Cursor's Claude Code built the feature confidently. It just didn't work. Claude Code in the Claude app told me why — and that's the more valuable thing."</p>
-          </div>
-          <p>Model selection is becoming a core UX problem across the entire AI tools category. As capabilities diverge between models, the design challenge shifts from "how do we explain the difference" to "how do we make the right model invisible — automatically chosen based on what the user is trying to do."</p>
-        </div>
-
-        <!-- CH 4 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 04</div>
-          <h3>The moment everything clicked — accidentally</h3>
-          <p>Frustrated, I typed a question directly to the model inside Cursor: <em>"Which one are you — Chat or Code?"</em></p>
-          <p>It responded: <strong>Code.</strong></p>
-          <p>That single exchange unlocked something. I'd been managing platforms, not building a product. On a hunch, I opened the Claude app directly and found Claude Code. It asked me which folder to connect to — I didn't understand why at first, but I picked one. Then I asked whether it had access to my working files.</p>
-          <p>It did. No more Cursor. Less Xcode context-switching. One surface, direct file access, a tool that reasoned with me instead of just executing for me.</p>
-          <p>The workflow I'd been trying to build across three platforms had been sitting in the Claude app the whole time. I had no way to discover it.</p>
-          <div class="callout">
-            <p>"I asked the AI which one it was. That one question collapsed three months of platform confusion into one clear answer. That moment should have happened in minute one — not month three."</p>
-          </div>
-          <p>Discovery by accident is a design failure. The most powerful capability in a tool should be the most discoverable one — not something a user stumbles into after months of frustration. Progressive disclosure, not hidden depth, is the pattern AI tooling products need to adopt.</p>
-        </div>
-
-        <!-- CH 5 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 05</div>
-          <h3>No fuel gauge — working blind on borrowed time</h3>
-          <p>Every serious build session carried an invisible timer. Claude Code's usage limits reset on a rolling window, but there was no ambient signal — no progress bar, no "you've used 70% of your session" — nothing that let me plan my work around the constraint.</p>
-          <p>To check where I stood, I had to leave the build environment entirely, open the Claude Console in a separate browser tab, and manually check my usage. Half the time it hadn't updated yet. I'd go back to building, hit a wall mid-task, and only then discover the session had run out.</p>
-          <p>For a designer building complex features across iOS and Android simultaneously, this isn't just inconvenient — it breaks flow at the worst possible moment. You can't plan a build sprint around a limit you can't see.</p>
-          <div class="callout">
-            <p>"I had to leave my build, open a separate console page, and hope the number had updated. There's no designed feedback loop for something that directly controls how much you can work."</p>
-          </div>
-          <p>Usage limits are a business reality for AI products. But an invisible constraint is a broken experience. Every AI tool with a usage model needs a designed feedback loop — one that helps users plan their work around the constraint rather than discover it mid-task.</p>
-        </div>
-
-        <!-- CH 6 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 06</div>
-          <h3>Fixing errors across four tools — a workflow I built by accident</h3>
-          <p>When something broke in Claude Code inside Cursor, there was no designed path to resolution. The error existed in one place. The fix required four.</p>
-          <p>My accidental workflow: read the error in Cursor, manually copy it into a bash command in Terminal to inspect the exact line, switch to Claude Chat in a browser tab to get a plain-language explanation of what went wrong, then jump to Xcode to test whether the fix actually held.</p>
-          <p>Cursor → Terminal → Claude Chat → Xcode. Four context switches for one error. None of these tools knew about each other. None of them shared state. I was the integration layer, manually carrying information between surfaces that should have been connected.</p>
-          <p>The irony: I was using Claude Chat — a completely separate product — to debug work I was doing in Claude Code. The answer was always in the same model. The experience forced me to bounce between products to access it.</p>
-          <div class="callout">
-            <p>"I was the integration layer between four tools that didn't talk to each other. That's not a workflow — that's a workaround wearing a workflow's clothes."</p>
-          </div>
-          <p>The error-resolution workflow is where AI tooling products lose their most motivated users. When the fix to a problem requires four context switches, the tool has failed — not the user. AI-native development tools need to own the full error lifecycle — from detection to explanation to resolution — without exporting that burden to the user.</p>
-        </div>
-
-        <!-- CH 7 -->
-        <div class="chapter reveal">
-          <div class="chapter-num">Chapter 07</div>
-          <h3>The non-developer path doesn't exist — so the market built one</h3>
-          <p>When I started, I had something most beginners don't: a design background, some understanding of codebases, and access to ADPList's AI Designer School — one of the few communities specifically teaching designers how to use tools like Claude Code. Without that, I genuinely don't know where I would have started.</p>
-          <p>That's the gap. There is no designed pathway inside Claude Code for someone who wants to build but doesn't think in terminals. No guided mode. No "start here if you're not an engineer." Nothing that says: here's what's possible for you, here's where to begin, here's what each tool is for.</p>
-          <p>The market has noticed. Replit, Lovable, Framer, Bolt — these platforms exist precisely because this gap is real. They've built the on-ramp that Claude Code hasn't. I tried Replit to test this firsthand. The experience was more approachable — until the paywalls arrived. Every meaningful action required an upgrade. The accessibility was a funnel, not a philosophy.</p>
-          <p>Claude Code is more powerful than any of them. But power without a designed entry point for non-engineers means the audience self-selects to people who already know how to start. That's a significant segment left behind.</p>
-          <div class="callout">
-            <p>"Replit, Lovable, Framer exist because Claude Code hasn't designed for the person who wants to build but doesn't speak terminal. That's not a criticism — it's the next design brief."</p>
-          </div>
-          <p>Every AI coding tool faces the same strategic question: who is this for? The answer shapes everything — onboarding, interaction model, error language, session design. Tools that default to developers will keep developers. Tools that design for the builder who doesn't speak terminal will define the next wave of AI-native creation.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- THE DESIGN AUDIT -->
-    <section class="section">
-      <div class="content reveal">
-        <div class="section-label">The Design Audit</div>
-        <h2>What I'd fix</h2>
-        <p>These aren't feature requests. They're designed experiences that don't exist yet — gaps I identified from the inside, as a user who lived through them.</p>
-
-        <div class="fixes">
-          <div class="fix">
-            <div class="fix-num">01</div>
-            <div class="fix-body">
-              <div class="fix-title">A first-run experience that explains the ecosystem</div>
-              <p class="fix-desc">Claude Chat, Claude Code, Claude Cowork — three tools, one brand, almost no designed explanation of how they relate. A two-minute interactive setup — "What are you trying to build? Here's which tool fits." — would have saved weeks of confusion and three external courses.</p>
-            </div>
-          </div>
-          <div class="fix">
-            <div class="fix-num">02</div>
-            <div class="fix-body">
-              <div class="fix-title">A visible signal for file access</div>
-              <p class="fix-desc">When Claude Code connected to my project folder it was transformative — but I discovered it by accident. A simple onboarding moment showing what Claude Code can now see would make this the first thing new users experience, not a hidden capability they stumble into.</p>
-            </div>
-          </div>
-          <div class="fix">
-            <div class="fix-num">03</div>
-            <div class="fix-body">
-              <div class="fix-title">Protected code / working state awareness</div>
-              <p class="fix-desc">Claude Code overwrote working features repeatedly because it had no concept of "this is good, don't touch it." A designed behaviour — flagging before modifying a previously-passing component — would eliminate the most frustrating part of my entire build experience.</p>
-            </div>
-          </div>
-          <div class="fix">
-            <div class="fix-num">04</div>
-            <div class="fix-body">
-              <div class="fix-title">A model selection guide that actually helps</div>
-              <p class="fix-desc">Haiku, Sonnet, Opus — three models with no designed explanation of when to use which. Even a single decision-tree tooltip with a concrete example per model would eliminate the confusion entirely. Right now users have to experiment their way to an answer Anthropic already knows.</p>
-            </div>
-          </div>
-          <div class="fix">
-            <div class="fix-num">05</div>
-            <div class="fix-body">
-              <div class="fix-title">Platform onboarding, not just tool onboarding</div>
-              <p class="fix-desc">The confusion wasn't just about how to use Claude Code — it was about which Claude to use. Onboarding that maps the ecosystem, even a single diagram, would reduce the activation energy for the exact users Anthropic needs to reach next: designers, PMs, and technical non-engineers who want to build.</p>
-            </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="160">
+            <p class="cs-problem-title">Disconnected from shopping</p>
+            <p class="cs-problem-desc">Meal planning and grocery shopping live in separate apps, so nothing carries over.</p>
           </div>
         </div>
       </div>
     </section>
 
-    
-  <!-- CLOSING -->
-  <section class="closing">
-    <div class="closing-inner">
-      <h2>The model is remarkable.<br>The experience around it is where the next design work lives.</h2>
-      <p>A solo designer can ship a full-stack AI product in 2026. The tools exist. The capability is genuinely world-class.</p>
-      <p>But the onboarding, the platform clarity, the day-one experience for non-engineers — that gap is real. I lived it. And it's exactly the problem I know how to solve.</p>
-      <p>Sous Pantry is live on the <a href="https://apps.apple.com/us/app/sous-pantry-grocery-tracker/id6761744392" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">iOS App Store</a>. Next: Android, growing the user base, and iterating on features informed by real usage.</p>
-      <div class="closing-links">
-        <a href="contact.html" class="closing-cta">Get in touch</a>
-        <a href="index.html" class="closing-cta closing-cta--ghost">← Back to all work</a>
+    <!-- ============ RESEARCH ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Research &amp; discovery — Dec 2024 to April 2025</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Four months before <em>a line of production code.</em></h2>
+        <div class="cs-two-col" style="margin-top:2rem;">
+          <div data-reveal>
+            <p class="cs-body" style="margin-bottom:1rem;"><strong>User research.</strong> Interviewed potential users on their actual pain points:</p>
+            <ul class="cs-list">
+              <li>"I buy groceries then forget what I have. Things go bad." — food waste</li>
+              <li>"Deciding what to cook takes 20+ minutes daily." — meal fatigue</li>
+              <li>"I have to manually make lists or remember what I need." — shopping friction</li>
+            </ul>
+          </div>
+          <div data-reveal data-reveal-delay="100">
+            <p class="cs-body" style="margin-bottom:1rem;"><strong>Competitor analysis.</strong> Studied Yummly, BigOven, Mealie, and AnyList:</p>
+            <ul class="cs-list">
+              <li>Most require manual pantry entry — the exact friction users complained about</li>
+              <li>AI features were superficial, bolted on rather than core to the experience</li>
+              <li>None connected pantry → meals → shopping into one seamless loop</li>
+            </ul>
+          </div>
+        </div>
+        <p class="sp-body" style="margin-top:2rem;" data-reveal>The rest of discovery went into learning what this build would require: modern mobile development in Swift and React Native, LLM integration with the Anthropic API, and rapid AI-assisted prototyping workflows with Claude Code.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ============ HYPOTHESIS ============ -->
+    <section class="sp-hypothesis">
+      <div class="container">
+        <p class="sp-hypothesis-label">Core hypothesis — validated before writing a single screen</p>
+        <p class="sp-hypothesis-text" data-split>Photo-based pantry scanning + AI reasoning removes the #1 friction point — manual entry. Get this right, and the rest follows.</p>
+      </div>
+    </section>
 
+    <!-- ============ METHOD ============ -->
+    <section class="sp-section">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>The method</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Light spec-driven development,<br><em>not vibe-coding from scratch.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Rather than jumping straight into code, I ran a structured seven-phase process before implementation began — treating architecture decisions with the same rigor as UX decisions.</p>
+        <ol class="sp-method-list">
+          <li class="sp-step">
+            <p class="sp-step-name">Product clarity</p>
+            <p class="sp-step-desc">Vision, pain points, and a single success metric: plan a week of meals in under 15 minutes. Key assumption to validate — photo-based scanning removes enough friction to make the whole idea work.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Architecture-first design</p>
+            <p class="sp-step-desc">Mapped the data model (users → pantry inventory → meals → shopping lists), made Claude the core reasoning layer for inventory matching, meal suggestions and shopping automation, and settled on one backend API consumed by both iOS and Android.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Research &amp; validation</p>
+            <p class="sp-step-desc">Explored UX patterns for photo-based input, tested whether Claude should reason over a raw photo or an extracted inventory list, and de-risked the LLM integration with real API calls before committing.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Capability audit</p>
+            <p class="sp-step-desc">Identified the specialised skills the build needed: Swift for uncompromising native iOS performance, React Native for Android with shared business logic, Anthropic API prompt design, native camera APIs, and a Node.js backend.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Options &amp; recommendation</p>
+            <p class="sp-step-desc">Weighed a web-only MVP, iOS-first, and parallel iOS + Android. Chose iOS-first, then scale to Android leveraging the same backend once the core product was validated.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Executable roadmap</p>
+            <p class="sp-step-desc">Phase 1: iOS MVP — six weeks of implementation plus two weeks of QA covering pantry scanning, AI meal suggestions, shopping lists and preferences. Phase 2: Android in eight weeks, rebuilt in React Native with native patterns — not a direct port — reusing the backend and business logic.</p>
+          </li>
+          <li class="sp-step">
+            <p class="sp-step-name">Ship with quality</p>
+            <p class="sp-step-desc">Interactive prototypes in Cursor validated UX before production code. Iterated with real early testers, then used Claude Code end-to-end across design, components, API integration and testing.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-    <!-- CURRENT STATUS -->
-    <section class="section">
-      <div class="content reveal">
-        <div class="section-label">Current Status</div>
-        <h2>Where Sous Pantry is now</h2>
-        <div class="status-grid">
-          <div class="status-card">
-            <div class="status-label">iOS build</div>
-            <div class="status-value"><span class="status-dot dot-green"></span><a href="https://apps.apple.com/us/app/sous-pantry-grocery-tracker/id6761744392" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Live on App Store</a></div>
+    <!-- ============ ARCHITECTURE ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Technical architecture</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">One backend, <em>two native clients.</em></h2>
+        <div class="sp-arch-grid">
+          <div class="sp-arch-card" data-reveal>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>iOS — Swift + Xcode</h3>
+            <p>Native UI for photo capture and pantry management, a local SQLite cache for an <strong>offline-first</strong> experience, and real-time sync with the backend. Responsive across phone and tablet.</p>
           </div>
-          <div class="status-card">
-            <div class="status-label">Android</div>
-            <div class="status-value"><span class="status-dot dot-amber"></span>In progress</div>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="70">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" stroke="currentColor" stroke-width="1.5"/></svg>Android — React Native</h3>
+            <p>Shared component architecture with iOS design patterns, native modules for the camera and performance-critical paths, and the same backend API. <strong>Feature parity from day one</strong> — not a later port.</p>
           </div>
-          <div class="status-card">
-            <div class="status-label">AI workflow</div>
-            <div class="status-value"><span class="status-dot dot-green"></span>Shipped</div>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="140">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 6 V18 Q4 21 12 21 Q20 21 20 18 V6" stroke="currentColor" stroke-width="1.8"/><path d="M4 12 Q4 15 12 15 Q20 15 20 12" stroke="currentColor" stroke-width="1.5"/></svg>Data</h3>
+            <p><strong>PostgreSQL</strong>, cloud-hosted, for user data, preferences and meal history — paired with an on-device <strong>SQLite</strong> cache for offline access, syncing in real time when back online.</p>
           </div>
-          <div class="status-card">
-            <div class="status-label">Receipt sync</div>
-            <div class="status-value"><span class="status-dot dot-green"></span>Completed</div>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="210">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3 Q13 8 17 9 Q13 10 12 15 Q11 10 7 9 Q11 8 12 3 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M18.5 14 Q19 16.5 21 17 Q19 17.5 18.5 20 Q18 17.5 16 17 Q18 16.5 18.5 14 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>AI — Anthropic API</h3>
+            <p>Claude as the core reasoning engine with purpose-built prompts for inventory extraction, meal reasoning and shopping lists — plus <strong>semantic caching</strong> to control cost, since a pantry doesn't change every session.</p>
           </div>
-          <div class="status-card">
-            <div class="status-label">Market</div>
-            <div class="status-value"><span class="status-dot dot-green"></span>Global</div>
+        </div>
+        <div class="sp-code" aria-label="Backend API structure">
+<span class="sp-code-line"><span class="hl">Express.js API</span></span>
+<span class="sp-code-line">├── /api/auth            user authentication</span>
+<span class="sp-code-line">├── /api/pantry</span>
+<span class="sp-code-line">│   ├── POST /pantry/items      add item</span>
+<span class="sp-code-line">│   ├── GET  /pantry            fetch user's pantry</span>
+<span class="sp-code-line">│   └── DELETE /pantry/:itemId</span>
+<span class="sp-code-line">├── /api/meals           <span class="hl">AI reasoning endpoints</span></span>
+<span class="sp-code-line">│   ├── POST /meals/suggest      <span class="ac">Claude</span> analyses pantry → suggestions</span>
+<span class="sp-code-line">│   └── POST /meals/ingredients  item extraction from photo</span>
+<span class="sp-code-line">├── /api/shopping        shopping list generation</span>
+<span class="sp-code-line">│   ├── POST /shopping/generate  from meal plan</span>
+<span class="sp-code-line">│   └── GET  /shopping/:listId</span>
+<span class="sp-code-line">└── AI Integration       <span class="ac">Anthropic API</span></span>
+<span class="sp-code-line">    ├── Inventory extraction from photos</span>
+<span class="sp-code-line">    ├── Meal suggestion reasoning</span>
+<span class="sp-code-line">    └── Dietary constraint handling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Key features</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Four features, <em>one connected loop.</em></h2>
+        <div class="sp-features">
+          <div class="sp-feature" data-reveal>
+            <div class="sp-feature-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="13" width="38" height="27" rx="5" stroke="currentColor" stroke-width="2.2"/><path d="M16 13 L19 7 L29 7 L32 13" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle class="spi-cam-lens" cx="24" cy="26" r="7.5" stroke="currentColor" stroke-width="2.2"/><circle cx="37" y="19" cx="37" cy="19" r="1.6" fill="currentColor"/></svg>
+            </div>
+            <h3>Pantry scanning</h3>
+            <p>Photograph the shelf and Claude extracts the items, with manual entry as a fallback. Items are tracked with quantity and expiry, syncing instantly across iOS and Android.</p>
           </div>
-          <div class="status-card">
-            <div class="status-label">Backend</div>
-            <div class="status-value"><span class="status-dot dot-green"></span>Express + Anthropic API</div>
+          <div class="sp-feature" data-reveal data-reveal-delay="80">
+            <div class="sp-feature-icon">
+              <svg viewBox="0 0 48 48" fill="none"><path class="spi-spark" d="M20 6 Q22 15 30 17 Q22 19 20 28 Q18 19 10 17 Q18 15 20 6 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path class="spi-spark" d="M34 26 Q35 31 40 32 Q35 33 34 38 Q33 33 28 32 Q33 31 34 26 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path class="spi-spark" d="M14 34 Q14.7 37 18 37.7 Q14.7 38.4 14 41.4 Q13.3 38.4 10 37.7 Q13.3 37 14 34 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>AI-powered meal suggestions</h3>
+            <p>Claude reasons over dietary preferences and current inventory to suggest 3–5 meals feasible right now — and explains why each one works.</p>
+          </div>
+          <div class="sp-feature" data-reveal data-reveal-delay="160">
+            <div class="sp-feature-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2.2"/><line x1="15" y1="15" x2="33" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="23" x2="33" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="31" x2="26" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="spi-tick" d="M28 33 L31.5 36.5 L38 29" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Shopping list automation</h3>
+            <p>Select meals for the week and the app works out exactly what's missing, organised by category — produce, proteins, pantry staples.</p>
+          </div>
+          <div class="sp-feature" data-reveal data-reveal-delay="240">
+            <div class="sp-feature-icon">
+              <svg viewBox="0 0 48 48" fill="none"><g class="spi-sync"><path d="M38 24 A14 14 0 1 1 31 11.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M31 5.5 L31.5 12.5 L24.8 10.4 Z" fill="currentColor"/></g><rect x="18" y="18" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <h3>Multi-platform consistency</h3>
+            <p>iOS and Android consume the same backend and design tokens. Meal reasoning lives once, on the server — never duplicated in client code.</p>
           </div>
         </div>
       </div>
     </section>
 
-  </div><!-- /.page -->
+    <!-- ============ SCREENS ============ -->
+    <section class="sp-screens">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>The product</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Pantry → meals → shopping,<br>in your pocket.</h2>
+        <div class="sp-screens-row">
+          <div class="sp-phone"><img src="images/souspantry-app-home.jpg" alt="Sous Pantry — home screen" loading="lazy"></div>
+          <div class="sp-phone"><img src="images/souspantry-app-pantry.jpg" alt="Sous Pantry — pantry inventory screen" loading="lazy"></div>
+          <div class="sp-phone"><img src="images/souspantry-app-plancook.jpg" alt="Sous Pantry — AI meal planning screen" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ PROCESS + TIMELINE ============ -->
+    <section class="sp-section">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Development process</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Built with Claude Code, <em>end to end.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Thirty-minute interactive prototypes in Cursor validated UX decisions before a line of production code was written. From there, Claude Code drove rapid component and API integration loops, helped diagnose issues mid-build, and filled in Swift and React Native patterns as I needed them. The iOS prototype went to production in six weeks with no rework — and Android began the same week iOS entered testing, made possible by the backend and business logic already being shared.</p>
 
+        <div class="sp-timeline">
+          <div class="sp-timeline-rail"><div class="sp-timeline-fill"></div></div>
+          <div class="sp-tl-item">
+            <p class="sp-tl-range">Dec 2024 – Apr 2025 · 4 months</p>
+            <p class="sp-tl-label">Research &amp; planning</p>
+            <p class="sp-tl-desc">User research, competitor analysis, ideation, and learning the tools this build would require.</p>
+          </div>
+          <div class="sp-tl-item">
+            <p class="sp-tl-range">Apr – mid-May 2025 · 6 weeks</p>
+            <p class="sp-tl-label">iOS implementation</p>
+            <p class="sp-tl-desc">Focused development against the roadmap from the spec-driven planning phase.</p>
+          </div>
+          <div class="sp-tl-item">
+            <p class="sp-tl-range">Mid-May – mid-June 2025 · 2 weeks</p>
+            <p class="sp-tl-label">iOS testing &amp; launch</p>
+            <p class="sp-tl-desc">QA, refinement, and launch — Sous Pantry went live on the App Store in June 2025.</p>
+          </div>
+          <div class="sp-tl-item">
+            <p class="sp-tl-range">End of May – end of July 2025 · parallel</p>
+            <p class="sp-tl-label">Android build</p>
+            <p class="sp-tl-desc">Ran alongside iOS testing, reusing the backend and business logic already shipped.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ RESULTS ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Results &amp; impact</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Production quality, <em>zero rework.</em></h2>
+        <div class="sp-stats">
+          <div class="sp-stat" data-reveal>
+            <span class="sp-stat-value">Zero</span>
+            <span class="sp-stat-label">Rework between prototype and shipped production code</span>
+          </div>
+          <div class="sp-stat" data-reveal data-reveal-delay="80">
+            <span class="sp-stat-value"><span data-sp-count="8">8</span><span class="u"> months</span></span>
+            <span class="sp-stat-label">Concept to multi-platform, solo</span>
+          </div>
+          <div class="sp-stat" data-reveal data-reveal-delay="160">
+            <span class="sp-stat-value"><span data-sp-count="5" data-sp-from="30">5</span><span class="u"> min</span></span>
+            <span class="sp-stat-label">Meal planning time — down from 30 minutes</span>
+          </div>
+        </div>
+        <p class="sp-body" data-reveal>Early testers consistently called out the same three things: photo-based pantry scanning feels close to magic compared to manual entry in competitor apps; the AI meal suggestions feel genuinely useful rather than generic; and the shopping lists match exactly what's needed, cutting down on waste.</p>
+        <ul class="cs-check-list" style="margin-top:1.75rem;">
+          <li data-reveal>Production-ready AI integration — Anthropic API with deliberate, transparent UX</li>
+          <li data-reveal data-reveal-delay="70">Multi-platform shipping, iOS and Android, from a solo contributor</li>
+          <li data-reveal data-reveal-delay="140">Zero external service dependencies — every infrastructure layer owned end-to-end</li>
+          <li data-reveal data-reveal-delay="210">Backend architecture designed for scale, with iOS and Android reusing the same API</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ WHAT THIS PROVES ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>What this proves</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">For <em>design technologists.</em></h2>
+        <div class="cs-two-col" style="margin-top:2rem;">
+          <div data-reveal>
+            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.85rem;">For design teams</h3>
+            <ul class="cs-check-list">
+              <li>Light spec-driven development works — one week of architecture planning prevented rework across eight-plus weeks of implementation</li>
+              <li>AI integration needs design thinking first — not "add a Claude button," but architecture that considers how AI actually enhances the experience</li>
+              <li>Multi-platform thinking from day one prevents regrets — Android was a re-platform of the same backend, not a port</li>
+              <li>Rapid iteration and production quality aren't mutually exclusive with the right tools</li>
+            </ul>
+          </div>
+          <div data-reveal data-reveal-delay="100">
+            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.85rem;">For founders &amp; individual contributors</h3>
+            <ul class="cs-check-list">
+              <li>A solo contributor can move at small-team speed when infrastructure thinking — design systems, shared backend, reusable business logic — amplifies individual velocity</li>
+              <li>Shipping beats perfection — a launched product beats an endlessly optimised prototype</li>
+              <li>Systematic thinking removes decision friction — a spec-driven approach means faster, more confident shipping</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORKED / DIFFERENTLY ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <div class="cs-two-col cs-two-col--wide">
+          <div data-reveal>
+            <p class="sp-eyebrow">What worked well</p>
+            <h2 class="sp-title" style="font-size:clamp(1.25rem,2.4vw,1.9rem);">Five decisions that paid off.</h2>
+            <ol class="sp-notes">
+              <li>
+                <h4>Architecture-first</h4>
+                <p>One week on the database schema and system design prevented rework across eight-plus weeks of implementation.</p>
+              </li>
+              <li>
+                <h4>Photo-based input</h4>
+                <p>The single biggest UX lever — manual entry took 3–5 minutes per session, photo capture dropped it to 20 seconds.</p>
+              </li>
+              <li>
+                <h4>Transparent AI reasoning</h4>
+                <p>Users trust a suggestion when they can see why — "you have chicken, rice, and soy sauce → fried rice" beats an unexplained recommendation.</p>
+              </li>
+              <li>
+                <h4>Both platforms from day one</h4>
+                <p>Android reused the API, business logic, and database schema, so the two builds could run in parallel.</p>
+              </li>
+              <li>
+                <h4>Claude Code for prototyping</h4>
+                <p>Thirty-minute interactive prototypes caught UX issues before implementation, saving weeks of rework.</p>
+              </li>
+            </ol>
+          </div>
+          <div data-reveal data-reveal-delay="100">
+            <p class="sp-eyebrow">What I'd do differently</p>
+            <h2 class="sp-title" style="font-size:clamp(1.25rem,2.4vw,1.9rem);">Four things for next time.</h2>
+            <ol class="sp-notes">
+              <li>
+                <h4>Accessibility, earlier</h4>
+                <p>Voice control, screen readers, and high-contrast support should have been researched during planning, not after launch.</p>
+              </li>
+              <li>
+                <h4>Validate receipt import sooner</h4>
+                <p>Receipt OCR and parsing turned out harder than expected — it needed building during iOS development, not deferring as a "future feature."</p>
+              </li>
+              <li>
+                <h4>User testing before launch</h4>
+                <p>Post-launch feedback revealed pantry UX friction that one or two rounds of testing before shipping would have surfaced.</p>
+              </li>
+              <li>
+                <h4>A clearer offline-first strategy</h4>
+                <p>Local-first sync works, but the approach evolved mid-build — deciding upfront would have simplified things.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LEARNINGS ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Learnings for design technologists</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Four takeaways.</h2>
+        <div class="cs-problem-grid" style="margin-top:2.25rem;">
+          <div class="cs-problem-card" data-reveal>
+            <p class="cs-problem-title">Spec-driven development is still relevant</p>
+            <p class="cs-problem-desc">Fast-shipping teams still need architecture thinking. It isn't "spec vs. vibe-code" — it's a smart spec paired with rapid iteration.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="80">
+            <p class="cs-problem-title">AI integration needs design thinking</p>
+            <p class="cs-problem-desc">LLMs are powerful, but thoughtful UX is what turns that power into delight. Transparent reasoning plus user control drives adoption.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="160">
+            <p class="cs-problem-title">Multi-platform is one system, not three</p>
+            <p class="cs-problem-desc">iOS, Android, and backend aren't separate projects — they're one system with different client views. Architecture thinking from day one prevents rework.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="240">
+            <p class="cs-problem-title">Shipping removes assumptions</p>
+            <p class="cs-problem-desc">Feedback on a shipped product beats research on wireframes every time. Ship fast, then iterate on real usage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT'S NEXT ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>What's next</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Where Sous Pantry <em>goes from here.</em></h2>
+        <div class="sp-next-grid">
+          <div class="sp-next" data-reveal>
+            <div class="sp-next-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="13" y="4" width="22" height="40" rx="5" stroke="currentColor" stroke-width="2.2"/><line x1="20" y1="39" x2="28" y2="39" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="21" y1="9" x2="27" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>iOS</h3>
+            <p>Iterating on user feedback: receipt import, meal-history learning, and richer dietary preferences.</p>
+          </div>
+          <div class="sp-next" data-reveal data-reveal-delay="80">
+            <div class="sp-next-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M10 30 A14 14 0 0 1 38 30 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><line x1="14" y1="13" x2="18" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="13" x2="30" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18.5" cy="25" r="1.6" fill="currentColor"/><circle cx="29.5" cy="25" r="1.6" fill="currentColor"/><line x1="12" y1="34" x2="36" y2="34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Android</h3>
+            <p>Performance optimisation and expanding user acquisition.</p>
+          </div>
+          <div class="sp-next" data-reveal data-reveal-delay="160">
+            <div class="sp-next-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="9" width="38" height="30" rx="4" stroke="currentColor" stroke-width="2.2"/><line x1="5" y1="17" x2="43" y2="17" stroke="currentColor" stroke-width="2"/><circle cx="10.5" cy="13" r="1.4" fill="currentColor"/><circle cx="15.5" cy="13" r="1.4" fill="currentColor"/><circle cx="20.5" cy="13" r="1.4" fill="currentColor"/><path d="M12 24 L17 29 L12 34 M21 34 L28 34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Web version</h3>
+            <p>A React.js companion for recipe discovery and collaborative meal planning.</p>
+          </div>
+          <div class="sp-next" data-reveal data-reveal-delay="240">
+            <div class="sp-next-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2.2"/><circle cx="36" cy="12" r="6" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="36" r="6" stroke="currentColor" stroke-width="2.2"/><circle cx="36" cy="36" r="6" stroke="currentColor" stroke-width="2.2"/><path d="M18 12 L30 12 M12 18 L12 30 M36 18 L36 30 M18 36 L30 36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Integrations</h3>
+            <p>Grocery delivery APIs, calendar sync, and nutrition tracking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TECHNICAL LINKS ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Technical links</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">See it, or <em>look under the hood.</em></h2>
+        <div class="sp-links">
+          <a href="https://apps.apple.com/us/app/sous-pantry-grocery-tracker/id6761744392" class="sp-link-btn sp-link-btn--solid" target="_blank" rel="noopener" data-magnetic>
+            iOS App Store
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button type="button" class="sp-link-btn" data-gate data-magnetic>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7 V5 a2.5 2.5 0 0 1 5 0 V7" stroke="currentColor" stroke-width="1.6"/></svg>
+            GitHub — Backend <span class="sp-gate-hint">· request access</span>
+          </button>
+          <button type="button" class="sp-link-btn" data-gate data-magnetic>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7 V5 a2.5 2.5 0 0 1 5 0 V7" stroke="currentColor" stroke-width="1.6"/></svg>
+            GitHub — iOS <span class="sp-gate-hint">· request access</span>
+          </button>
+          <span class="sp-link-btn sp-link-btn--soon">Android — coming July 2025</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OUTRO QUOTE ============ -->
+    <section class="sp-outro-quote">
+      <div class="container">
+        <p class="sp-hypothesis-text" data-split>Code like an <em>engineer</em>, think like a <em>designer</em>, use AI to amplify both.</p>
+        <p class="sp-outro-note">The operating model behind this build</p>
+      </div>
+    </section>
+
+    <!-- ============ RELATED ============ -->
+    <section class="cs-related">
+      <div class="container">
+        <h2 class="cs-related-title">More case studies</h2>
+        <div class="cs-related-grid">
+          <a href="watchtower.html" class="cs-related-card" style="--card-accent:#5B8DEF;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">01</span>
+              <span class="cs-related-tagpill">Developer Experience</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><circle cx="210" cy="160" r="44" stroke="rgba(244,241,232,0.18)" stroke-width="1.5"/><circle cx="210" cy="160" r="88" stroke="rgba(244,241,232,0.14)" stroke-width="1.5"/><circle cx="210" cy="160" r="132" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 7" opacity="0.65"/><line x1="210" y1="20" x2="210" y2="300" stroke="rgba(244,241,232,0.08)" stroke-width="1"/><line x1="70" y1="160" x2="350" y2="160" stroke="rgba(244,241,232,0.08)" stroke-width="1"/><path d="M210 160 L318 74" stroke="currentColor" stroke-width="1.5"/><path d="M210 160 L318 74 A132 132 0 0 1 342 160 Z" fill="currentColor" opacity="0.1"/><circle cx="262" cy="118" r="5" fill="currentColor"/><circle cx="262" cy="118" r="12" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><circle cx="158" cy="216" r="4" fill="rgba(244,241,232,0.5)"/><circle cx="130" cy="110" r="4" fill="rgba(244,241,232,0.3)"/><circle cx="210" cy="160" r="5" fill="currentColor"/></svg>
+            </div>
+            <div class="cs-related-info">
+              <span class="cs-related-tag">Developer Experience</span>
+              <h3 class="cs-related-card-title">Put the fix where the work happens.</h3>
+              <p class="cs-related-desc">An experience strategy to make thousands of engineers self-sufficient at deployment.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
+            </div>
+          </a>
+          <a href="ai-access.html" class="cs-related-card" style="--card-accent:#9D7BEF;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">02</span>
+              <span class="cs-related-tagpill">AI Experience Design</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><circle cx="66" cy="70" r="7" stroke="rgba(244,241,232,0.4)" stroke-width="1.5"/><circle cx="46" cy="150" r="7" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/><circle cx="80" cy="232" r="7" stroke="rgba(244,241,232,0.4)" stroke-width="1.5"/><circle cx="120" cy="120" r="5" fill="rgba(244,241,232,0.25)"/><circle cx="110" cy="190" r="5" fill="rgba(244,241,232,0.25)"/><line x1="66" y1="70" x2="120" y2="120" stroke="rgba(244,241,232,0.15)" stroke-width="1"/><line x1="46" y1="150" x2="110" y2="190" stroke="rgba(244,241,232,0.15)" stroke-width="1"/><line x1="80" y1="232" x2="110" y2="190" stroke="rgba(244,241,232,0.15)" stroke-width="1"/><line x1="120" y1="120" x2="110" y2="190" stroke="rgba(244,241,232,0.15)" stroke-width="1"/><path d="M120 120 C 200 120, 240 155, 316 158" stroke="currentColor" stroke-width="1.5" opacity="0.8"/><path d="M110 190 C 200 190, 240 165, 316 162" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M66 70 C 190 60, 260 140, 316 156" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="2 6"/><path d="M80 232 C 190 260, 260 180, 316 164" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="2 6"/><circle cx="330" cy="160" r="7" fill="currentColor"/><circle cx="330" cy="160" r="18" stroke="currentColor" stroke-width="1.5" opacity="0.7"/><circle cx="330" cy="160" r="30" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="3 7"/></svg>
+            </div>
+            <div class="cs-related-info">
+              <span class="cs-related-tag">AI Experience Design</span>
+              <h3 class="cs-related-card-title">Make intent the interface.</h3>
+              <p class="cs-related-desc">An AI agent that interprets intent, synthesises risk data, and hands approvers a single decision.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
+            </div>
+          </a>
+          <a href="risk-control.html" class="cs-related-card" style="--card-accent:#3FB68B;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">03</span>
+              <span class="cs-related-tagpill">Compliance Design</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><circle cx="86" cy="76" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M80 76 L84.5 81 L93 71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="120" y1="76" x2="334" y2="76" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/><circle cx="86" cy="138" r="13" fill="currentColor" opacity="0.15"/><circle cx="86" cy="138" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M80 138 L84.5 143 L93 133" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="120" y1="138" x2="300" y2="138" stroke="currentColor" stroke-width="1.5" opacity="0.7"/><circle cx="86" cy="200" r="13" stroke="rgba(244,241,232,0.35)" stroke-width="1.5"/><line x1="120" y1="200" x2="318" y2="200" stroke="rgba(244,241,232,0.2)" stroke-width="1.5"/><circle cx="86" cy="262" r="13" stroke="rgba(244,241,232,0.25)" stroke-width="1.5" stroke-dasharray="3 5"/><line x1="120" y1="262" x2="270" y2="262" stroke="rgba(244,241,232,0.12)" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cs-related-info">
+              <span class="cs-related-tag">Compliance Design</span>
+              <h3 class="cs-related-card-title">Make rigour the path of least resistance.</h3>
+              <p class="cs-related-desc">Turning a week-long compliance bottleneck into a self-service workflow — rules intact.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2 class="cta-title">Let's build great things together</h2>
+        <div class="cta-links">
+          <a href="contact.html" class="cta-link">
+            Get in touch
+          </a>
+          <a href="https://www.linkedin.com/in/james-foo/" class="cta-link cta-link--secondary" target="_blank" rel="noopener">
+            LinkedIn
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <img src="images/squares-cta.svg" alt="" aria-hidden="true" class="cta-squares">
+    </section>
   </main>
 
-  <!-- PORTFOLIO FOOTER -->
+  <!-- Request-access gate for the codebase -->
+  <dialog class="sp-gate" id="code-gate" aria-labelledby="code-gate-title">
+    <button type="button" class="sp-gate-close" data-gate-close aria-label="Close dialog">
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="sp-gate-icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="21" width="28" height="20" rx="4" stroke="currentColor" stroke-width="2.4"/><path d="M16 21 V15 a8 8 0 0 1 16 0 V21" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="30" r="2.6" fill="currentColor"/><line x1="24" y1="32" x2="24" y2="36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </div>
+    <h2 class="sp-gate-title" id="code-gate-title">The codebase is private.</h2>
+    <p class="sp-gate-body">Happy to walk you through the Sous Pantry source — backend, iOS, and the AI integration. Send a quick request with who you are and I'll open it up.</p>
+    <div class="sp-gate-actions">
+      <a class="sp-link-btn sp-link-btn--solid" href="mailto:jamesian.foo@gmail.com?subject=Sous%20Pantry%20%E2%80%94%20code%20access%20request&body=Hi%20James%2C%0A%0AI%27d%20like%20access%20to%20the%20Sous%20Pantry%20repositories%20(backend%20%2F%20iOS).%0A%0AName%3A%0ARole%20%2F%20company%3A%0AGitHub%20username%3A%0AWhat%20I%27m%20interested%20in%3A%0A%0AThanks!">
+        Request access by email
+      </a>
+      <a class="sp-link-btn" href="contact.html">Use the contact form</a>
+    </div>
+    <p class="sp-gate-note">Requests are usually answered within a day.</p>
+  </dialog>
+
   <footer class="footer">
-    <div class="footer-inner">
+    <div class="container footer-inner">
       <div class="footer-left">
-        <span class="footer-name"><strong>James Foo Design © 2026</strong> &nbsp;<span style="font-weight: 400;">|&nbsp; Product Designer · Developer Experience • AI-native workflow</span></span>
+        <span class="footer-name"><strong>James Foo Design © 2026</strong> &nbsp;|&nbsp; Lead Product Designer · Design Technologist · B2B &amp; Enterprise</span>
         <span class="footer-role">Let all that you do be done in love. <em>1 Corinthians 16:14</em></span>
       </div>
       <div class="footer-center"></div>
@@ -1247,38 +675,10 @@
     </div>
   </footer>
 
-  <script>
-    // Mobile nav toggle
-    const toggle = document.querySelector('.nav-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-
-    toggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen);
-      const spans = toggle.querySelectorAll('span');
-      if (isOpen) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-        document.body.style.overflow = 'hidden';
-      } else {
-        spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script src="script.js?v=jf30"></script>
+  <script src="sous.js?v=jf30"></script>
 </body>
 </html>

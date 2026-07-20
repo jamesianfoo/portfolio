@@ -11,10 +11,10 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study: Simplifying enterprise access requests with AI — reducing friction for complex permission workflows in B2B SaaS. AI UX design case study by James Foo, Senior Product Designer.">
+  <meta name="description" content="Case study: Simplifying enterprise access requests with AI — reducing friction for complex permission workflows in B2B SaaS. AI UX design case study by James Foo, Lead Product Designer.">
   <title>Simplifying Enterprise Access Requests with AI — UX Case Study | James Foo</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="case-study.css">
+  <link rel="stylesheet" href="styles.css?v=jf30">
+  <link rel="stylesheet" href="case-study.css?v=jf30">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -43,6 +43,9 @@
   </header>
 
   <div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="Close menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
     <a href="index.html" class="mobile-menu-link">Home</a>
     <a href="about.html" class="mobile-menu-link">About</a>
     <a href="contact.html" class="mobile-menu-link">Contact</a>
@@ -147,7 +150,7 @@
           <p class="cs-section-label">Impact</p>
           <h2 class="cs-section-title">Transforming the access experience at enterprise scale</h2>
 
-          <div class="cs-stats">
+          <div class="cs-stats" style="--cs-accent:#9D7BEF;">
             <div class="cs-stat">
               <p class="cs-stat-value">Significant reduction</p>
               <p class="cs-stat-label">in effort across requesters and approvers</p>
@@ -682,7 +685,7 @@
           <p class="cs-section-label">Impact</p>
           <h2 class="cs-section-title">Transforming the access experience at enterprise scale</h2>
 
-          <div class="cs-stats">
+          <div class="cs-stats" style="--cs-accent:#9D7BEF;">
             <div class="cs-stat">
               <p class="cs-stat-value">Significant reduction</p>
               <p class="cs-stat-label">in effort across requesters and approvers</p>
@@ -755,40 +758,43 @@
       <div class="container">
         <h2 class="cs-related-title">More case studies</h2>
         <div class="cs-related-grid">
-          <a href="watchtower.html" class="cs-related-card">
-            <div class="cs-related-image" style="background:#0f1623;display:flex;flex-direction:column;justify-content:center;padding:20px 18px;">
-              <p style="font-size:8px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#5a7290;margin:0 0 10px;">Developer Experience</p>
-              <div style="width:26px;height:2.5px;border-radius:2px;background:#3b82f6;margin:0 0 10px;"></div>
-              <h3 style="font-size:17px;font-weight:700;color:#e8eef5;line-height:1.25;margin:0;letter-spacing:-0.01em;">Put the fix where the work happens.</h3>
-              <p style="font-size:8.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:10px 0 0;text-transform:uppercase;">Platform strategy · Enterprise scale</p>
+          <a href="watchtower.html" class="cs-related-card" style="--card-accent:#5B8DEF;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">01</span>
+              <span class="cs-related-tagpill">Developer Experience</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><circle cx="210" cy="160" r="44" stroke="rgba(244,241,232,0.18)" stroke-width="1.5"/><circle cx="210" cy="160" r="88" stroke="rgba(244,241,232,0.14)" stroke-width="1.5"/><circle cx="210" cy="160" r="132" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 7" opacity="0.65"/><line x1="210" y1="20" x2="210" y2="300" stroke="rgba(244,241,232,0.08)" stroke-width="1"/><line x1="70" y1="160" x2="350" y2="160" stroke="rgba(244,241,232,0.08)" stroke-width="1"/><path d="M210 160 L318 74" stroke="currentColor" stroke-width="1.5"/><path d="M210 160 L318 74 A132 132 0 0 1 342 160 Z" fill="currentColor" opacity="0.1"/><circle cx="262" cy="118" r="5" fill="currentColor"/><circle cx="262" cy="118" r="12" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><circle cx="158" cy="216" r="4" fill="rgba(244,241,232,0.5)"/><circle cx="130" cy="110" r="4" fill="rgba(244,241,232,0.3)"/><circle cx="210" cy="160" r="5" fill="currentColor"/></svg>
             </div>
             <div class="cs-related-info">
-              <h3 class="cs-related-card-title">Faster deployments. Less friction, more velocity.</h3>
-              <p class="cs-related-desc">An experience strategy to make thousands of users self-sufficient at deployment — and the pattern that changed how the entire platform surfaces guidance.</p>
+              <span class="cs-related-tag">Developer Experience</span>
+              <h3 class="cs-related-card-title">Put the fix where the work happens.</h3>
+              <p class="cs-related-desc">An experience strategy to make thousands of engineers self-sufficient at deployment.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
             </div>
           </a>
-          <a href="work-planner.html" class="cs-related-card">
-            <div class="cs-related-image" style="background:#0f1623;display:flex;flex-direction:column;justify-content:center;padding:20px 18px;">
-              <p style="font-size:8px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#5a7290;margin:0 0 10px;">SaaS · Infrastructure Planning</p>
-              <div style="width:26px;height:2.5px;border-radius:2px;background:#f59e0b;margin:0 0 10px;"></div>
-              <h3 style="font-size:17px;font-weight:700;color:#e8eef5;line-height:1.25;margin:0;letter-spacing:-0.01em;">Make coordination the default, not the overhead.</h3>
-              <p style="font-size:8.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:10px 0 0;text-transform:uppercase;">SaaS strategy · Public infrastructure</p>
+          <a href="risk-control.html" class="cs-related-card" style="--card-accent:#3FB68B;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">03</span>
+              <span class="cs-related-tagpill">Compliance Design</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><circle cx="86" cy="76" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M80 76 L84.5 81 L93 71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="120" y1="76" x2="334" y2="76" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/><circle cx="86" cy="138" r="13" fill="currentColor" opacity="0.15"/><circle cx="86" cy="138" r="13" stroke="currentColor" stroke-width="1.5"/><path d="M80 138 L84.5 143 L93 133" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="120" y1="138" x2="300" y2="138" stroke="currentColor" stroke-width="1.5" opacity="0.7"/><circle cx="86" cy="200" r="13" stroke="rgba(244,241,232,0.35)" stroke-width="1.5"/><line x1="120" y1="200" x2="318" y2="200" stroke="rgba(244,241,232,0.2)" stroke-width="1.5"/><circle cx="86" cy="262" r="13" stroke="rgba(244,241,232,0.25)" stroke-width="1.5" stroke-dasharray="3 5"/><line x1="120" y1="262" x2="270" y2="262" stroke="rgba(244,241,232,0.12)" stroke-width="1.5"/></svg>
             </div>
             <div class="cs-related-info">
-              <h3 class="cs-related-card-title">More Confidence, Less Anxiety with Work Planner</h3>
-              <p class="cs-related-desc">Significant time and resource savings demonstrated at scale.</p>
+              <span class="cs-related-tag">Compliance Design</span>
+              <h3 class="cs-related-card-title">Make rigour the path of least resistance.</h3>
+              <p class="cs-related-desc">Turning a week-long compliance bottleneck into a self-service workflow — rules intact.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
             </div>
           </a>
-          <a href="risk-control.html" class="cs-related-card">
-            <div class="cs-related-image" style="background:#0f1623;display:flex;flex-direction:column;justify-content:center;padding:20px 18px;">
-              <p style="font-size:8px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#5a7290;margin:0 0 10px;">Compliance Design</p>
-              <div style="width:26px;height:2.5px;border-radius:2px;background:#10b981;margin:0 0 10px;"></div>
-              <h3 style="font-size:17px;font-weight:700;color:#e8eef5;line-height:1.25;margin:0;letter-spacing:-0.01em;">Make rigour the path of least resistance.</h3>
-              <p style="font-size:8.5px;font-weight:500;letter-spacing:0.05em;color:#5a7290;margin:10px 0 0;text-transform:uppercase;">Enterprise design · Regulated finance</p>
+          <a href="work-planner.html" class="cs-related-card" style="--card-accent:#E8930C;">
+            <div class="cs-related-visual">
+              <span class="cs-related-index">04</span>
+              <span class="cs-related-tagpill">SaaS · Infrastructure Planning</span>
+              <svg class="cs-related-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true"><line x1="105" y1="40" x2="105" y2="280" stroke="rgba(244,241,232,0.1)" stroke-width="1"/><line x1="185" y1="40" x2="185" y2="280" stroke="rgba(244,241,232,0.1)" stroke-width="1"/><line x1="265" y1="40" x2="265" y2="280" stroke="rgba(244,241,232,0.1)" stroke-width="1"/><line x1="345" y1="40" x2="345" y2="280" stroke="rgba(244,241,232,0.1)" stroke-width="1"/><rect x="60" y="70" width="160" height="15" rx="7.5" stroke="rgba(244,241,232,0.35)" stroke-width="1.5"/><rect x="120" y="115" width="195" height="15" rx="7.5" fill="currentColor" opacity="0.85"/><rect x="90" y="160" width="130" height="15" rx="7.5" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/><rect x="175" y="205" width="150" height="15" rx="7.5" fill="currentColor" opacity="0.3"/><rect x="60" y="250" width="105" height="15" rx="7.5" stroke="rgba(244,241,232,0.2)" stroke-width="1.5" stroke-dasharray="3 5"/><path d="M330 115 L340 122.5 L330 130 L320 122.5 Z" fill="currentColor"/><line x1="340" y1="122" x2="368" y2="122" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.6"/></svg>
             </div>
             <div class="cs-related-info">
-              <h3 class="cs-related-card-title">From bottleneck to self-service — the rules stayed, the friction didn't.</h3>
-              <p class="cs-related-desc">Turning a week-long compliance bottleneck into a self-service workflow — without simplifying the rules, only the experience.</p>
+              <span class="cs-related-tag">SaaS · Infrastructure Planning</span>
+              <h3 class="cs-related-card-title">Make coordination the default, not the overhead.</h3>
+              <p class="cs-related-desc">40% less time chasing departments. 70% fewer wasted resources. One platform, 15+ organisations.</p>
+              <span class="cs-related-link">Read case study <i>→</i></span>
             </div>
           </a>
         </div>
@@ -815,7 +821,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <span class="footer-name"><strong>James Foo Design © 2026</strong> &nbsp;|&nbsp; Product Designer · Developer Experience • AI-native workflow</span>
+        <span class="footer-name"><strong>James Foo Design © 2026</strong> &nbsp;|&nbsp; Lead Product Designer · Design Technologist · B2B &amp; Enterprise</span>
         <span class="footer-role">Let all that you do be done in love. <em>1 Corinthians 16:14</em></span>
       </div>
       <div class="footer-center"></div>
@@ -830,6 +836,9 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="script.js?v=jf30"></script>
+  <script src="cs-impact.js?v=jf30"></script>
 </body>
 </html>
