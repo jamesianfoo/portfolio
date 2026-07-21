@@ -690,6 +690,63 @@
   });
 
   /* ============================================================
+     CLIENT LOGO WALL — two counter-rolling rows.
+     Scroll velocity accelerates the roll; hovering a row eases it
+     almost to a stop so logos can be read (and hovered for colour).
+     ============================================================ */
+  (function logoWall() {
+    var rows = gsap.utils.toArray('.hm-logos-row');
+    if (!rows.length || reduceMotion) return;
+
+    var boost = { v: 1 }; // shared velocity multiplier, decays to 1
+
+    var lanes = rows.map(function (row) {
+      var track = row.querySelector('.hm-logos-track');
+      var dir = parseFloat(row.getAttribute('data-dir')) || 1;
+      // normalise to a constant ~55px/s cruise regardless of track length
+      var halfWidth = track.scrollWidth / 2 || 1000;
+      var dur = Math.max(24, halfWidth / 55);
+      var tween = gsap.fromTo(track,
+        { xPercent: dir === 1 ? 0 : -50 },
+        { xPercent: dir === 1 ? -50 : 0, duration: dur, ease: 'none', repeat: -1 });
+      var lane = { tween: tween, hovered: false, track: track, hw: halfWidth };
+      row.addEventListener('mouseenter', function () { lane.hovered = true; });
+      row.addEventListener('mouseleave', function () { lane.hovered = false; });
+      return lane;
+    });
+
+    ScrollTrigger.create({
+      trigger: '.hm-logos',
+      start: 'top bottom',
+      end: 'bottom top',
+      onUpdate: function (self) {
+        var v = 1 + Math.min(2.6, Math.abs(self.getVelocity()) / 900);
+        if (v > boost.v) boost.v = v;
+      }
+    });
+
+    var frame = 0;
+    gsap.ticker.add(function () {
+      boost.v += (1 - boost.v) * 0.05; // decay toward cruise speed
+      frame++;
+      lanes.forEach(function (lane) {
+        var target = lane.hovered ? 0.1 : boost.v;
+        var ts = lane.tween.timeScale();
+        lane.tween.timeScale(ts + (target - ts) * 0.08);
+        // periodically re-normalise cruise speed to the track's true width
+        // (image loads and resizes change it after init)
+        if (frame % 120 === 0) {
+          var hw = lane.track.scrollWidth / 2 || 1000;
+          if (Math.abs(hw - lane.hw) / lane.hw > 0.04) {
+            lane.hw = hw;
+            lane.tween.duration(Math.max(24, hw / 55));
+          }
+        }
+      });
+    });
+  })();
+
+  /* ============================================================
      Keep ScrollTrigger measurements honest — the mono webfont and
      lazy images land after first paint and shift section positions.
      ============================================================ */

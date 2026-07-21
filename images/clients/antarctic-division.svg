@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260">
+  <title>Australian Antarctic Program</title>
+  <defs>
+    <clipPath id="globe">
+      <circle cx="115" cy="130" r="100"/>
+    </clipPath>
+  </defs>
+  <!-- globe -->
+  <circle cx="115" cy="130" r="100" fill="#2A6EBB"/>
+  <g clip-path="url(#globe)" stroke="#FFFFFF" stroke-width="3.5" fill="none" opacity="0.75">
+    <!-- meridians -->
+    <line x1="115" y1="30" x2="115" y2="230"/>
+    <ellipse cx="115" cy="130" rx="42" ry="100"/>
+    <ellipse cx="115" cy="130" rx="76" ry="100"/>
+    <!-- parallels -->
+    <path d="M15 90 Q115 62 215 90"/>
+    <path d="M15 130 Q115 118 215 130"/>
+    <path d="M15 172 Q115 196 215 172"/>
+    <path d="M28 55 Q115 32 202 55"/>
+    <path d="M28 205 Q115 228 202 205"/>
+  </g>
+  <g clip-path="url(#globe)">
+    <!-- Australia -->
+    <path fill="#FFFFFF" d="M92 96 Q86 84 96 78 Q106 70 118 74 Q126 68 130 74 Q134 82 140 72 Q146 62 150 76 Q158 82 164 92 Q170 102 160 110 Q150 120 136 115 Q120 119 108 112 Q96 108 92 96 Z"/>
+    <ellipse fill="#FFFFFF" cx="150" cy="125" rx="5" ry="4"/>
+    <!-- Antarctica: hugs the base of the sphere -->
+    <path fill="#FFFFFF" d="M22 196 Q34 176 48 184 Q58 170 74 178 Q88 166 104 174 Q120 164 136 172 Q152 166 166 176 Q180 172 190 186 Q200 194 208 204 L208 236 L22 236 Z"/>
+  </g>
+  <!-- wordmark -->
+  <g fill="#4A4A4A" font-family="'Arial Narrow','Helvetica Neue',Arial,sans-serif" font-weight="bold" font-size="56" letter-spacing="1">
+    <text x="240" y="100" textLength="252" lengthAdjust="spacingAndGlyphs">AUSTRALIAN</text>
+    <text x="240" y="160" textLength="230" lengthAdjust="spacingAndGlyphs">ANTARCTIC</text>
+    <text x="240" y="220" textLength="212" lengthAdjust="spacingAndGlyphs">PROGRAM</text>
+  </g>
+</svg>

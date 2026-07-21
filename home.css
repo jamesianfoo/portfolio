@@ -598,54 +598,115 @@ body.is-loading { overflow: hidden; }
   border-top: 1px solid var(--line);
 }
 
-.hm-clients-grid {
-  list-style: none;
-  counter-reset: client;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  column-gap: clamp(1.5rem, 3vw, 3rem);
+/* rolling logo wall — ink silhouettes, colour on hover */
+.hm-logos {
   margin-top: clamp(2rem, 4vw, 3.25rem);
-}
-
-.hm-clients-grid li {
-  counter-increment: client;
   display: flex;
-  align-items: baseline;
-  gap: 14px;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+
+.hm-logos-row {
+  overflow: hidden;
+  padding: 14px 0 34px; /* room for the hover caption */
+}
+
+.hm-logos-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.hm-logos-seg {
+  display: flex;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  padding-right: clamp(3rem, 6vw, 5.5rem);
+}
+
+.hm-logo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  cursor: default;
+}
+
+.hm-logo img {
+  height: 46px;
+  width: auto;
+  /* grayscale (not blackout): knockout logos like the MTA disc keep
+     their white letterforms legible; hover restores full colour */
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 0.35s ease, transform 0.4s var(--ease-out);
+}
+
+.hm-logo--wide img { height: 36px; }
+
+.hm-logo:hover img {
+  filter: none;
+  transform: translateY(-3px) scale(1.06);
+}
+
+.hm-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
   font-family: var(--font-mono);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--line);
-  transition: color 0.3s ease, padding-left 0.35s var(--ease-out);
-}
-
-.hm-clients-grid li::before {
-  content: counter(client, decimal-leading-zero);
-  font-size: 0.6875rem;
-  color: var(--ink-3);
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-  transition: color 0.3s ease;
-}
-
-.hm-clients-grid li:hover {
+  text-transform: uppercase;
   color: var(--ink);
-  padding-left: 8px;
+  opacity: 0.42;
+  transition: opacity 0.35s ease, transform 0.4s var(--ease-out), color 0.35s ease;
+  white-space: nowrap;
 }
 
-.hm-clients-grid li:hover::before { color: var(--signal); }
-
-.hm-clients-more {
-  font-style: italic;
-  color: var(--ink-2);
+.hm-badge b {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
 }
 
-.hm-clients-more::before {
-  content: '✺' !important;
-  color: var(--signal) !important;
+.hm-badge i {
+  font-style: normal;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.hm-logo:hover .hm-badge {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.hm-logo--more .hm-badge b { color: var(--signal); font-size: 0.8125rem; letter-spacing: 0; }
+.hm-logo--more:hover .hm-badge { color: var(--signal); }
+
+.hm-logo figcaption {
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s ease, transform 0.35s var(--ease-out);
+  pointer-events: none;
+}
+
+.hm-logo:hover figcaption { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-logos-track { transform: none !important; }
 }
 
 /* ============================================================
