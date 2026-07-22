@@ -64,6 +64,19 @@
 
   /* ---------- Hero choreography ---------- */
   (function hero() {
+    // Take sole ownership of hero elements: script.js's legacy .fade-in
+    // reveal animates the same nodes and the two systems deadlock the
+    // subtitle at ~0 opacity. Strip the class-based reveal here.
+    ['.cs-hero-title', '.cs-hero-subtitle'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (el) {
+        el.classList.remove('fade-in', 'visible', 'is-visible');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.transition = 'none';
+      }
+    });
+
     var title = document.querySelector('.cs-hero-title');
     if (title && !title.querySelector('.csx-w')) {
       var words = title.textContent.trim().split(/\s+/);
@@ -77,10 +90,14 @@
     if (title) {
       tl.fromTo('.csx-wi', { yPercent: 115 }, { yPercent: 0, duration: 0.9, stagger: 0.035 }, 0.1);
     }
-    tl.from('.cs-back', { opacity: 0, x: -14, duration: 0.6 }, 0.1)
-      .from('.cs-meta .cs-tag', { opacity: 0, y: 10, scale: 0.9, duration: 0.45, stagger: 0.07, ease: 'back.out(2)' }, 0.25)
-      .from('.cs-hero-subtitle', { opacity: 0, y: 18, duration: 0.8 }, 0.55)
-      .from('.cs-info-item', { opacity: 0, y: 16, duration: 0.6, stagger: 0.08 }, 0.7);
+    // fromTo with explicit end values — never inherit a polluted current state
+    tl.fromTo('.cs-back', { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.6 }, 0.1)
+      .fromTo('.cs-meta .cs-tag', { opacity: 0, y: 10, scale: 0.9 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.45, stagger: 0.07, ease: 'back.out(2)' }, 0.25)
+      .fromTo('.cs-hero-subtitle', { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.8, clearProps: 'transition' }, 0.55)
+      .fromTo('.cs-info-item', { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.7);
   })();
 
   /* ---------- Image tilt toward the cursor ---------- */
