@@ -711,6 +711,73 @@
   line-height: 1.55;
 }
 
+/* ============================================================
+   EXPERIENCE LAYER (cs-experience.js)
+   ============================================================ */
+.csx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--cs-accent, var(--signal));
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 1200; /* above the fixed header */
+  pointer-events: none;
+}
+
+.csx-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(
+    520px circle at calc(var(--gx, -600) * 1px) calc(var(--gy, -600) * 1px),
+    color-mix(in srgb, var(--cs-accent, var(--signal)) 16%, transparent),
+    transparent 70%
+  );
+}
+
+/* split hero title words (built by JS) */
+.csx-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.csx-wi { display: inline-block; }
+
+/* accent left bar on quotes, drawable via --quote-bar */
+.cs-quote {
+  border-left-color: var(--cs-accent, var(--signal));
+  border-left-width: 3px;
+  position: relative;
+}
+
+.cs-quote::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cs-accent, var(--signal));
+  transform: scaleY(var(--quote-bar, 1));
+  transform-origin: top;
+}
+
+/* image tilt support */
+.cs-image img {
+  will-change: transform;
+  transition: box-shadow 0.4s ease;
+}
+
+.cs-image:hover img { box-shadow: 0 24px 60px rgba(22, 20, 15, 0.16); }
+
+/* hero accent touches */
+.cs-tag { border-color: color-mix(in srgb, var(--cs-accent, var(--signal)) 45%, var(--color-border)); }
+
 /* Back link */
 .cs-back {
   display: inline-flex;
