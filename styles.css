@@ -251,6 +251,14 @@ button { font-family: inherit; }
 
 .nav-cta:hover { background: var(--signal); border-color: var(--signal); color: var(--ink); }
 
+/* secondary nav CTA — outline, sits beside the solid primary action */
+.nav-cta--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.nav-cta--ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
 /* Hamburger */
 .nav-toggle {
   display: none;
@@ -348,6 +356,12 @@ button { font-family: inherit; }
   color: var(--ink);
   font-style: italic;
 }
+
+.mobile-menu-link--cta {
+  color: var(--signal);
+}
+
+.mobile-menu-link--cta:hover { color: var(--ink); }
 
 /* ============================================================
    BUTTONS
