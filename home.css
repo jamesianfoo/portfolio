@@ -954,10 +954,18 @@ body.is-loading { overflow: hidden; }
 }
 
 .hm-marquee-track--outro .hm-marquee-seg {
-  font-size: clamp(1.9rem, 4.6vw, 3.8rem);
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(244, 241, 232, 0.3);
+  display: inline-flex;
+  align-items: center;
   font-style: normal;
+}
+
+.hm-marquee-track--outro .hm-marquee-seg img {
+  display: block;
+  height: clamp(1.9rem, 4.6vw, 3.8rem);
+  width: auto;
+  margin-right: clamp(1.4rem, 3vw, 2.4rem);
+  filter: invert(1);
+  opacity: 0.22;
 }
 
 .footer--home {

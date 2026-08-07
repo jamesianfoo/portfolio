@@ -143,22 +143,45 @@ button { font-family: inherit; }
 
 .nav-brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   min-width: 0;
 }
 
 .nav-logo {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-style: italic;
-  font-size: 1.05rem;
-  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
   transition: opacity var(--transition);
 }
 
 .nav-logo:hover { opacity: 0.7; }
+
+.nav-logo img {
+  display: block;
+  height: 30px;
+  width: auto;
+}
+
+.footer-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Footer sits on a dark (--night) background on every page — invert
+   the mark so it reads as light ink instead of swapping asset files. */
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-logo img {
+  display: block;
+  height: 34px;
+  width: auto;
+  filter: invert(1) brightness(1.35);
+}
 
 .nav-title {
   font-family: var(--font-mono);
@@ -561,7 +584,8 @@ button { font-family: inherit; }
   gap: 0.35rem;
 }
 
-.footer-rlinks { display: flex; align-items: center; gap: 0.6rem; }
+.back-to-top { order: 1; }
+.footer-rlinks { order: 2; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 .footer-dot { font-size: 0.8125rem; }
 .footer-meta { font-size: 0.8125rem; }
 

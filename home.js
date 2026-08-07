@@ -330,6 +330,12 @@
     window.addEventListener('resize', measure, { passive: true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
+    var imgs = track.querySelectorAll('img');
+    imgs.forEach(function (img) {
+      if (img.complete) return;
+      img.addEventListener('load', measure, { once: true });
+    });
+
     gsap.ticker.add(function (t, dt) {
       if (!segW) { measure(); return; }
       var v = (baseSpeed + boost) * (dt / 16.7);
