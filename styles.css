@@ -110,6 +110,17 @@ button { font-family: inherit; }
 /* ============================================================
    HEADER / NAV
    ============================================================ */
+/* Shared chrome pins its own typeface rather than inheriting from body.
+   Tool pages (toolkit, the KPI-tree builders) set their own
+   `body { font-family: ... }` for their dense content; without this the
+   override leaked into the nav and footer and they rendered in Inter. */
+.header,
+.nav,
+.mobile-menu,
+.footer {
+  font-family: var(--font-main);
+}
+
 .header {
   position: fixed;
   top: 0;
