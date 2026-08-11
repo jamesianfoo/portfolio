@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "portfolio",
-      "runtimeExecutable": "/bin/sh",
-      "runtimeArgs": ["-c", "cd /Users/baymax/Documents/Portfolio && exec /usr/bin/python3 -m http.server 4173"],
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/baymax/Documents/Portfolio", "4173"],
       "port": 4173
     }
   ]
