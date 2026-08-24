@@ -681,6 +681,103 @@
   })();
 
   /* ============================================================
+     SOUS PANTRY CARD — four real screens on a rotating 3D ring
+     ============================================================ */
+  (function sousRing() {
+    var ring = document.getElementById('sous-ring');
+    if (!ring) return;
+
+    var faces = gsap.utils.toArray('#sous-ring .sous-phone');
+    var caption = document.getElementById('sous-caption');
+    var stage = document.getElementById('sous-stage');
+    var n = faces.length;
+    if (!n) return;
+
+    var step = 360 / n;
+    // Radius comes from the rendered width so the ring scales with the card.
+    var radius = 0;
+    function measure() {
+      radius = (ring.offsetWidth || 200) * 1.15;
+      faces.forEach(function (f, i) {
+        gsap.set(f, { rotationY: i * step, transformOrigin: '50% 50% ' + (-radius) + 'px' });
+      });
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+
+    if (reduceMotion) {
+      // Flat fallback: first screen only, no ring.
+      gsap.set(ring, { rotationY: 0 });
+      return;
+    }
+
+    var spin = { y: 0 };
+
+    // Depth shading: faces pointing away dim and sit back.
+    function shade() {
+      faces.forEach(function (f, i) {
+        var a = ((i * step + spin.y) % 360 + 360) % 360;   // 0 = facing viewer
+        var facing = Math.cos(a * Math.PI / 180);           // 1 front, -1 back
+        var t = (facing + 1) / 2;                           // 0 back .. 1 front
+        f.style.zIndex = String(Math.round(facing * 100));
+        f.style.setProperty('--veil', (0.70 * (1 - t)).toFixed(3));
+        f.style.opacity = (0.35 + 0.65 * t).toFixed(3);
+      });
+    }
+
+    gsap.set(ring, { rotationY: 0 });
+    shade();
+
+    // Continuous slow drift, with a snap-to-face read every few seconds.
+    var idx = 0;
+    function advance() {
+      idx += 1;
+      var label = faces[((idx % n) + n) % n].getAttribute('data-label') || '';
+      gsap.to(spin, {
+        y: -idx * step,
+        duration: 1.25,
+        ease: 'power3.inOut',
+        onUpdate: function () {
+          gsap.set(ring, { rotationY: spin.y });
+          shade();
+        },
+        onStart: function () {
+          if (!caption) return;
+          caption.textContent = label;
+          gsap.fromTo(caption,
+            { opacity: 0, y: 6 },
+            { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true });
+        }
+      });
+    }
+
+    var timer = gsap.delayedCall(2.6, function tick() {
+      advance();
+      timer = gsap.delayedCall(3.4, tick);
+    });
+
+    // Only spin while the card is actually on screen.
+    ScrollTrigger.create({
+      trigger: '.hm-card--sous',
+      start: 'top bottom',
+      end: 'bottom top',
+      onToggle: function (self) { self.isActive ? timer.play() : timer.pause(); }
+    });
+
+    // Pointer parallax — the ring leans toward the cursor.
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && stage) {
+      var rx = gsap.quickTo(ring, 'rotationX', { duration: 0.7, ease: 'power2.out' });
+      var host = stage.closest('.hm-card') || stage;
+      host.addEventListener('mousemove', function (e) {
+        var r = stage.getBoundingClientRect();
+        var ny = (e.clientY - r.top) / r.height - 0.5;
+        rx(gsap.utils.clamp(-10, 10, -ny * 14));
+      });
+      host.addEventListener('mouseleave', function () { rx(0); });
+    }
+  })();
+
+  /* ============================================================
      OUTRO — line reveals
      ============================================================ */
   gsap.to('[data-outro-line]', {

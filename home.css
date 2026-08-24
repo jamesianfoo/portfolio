@@ -579,16 +579,94 @@ body.is-loading { overflow: hidden; }
 }
 .hm-card--sous .hm-card-stats li { background: rgba(236, 231, 216, 0.08); }
 
-.hm-sous-logo {
-  width: min(64%, 360px);
-  aspect-ratio: 542 / 214;
-  background: #ECE7D8;
-  -webkit-mask: url('images/souspantry-logo.png') center / contain no-repeat;
-  mask: url('images/souspantry-logo.png') center / contain no-repeat;
-  transition: transform 0.8s var(--ease-out);
+/* Sous Pantry card — real screens on a rotating 3D ring.
+   CSS owns perspective and depth; home.js drives rotation. */
+.sous-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+  perspective-origin: 50% 46%;
 }
 
-.hm-card:hover .hm-sous-logo { transform: scale(1.04); }
+/* Sized from HEIGHT, not width: the phone is tall and the panel is wide,
+   so height is the binding constraint. Width follows the aspect ratio. */
+.sous-ring {
+  position: relative;
+  height: min(88%, 440px);
+  width: auto;
+  aspect-ratio: 620 / 1342;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.sous-phone {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #12110F;
+  backface-visibility: hidden;
+  /* device frame + grounding shadow */
+  box-shadow:
+    0 0 0 2px rgba(236, 231, 216, 0.20),
+    0 0 0 5px rgba(10, 22, 16, 0.55),
+    0 28px 60px -18px rgba(0, 0, 0, 0.75);
+  will-change: transform, opacity;
+}
+
+.sous-phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* depth veil — home.js fades this per face so back screens sit further away */
+.sous-phone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #06140D;
+  opacity: var(--veil, 0);
+  pointer-events: none;
+}
+
+.sous-caption {
+  position: absolute;
+  bottom: clamp(0.5rem, 3%, 1.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(236, 231, 216, 0.62);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* no-JS and reduced-motion: show one screen, flat and legible */
+.sous-phone:not(:first-child) { opacity: 0; }
+.js .sous-phone:not(:first-child) { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sous-ring { transform: none !important; }
+  .sous-phone { transform: none !important; }
+  .sous-phone:not(:first-child) { opacity: 0 !important; }
+  .sous-phone::after { opacity: 0 !important; }
+}
+
+@media (max-width: 980px) {
+  /* the card panel is short here, so give the screens the room
+     and drop the label rather than let it sit over the phone */
+  .sous-ring { height: min(92%, 300px); }
+  .sous-caption { display: none; }
+}
 
 /* ============================================================
    CLIENTS — editorial name wall
