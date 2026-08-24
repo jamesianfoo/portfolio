@@ -628,25 +628,35 @@ body.is-loading { overflow: hidden; }
   height: 100%;
   aspect-ratio: 620 / 1342;
   margin: 0;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
-  background: #12110F;
+  /* no device frame and no fill: the screenshot IS the phone. Any
+     background shows as a black band the moment the image shifts. */
+  background: transparent;
   transform-style: preserve-3d;
   /* GSAP owns transform; this is only the pre-paint resting state */
   transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 0 2px rgba(236, 231, 216, 0.18),
-    0 0 0 5px rgba(10, 22, 16, 0.5),
-    0 30px 55px -20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 26px 50px -22px rgba(0, 0, 0, 0.75);
   will-change: transform, opacity;
 }
 
-.sous-phone img {
+/* Reset the generic .hm-card-visual img treatment. Its translateY(12px)
+   pushed the screenshot down inside an overflow:hidden box (the black
+   band), and its hover scale fought the coverflow transform, which also
+   forced a second raster layer and softened the image. */
+.hm-card-visual--sous .sous-phone img,
+.hm-card:hover .hm-card-visual--sous .sous-phone img {
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
   object-fit: cover;
   object-position: top center;
   display: block;
+  border-radius: inherit;
+  box-shadow: none;
+  transform: none;
+  transition: none;
 }
 
 /* depth veil — deepens the further a screen sits from centre */

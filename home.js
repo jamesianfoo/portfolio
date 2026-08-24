@@ -392,6 +392,10 @@
 
     // subtle parallax on each card's visual
     slots.forEach(function (slot) {
+      // The Sous Pantry deck drives its own motion. Parallaxing its
+      // screens shifted each image inside its own frame and exposed an
+      // edge, and the extra transform layer softened the screenshot.
+      if (slot.querySelector('.sous-deck')) return;
       var img = slot.querySelector('.hm-card-visual img, .hm-card-visual .hm-motif');
       if (!img) return;
       gsap.fromTo(img, { yPercent: 6 }, {
