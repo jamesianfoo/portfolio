@@ -683,80 +683,95 @@
   /* ============================================================
      SOUS PANTRY CARD — four real screens on a rotating 3D ring
      ============================================================ */
-  (function sousRing() {
-    var ring = document.getElementById('sous-ring');
-    if (!ring) return;
+  (function sousDeck() {
+    var deck = document.getElementById('sous-deck');
+    if (!deck) return;
 
-    var faces = gsap.utils.toArray('#sous-ring .sous-phone');
+    var faces = gsap.utils.toArray('#sous-deck .sous-phone');
     var caption = document.getElementById('sous-caption');
     var stage = document.getElementById('sous-stage');
     var n = faces.length;
     if (!n) return;
 
-    var step = 360 / n;
-    // Radius comes from the rendered width so the ring scales with the card.
-    var radius = 0;
-    function measure() {
-      radius = (ring.offsetWidth || 200) * 1.15;
+    // Coverflow geometry. Spacing compresses and tilt eases off as
+    // screens recede, so the outermost one still reads as a phone
+    // instead of going edge-on. Linear falloff turned it into a sliver.
+    var STEP = [
+      { x: 0.00, rot:  0, scale: 1.00, op: 1.00, z:    0, veil: 0.00 },
+      { x: 0.60, rot: 32, scale: 0.87, op: 0.75, z: -130, veil: 0.30 },
+      { x: 0.98, rot: 48, scale: 0.76, op: 0.45, z: -240, veil: 0.55 }
+    ];
+    var FAR = { x: 1.25, rot: 56, scale: 0.68, op: 0.28, z: -330, veil: 0.68 };
+
+    var active = 0;
+
+    // Shortest signed distance from the active index, wrapped so the
+    // deck loops instead of running off one end.
+    function offsetOf(i) {
+      var d = i - active;
+      d = ((d % n) + n) % n;
+      if (d > n / 2) d -= n;
+      return d;
+    }
+
+    function layout(animate) {
+      var w = faces[0].offsetWidth || 180;
       faces.forEach(function (f, i) {
-        gsap.set(f, { rotationY: i * step, transformOrigin: '50% 50% ' + (-radius) + 'px' });
-      });
-    }
-    measure();
-    window.addEventListener('resize', measure, { passive: true });
-
-    if (reduceMotion) {
-      // Flat fallback: first screen only, no ring.
-      gsap.set(ring, { rotationY: 0 });
-      return;
-    }
-
-    var spin = { y: 0 };
-
-    // Depth shading: faces pointing away dim and sit back.
-    function shade() {
-      faces.forEach(function (f, i) {
-        var a = ((i * step + spin.y) % 360 + 360) % 360;   // 0 = facing viewer
-        var facing = Math.cos(a * Math.PI / 180);           // 1 front, -1 back
-        var t = (facing + 1) / 2;                           // 0 back .. 1 front
-        f.style.zIndex = String(Math.round(facing * 100));
-        f.style.setProperty('--veil', (0.70 * (1 - t)).toFixed(3));
-        f.style.opacity = (0.35 + 0.65 * t).toFixed(3);
-      });
-    }
-
-    gsap.set(ring, { rotationY: 0 });
-    shade();
-
-    // Continuous slow drift, with a snap-to-face read every few seconds.
-    var idx = 0;
-    function advance() {
-      idx += 1;
-      var label = faces[((idx % n) + n) % n].getAttribute('data-label') || '';
-      gsap.to(spin, {
-        y: -idx * step,
-        duration: 1.25,
-        ease: 'power3.inOut',
-        onUpdate: function () {
-          gsap.set(ring, { rotationY: spin.y });
-          shade();
-        },
-        onStart: function () {
-          if (!caption) return;
-          caption.textContent = label;
-          gsap.fromTo(caption,
-            { opacity: 0, y: 6 },
-            { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true });
+        var o = offsetOf(i);
+        var a = Math.abs(o);
+        var sign = o < 0 ? -1 : 1;
+        var k = STEP[a] || FAR;
+        var vars = {
+          xPercent: -50,
+          yPercent: -50,
+          x: sign * k.x * w,
+          z: k.z,
+          rotationY: -sign * k.rot,
+          scale: k.scale,
+          opacity: k.op,
+          zIndex: 100 - a * 10,
+          transformOrigin: '50% 50%'
+        };
+        if (animate) {
+          gsap.to(f, Object.assign({ duration: 0.9, ease: 'power3.inOut', overwrite: 'auto' }, vars));
+        } else {
+          gsap.set(f, vars);
         }
+        f.style.setProperty('--veil', k.veil.toFixed(2));
       });
     }
 
-    var timer = gsap.delayedCall(2.6, function tick() {
+    // The label swaps mid-move so it lands as the screen reaches centre.
+    // Setting it immediately left the caption a step ahead of the deck.
+    function setCaption(animate) {
+      if (!caption) return;
+      var label = faces[active].getAttribute('data-label') || '';
+      if (!animate) { caption.textContent = label; return; }
+      gsap.timeline({ overwrite: true })
+        .to(caption, { opacity: 0, y: -4, duration: 0.22, ease: 'power2.in' }, 0.18)
+        .add(function () { caption.textContent = label; })
+        .fromTo(caption, { opacity: 0, y: 5 },
+          { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+    }
+
+    layout(false);
+    setCaption(false);
+    window.addEventListener('resize', function () { layout(false); }, { passive: true });
+
+    if (reduceMotion) return;
+
+    function advance() {
+      active = (active + 1) % n;
+      layout(true);
+      setCaption(true);
+    }
+
+    var timer = gsap.delayedCall(2.4, function tick() {
       advance();
-      timer = gsap.delayedCall(3.4, tick);
+      timer = gsap.delayedCall(3.2, tick);
     });
 
-    // Only spin while the card is actually on screen.
+    // Only cycle while the card is on screen.
     ScrollTrigger.create({
       trigger: '.hm-card--sous',
       start: 'top bottom',
@@ -764,16 +779,19 @@
       onToggle: function (self) { self.isActive ? timer.play() : timer.pause(); }
     });
 
-    // Pointer parallax — the ring leans toward the cursor.
+    // Pointer parallax — the whole deck leans toward the cursor.
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && stage) {
-      var rx = gsap.quickTo(ring, 'rotationX', { duration: 0.7, ease: 'power2.out' });
+      var ry = gsap.quickTo(deck, 'rotationY', { duration: 0.8, ease: 'power2.out' });
+      var rx = gsap.quickTo(deck, 'rotationX', { duration: 0.8, ease: 'power2.out' });
       var host = stage.closest('.hm-card') || stage;
       host.addEventListener('mousemove', function (e) {
         var r = stage.getBoundingClientRect();
+        var nx = (e.clientX - r.left) / r.width - 0.5;
         var ny = (e.clientY - r.top) / r.height - 0.5;
-        rx(gsap.utils.clamp(-10, 10, -ny * 14));
+        ry(gsap.utils.clamp(-9, 9, nx * 13));
+        rx(gsap.utils.clamp(-7, 7, -ny * 10));
       });
-      host.addEventListener('mouseleave', function () { rx(0); });
+      host.addEventListener('mouseleave', function () { ry(0); rx(0); });
     }
   })();
 

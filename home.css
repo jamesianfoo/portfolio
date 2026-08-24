@@ -579,42 +579,44 @@ body.is-loading { overflow: hidden; }
 }
 .hm-card--sous .hm-card-stats li { background: rgba(236, 231, 216, 0.08); }
 
-/* Sous Pantry card — real screens on a rotating 3D ring.
-   CSS owns perspective and depth; home.js drives rotation. */
+/* Sous Pantry card — real screens in a 3D coverflow.
+   All four are visible at once: the active screen sits front and
+   centre, its neighbours angle inward and recede. CSS owns the
+   perspective and the device frame; home.js positions each face. */
 .sous-stage {
   position: relative;
   width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
-  perspective: 1400px;
-  perspective-origin: 50% 46%;
+  perspective: 1500px;
+  perspective-origin: 50% 48%;
 }
 
-/* Sized from HEIGHT, not width: the phone is tall and the panel is wide,
-   so height is the binding constraint. Width follows the aspect ratio. */
-.sous-ring {
+.sous-deck {
   position: relative;
-  height: min(88%, 440px);
-  width: auto;
-  aspect-ratio: 620 / 1342;
+  width: 100%;
+  height: min(84%, 430px);
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .sous-phone {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  aspect-ratio: 620 / 1342;
   margin: 0;
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
   background: #12110F;
-  backface-visibility: hidden;
-  /* device frame + grounding shadow */
+  transform-style: preserve-3d;
+  /* GSAP owns transform; this is only the pre-paint resting state */
+  transform: translate(-50%, -50%);
   box-shadow:
-    0 0 0 2px rgba(236, 231, 216, 0.20),
-    0 0 0 5px rgba(10, 22, 16, 0.55),
-    0 28px 60px -18px rgba(0, 0, 0, 0.75);
+    0 0 0 2px rgba(236, 231, 216, 0.18),
+    0 0 0 5px rgba(10, 22, 16, 0.5),
+    0 30px 55px -20px rgba(0, 0, 0, 0.8);
   will-change: transform, opacity;
 }
 
@@ -626,45 +628,43 @@ body.is-loading { overflow: hidden; }
   display: block;
 }
 
-/* depth veil — home.js fades this per face so back screens sit further away */
+/* depth veil — deepens the further a screen sits from centre */
 .sous-phone::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: #06140D;
+  background: #05120C;
   opacity: var(--veil, 0);
   pointer-events: none;
+  transition: opacity 0.5s var(--ease-out);
 }
 
 .sous-caption {
   position: absolute;
-  bottom: clamp(0.5rem, 3%, 1.6rem);
+  bottom: clamp(0.25rem, 2%, 1rem);
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(236, 231, 216, 0.62);
+  color: rgba(236, 231, 216, 0.6);
   white-space: nowrap;
   pointer-events: none;
 }
 
-/* no-JS and reduced-motion: show one screen, flat and legible */
+/* no-JS: show the first screen only, flat and centred */
 .sous-phone:not(:first-child) { opacity: 0; }
-.js .sous-phone:not(:first-child) { opacity: 1; }
+.js .sous-phone { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  .sous-ring { transform: none !important; }
-  .sous-phone { transform: none !important; }
+  .sous-phone { transform: translate(-50%, -50%) !important; }
   .sous-phone:not(:first-child) { opacity: 0 !important; }
   .sous-phone::after { opacity: 0 !important; }
 }
 
 @media (max-width: 980px) {
-  /* the card panel is short here, so give the screens the room
-     and drop the label rather than let it sit over the phone */
-  .sous-ring { height: min(92%, 300px); }
+  .sous-deck { height: min(90%, 300px); }
   .sous-caption { display: none; }
 }
 
