@@ -14,12 +14,12 @@
   <link rel="icon" href="favicon.ico" sizes="any">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="An interactive tool for connecting business objectives to design initiatives and UX metrics. Built by James Foo, product designer.">
-  <title>Design KPI Tree — James Foo</title>
+  <title>Design KPI Tree · James Foo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=jf56">
+  <link rel="stylesheet" href="styles.css?v=jf91">
   <style>
     /* Remove portfolio dot pattern and border from KPI tree hero */
     .hero::before { display: none; }
@@ -164,7 +164,7 @@ body { font-family: var(--font); background: var(--white); color: var(--black); 
 /* Two-column layout */
 .page-body { max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start; }
 
-/* How it works — left sidebar (wide) */
+/* How it works: left sidebar (wide) */
 .how-sidebar { position: sticky; top: 24px; }
 .section-title { font-size: 10px; font-weight: 500; font-family: var(--mono); letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 1.5rem; }
 .how-stack { display: flex; flex-direction: column; gap: 0; }
@@ -175,7 +175,7 @@ body { font-family: var(--font); background: var(--white); color: var(--black); 
 .how-card h3 { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--black); line-height: 1.3; }
 .how-card p { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
 
-/* How it works — top strip (narrow) */
+/* How it works: top strip (narrow) */
 .how-strip { display: none; }
 .how-strip-inner { display: flex; gap: 0; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; }
 .how-strip-inner::-webkit-scrollbar { display: none; }
@@ -208,7 +208,7 @@ body { font-family: var(--font); background: var(--white); color: var(--black); 
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
-  /* Thinking Toolkit alignment — headings use Raleway */
+  /* Thinking Toolkit alignment: headings use Raleway */
   h1, h2, h3, .modal h2 {
     font-family: 'Raleway', system-ui, sans-serif;
   }
@@ -265,29 +265,29 @@ body { font-family: var(--font); background: var(--white); color: var(--black); 
 <section class="hero">
   <p class="hero-eyebrow">Design KPI Tree</p>
   <h1>Connect design work to <em>outcomes</em> that matter</h1>
-  <p class="hero-desc">Most design teams are great at shipping. Few are great at proving what it changed. This tool maps business objectives → design initiatives → UX metrics, so the impact of design is visible — not assumed.</p>
+  <p class="hero-desc">Most design teams are great at shipping. Few are great at proving what it changed. This tool maps business objectives → design initiatives → UX metrics, so the impact of design is visible, not assumed.</p>
 </section>
 
 <main class="page-body">
 
-  <!-- How it works — narrow strip (top on mobile) -->
+  <!-- How it works: narrow strip (top on mobile) -->
   <div class="how-strip">
     <p class="section-title">How it works</p>
     <div class="how-strip-inner">
       <div class="how-card"><div class="how-num">01</div><h3>Start with the business objective</h3><p>Every design decision should be traceable to something the business cares about.</p></div>
-      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets — specific UX improvements you believe will move the objective.</p></div>
-      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics — start with user needs, then find what proves the need was met.</p></div>
+      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets. Specific UX improvements you believe will move the objective.</p></div>
+      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics. Start with user needs, then find what proves the need was met.</p></div>
       <div class="how-card"><div class="how-num">04</div><h3>Track and report visibly</h3><p>Design impact belongs in the same rooms where product and engineering report their numbers.</p></div>
     </div>
   </div>
 
-  <!-- How it works — wide sidebar (left on desktop) -->
+  <!-- How it works: wide sidebar (left on desktop) -->
   <aside class="how-sidebar" aria-label="How the tree works">
     <p class="section-title">How it works</p>
     <div class="how-stack">
       <div class="how-card"><div class="how-num">01</div><h3>Start with the business objective</h3><p>Every design decision should be traceable to something the business cares about. If you can't draw that line, you're designing without a brief.</p></div>
-      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets — specific UX improvements you believe will move the objective. Make them concrete enough to be testable.</p></div>
-      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics — start with user needs. Then find the metric that confirms the need was met. UMUX-Lite, SUS, CES, TFV all have specific jobs.</p></div>
+      <div class="how-card"><div class="how-num">02</div><h3>Name the design initiatives</h3><p>These are the design bets. Specific UX improvements you believe will move the objective. Make them concrete enough to be testable.</p></div>
+      <div class="how-card"><div class="how-num">03</div><h3>Choose the right metrics</h3><p>Don't start with metrics. Start with user needs. Then find the metric that confirms the need was met. UMUX-Lite, SUS, CES, TFV all have specific jobs.</p></div>
       <div class="how-card"><div class="how-num">04</div><h3>Track and report visibly</h3><p>Design impact shouldn't live in a Notion doc. It belongs in the same rooms where product and engineering report their numbers.</p></div>
     </div>
   </aside>
@@ -433,13 +433,13 @@ const PRESETS = {
     initiatives:[
       { id:"i1", label:"Reduce checkout\nfriction", tags:["Conversion","Friction"], desc:"Streamline the checkout flow: fewer steps, smarter defaults, removing any moment where a user has to stop and think unnecessarily.", metrics:[{name:"Steps to checkout",value:"5",target:"≤3",pct:60,color:"#b0b0b0"},{name:"Form abandonment",value:"34%",target:"<15%",pct:44,color:"#b0b0b0"},{name:"Error field rate",value:"22%",target:"<8%",pct:36,color:"#b0b0b0"}], research:"Session replay analysis of abandoned checkouts. Identify top 3 exit points. Unmoderated usability test with real products in cart." },
       { id:"i2", label:"Build purchase\nconfidence", tags:["Trust","Conversion"], desc:"Design moments that reduce purchase anxiety: clear returns policy, trust signals, and review placement at the moment of decision.", metrics:[{name:"Add-to-cart → checkout",value:"48%",target:">65%",pct:74,color:"#767676"},{name:"Trust signal view rate",value:"41%",target:">70%",pct:59,color:"#b0b0b0"},{name:"Review read before buy",value:"67%",target:">80%",pct:84,color:"#2a2a2a"}], research:"Heatmap + scroll depth analysis on product pages. A/B test trust badge placement. Survey: 'What almost stopped you from buying?'" },
-      { id:"i3", label:"Improve cart\nrecovery", tags:["Retention","Recovery"], desc:"Design a recovery experience for users who abandon — email re-engagement, persistent cart state, and in-session friction warnings.", metrics:[{name:"Cart recovery rate",value:"11%",target:">22%",pct:50,color:"#b0b0b0"},{name:"Cart persistence (7d)",value:"78%",target:">95%",pct:82,color:"#767676"},{name:"Re-engage click rate",value:"18%",target:">30%",pct:60,color:"#b0b0b0"}], research:"A/B test cart recovery email timing and subject lines. Track persistent cart usage. Exit-intent survey: 'What changed your mind?'" },
+      { id:"i3", label:"Improve cart\nrecovery", tags:["Retention","Recovery"], desc:"Design a recovery experience for users who abandon: email re-engagement, persistent cart state, and in-session friction warnings.", metrics:[{name:"Cart recovery rate",value:"11%",target:">22%",pct:50,color:"#b0b0b0"},{name:"Cart persistence (7d)",value:"78%",target:">95%",pct:82,color:"#767676"},{name:"Re-engage click rate",value:"18%",target:">30%",pct:60,color:"#b0b0b0"}], research:"A/B test cart recovery email timing and subject lines. Track persistent cart usage. Exit-intent survey: 'What changed your mind?'" },
     ],
     metrics:[
       { id:"m1", label:"Checkout\ncompletion rate", parent:"i1,i2", status:"warning", tags:["Conversion","HEART"], desc:"Of users who begin checkout, what % complete? Industry median mobile ~55%, desktop ~70%. Design can move this significantly.", metrics:[{name:"Mobile checkout",value:"47%",target:">65%",pct:72,color:"#767676"},{name:"Desktop checkout",value:"61%",target:">78%",pct:78,color:"#767676"},{name:"Guest vs signed-in",value:"49%/68%",target:"<10pt gap",pct:55,color:"#b0b0b0"}], research:"Funnel analysis by step. Segment by device, traffic source, cart value. Replay sessions of users who abandoned at payment." },
-      { id:"m2", label:"Time on task\n(checkout)", parent:"i1", status:"danger", tags:["Efficiency","Friction"], desc:"Average time from 'checkout' click to order confirmation. A direct proxy for friction — long times signal confusion, hesitation, or unnecessary steps.", metrics:[{name:"Median checkout time",value:"4m 12s",target:"<2m 30s",pct:60,color:"#b0b0b0"},{name:"Address entry time",value:"1m 38s",target:"<45s",pct:46,color:"#b0b0b0"},{name:"Payment entry time",value:"58s",target:"<40s",pct:69,color:"#767676"}], research:"Session analytics segmented by step. Compare autofill-enabled vs not. Replay the slowest 20% of sessions." },
+      { id:"m2", label:"Time on task\n(checkout)", parent:"i1", status:"danger", tags:["Efficiency","Friction"], desc:"Average time from 'checkout' click to order confirmation. A direct proxy for friction. Long times signal confusion, hesitation, or unnecessary steps.", metrics:[{name:"Median checkout time",value:"4m 12s",target:"<2m 30s",pct:60,color:"#b0b0b0"},{name:"Address entry time",value:"1m 38s",target:"<45s",pct:46,color:"#b0b0b0"},{name:"Payment entry time",value:"58s",target:"<40s",pct:69,color:"#767676"}], research:"Session analytics segmented by step. Compare autofill-enabled vs not. Replay the slowest 20% of sessions." },
       { id:"m3", label:"CES (customer\neffort score)", parent:"i1,i2", status:"danger", tags:["Effort","Survey"], desc:"Measures how much effort users feel they had to expend. The best predictor of repeat purchase intent. Lower effort = higher loyalty.", metrics:[{name:"Overall CES",value:"3.8/7",target:">5.5",pct:69,color:"#b0b0b0"},{name:"Checkout CES",value:"3.4/7",target:">5.0",pct:68,color:"#b0b0b0"},{name:"Return process CES",value:"4.1/7",target:">5.5",pct:75,color:"#767676"}], research:"2-question CES survey triggered 24h post-purchase. Segment by channel. Track monthly trend." },
-      { id:"m4", label:"Cart abandonment\nrate", parent:"i1,i3", status:"danger", tags:["Abandonment","Conversion"], desc:"% of users who add to cart but don't complete purchase. Industry average is ~70% — but that's not a target, it's a baseline to beat.", metrics:[{name:"Overall abandonment",value:"68%",target:"<50%",pct:74,color:"#767676"},{name:"Mobile abandonment",value:"74%",target:"<55%",pct:74,color:"#767676"},{name:"High-value cart",value:"61%",target:"<40%",pct:66,color:"#767676"}], research:"Exit-intent survey on cart page. Session replay of cart-to-exit. A/B test: price transparency (total inc. shipping shown early)." },
+      { id:"m4", label:"Cart abandonment\nrate", parent:"i1,i3", status:"danger", tags:["Abandonment","Conversion"], desc:"% of users who add to cart but don't complete purchase. Industry average is ~70%, but that's not a target, it's a baseline to beat.", metrics:[{name:"Overall abandonment",value:"68%",target:"<50%",pct:74,color:"#767676"},{name:"Mobile abandonment",value:"74%",target:"<55%",pct:74,color:"#767676"},{name:"High-value cart",value:"61%",target:"<40%",pct:66,color:"#767676"}], research:"Exit-intent survey on cart page. Session replay of cart-to-exit. A/B test: price transparency (total inc. shipping shown early)." },
     ]
   },
   enterprise: {
@@ -452,9 +452,9 @@ const PRESETS = {
     ],
     metrics:[
       { id:"m1", label:"Time to first\nvalue (TFV)", parent:"i1", status:"danger", tags:["Activation","Retention"], desc:"Days from account creation to completing a meaningful task. The most important retention predictor in B2B SaaS.", metrics:[{name:"Median TFV",value:"9.4d",target:"<5d",pct:53,color:"#b0b0b0"},{name:"Admin users TFV",value:"12.1d",target:"<6d",pct:50,color:"#b0b0b0"},{name:"Power users TFV",value:"6.3d",target:"<4d",pct:63,color:"#767676"}], research:"Define 'first value' event in data warehouse. Segment by plan, company size, onboarding path. Interview users who reached value fast vs slow." },
-      { id:"m2", label:"SUS score\n(perceived usability)", parent:"i1,i2", status:"warning", tags:["Usability","Survey"], desc:"System Usability Scale — 10-item questionnaire, 0–100. Below 68 = below average. Above 80 = excellent. Tracks overall usability health across versions.", metrics:[{name:"Overall SUS",value:"61",target:">75",pct:81,color:"#767676"},{name:"Admin module SUS",value:"54",target:">70",pct:77,color:"#767676"},{name:"Core workflow SUS",value:"66",target:">78",pct:85,color:"#2a2a2a"}], research:"10-item SUS survey sent quarterly to active users (n=100+). Run per-module SUS after major releases. Track trend, not snapshot." },
-      { id:"m3", label:"Feature adoption\nrate", parent:"i2", status:"danger", tags:["Adoption","Engagement"], desc:"% of accounts that have used a defined core feature within 30 days. Low adoption means users are paying for something they're not using — a retention risk.", metrics:[{name:"Core feature (30d)",value:"38%",target:">65%",pct:58,color:"#b0b0b0"},{name:"Collaboration features",value:"24%",target:">50%",pct:48,color:"#b0b0b0"},{name:"Integration features",value:"19%",target:">40%",pct:48,color:"#b0b0b0"}], research:"Product analytics: activation funnel per feature. 'Sleeping feature' analysis: what % of paid accounts have never used X?" },
-      { id:"m4", label:"NPS (net promoter\nscore)", parent:"i1,i2,i3", status:"warning", tags:["Loyalty","Survey"], desc:"Would your users recommend this? NPS catches the overall relationship quality between product and user over time. Design can move it through reliability, clarity, and care.", metrics:[{name:"Overall NPS",value:"18",target:">40",pct:45,color:"#b0b0b0"},{name:"Promoters (9–10)",value:"29%",target:">50%",pct:58,color:"#b0b0b0"},{name:"Detractors (0–6)",value:"22%",target:"<12%",pct:55,color:"#b0b0b0"}], research:"Quarterly NPS survey to all active users. Segment passives vs detractors — interview 5 from each group. Detractor themes drive design roadmap." },
+      { id:"m2", label:"SUS score\n(perceived usability)", parent:"i1,i2", status:"warning", tags:["Usability","Survey"], desc:"System Usability Scale. 10-item questionnaire, 0–100. Below 68 = below average. Above 80 = excellent. Tracks overall usability health across versions.", metrics:[{name:"Overall SUS",value:"61",target:">75",pct:81,color:"#767676"},{name:"Admin module SUS",value:"54",target:">70",pct:77,color:"#767676"},{name:"Core workflow SUS",value:"66",target:">78",pct:85,color:"#2a2a2a"}], research:"10-item SUS survey sent quarterly to active users (n=100+). Run per-module SUS after major releases. Track trend, not snapshot." },
+      { id:"m3", label:"Feature adoption\nrate", parent:"i2", status:"danger", tags:["Adoption","Engagement"], desc:"% of accounts that have used a defined core feature within 30 days. Low adoption means users are paying for something they're not using. That's a retention risk.", metrics:[{name:"Core feature (30d)",value:"38%",target:">65%",pct:58,color:"#b0b0b0"},{name:"Collaboration features",value:"24%",target:">50%",pct:48,color:"#b0b0b0"},{name:"Integration features",value:"19%",target:">40%",pct:48,color:"#b0b0b0"}], research:"Product analytics: activation funnel per feature. 'Sleeping feature' analysis: what % of paid accounts have never used X?" },
+      { id:"m4", label:"NPS (net promoter\nscore)", parent:"i1,i2,i3", status:"warning", tags:["Loyalty","Survey"], desc:"Would your users recommend this? NPS catches the overall relationship quality between product and user over time. Design can move it through reliability, clarity, and care.", metrics:[{name:"Overall NPS",value:"18",target:">40",pct:45,color:"#b0b0b0"},{name:"Promoters (9–10)",value:"29%",target:">50%",pct:58,color:"#b0b0b0"},{name:"Detractors (0–6)",value:"22%",target:"<12%",pct:55,color:"#b0b0b0"}], research:"Quarterly NPS survey to all active users. Segment passives vs detractors, then interview 5 from each group. Detractor themes drive design roadmap." },
     ]
   }
 };
@@ -844,6 +844,6 @@ renderPreset('ecommerce');
     </div>
   </footer>
 
-  <script src="script.js?v=jf56"></script>
+  <script src="script.js?v=jf91"></script>
 </body>
 </html>

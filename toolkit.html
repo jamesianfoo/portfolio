@@ -13,15 +13,15 @@
   <meta charset="UTF-8">
   <link rel="icon" href="favicon.ico" sizes="any">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The tools, frameworks, and resources James Foo uses to design enterprise products, developer experiences, and AI-native workflows — from Figma to design systems to research methods.">
-  <title>My Design Toolkit — James Foo | Product Designer</title>
+  <meta name="description" content="The tools, frameworks, and resources James Foo uses to design enterprise products, developer experiences, and AI-native workflows. From Figma to design systems to research methods.">
+  <title>My Design Toolkit · James Foo | Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <link rel="stylesheet" href="styles.css?v=jf56">
+  <link rel="stylesheet" href="styles.css?v=jf91">
   <style>
     .toolkit-wrap { font-family: Inter, system-ui, sans-serif; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -138,7 +138,7 @@
     n: "01",
     name: "Second-Order Thinking",
     tag: "Consequences",
-    desc: "Map the ripple effects of your decisions. Most people stop at what happens next — this forces you to ask what happens after that.",
+    desc: "Map the ripple effects of your decisions. Most people stop at what happens next. This forces you to ask what happens after that.",
     next: ["decisionmatrix", "forcefield"]
   }, {
     id: "eisenhower",
@@ -194,7 +194,7 @@
     n: "09",
     name: "Inversion",
     tag: "Risk",
-    desc: "Instead of how do I succeed, ask how do I guarantee failure — then systematically avoid every answer on that list.",
+    desc: "Instead of how do I succeed, ask how do I guarantee failure, then systematically avoid every answer on that list.",
     next: ["firstprinciples", "forcefield"]
   }, {
     id: "feedbackloop",
@@ -215,7 +215,7 @@
     n: "12",
     name: "Force Field Analysis",
     tag: "Change",
-    desc: "Map forces driving and resisting a change. Weaken resistance instead of pushing harder — it is more efficient.",
+    desc: "Map forces driving and resisting a change. Weaken resistance instead of pushing harder. It is more efficient.",
     next: ["blueocean", "decisionmatrix"]
   }, {
     id: "blueocean",
@@ -998,7 +998,7 @@
     };
     const doBuild = () => {
       if (!opts.length && !crits.length) {
-        setBuildErr("Add at least one option and one criterion first — or click Load example.");
+        setBuildErr("Add at least one option and one criterion first, or click Load example.");
         return;
       }
       if (!opts.length) {
@@ -1639,7 +1639,7 @@
       ph: "What does this reinforce or create in your belief system?"
     }, {
       lbl: "Actions taken",
-      ph: "What did you do — or plan to do — based on this?"
+      ph: "What did you do, or plan to do, based on this?"
     }];
     const [vals, setVals] = (0, _react.useState)(RUNGS.map(() => ""));
     const [msg, setMsg] = (0, _react.useState)("");
@@ -1652,7 +1652,7 @@
     const check = () => {
       const filled = vals.filter(v => v.trim()).length;
       let m = "";
-      if (!filled) m = "Fill in at least one rung to get started.";else if (!vals[0]) m = "Start at the bottom — what actually, concretely happened?";else if (!vals[3]) m = "You skipped Assumptions — the most important rung. What are you taking as true that might not be?";else m = "Good ladder. At which rung did you first start interpreting rather than observing? Is your interpretation the only possible one?";
+      if (!filled) m = "Fill in at least one rung to get started.";else if (!vals[0]) m = "Start at the bottom. What actually, concretely happened?";else if (!vals[3]) m = "You skipped Assumptions, the most important rung. What are you taking as true that might not be?";else m = "Good ladder. At which rung did you first start interpreting rather than observing? Is your interpretation the only possible one?";
       setMsg(m);
       if (filled >= 3) setShowNext(true);
     };
@@ -1801,7 +1801,7 @@
     const [msg, setMsg] = (0, _react.useState)("");
     const [showNext, setShowNext] = (0, _react.useState)(false);
     const check = () => {
-      const m = !o ? "Start with Observe — raw facts only, no interpretation." : !or_ ? "You skipped Orient — what mental model are you using to make sense of what you observed?" : !d ? "Good orientation. Now commit to a specific decision." : !a ? "You have a decision — now specify the action precisely: who, what, by when?" : "Complete loop. Act — and immediately begin observing the outcome. Your next cycle starts the moment you do.";
+      const m = !o ? "Start with Observe. Raw facts only, no interpretation." : !or_ ? "You skipped Orient. What mental model are you using to make sense of what you observed?" : !d ? "Good orientation. Now commit to a specific decision." : !a ? "You have a decision. Now specify the action precisely: who, what, by when?" : "Complete loop. Act, and immediately begin observing the outcome. Your next cycle starts the moment you do.";
       setMsg(m);
       setShowNext(true);
     };
@@ -1878,7 +1878,7 @@
       [k]: e.target.value
     }));
     const check = () => {
-      const m = !v.prob ? "Define the problem first — as a question, no solution assumed." : !v.assume ? "List your assumptions. You cannot challenge what you have not named." : !v.chal ? "Now challenge each assumption. Ask: is this actually required?" : !v.truths ? "What remains after removing convention? That is your first principles." : !v.sol ? "Build back up — given only your first principles, what is the most direct path?" : "Complete. Could you defend this to someone who knew nothing about how it is normally done? If yes, you have broken free of analogy.";
+      const m = !v.prob ? "Define the problem first, as a question, with no solution assumed." : !v.assume ? "List your assumptions. You cannot challenge what you have not named." : !v.chal ? "Now challenge each assumption. Ask: is this actually required?" : !v.truths ? "What remains after removing convention? That is your first principles." : !v.sol ? "Build back up. Given only your first principles, what is the most direct path?" : "Complete. Could you defend this to someone who knew nothing about how it is normally done? If yes, you have broken free of analogy.";
       setMsg(m);
       setShowNext(true);
     };
@@ -1954,7 +1954,7 @@
     const [msg, setMsg] = (0, _react.useState)("");
     const [showNext, setShowNext] = (0, _react.useState)(false);
     const check = () => {
-      const m = !g ? "Define your goal first." : !f ? "Invert it — how do you guarantee failure? Be specific and ruthless." : !a ? "Re-invert: what must you do, stop, or protect against?" : !h ? "Final step: are any failure modes already present in your current approach?" : h.length > 5 ? "You identified something already present. Address that first — before adding new tactics." : "Clean inversion. Combine with your positive plan for a more resilient strategy.";
+      const m = !g ? "Define your goal first." : !f ? "Invert it. How do you guarantee failure? Be specific and ruthless." : !a ? "Re-invert: what must you do, stop, or protect against?" : !h ? "Final step: are any failure modes already present in your current approach?" : h.length > 5 ? "You identified something already present. Address that first, before adding new tactics." : "Clean inversion. Combine with your positive plan for a more resilient strategy.";
       setMsg(m);
       setShowNext(true);
     };
@@ -2055,11 +2055,11 @@
     const check = () => {
       const issues = [];
       if (!v.goal) issues.push("Define what you are improving.");
-      if (!v.sig) issues.push("Missing signal — without measurement you cannot tell if you are on track.");
-      if (!v.std) issues.push("Missing standard — set a specific threshold, not just better.");
-      if (!v.cad) issues.push("Missing cadence — when will you actually review this?");
-      if (!v.trig) issues.push("Missing action trigger — pre-commit: if X, then I will Y.");
-      setMsg(issues.length ? issues.map(i => "⚠ " + i).join("\n") : "Well-formed loop. Set your first review in your calendar right now — a loop without a schedule is not real.");
+      if (!v.sig) issues.push("Missing signal. Without measurement you cannot tell if you are on track.");
+      if (!v.std) issues.push("Missing standard. Set a specific threshold, not just better.");
+      if (!v.cad) issues.push("Missing cadence. When will you actually review this?");
+      if (!v.trig) issues.push("Missing action trigger. Pre-commit: if X, then I will Y.");
+      setMsg(issues.length ? issues.map(i => "⚠ " + i).join("\n") : "Well-formed loop. Set your first review in your calendar right now. A loop without a schedule is not real.");
       if (!issues.length) setShowNext(true);
     };
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Learning System"), /*#__PURE__*/React.createElement(H2, null, "Feedback Loop Design"), /*#__PURE__*/React.createElement(Tagline, null, "Experience without reflection is just time passing. Reflection without action is just journalling."), /*#__PURE__*/React.createElement("div", {
@@ -2173,7 +2173,7 @@
       [k]: e.target.value
     }));
     const check = () => {
-      const m = !v.sit ? "Describe the situation first." : !v.info ? "Start with information asymmetry — what might they know that you do not?" : !v.steel ? "The steelman is the heart of this exercise. Write their strongest argument." : !v.shift ? "Last step: what changed? If nothing shifted, either your steelman was not strong enough — or you have confirmed your position with new rigour." : v.shift.length > 10 ? "The fact that something shifted is the sign this worked. Is there a conversation you should now have?" : "Perspective mapped. Would the other person recognise your steelman as their own argument?";
+      const m = !v.sit ? "Describe the situation first." : !v.info ? "Start with information asymmetry. What might they know that you do not?" : !v.steel ? "The steelman is the heart of this exercise. Write their strongest argument." : !v.shift ? "Last step: what changed? If nothing shifted, either your steelman was not strong enough, or you have confirmed your position with new rigour." : v.shift.length > 10 ? "The fact that something shifted is the sign this worked. Is there a conversation you should now have?" : "Perspective mapped. Would the other person recognise your steelman as their own argument?";
       setMsg(m);
       setShowNext(true);
     };
@@ -2292,7 +2292,7 @@
     const dt = drive.reduce((s, f) => s + f.score, 0),
       rt = resist.reduce((s, f) => s + f.score, 0),
       tot = dt + rt;
-    const verdict = dt > rt + 2 ? "Likely to succeed" : rt > dt + 2 ? "High resistance — address first" : "Balanced";
+    const verdict = dt > rt + 2 ? "Likely to succeed" : rt > dt + 2 ? "High resistance, address first" : "Balanced";
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Eyebrow, null, "Change Management"), /*#__PURE__*/React.createElement(H2, null, "Force Field Analysis"), /*#__PURE__*/React.createElement(Tagline, null, "Change fails not because the idea is wrong \u2014 but because the forces against it were never mapped."), /*#__PURE__*/React.createElement("div", {
       style: {
         marginBottom: 28
@@ -2953,7 +2953,7 @@
         desc: "Over-relying on the first number encountered. Counter: generate your own estimate before seeing external data."
       }, {
         title: "Planning fallacy",
-        desc: "Underestimating time and cost. Counter: reference class forecasting — what did similar projects actually take?"
+        desc: "Underestimating time and cost. Counter: reference class forecasting. What did similar projects actually take?"
       }, {
         title: "Groupthink",
         desc: "Social pressure suppresses dissent. Counter: assign a devil's advocate. Run a pre-mortem."
@@ -3727,6 +3727,6 @@ root.render(React.createElement(AppComponent));
     </div>
   </footer>
 
-  <script src="script.js?v=jf56"></script>
+  <script src="script.js?v=jf91"></script>
 </body>
 </html>

@@ -14,11 +14,11 @@
   <meta charset="UTF-8">
   <link rel="icon" href="favicon.ico" sizes="any">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study: Shipping Sous Pantry solo across iOS and Android — an AI-native meal planning app built with light spec-driven development and Claude Code. By James Foo, Lead Product Designer.">
-  <title>Sous Pantry — AI-Native Meal Planning App | Solo iOS + Android Build | James Foo</title>
-  <link rel="stylesheet" href="styles.css?v=jf56">
-  <link rel="stylesheet" href="case-study.css?v=jf56">
-  <link rel="stylesheet" href="sous.css?v=jf56">
+  <meta name="description" content="Case study: Shipping Sous Pantry solo on iOS. An AI-native pantry and meal planning app built with light spec-driven development and AI coding tools, with Android in build. By James Foo, Lead Product Designer.">
+  <title>Sous Pantry · AI-Native Meal Planning App | Solo iOS Build | James Foo</title>
+  <link rel="stylesheet" href="styles.css?v=jf91">
+  <link rel="stylesheet" href="case-study.css?v=jf91">
+  <link rel="stylesheet" href="sous.css?v=jf91">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script>document.documentElement.classList.add('js');</script>
@@ -90,10 +90,10 @@
           <span class="sp-line"><span class="sp-line-inner">One AI.</span></span>
           <span class="sp-line"><span class="sp-line-inner">One <em>full-stack app.</em></span></span>
         </h1>
-        <p class="sp-hero-sub" data-hero-fade>Shipped Sous Pantry solo across iOS (Swift) and Android (React Native) using light spec-driven development and rapid prototyping with Claude Code — research to multi-platform production in eight months, with zero rework between prototype and shipping.</p>
+        <p class="sp-hero-sub" data-hero-fade>Shipped Sous Pantry solo on iOS (Swift) using light spec-driven development and rapid prototyping across several AI coding tools. Research to App Store in six months, with zero rework between prototype and shipping. The Android client is in build on the same backend.</p>
         <div class="sp-chips" data-hero-fade>
           <span class="sp-chip sp-chip--live">Live on the App Store</span>
-          <span class="sp-chip">iOS + Android</span>
+          <span class="sp-chip">iOS shipped · Android in build</span>
           <span class="sp-chip">Built with Claude Code</span>
           <span class="sp-chip">Solo, end to end</span>
         </div>
@@ -115,8 +115,8 @@
         <div class="sp-recipe-grid">
           <div class="sp-recipe-cell" data-reveal>
             <p class="sp-recipe-label">Serves</p>
-            <p class="sp-recipe-value">2 platforms</p>
-            <p class="sp-recipe-note">iOS (Swift) + Android (React Native), one shared backend</p>
+            <p class="sp-recipe-value">iOS, live</p>
+            <p class="sp-recipe-note">Swift on the App Store. Android (React Native) in build on the same backend</p>
           </div>
           <div class="sp-recipe-cell" data-reveal data-reveal-delay="70">
             <p class="sp-recipe-label">Prep time</p>
@@ -130,8 +130,8 @@
           </div>
           <div class="sp-recipe-cell" data-reveal data-reveal-delay="210">
             <p class="sp-recipe-label">Ready in</p>
-            <p class="sp-recipe-value">8 months</p>
-            <p class="sp-recipe-note">Concept to multi-platform — Android shipping July 2025</p>
+            <p class="sp-recipe-value">6 months</p>
+            <p class="sp-recipe-note">Concept to App Store, solo. Android shipping TBC</p>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@
       <div class="container">
         <p class="sp-eyebrow" data-reveal>The problem</p>
         <h2 class="sp-title" data-reveal data-reveal-delay="70">Meal planning apps solve <em>the wrong friction.</em></h2>
-        <p class="sp-body" data-reveal data-reveal-delay="140">Most meal planning apps either require tedious manual data entry, suggest meals with ingredients you don't have, or don't connect to your actual shopping workflow. Users want to reduce food waste and simplify meal decisions — but existing solutions create <strong>more</strong> friction, not less.</p>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Most meal planning apps either require tedious manual data entry, suggest meals with ingredients you don't have, or don't connect to your actual shopping workflow. Users want to reduce food waste and simplify meal decisions, but existing solutions create <strong>more</strong> friction, not less.</p>
         <div class="cs-problem-grid" style="margin-top:2.25rem;">
           <div class="cs-problem-card" data-reveal>
             <p class="cs-problem-title">Manual entry, high abandonment</p>
@@ -170,21 +170,21 @@
     <!-- ============ RESEARCH ============ -->
     <section class="sp-section sp-section--line">
       <div class="container">
-        <p class="sp-eyebrow" data-reveal>Research &amp; discovery — Dec 2024 to April 2025</p>
+        <p class="sp-eyebrow" data-reveal>Research &amp; discovery · Jan to April 2025</p>
         <h2 class="sp-title" data-reveal data-reveal-delay="70">Four months before <em>a line of production code.</em></h2>
         <div class="cs-two-col" style="margin-top:2rem;">
           <div data-reveal>
             <p class="cs-body" style="margin-bottom:1rem;"><strong>User research.</strong> Interviewed potential users on their actual pain points:</p>
             <ul class="cs-list">
-              <li>"I buy groceries then forget what I have. Things go bad." — food waste</li>
-              <li>"Deciding what to cook takes 20+ minutes daily." — meal fatigue</li>
-              <li>"I have to manually make lists or remember what I need." — shopping friction</li>
+              <li>"I buy groceries then forget what I have. Things go bad." (food waste)</li>
+              <li>"Deciding what to cook takes 20+ minutes daily." (meal fatigue)</li>
+              <li>"I have to manually make lists or remember what I need." (shopping friction)</li>
             </ul>
           </div>
           <div data-reveal data-reveal-delay="100">
             <p class="cs-body" style="margin-bottom:1rem;"><strong>Competitor analysis.</strong> Studied Yummly, BigOven, Mealie, and AnyList:</p>
             <ul class="cs-list">
-              <li>Most require manual pantry entry — the exact friction users complained about</li>
+              <li>Most require manual pantry entry, the exact friction users complained about</li>
               <li>AI features were superficial, bolted on rather than core to the experience</li>
               <li>None connected pantry → meals → shopping into one seamless loop</li>
             </ul>
@@ -197,8 +197,8 @@
     <!-- ============ HYPOTHESIS ============ -->
     <section class="sp-hypothesis">
       <div class="container">
-        <p class="sp-hypothesis-label">Core hypothesis — validated before writing a single screen</p>
-        <p class="sp-hypothesis-text" data-split>Photo-based pantry scanning + AI reasoning removes the #1 friction point — manual entry. Get this right, and the rest follows.</p>
+        <p class="sp-hypothesis-label">Core hypothesis · validated before writing a single screen</p>
+        <p class="sp-hypothesis-text" data-split>Photo-based pantry scanning + AI reasoning removes the #1 friction point, manual entry. Get this right, and the rest follows.</p>
       </div>
     </section>
 
@@ -207,19 +207,19 @@
       <div class="container">
         <p class="sp-eyebrow" data-reveal>The method</p>
         <h2 class="sp-title" data-reveal data-reveal-delay="70">Light spec-driven development,<br><em>not vibe-coding from scratch.</em></h2>
-        <p class="sp-body" data-reveal data-reveal-delay="140">Rather than jumping straight into code, I ran a structured seven-phase process before implementation began — treating architecture decisions with the same rigor as UX decisions.</p>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Rather than jumping straight into code, I ran a structured seven-phase process before implementation began, treating architecture decisions with the same rigor as UX decisions.</p>
         <ol class="sp-method-list">
           <li class="sp-step">
             <p class="sp-step-name">Product clarity</p>
-            <p class="sp-step-desc">Vision, pain points, and a single success metric: plan a week of meals in under 15 minutes. Key assumption to validate — photo-based scanning removes enough friction to make the whole idea work.</p>
+            <p class="sp-step-desc">Vision, pain points, and a single success metric: plan a week of meals in under 15 minutes. Key assumption to validate: photo-based scanning removes enough friction to make the whole idea work.</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Architecture-first design</p>
-            <p class="sp-step-desc">Mapped the data model (users → pantry inventory → meals → shopping lists), made Claude the core reasoning layer for inventory matching, meal suggestions and shopping automation, and settled on one backend API consumed by both iOS and Android.</p>
+            <p class="sp-step-desc">Mapped the data model (users → pantry inventory → meals → shopping lists), put a single LLM reasoning layer behind inventory matching, meal suggestions and shopping automation, and settled on one backend API designed to serve both iOS and a later Android client.</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Research &amp; validation</p>
-            <p class="sp-step-desc">Explored UX patterns for photo-based input, tested whether Claude should reason over a raw photo or an extracted inventory list, and de-risked the LLM integration with real API calls before committing.</p>
+            <p class="sp-step-desc">Settled the question the whole product rests on: should the AI read the photo directly, or should the photo first become a structured list of items that everything else works from? I chose the second. Extracting the items first means the user can see and correct what was recognised, and every later feature (meals, shopping lists) reads from that same clean inventory instead of re-interpreting an image. I tested both with real API calls before committing.</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Capability audit</p>
@@ -227,15 +227,15 @@
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Options &amp; recommendation</p>
-            <p class="sp-step-desc">Weighed a web-only MVP, iOS-first, and parallel iOS + Android. Chose iOS-first, then scale to Android leveraging the same backend once the core product was validated.</p>
+            <p class="sp-step-desc">Weighed three options: a web-only MVP, one platform first, or both in parallel. Solo, parallel was never realistic, so the real question was which platform. I checked mobile market share in the two markets I was building for. In early 2025 iOS held roughly 63.7% in Australia against Android's 36.3%, and 57.5% to 59% across North America. iOS first put the app in front of the larger share of users in both markets from day one, with Android to follow on the same backend once the core product was validated. (StatCounter, early 2025: <a href="https://gs.statcounter.com/os-market-share/mobile/australia" target="_blank" rel="noopener">Australia</a>, <a href="https://gs.statcounter.com/os-market-share/mobile/north-america" target="_blank" rel="noopener">North America</a>.)</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Executable roadmap</p>
-            <p class="sp-step-desc">Phase 1: iOS MVP — six weeks of implementation plus two weeks of QA covering pantry scanning, AI meal suggestions, shopping lists and preferences. Phase 2: Android in eight weeks, rebuilt in React Native with native patterns — not a direct port — reusing the backend and business logic.</p>
+            <p class="sp-step-desc">Phase 1: iOS MVP, six weeks of implementation plus two weeks of QA covering pantry scanning, AI meal suggestions, shopping lists and preferences. Phase 2: Android in React Native with native patterns, not a direct port, reusing the backend and business logic. That phase is still running.</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Ship with quality</p>
-            <p class="sp-step-desc">Interactive prototypes in Cursor validated UX before production code. Iterated with real early testers, then used Claude Code end-to-end across design, components, API integration and testing.</p>
+            <p class="sp-step-desc">Interactive prototypes built with Claude Code and run in the iOS Simulator validated UX before production code. Iterated with real early testers, then worked across several AI coding environments (Cursor, Claude Code, OpenClaw and my own Hermes Agent), matching the tool to the task across design, components, API integration and testing.</p>
           </li>
         </ol>
       </div>
@@ -245,42 +245,168 @@
     <section class="sp-section sp-section--line">
       <div class="container">
         <p class="sp-eyebrow" data-reveal>Technical architecture</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">One backend, <em>two native clients.</em></h2>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">No server to babysit, <em>and no keys in the app.</em></h2>
         <div class="sp-arch-grid">
           <div class="sp-arch-card" data-reveal>
-            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>iOS — Swift + Xcode</h3>
-            <p>Native UI for photo capture and pantry management, a local SQLite cache for an <strong>offline-first</strong> experience, and real-time sync with the backend. Responsive across phone and tablet.</p>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>iOS · Swift + Xcode</h3>
+            <p>Native SwiftUI for photo capture and pantry management, with <strong>SwiftData</strong> for on-device persistence and an <strong>offline-first</strong> experience, syncing with Supabase when back online. Responsive across phone and tablet.</p>
           </div>
           <div class="sp-arch-card" data-reveal data-reveal-delay="70">
-            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" stroke="currentColor" stroke-width="1.5"/></svg>Android — React Native</h3>
-            <p>Shared component architecture with iOS design patterns, native modules for the camera and performance-critical paths, and the same backend API. <strong>Feature parity from day one</strong> — not a later port.</p>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" stroke="currentColor" stroke-width="1.5"/></svg>Android · React Native <span style="font-weight:400;opacity:0.7;">(in build)</span></h3>
+            <p><strong>In build.</strong> Shared component architecture with iOS design patterns, native modules for the camera and performance-critical paths, and the same Worker and Supabase contracts, designed as a re-platform against what is already deployed rather than a direct port.</p>
           </div>
           <div class="sp-arch-card" data-reveal data-reveal-delay="140">
             <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M4 6 V18 Q4 21 12 21 Q20 21 20 18 V6" stroke="currentColor" stroke-width="1.8"/><path d="M4 12 Q4 15 12 15 Q20 15 20 12" stroke="currentColor" stroke-width="1.5"/></svg>Data</h3>
-            <p><strong>PostgreSQL</strong>, cloud-hosted, for user data, preferences and meal history — paired with an on-device <strong>SQLite</strong> cache for offline access, syncing in real time when back online.</p>
+            <p><strong>PostgreSQL</strong> on Supabase for user data, preferences and meal history, paired with on-device <strong>SwiftData</strong> for offline access, syncing when connectivity returns.</p>
           </div>
           <div class="sp-arch-card" data-reveal data-reveal-delay="210">
-            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3 Q13 8 17 9 Q13 10 12 15 Q11 10 7 9 Q11 8 12 3 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M18.5 14 Q19 16.5 21 17 Q19 17.5 18.5 20 Q18 17.5 16 17 Q18 16.5 18.5 14 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>AI — Anthropic API</h3>
-            <p>Claude as the core reasoning engine with purpose-built prompts for inventory extraction, meal reasoning and shopping lists — plus <strong>semantic caching</strong> to control cost, since a pantry doesn't change every session.</p>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3 Q13 8 17 9 Q13 10 12 15 Q11 10 7 9 Q11 8 12 3 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M18.5 14 Q19 16.5 21 17 Q19 17.5 18.5 20 Q18 17.5 16 17 Q18 16.5 18.5 14 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>AI · proxied at the edge</h3>
+            <p>Claude is the reasoning engine today, with purpose-built prompts for inventory extraction, meal reasoning and shopping lists. Model calls go through a <strong>Cloudflare Worker</strong> that holds the API key as a wrangler secret and accepts only requests carrying a bearer token, so <strong>no model credential ships in the app</strong>. Each prompt returns a strict JSON contract the UI renders directly.</p>
+            <p>Routing every model call through one place is what keeps swapping or comparing models a contained change. I'm currently evaluating <strong>ILMU</strong>, a Malaysian-built LLM, for non-English input, testing how pantry items and recipes hold up in other languages and regional dialects, where product names and cooking terms rarely translate literally.</p>
           </div>
         </div>
-        <div class="sp-code" aria-label="Backend API structure">
-<span class="sp-code-line"><span class="hl">Express.js API</span></span>
-<span class="sp-code-line">├── /api/auth            user authentication</span>
-<span class="sp-code-line">├── /api/pantry</span>
-<span class="sp-code-line">│   ├── POST /pantry/items      add item</span>
-<span class="sp-code-line">│   ├── GET  /pantry            fetch user's pantry</span>
-<span class="sp-code-line">│   └── DELETE /pantry/:itemId</span>
-<span class="sp-code-line">├── /api/meals           <span class="hl">AI reasoning endpoints</span></span>
-<span class="sp-code-line">│   ├── POST /meals/suggest      <span class="ac">Claude</span> analyses pantry → suggestions</span>
-<span class="sp-code-line">│   └── POST /meals/ingredients  item extraction from photo</span>
-<span class="sp-code-line">├── /api/shopping        shopping list generation</span>
-<span class="sp-code-line">│   ├── POST /shopping/generate  from meal plan</span>
-<span class="sp-code-line">│   └── GET  /shopping/:listId</span>
-<span class="sp-code-line">└── AI Integration       <span class="ac">Anthropic API</span></span>
-<span class="sp-code-line">    ├── Inventory extraction from photos</span>
-<span class="sp-code-line">    ├── Meal suggestion reasoning</span>
-<span class="sp-code-line">    └── Dietary constraint handling</span>
+        <div class="sp-code" aria-label="Deployed architecture">
+<span class="sp-code-line"><span class="hl">iOS client</span>  <span class="cm">// holds no model credentials</span></span>
+<span class="sp-code-line">    │</span>
+<span class="sp-code-line">    ├──&gt; <span class="ac">Cloudflare Worker</span>  souspantry-images</span>
+<span class="sp-code-line">    │      <span class="cm">Authorization: Bearer &lt;APP_SECRET&gt;</span></span>
+<span class="sp-code-line">    │      POST /anthropic     proxies model calls</span>
+<span class="sp-code-line">    │      POST /generate      recipe imagery via fal</span>
+<span class="sp-code-line">    │      secrets:  ANTHROPIC_API_KEY, IMAGE_API_KEY</span>
+<span class="sp-code-line">    │      storage:  R2 bucket, souspantry-recipe-images</span>
+<span class="sp-code-line">    │</span>
+<span class="sp-code-line">    └──&gt; <span class="ac">Supabase</span>  Postgres + auth</span>
+<span class="sp-code-line">           households, pantry, shopping, meal history</span>
+<span class="sp-code-line">           row-level security per household</span>
+          </div>
+      </div>
+    </section>
+
+    <!-- ============ UNDER THE HOOD ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>Under the hood</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Four decisions, <em>in the shipped code.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">These are unedited excerpts from the repositories behind the app on the App Store. In each one, the design decision and the engineering decision were the same decision.</p>
+
+        <div class="sp-codeblock" data-reveal>
+          <p class="sp-code-label">01 · The design system is code, not a swatch sheet</p>
+          <span class="sp-code-file">Sous&nbsp;Pantry/Theme.swift</span>
+          <div class="sp-code" aria-label="Theme.swift design tokens">
+<span class="sp-code-line"><span class="cm">// Earthy green + dark navy design system.</span></span>
+<span class="sp-code-line"><span class="hl">enum AppTheme</span> {</span>
+<span class="sp-code-line">    static let navy   = Color(red: 0.086, green: 0.141, blue: 0.216)  <span class="cm">// #162437</span></span>
+<span class="sp-code-line">    static let green  = Color(red: 0.176, green: 0.353, blue: 0.239)  <span class="cm">// #2D5A3D</span></span>
+<span class="sp-code-line">    static let cream  = Color(red: 0.969, green: 0.953, blue: 0.925)  <span class="cm">// #F7F3EC</span></span>
+<span class="sp-code-line">    static let gold   = Color(red: 0.769, green: 0.588, blue: 0.353)  <span class="cm">// #C4965A</span></span>
+<span class="sp-code-line">}</span>
+<span class="sp-code-line"></span>
+<span class="sp-code-line"><span class="hl">extension View</span> {</span>
+<span class="sp-code-line">    <span class="cm">// one card treatment, applied everywhere</span></span>
+<span class="sp-code-line">    func <span class="ac">soCard</span>(padding: CGFloat = 16) -&gt; some View {</span>
+<span class="sp-code-line">        self.padding(padding)</span>
+<span class="sp-code-line">            .background(Color(.systemBackground), in: RoundedRectangle(cornerRadius: 14))</span>
+<span class="sp-code-line">            .shadow(color: AppTheme.navy.opacity(0.07), radius: 8, x: 0, y: 2)</span>
+<span class="sp-code-line">    }</span>
+<span class="sp-code-line">}</span>
+          </div>
+          <p class="sp-code-note">The core palette and the shared card treatment live in one file, and the app leans on it hard: <strong>1,168 <code>AppTheme</code> references</strong> across the iOS codebase. That's a design system enforced by the compiler rather than one that only exists in Figma, so changing a brand colour is a one-line diff, not a hunt. Auditing it for this write-up also surfaced <strong>278 one-off colours</strong> that had drifted into feature views. That's the honest state of most design systems, and the first thing I'd reconcile.</p>
+        </div>
+
+        <div class="sp-codeblock" data-reveal>
+          <p class="sp-code-label">02 · Product decisions, encoded in the prompt</p>
+          <span class="sp-code-file">backend/src/routes/shopping.js</span>
+          <div class="sp-code" aria-label="Shopping list prompt">
+<span class="sp-code-line"><span class="cm">// POST /api/shopping/generate — restock list from pantry</span></span>
+<span class="sp-code-line">const prompt = `${learnedContext}${dietaryContext}</span>
+<span class="sp-code-line">You are Sous Pantry's AI chef for an <span class="ac">Australian household</span>. Based on the</span>
+<span class="sp-code-line">pantry below, suggest a practical weekly shopping list of items that are</span>
+<span class="sp-code-line">low, missing, or commonly needed alongside what's in stock.</span>
+<span class="sp-code-line">Aim for 10-15 items. <span class="ac">Prioritise items that unlock the most meals.</span></span>
+<span class="sp-code-line"></span>
+<span class="sp-code-line">Return a JSON array only — no markdown:</span>
+<span class="sp-code-line">[{"name":"…", "category":"…", "quantity":"…",</span>
+<span class="sp-code-line">  "priority":"<span class="ac">Essential|Nice to Have</span>",</span>
+<span class="sp-code-line">  "reason":"<span class="ac">one short reason</span>"}]`;</span>
+          </div>
+          <p class="sp-code-note">Three product decisions live in this string, not in a spec doc. <strong>"Prioritise items that unlock the most meals"</strong> is a ranking rule: the list is sorted by cooking potential, not alphabetically. <strong><code>priority</code></strong> gives the UI something to sort and badge. <strong><code>reason</code></strong> forces the model to justify every row, so the interface can always tell you <em>why</em> an item is there. Designing the prompt <em>was</em> designing the interaction.</p>
+        </div>
+
+        <div class="sp-codeblock" data-reveal>
+          <p class="sp-code-label">03 · The cold-start problem, solved separately</p>
+          <span class="sp-code-file">backend/src/routes/shopping.js</span>
+          <div class="sp-code" aria-label="Empty pantry staples endpoint">
+<span class="sp-code-line"><span class="cm">// POST /api/shopping/staples — staples list for empty pantry</span></span>
+<span class="sp-code-line">You are Sous Pantry's AI chef. <span class="ac">This user has an empty pantry.</span></span>
+<span class="sp-code-line">Generate a practical Australian household starter pack of 15-20</span>
+<span class="sp-code-line">pantry staples — everyday essentials like eggs, flour, rice, pasta,</span>
+<span class="sp-code-line">canned tomatoes, olive oil, butter, onions, garlic, and common spices.</span>
+          </div>
+          <p class="sp-code-note">A recommendation engine with nothing to recommend from is the classic empty-state failure. Rather than a blank list or generic filler, an empty pantry routes to a <strong>different endpoint entirely</strong> and returns a real starter pack. The locale in that prompt is a <strong>setting, not a limit</strong>. The same structure serves any kitchen, which is exactly what the ILMU language testing is for. A UX decision that had to be built as an API decision.</p>
+        </div>
+
+        <div class="sp-codeblock" data-reveal>
+          <p class="sp-code-label">04 · Reading a real Australian supermarket receipt</p>
+          <span class="sp-code-file">backend/src/routes/receipt.js</span>
+          <div class="sp-code" aria-label="Receipt parsing prompt">
+<span class="sp-code-line"><span class="cm">// POST /api/receipt/image — photographed receipt → OCR → line items</span></span>
+<span class="sp-code-line"><span class="cm">// POST /api/receipt/text  — eReceipt web sync → line items</span></span>
+<span class="sp-code-line"></span>
+<span class="sp-code-line">The following text was extracted from an <span class="ac">Australian grocery receipt</span>.</span>
+<span class="sp-code-line">Identify every food and grocery item purchased.</span>
+<span class="sp-code-line"></span>
+<span class="sp-code-line">Rules:</span>
+<span class="sp-code-line">- EXCLUDE: store name, date, prices, subtotals, GST,</span>
+<span class="sp-code-line">  <span class="ac">loyalty/rewards points</span>, payment method, bag fees.</span>
+<span class="sp-code-line">- Fix OCR artefacts (e.g. <span class="ac">"Wh0le M1lk" → "Whole Milk"</span>).</span>
+<span class="sp-code-line">- Expand abbreviations</span>
+<span class="sp-code-line">  (e.g. <span class="ac">"ORG FF MILK 2L" → "Organic Full Fat Milk"</span>).</span>
+<span class="sp-code-line">- Capture weight or volume if shown ("500g", "2L", "6pk").</span>
+<span class="sp-code-line">- Use <span class="ac">Australian supermarket product naming conventions</span>.</span>
+          </div>
+          <p class="sp-code-note">These rules come from reading real receipts. Supermarket dockets print <code>ORG FF MILK 2L</code>, not "Organic Full Fat Milk", so the parser expands them. They print loyalty points and bag fees that aren't groceries, so those are excluded by name. Photographed receipts arrive with OCR damage, so character repair is part of the contract. There are <strong>two ingestion paths</strong>: a photographed receipt, and an <strong>eReceipt web sync</strong> that skips OCR entirely when the text is already digital. The market sits in the prompt rather than in the parser, so the same rules re-tune for another country's receipts without touching the pipeline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHIPPED UI PROOF ============ -->
+    <section class="sp-section sp-section--line">
+      <div class="container">
+        <p class="sp-eyebrow" data-reveal>The product</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Pantry → meals → shopping, <em>in your pocket.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Screenshots from the shipped iOS app, running against a real pantry. Not mockups. Each step of the loop is also a decision about how much to tell the user.</p>
+        <div class="sp-proof-grid">
+
+          <div class="sp-proof-item" data-reveal>
+            <div class="sp-proof-shot"><img src="images/souspantry-ui-pantry.jpg" alt="Sous Pantry pantry inventory listing 49 items with categories, quantities and expiry reminders" loading="lazy"></div>
+            <h3>A pantry built from receipts, not typing</h3>
+            <p>Forty-nine items, none of them typed in. The list was <strong>scanned straight from the grocery receipt</strong> and expanded into full product names. Each item shows its <strong>printed expiry date</strong> where it has one, alongside what the app has learned about how long that kind of item usually keeps: <strong>"Usually fresh ~2 days · reminder set"</strong>. The printed date is what it goes by, the learned window fills the gap for items that carry no date, and the reminder is set either way.</p>
+          </div>
+
+          <div class="sp-proof-item" data-reveal data-reveal-delay="70">
+            <div class="sp-proof-shot"><img src="images/souspantry-ui-expiry.jpg" alt="Sous Pantry home screen showing a Pantry Audit Due card with one expired item and one expiring tomorrow, and a prompt showing six meals cookable right now" loading="lazy"></div>
+            <h3>Shows what is expiring, and what to cook with it</h3>
+            <p>The home screen opens with what is about to be wasted. <strong>"Expired"</strong> is red, <strong>"Expires tomorrow"</strong> is amber, and each has a matching dot, so you see how urgent an item is before you read it. Directly under that sits <strong>"6 meals you could cook right now."</strong> A warning on its own only makes people feel bad. Putting a meal next to it gives them something to do tonight. <em>Price trends</em> sits below, because waste and spend are the same problem.</p>
+          </div>
+
+          <div class="sp-proof-item" data-reveal data-reveal-delay="140">
+            <div class="sp-proof-shot"><img src="images/souspantry-ui-match-high.jpg" alt="Sous Pantry recipe suggestion showing a 75 percent pantry match badge in amber with soy and sesame allergen chips" loading="lazy"></div>
+            <h3>Guardrails on every AI suggestion</h3>
+            <p>Every suggestion carries a <strong>pantry-match percentage</strong> and its allergens before you open it. The disclaimer sits at the top of the screen, not buried in settings: <em>"Sous is AI-powered and can make mistakes. Always verify recipes before cooking."</em> Those are the <strong>guardrails</strong> I built around the AI. A 75% match shows in amber because it is a good option, not a certain one.</p>
+          </div>
+
+          <div class="sp-proof-item" data-reveal data-reveal-delay="210">
+            <div class="sp-proof-shot"><img src="images/souspantry-ui-match-low.jpg" alt="Sous Pantry showing a recipe pulled in from an external cooking site, scored at 45 percent pantry match with the missing ingredients listed and a To buy action" loading="lazy"></div>
+            <h3>It reads recipes from anywhere, not just its own</h3>
+            <p>This recipe did not come from Sous. It came from an external cooking site, and the app read the page, scored it against the pantry at <strong>~45%</strong>, and listed what was missing: garlic, olives, parmesan. <strong>"To buy"</strong> sends those straight to the shopping list, <strong>"Open link"</strong> goes back to the original page. The tildes are deliberate. When the numbers are read off someone else's page rather than generated here, the estimate is approximate and the interface says so: <strong>~10 mins</strong>, not 10.</p>
+          </div>
+
+          <div class="sp-proof-item" data-reveal data-reveal-delay="280">
+            <div class="sp-proof-shot"><img src="images/souspantry-ui-recipe.jpg" alt="Sous Pantry recipe detail showing 9 of 12 ingredients in pantry with an add 3 missing action" loading="lazy"></div>
+            <h3>From recipe to basket in one tap</h3>
+            <p><strong>"9 of 12 ingredients"</strong>, each row marked <em>In pantry</em> or <em>Missing</em>, with one <strong>"Add 3 missing →"</strong> action. Changing the serving count rescales every quantity. That closes the loop. The pantry becomes a recipe, and what is missing becomes the shopping list.</p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -296,57 +422,45 @@
               <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="13" width="38" height="27" rx="5" stroke="currentColor" stroke-width="2.2"/><path d="M16 13 L19 7 L29 7 L32 13" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle class="spi-cam-lens" cx="24" cy="26" r="7.5" stroke="currentColor" stroke-width="2.2"/><circle cx="37" y="19" cx="37" cy="19" r="1.6" fill="currentColor"/></svg>
             </div>
             <h3>Pantry scanning</h3>
-            <p>Photograph the shelf and Claude extracts the items, with manual entry as a fallback. Items are tracked with quantity and expiry, syncing instantly across iOS and Android.</p>
+            <p>Photograph the shelf and an LLM extracts the items, with manual entry as a fallback. Which model does that is not fixed. Extraction runs through the same server-side wrapper as every other call, so swapping or comparing models never touches the app. Items are tracked with quantity and expiry, syncing instantly across devices.</p>
           </div>
           <div class="sp-feature" data-reveal data-reveal-delay="80">
             <div class="sp-feature-icon">
               <svg viewBox="0 0 48 48" fill="none"><path class="spi-spark" d="M20 6 Q22 15 30 17 Q22 19 20 28 Q18 19 10 17 Q18 15 20 6 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path class="spi-spark" d="M34 26 Q35 31 40 32 Q35 33 34 38 Q33 33 28 32 Q33 31 34 26 Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path class="spi-spark" d="M14 34 Q14.7 37 18 37.7 Q14.7 38.4 14 41.4 Q13.3 38.4 10 37.7 Q13.3 37 14 34 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             </div>
             <h3>AI-powered meal suggestions</h3>
-            <p>Claude reasons over dietary preferences and current inventory to suggest 3–5 meals feasible right now — and explains why each one works.</p>
+            <p>The model reads dietary preferences and current inventory, then suggests 3 meals you can cook right now and lists exactly which pantry items each one uses.</p>
           </div>
           <div class="sp-feature" data-reveal data-reveal-delay="160">
             <div class="sp-feature-icon">
               <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2.2"/><line x1="15" y1="15" x2="33" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="23" x2="33" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="31" x2="26" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="spi-tick" d="M28 33 L31.5 36.5 L38 29" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <h3>Shopping list automation</h3>
-            <p>Select meals for the week and the app works out exactly what's missing, organised by category — produce, proteins, pantry staples.</p>
+            <p>Select meals for the week and the app works out exactly what's missing, organised by category: produce, proteins, pantry staples.</p>
           </div>
           <div class="sp-feature" data-reveal data-reveal-delay="240">
             <div class="sp-feature-icon">
               <svg viewBox="0 0 48 48" fill="none"><g class="spi-sync"><path d="M38 24 A14 14 0 1 1 31 11.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M31 5.5 L31.5 12.5 L24.8 10.4 Z" fill="currentColor"/></g><rect x="18" y="18" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/></svg>
             </div>
-            <h3>Multi-platform consistency</h3>
-            <p>iOS and Android consume the same backend and design tokens. Meal reasoning lives once, on the server — never duplicated in client code.</p>
+            <h3>One system, many clients</h3>
+            <p>Two services sit behind the app and nothing else: a Worker for model calls and imagery, and Supabase for data. A second client builds against the same two contracts rather than reimplementing them, and both clients share the same design tokens.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ SCREENS ============ -->
-    <section class="sp-screens">
-      <div class="container">
-        <p class="sp-eyebrow" data-reveal>The product</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">Pantry → meals → shopping,<br>in your pocket.</h2>
-        <div class="sp-screens-row">
-          <div class="sp-phone"><img src="images/souspantry-app-home.jpg" alt="Sous Pantry — home screen" loading="lazy"></div>
-          <div class="sp-phone"><img src="images/souspantry-app-pantry.jpg" alt="Sous Pantry — pantry inventory screen" loading="lazy"></div>
-          <div class="sp-phone"><img src="images/souspantry-app-plancook.jpg" alt="Sous Pantry — AI meal planning screen" loading="lazy"></div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ PROCESS + TIMELINE ============ -->
     <section class="sp-section">
       <div class="container">
         <p class="sp-eyebrow" data-reveal>Development process</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">Built with Claude Code, <em>end to end.</em></h2>
-        <p class="sp-body" data-reveal data-reveal-delay="140">Thirty-minute interactive prototypes in Cursor validated UX decisions before a line of production code was written. From there, Claude Code drove rapid component and API integration loops, helped diagnose issues mid-build, and filled in Swift and React Native patterns as I needed them. The iOS prototype went to production in six weeks with no rework — and Android began the same week iOS entered testing, made possible by the backend and business logic already being shared.</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Built across <em>several AI coding tools.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Interactive prototypes built with <strong>Claude Code</strong> and run in the iOS Simulator through Xcode validated UX decisions before a line of production code was written. From there the work moved between tools rather than living in one: Claude Code stayed on component and API integration loops and mid-build diagnosis, <strong>Cursor</strong> for fast in-editor iteration, <strong>OpenClaw</strong>, and <strong>Hermes Agent</strong>, one I built myself, for the repetitive scaffolding. Using several on real work is how you learn what each is actually good at. The iOS prototype went to production in six weeks with no rework; the Android client is being built on the backend and business logic already shipped.</p>
 
         <div class="sp-timeline">
           <div class="sp-timeline-rail"><div class="sp-timeline-fill"></div></div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">Dec 2024 – Apr 2025 · 4 months</p>
+            <p class="sp-tl-range">Jan – Apr 2025 · 4 months</p>
             <p class="sp-tl-label">Research &amp; planning</p>
             <p class="sp-tl-desc">User research, competitor analysis, ideation, and learning the tools this build would require.</p>
           </div>
@@ -358,12 +472,12 @@
           <div class="sp-tl-item">
             <p class="sp-tl-range">Mid-May – mid-June 2025 · 2 weeks</p>
             <p class="sp-tl-label">iOS testing &amp; launch</p>
-            <p class="sp-tl-desc">QA, refinement, and launch — Sous Pantry went live on the App Store in June 2025.</p>
+            <p class="sp-tl-desc">QA, refinement, and launch. Sous Pantry went live on the App Store in June 2025.</p>
           </div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">End of May – end of July 2025 · parallel</p>
-            <p class="sp-tl-label">Android build</p>
-            <p class="sp-tl-desc">Ran alongside iOS testing, reusing the backend and business logic already shipped.</p>
+            <p class="sp-tl-range">From end of May 2025 · in progress</p>
+            <p class="sp-tl-label">Android build · ongoing</p>
+            <p class="sp-tl-desc">Started alongside iOS testing and still in build, reusing the backend and business logic already shipped. Ship date TBC.</p>
           </div>
         </div>
       </div>
@@ -380,46 +494,46 @@
             <span class="sp-stat-label">Rework between prototype and shipped production code</span>
           </div>
           <div class="sp-stat" data-reveal data-reveal-delay="80">
-            <span class="sp-stat-value"><span data-sp-count="8">8</span><span class="u"> months</span></span>
-            <span class="sp-stat-label">Concept to multi-platform, solo</span>
+            <span class="sp-stat-value"><span data-sp-count="6">6</span><span class="u"> months</span></span>
+            <span class="sp-stat-label">Concept to the App Store, solo</span>
           </div>
           <div class="sp-stat" data-reveal data-reveal-delay="160">
-            <span class="sp-stat-value"><span data-sp-count="5" data-sp-from="30">5</span><span class="u"> min</span></span>
-            <span class="sp-stat-label">Meal planning time — down from 30 minutes</span>
+            <span class="sp-stat-value">1,168</span>
+            <span class="sp-stat-label">Design-token references. The system enforced in code, not just Figma</span>
           </div>
         </div>
-        <p class="sp-body" data-reveal>Early testers consistently called out the same three things: photo-based pantry scanning feels close to magic compared to manual entry in competitor apps; the AI meal suggestions feel genuinely useful rather than generic; and the shopping lists match exactly what's needed, cutting down on waste.</p>
+        <p class="sp-body" data-reveal>The closed beta ran across <strong>15 real households</strong>, deliberately split between paid-subscription and free-tier accounts so the paywall and its limits got exercised alongside the core loop. It ran long enough that the same themes kept recurring rather than new ones appearing. Three came up again and again: photo-based pantry scanning feels close to magic next to manual entry in competitor apps, the meal suggestions read as genuinely useful rather than generic, and the shopping lists match what's actually needed, which cuts waste.</p>
         <ul class="cs-check-list" style="margin-top:1.75rem;">
-          <li data-reveal>Production-ready AI integration — Anthropic API with deliberate, transparent UX</li>
-          <li data-reveal data-reveal-delay="70">Multi-platform shipping, iOS and Android, from a solo contributor</li>
-          <li data-reveal data-reveal-delay="140">Zero external service dependencies — every infrastructure layer owned end-to-end</li>
-          <li data-reveal data-reveal-delay="210">Backend architecture designed for scale, with iOS and Android reusing the same API</li>
+          <li data-reveal>Production-ready AI integration: Anthropic API with deliberate, transparent UX</li>
+          <li data-reveal data-reveal-delay="70">Shipped to the App Store from a solo contributor: design, client, backend and AI</li>
+          <li data-reveal data-reveal-delay="140">Zero external service dependencies: every infrastructure layer owned end-to-end</li>
+          <li data-reveal data-reveal-delay="210">Backend architected so a second client reuses the same API, and the Android build is proving it now</li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ WHAT THIS PROVES ============ -->
+    <!-- ============ GROCERY RETAIL RELEVANCE ============ -->
     <section class="sp-section sp-section--line">
       <div class="container">
-        <p class="sp-eyebrow" data-reveal>What this proves</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">For <em>design technologists.</em></h2>
-        <div class="cs-two-col" style="margin-top:2rem;">
-          <div data-reveal>
-            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.85rem;">For design teams</h3>
-            <ul class="cs-check-list">
-              <li>Light spec-driven development works — one week of architecture planning prevented rework across eight-plus weeks of implementation</li>
-              <li>AI integration needs design thinking first — not "add a Claude button," but architecture that considers how AI actually enhances the experience</li>
-              <li>Multi-platform thinking from day one prevents regrets — Android was a re-platform of the same backend, not a port</li>
-              <li>Rapid iteration and production quality aren't mutually exclusive with the right tools</li>
-            </ul>
+        <p class="sp-eyebrow" data-reveal>Why it matters</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">The same problems, <em>from the kitchen side.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Sous Pantry is built for any kitchen. Pantry, meals and shopping work the same wherever you cook, and only a thin local layer changes per market: receipt formats, product naming, and language. Australia was the first market to be tuned, North America was scoped alongside it, and other languages are in testing now. Retailers see the basket. This app starts one step earlier, in the cupboard, which turns out to be the same set of problems approached from the other end.</p>
+        <div class="sp-arch-grid">
+          <div class="sp-arch-card" data-reveal>
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h2l2.5 10.5h9L20 9H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.4" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="20" r="1.4" stroke="currentColor" stroke-width="1.6"/></svg>List building is cart building</h3>
+            <p>Generating a weekly shopping list from what a household already has is the front half of an online grocery order. The ranking rule, <strong>prioritise what unlocks the most meals</strong>, is a basket-composition problem, not a search problem.</p>
           </div>
-          <div data-reveal data-reveal-delay="100">
-            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.85rem;">For founders &amp; individual contributors</h3>
-            <ul class="cs-check-list">
-              <li>A solo contributor can move at small-team speed when infrastructure thinking — design systems, shared backend, reusable business logic — amplifies individual velocity</li>
-              <li>Shipping beats perfection — a launched product beats an endlessly optimised prototype</li>
-              <li>Systematic thinking removes decision friction — a spec-driven approach means faster, more confident shipping</li>
-            </ul>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="70">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 3a5 5 0 0 0-5 5c0 3 2 4 2 7h6c0-3 2-4 2-7a5 5 0 0 0-5-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19h5M10 21.5h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Onboarding an empty basket</h3>
+            <p>A new customer with no history is the hardest recommendation case in retail. Here it's an empty pantry, and it routes to a <strong>purpose-built starter pack</strong> rather than a blank screen or generic filler. It's a cold-start pattern that transfers directly.</p>
+          </div>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="140">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 8h14l-1 12H6L5 8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 8V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V8" stroke="currentColor" stroke-width="1.7"/><path d="M10 12v4M14 12v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Waste is a design outcome</h3>
+            <p>Suggesting meals against what's already in stock, and tracking expiry, means buying less of what would spoil. Reducing household food waste is a sustainability outcome reached through interface decisions, not messaging.</p>
+          </div>
+          <div class="sp-arch-card" data-reveal data-reveal-delay="210">
+            <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M9 11.5s.6-1.5 3-1.5 3 1.2 3 2.2c0 2-3 1.8-3 3.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="18.2" r="0.9" fill="currentColor"/></svg>AI that has to explain itself</h3>
+            <p>Every recommendation carries a <strong>reason</strong> field, enforced at the API contract level, so the interface can always say why an item is on the list. For grocery AI, where trust is the constraint, explainability is a build requirement rather than a nice-to-have.</p>
           </div>
         </div>
       </div>
@@ -439,19 +553,19 @@
               </li>
               <li>
                 <h4>Photo-based input</h4>
-                <p>The single biggest UX lever — manual entry took 3–5 minutes per session, photo capture dropped it to 20 seconds.</p>
+                <p>The single biggest UX lever. Manual entry ran 3–5 minutes per session. A camera snap or photo scan brings it down to 10–15 seconds per item.</p>
               </li>
               <li>
                 <h4>Transparent AI reasoning</h4>
-                <p>Users trust a suggestion when they can see why — "you have chicken, rice, and soy sauce → fried rice" beats an unexplained recommendation.</p>
+                <p>Users trust a suggestion when they can see why. "You have chicken, rice, and soy sauce → fried rice" beats an unexplained recommendation.</p>
               </li>
               <li>
-                <h4>Both platforms from day one</h4>
-                <p>Android reused the API, business logic, and database schema, so the two builds could run in parallel.</p>
+                <h4>Designed for a second client from day one</h4>
+                <p>Android reuses the API, business logic and database schema, so the second build starts from a proven contract instead of a rewrite.</p>
               </li>
               <li>
-                <h4>Claude Code for prototyping</h4>
-                <p>Thirty-minute interactive prototypes caught UX issues before implementation, saving weeks of rework.</p>
+                <h4>Prototype in the Simulator first</h4>
+                <p>Prototypes built with Claude Code and run in the iOS Simulator caught UX issues before implementation, while they were still cheap to change.</p>
               </li>
             </ol>
           </div>
@@ -460,20 +574,20 @@
             <h2 class="sp-title" style="font-size:clamp(1.25rem,2.4vw,1.9rem);">Four things for next time.</h2>
             <ol class="sp-notes">
               <li>
-                <h4>Accessibility, earlier</h4>
-                <p>Voice control, screen readers, and high-contrast support should have been researched during planning, not after launch.</p>
+                <h4>Assistive support, designed in, not retrofitted</h4>
+                <p>Voice input shipped as a convenience feature, but the assistive layer behind it (VoiceOver labels, Dynamic Type, contrast auditing) was left until after launch. On a product whose core interaction is a camera and a long list, that belongs in the planning phase, not the backlog.</p>
               </li>
               <li>
                 <h4>Validate receipt import sooner</h4>
-                <p>Receipt OCR and parsing turned out harder than expected — it needed building during iOS development, not deferring as a "future feature."</p>
+                <p>Receipt OCR and parsing was deferred as a "future feature" and turned out to be far harder, and far more central, than expected. It's built and running now, but it should have been proven during the iOS build, because it's the fastest path into a populated pantry and the whole product is weaker without it.</p>
               </li>
               <li>
-                <h4>User testing before launch</h4>
-                <p>Post-launch feedback revealed pantry UX friction that one or two rounds of testing before shipping would have surfaced.</p>
+                <h4>Longitudinal testing, not just sessions</h4>
+                <p>Discovery interviews and a 15-household beta validated the core loop, but the pantry friction that surfaced after launch was the kind short sessions miss: a pantry that's been accumulating for weeks behaves nothing like a freshly seeded one. Next time I'd run a smaller group over a longer stretch rather than more people once.</p>
               </li>
               <li>
                 <h4>A clearer offline-first strategy</h4>
-                <p>Local-first sync works, but the approach evolved mid-build — deciding upfront would have simplified things.</p>
+                <p>Local-first sync works, but the approach evolved mid-build, and deciding upfront would have simplified things.</p>
               </li>
             </ol>
           </div>
@@ -484,12 +598,12 @@
     <!-- ============ LEARNINGS ============ -->
     <section class="sp-section sp-section--line">
       <div class="container">
-        <p class="sp-eyebrow" data-reveal>Learnings for design technologists</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">Four takeaways.</h2>
+        <p class="sp-eyebrow" data-reveal>What I took away</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">What this taught me as a <em>design technologist.</em></h2>
         <div class="cs-problem-grid" style="margin-top:2.25rem;">
           <div class="cs-problem-card" data-reveal>
             <p class="cs-problem-title">Spec-driven development is still relevant</p>
-            <p class="cs-problem-desc">Fast-shipping teams still need architecture thinking. It isn't "spec vs. vibe-code" — it's a smart spec paired with rapid iteration.</p>
+            <p class="cs-problem-desc">Fast-shipping teams still need architecture thinking. It isn't "spec vs. vibe-code". It's a smart spec paired with rapid iteration.</p>
           </div>
           <div class="cs-problem-card" data-reveal data-reveal-delay="80">
             <p class="cs-problem-title">AI integration needs design thinking</p>
@@ -497,11 +611,23 @@
           </div>
           <div class="cs-problem-card" data-reveal data-reveal-delay="160">
             <p class="cs-problem-title">Multi-platform is one system, not three</p>
-            <p class="cs-problem-desc">iOS, Android, and backend aren't separate projects — they're one system with different client views. Architecture thinking from day one prevents rework.</p>
+            <p class="cs-problem-desc">Clients and backend aren't separate projects. They're one system with different views onto it. Architecture thinking from day one prevents rework.</p>
           </div>
           <div class="cs-problem-card" data-reveal data-reveal-delay="240">
             <p class="cs-problem-title">Shipping removes assumptions</p>
-            <p class="cs-problem-desc">Feedback on a shipped product beats research on wireframes every time. Ship fast, then iterate on real usage.</p>
+            <p class="cs-problem-desc">Feedback on a shipped product beats research on wireframes every time. I learned more in the first weeks on the App Store than in the months of planning before it.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="320">
+            <p class="cs-problem-title">Build it as if a team will inherit it</p>
+            <p class="cs-problem-desc">A design system, one shared backend, reusable business logic. I was the only person on this, but I built the artefacts a team would need. That is what let a second client start from a proven contract instead of a rewrite, and it is the part that transfers to any team.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="400">
+            <p class="cs-problem-title">Prototype before you commit</p>
+            <p class="cs-problem-desc">A prototype running on a real device answers questions a mockup cannot. Building them with Claude Code made them cheap enough to throw away, so decisions got made on something I could use rather than something I could only look at.</p>
+          </div>
+          <div class="cs-problem-card" data-reveal data-reveal-delay="480">
+            <p class="cs-problem-title">Rapid iteration and production quality are not opposites</p>
+            <p class="cs-problem-desc">With the right tooling and a spec worth following, moving quickly did not cost me quality. Zero rework between prototype and shipped code is the evidence.</p>
           </div>
         </div>
       </div>
@@ -518,14 +644,14 @@
               <svg viewBox="0 0 48 48" fill="none"><rect x="13" y="4" width="22" height="40" rx="5" stroke="currentColor" stroke-width="2.2"/><line x1="20" y1="39" x2="28" y2="39" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="21" y1="9" x2="27" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
             <h3>iOS</h3>
-            <p>Iterating on user feedback: receipt import, meal-history learning, and richer dietary preferences.</p>
+            <p>Iterating on user feedback: sharpening receipt import, meal-history learning, richer dietary preferences, and the assistive layer.</p>
           </div>
           <div class="sp-next" data-reveal data-reveal-delay="80">
             <div class="sp-next-icon" aria-hidden="true">
               <svg viewBox="0 0 48 48" fill="none"><path d="M10 30 A14 14 0 0 1 38 30 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><line x1="14" y1="13" x2="18" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="34" y1="13" x2="30" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18.5" cy="25" r="1.6" fill="currentColor"/><circle cx="29.5" cy="25" r="1.6" fill="currentColor"/><line x1="12" y1="34" x2="36" y2="34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
             </div>
             <h3>Android</h3>
-            <p>Performance optimisation and expanding user acquisition.</p>
+            <p>Finishing the React Native client against the shipped backend, then store submission. Ship date TBC.</p>
           </div>
           <div class="sp-next" data-reveal data-reveal-delay="160">
             <div class="sp-next-icon" aria-hidden="true">
@@ -557,13 +683,13 @@
           </a>
           <button type="button" class="sp-link-btn" data-gate data-magnetic>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7 V5 a2.5 2.5 0 0 1 5 0 V7" stroke="currentColor" stroke-width="1.6"/></svg>
-            GitHub — Backend <span class="sp-gate-hint">· request access</span>
+            GitHub · Backend <span class="sp-gate-hint">· request access</span>
           </button>
           <button type="button" class="sp-link-btn" data-gate data-magnetic>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 7 V5 a2.5 2.5 0 0 1 5 0 V7" stroke="currentColor" stroke-width="1.6"/></svg>
-            GitHub — iOS <span class="sp-gate-hint">· request access</span>
+            GitHub · iOS <span class="sp-gate-hint">· request access</span>
           </button>
-          <span class="sp-link-btn sp-link-btn--soon">Android — coming soon</span>
+          <span class="sp-link-btn sp-link-btn--soon">Android · coming soon</span>
         </div>
       </div>
     </section>
@@ -616,7 +742,7 @@
             <div class="cs-related-info">
               <span class="cs-related-tag">Compliance Design</span>
               <h3 class="cs-related-card-title">Make rigour the path of least resistance.</h3>
-              <p class="cs-related-desc">Turning a week-long compliance bottleneck into a self-service workflow — rules intact.</p>
+              <p class="cs-related-desc">Turning a week-long compliance bottleneck into a self-service workflow, rules intact.</p>
               <span class="cs-related-link">Read case study <i>→</i></span>
             </div>
           </a>
@@ -650,7 +776,7 @@
       <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="21" width="28" height="20" rx="4" stroke="currentColor" stroke-width="2.4"/><path d="M16 21 V15 a8 8 0 0 1 16 0 V21" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="30" r="2.6" fill="currentColor"/><line x1="24" y1="32" x2="24" y2="36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     </div>
     <h2 class="sp-gate-title" id="code-gate-title">The codebase is private.</h2>
-    <p class="sp-gate-body">Happy to walk you through the Sous Pantry source — backend, iOS, and the AI integration. Send a quick request with who you are and I'll open it up.</p>
+    <p class="sp-gate-body">Happy to walk you through the Sous Pantry source: backend, iOS, and the AI integration. Send a quick request with who you are and I'll open it up.</p>
     <div class="sp-gate-actions">
       <a class="sp-link-btn sp-link-btn--solid" href="mailto:jamesian.foo@gmail.com?subject=Sous%20Pantry%20%E2%80%94%20code%20access%20request&body=Hi%20James%2C%0A%0AI%27d%20like%20access%20to%20the%20Sous%20Pantry%20repositories%20(backend%20%2F%20iOS).%0A%0AName%3A%0ARole%20%2F%20company%3A%0AGitHub%20username%3A%0AWhat%20I%27m%20interested%20in%3A%0A%0AThanks!">
         Request access by email
@@ -683,8 +809,8 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
-  <script src="script.js?v=jf56"></script>
-  <script src="sous.js?v=jf56"></script>
-  <script src="cs-experience.js?v=jf56"></script>
+  <script src="script.js?v=jf91"></script>
+  <script src="sous.js?v=jf91"></script>
+  <script src="cs-experience.js?v=jf91"></script>
 </body>
 </html>

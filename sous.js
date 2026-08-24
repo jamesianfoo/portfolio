@@ -140,15 +140,19 @@
 
   /* ---------- Code panel: lines type in ---------- */
   (function codeReveal() {
-    var lines = gsap.utils.toArray('.sp-code-line');
-    if (!lines.length) return;
-    gsap.to(lines, {
-      opacity: 1,
-      x: 0,
-      duration: 0.45,
-      ease: 'power2.out',
-      stagger: 0.055,
-      scrollTrigger: { trigger: '.sp-code', start: 'top 80%', once: true }
+    // Each panel animates against its own trigger — a single shared trigger
+    // would reveal later panels while they are still off-screen.
+    gsap.utils.toArray('.sp-code').forEach(function (panel) {
+      var lines = panel.querySelectorAll('.sp-code-line');
+      if (!lines.length) return;
+      gsap.to(lines, {
+        opacity: 1,
+        x: 0,
+        duration: 0.45,
+        ease: 'power2.out',
+        stagger: 0.055,
+        scrollTrigger: { trigger: panel, start: 'top 80%', once: true }
+      });
     });
   })();
 
@@ -224,7 +228,7 @@
   /* ---------- Phone tilt (pointer devices) ---------- */
   (function tilt() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    gsap.utils.toArray('.sp-phone').forEach(function (phone) {
+    gsap.utils.toArray('.sp-proof-shot').forEach(function (phone) {
       var rx = gsap.quickTo(phone, 'rotationX', { duration: 0.5, ease: 'power2.out' });
       var ry = gsap.quickTo(phone, 'rotationY', { duration: 0.5, ease: 'power2.out' });
       phone.addEventListener('mousemove', function (e) {
@@ -237,15 +241,6 @@
       phone.addEventListener('mouseleave', function () { rx(0); ry(0); });
     });
   })();
-
-  /* ---------- Section parallax on green screens block ---------- */
-  gsap.utils.toArray('.sp-screens-row .sp-phone').forEach(function (phone, i) {
-    gsap.fromTo(phone, { yPercent: i % 2 ? 7 : 3 }, {
-      yPercent: i % 2 ? -7 : -3,
-      ease: 'none',
-      scrollTrigger: { trigger: '.sp-screens', start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-  });
 
   /* ---------- Honest measurements after fonts/images settle ---------- */
   var refreshPending = false;

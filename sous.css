@@ -405,6 +405,23 @@
   color: var(--ink-2);
 }
 
+/* inline source links — visible without shouting, since the global
+   rule strips link styling everywhere else */
+.sp-step-desc a,
+.sp-body a,
+.sp-code-note a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--sp-fresh);
+  transition: color var(--transition);
+}
+
+.sp-step-desc a:hover,
+.sp-body a:hover,
+.sp-code-note a:hover { color: var(--sp-fresh); }
+
 /* ============================================================
    ARCHITECTURE
    ============================================================ */
@@ -467,6 +484,47 @@
 
 .sp-code-line .hl { color: var(--sp-cream); }
 .sp-code-line .ac { color: var(--sp-fresh); }
+/* dimmer than the 0.62 body lines so comments read as secondary */
+.sp-code-line .cm { color: rgba(236, 231, 216, 0.42); }
+
+/* code excerpts — real source, with provenance */
+.sp-codeblock { margin-top: clamp(2.25rem, 4vw, 3rem); }
+.sp-codeblock:first-of-type { margin-top: clamp(1.75rem, 3vw, 2.25rem); }
+
+.sp-code-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sp-fresh);
+  margin-bottom: 0.6rem;
+}
+
+.sp-code-file {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  background: rgba(0, 0, 0, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.18rem 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.sp-code-note {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  border-left: 2px solid var(--sp-fresh);
+  padding-left: 0.95rem;
+  margin-top: 1rem;
+  max-width: 62ch;
+}
+
+.sp-code-note strong { color: var(--ink); }
 
 /* ============================================================
    FEATURES — animated icon cards
@@ -545,6 +603,47 @@
 }
 
 .sp-phone img { width: 100%; height: auto; display: block; }
+
+/* annotated shipped-UI proof grid */
+.sp-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.25rem);
+  margin-top: 2.75rem;
+}
+
+.sp-proof-shot {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.13);
+  background: var(--paper);
+  max-width: 340px;
+}
+
+.sp-proof-shot img { width: 100%; height: auto; display: block; }
+
+.sp-proof-item h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 1.15rem 0 0.5rem;
+}
+
+.sp-proof-item p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+.sp-proof-item strong { color: var(--ink); }
+
+@media (max-width: 760px) {
+  .sp-proof-grid { grid-template-columns: 1fr; }
+  .sp-proof-shot { max-width: 300px; }
+}
 
 /* ============================================================
    TIMELINE — scroll-drawn
