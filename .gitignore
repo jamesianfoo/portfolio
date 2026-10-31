@@ -1,1 +1,5 @@
 .superpowers/
+
+# macOS finder metadata, never belongs in the repo
+.DS_Store
+**/.DS_Store
