@@ -12,14 +12,16 @@
   <meta charset="UTF-8">
   <link rel="icon" href="favicon.ico" sizes="any">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case study: Designing Watch Tower. Reducing deployment friction and increasing velocity for engineering teams. Developer Experience UX case study by James Foo, Lead Product Designer.">
-  <title>Watch Tower · Faster Deployments, Less Friction | DevEx UX Case Study | James Foo</title>
+  <meta name="description" content="How I led design for an internal developer platform used by thousands of engineers: what we found, the call to fix trust before features, and the Watch Tower pattern that came out of it.">
+  <title>Rebuilding trust in a bank&rsquo;s developer platform | Developer Experience case study | James Foo</title>
   <link rel="stylesheet" href="styles.css?v=jg09">
   <link rel="stylesheet" href="case-study.css?v=jg09">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <style>body{opacity:0;transition:opacity 0.2s ease;}body.ready{opacity:1;}</style>
+  <style>body{opacity:0;transition:opacity 0.2s ease;}body.ready{opacity:1;}
+  /* DRAFT markers. Delete this rule once every .fill on the page is replaced. */
+  .fill{background:#fde047;color:#111;padding:0 .3em;border-radius:3px;font-weight:600;font-style:normal;font-size:.9rem;letter-spacing:0;line-height:1.5;}</style>
   <script>document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('ready');});</script>
 </head>
 <body style="--cs-accent:#5B8DEF;">
@@ -56,6 +58,7 @@
   </div>
 
   <main>
+    <!-- DRAFT 2026-11-10: restructured for Director level. Replace every "fill" marker before publishing. -->
 
     <section class="cs-hero">
       <div class="container">
@@ -67,9 +70,8 @@
           <span class="cs-tag">IDP</span>
           <span class="cs-tag">Enterprise SaaS</span>
         </div>
-        <h1 class="cs-hero-title">Less Friction, More Velocity: The Watch Tower</h1>
-        <p class="cs-hero-subtitle">Engineering teams were technically capable but systematically slowed. Not by skill gaps, but by a platform experience that created friction at every turn.
-          The Watch Tower was one intervention in a broader experience strategy to make self-sufficiency the default for thousands of users globally. Designed as a pattern, not a feature, it established the interaction model for contextual guidance across the entire IDP.</p>
+        <h1 class="cs-hero-title">Rebuilding trust in a bank&rsquo;s developer platform</h1>
+        <p class="cs-hero-subtitle">Thousands of engineers had a new platform to get code into production. Most of them were still using the old one. This is how we changed that: what we found, the call to fix trust before features, and the three things trust turned out to mean.</p>
       </div>
     </section>
 
@@ -80,16 +82,12 @@
           <span class="cs-info-value">Lead Product Designer</span>
         </div>
         <div class="cs-info-item">
-          <span class="cs-info-label">Platform</span>
-          <span class="cs-info-value">Enterprise Web Application</span>
-        </div>
-        <div class="cs-info-item">
-          <span class="cs-info-label">Tools</span>
-          <span class="cs-info-value">Figma, FigJam, Analog</span>
+          <span class="cs-info-label">Partners</span>
+          <span class="cs-info-value">Product, Engineering, Risk</span>
         </div>
         <div class="cs-info-item">
           <span class="cs-info-label">Scope</span>
-          <span class="cs-info-value">Thousands of users globally</span>
+          <span class="cs-info-value">Thousands of engineers globally</span>
         </div>
       </div>
     </div>
@@ -120,112 +118,67 @@
       <div class="app-flow-wrap">
         <div class="app-flow-intro">
           <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin:0 0 12px;">Developer Experience</p>
-          <h3 style="font-size:22px;font-weight:700;color:#0f172a;line-height:1.25;margin:0 0 12px;">Less friction,<br>more velocity.</h3>
-          <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0;">Contextual guidance at the point of failure. Dead-end errors become one-click fixes.</p>
+          <p style="font-size:22px;font-weight:700;color:#0f172a;line-height:1.25;margin:0 0 12px;">Trust before<br>features.</p>
+          <p style="font-size:13px;color:#64748b;line-height:1.6;margin:0;">A new platform most engineers avoided, and the call that moved them onto it.</p>
         </div>
         <div class="app-flow-row">
           <div class="app-flow-step">
             <div class="app-flow-num">1</div>
-            <div class="app-flow-title">See what's blocking</div>
-            <div class="app-flow-desc">Pre-deployment checks surface every blocking issue in one persistent view.</div>
+            <div class="app-flow-title">Find the cost</div>
+            <div class="app-flow-desc">Audited the platform and sat beside engineers while they deployed.</div>
           </div>
           <div class="app-flow-arrow">→</div>
           <div class="app-flow-step">
             <div class="app-flow-num">2</div>
-            <div class="app-flow-title">Understand why</div>
-            <div class="app-flow-desc">Cryptic error codes become plain-language explanations: what failed, and why.</div>
+            <div class="app-flow-title">Make the call</div>
+            <div class="app-flow-desc">Fix trust before building anything new. Not a popular call.</div>
           </div>
           <div class="app-flow-arrow">→</div>
           <div class="app-flow-step">
             <div class="app-flow-num">3</div>
-            <div class="app-flow-title">Fix in one click</div>
-            <div class="app-flow-desc">Each issue links straight to its resolution path, with no hunting across systems.</div>
+            <div class="app-flow-title">Ship the pattern</div>
+            <div class="app-flow-desc">The Watch Tower: guidance at the point of failure, inside the deployment view.</div>
           </div>
           <div class="app-flow-arrow">→</div>
           <div class="app-flow-step is-final">
             <div class="app-flow-num">✓</div>
-            <div class="app-flow-title">Ship faster</div>
-            <div class="app-flow-desc">Blockers cleared in-flow. Deployment friction down, engineering velocity up.</div>
+            <div class="app-flow-title">Scale it</div>
+            <div class="app-flow-desc">Engineers moved onto the platform. The pattern was adopted across it.</div>
           </div>
         </div>
       </div>
     </section>
 
-
         <hr class="cs-divider">
 
-        <!-- What is it -->
         <section class="cs-section">
-          <p class="cs-section-label">Background</p>
-          <h2 class="cs-section-title">What is a pre-deployment check?</h2>
+          <p class="cs-section-label">Context</p>
+          <h2 class="cs-section-title">The problem</h2>
           <div class="cs-body">
-            <p>Pre-deployment checks verify service readiness against quality gates, compliance standards, security requirements, and configuration needs before any code is released to production. For thousands of users globally, this was a daily necessity, and a daily source of frustration.</p>
+            <p>Engineers at a global bank had two ways to get code into production: a legacy tool that was fast but fragile, and a new platform built to replace it. The new platform half-worked. Much of it was broken or slow, and most of what engineers needed had not yet migrated across, so they stayed on the old tool. The bank was paying for a platform nobody trusted.</p>
+            <p>Every release had to clear a set of pre-deployment checks, which verify a service against quality, compliance, security and configuration requirements before any code reaches production. For thousands of engineers this was a daily necessity, and a daily source of frustration.</p>
           </div>
         </section>
 
         <hr class="cs-divider">
 
-        <!-- Team -->
         <section class="cs-section">
-          <p class="cs-section-label">Cross-Functional Team</p>
-          <h2 class="cs-section-title">A global collaboration across disciplines</h2>
-          <div class="cs-team-grid">
-            <div class="cs-team-card">
-              <p class="cs-team-role">Engineering</p>
-              <p class="cs-team-name">Lead Engineer</p>
-            </div>
-            <div class="cs-team-card">
-              <p class="cs-team-role">Product</p>
-              <p class="cs-team-name">Product Managers</p>
-            </div>
-            <div class="cs-team-card">
-              <p class="cs-team-role">Risk &amp; Governance</p>
-              <p class="cs-team-name">Risk Managers</p>
-            </div>
-          </div>
-          <div style="margin-top:1.25rem;border-left:3px solid #2563eb;background:#f8faff;border-radius:0 8px 8px 0;padding:14px 18px;">
-            <p style="font-size:14px;font-style:italic;color:var(--color-text-secondary);line-height:1.7;margin:0;">Operated end-to-end on Watch Tower: problem definition, success criteria, acceptance criteria, engineering handoff via Figma DevMode, and post-launch iteration alongside the engineering and product partners listed above.</p>
+          <p class="cs-section-label">The team</p>
+          <h2 class="cs-section-title">One graduate designer, no research</h2>
+          <div class="cs-body">
+            <p>The previous design lead left shortly after I arrived, and the team was one graduate designer. There was no research practice. I built the team out from there, and set the design vision and strategy as a peer to the product and engineering leads, deciding with them what got built and in what order.</p>
           </div>
         </section>
 
         <hr class="cs-divider">
 
-        <!-- Discovery -->
         <section class="cs-section">
           <p class="cs-section-label">Discovery</p>
-          <h2 class="cs-section-title">Understanding the real problem</h2>
+          <h2 class="cs-section-title">What I found</h2>
           <div class="cs-body">
-            <p>Through interviews with users across seniority levels, a critical pattern emerged: an overwhelming "mental load" when navigating legacy compliance gates. Users were context-switching constantly between terminals, documentation wikis, and Slack channels just to understand a single error.</p>
-            <p>The key insight: users wanted solutions "where the work happened", not additional dashboards to check.</p>
+            <p>I spent the first weeks auditing the platform and sitting beside engineers while they deployed. The audit showed what was broken. Sitting beside people showed what it cost: time lost waiting, redeploying, and reworking releases that failed for reasons buried in logs nobody read.</p>
+            <p>Four themes came out of it: the onboarding tax on new hires, the mental load of switching between tools, dead-end error messages with no next step, and velocity lost to stalled releases.</p>
           </div>
-        </section>
-
-        <hr class="cs-divider">
-
-        <!-- The Problem -->
-        <section class="cs-section">
-          <p class="cs-section-label">The Problem</p>
-          <h2 class="cs-section-title">Three core friction points slowing every team down</h2>
-
-          <div class="cs-problem-grid">
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">The Onboarding Tax</p>
-              <p class="cs-problem-desc">New users faced a days-long learning curve just to get through their first deployment. This created a "shadow support" model where senior users spent a significant portion of their time guiding junior users through cryptic errors, which drained team velocity.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">The Dead-End Feedback Loop</p>
-              <p class="cs-problem-desc">Error messages used technical labels without context. Users had no idea which file was broken, who owned a given scorecard, or how to resolve a "legacy compliance gate" block. Multi-day delays for new hires, and significant time lost for experienced ones.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">The Context Gap</p>
-              <p class="cs-problem-desc">Users were forced to hunt across fragmented systems (terminals, wikis, Slack, dashboards) just to piece together why a single gate was failing. The system provided no actionable path forward.</p>
-            </div>
-          </div>
-
-          <div class="cs-body" style="margin-top:2.5rem;"><p>Senior users reported spending a large proportion of their week fielding questions from junior colleagues about deployment failures. That was time that could have been spent building. The support burden was structural, not individual.</p></div>
-
-          <div class="cs-body" style="margin-top:1.5rem;"><p>Users described finishing their work only to hit an opaque compliance gate with no indication of who owned it or how to proceed. Releases stalled for days while users played detective across multiple departments and systems.</p></div>
-
           <div style="margin-top: 2rem;">
             <style>
               .syn-wrap{font-family:var(--font-sans);}
@@ -274,7 +227,7 @@
         <!-- Journey Maps: Before & After -->
         <section class="cs-section">
           <p class="cs-section-label">Journey Map</p>
-          <h2 class="cs-section-title">Before &amp; after: a new hire's pre-deployment journey</h2>
+          <h3 class="cs-section-title">Before &amp; after: a new hire's pre-deployment journey</h3>
           <div class="cs-body">
             <p>To pressure-test the problem and the proposed solution, I mapped the end-to-end journey for a user new to the platform, before the Watch Tower and after.</p>
           </div>
@@ -462,7 +415,7 @@
                 <div class="jm-cell2"><p class="thought-text2">"A gate failed, but the platform is already telling me what happened."</p></div>
                 <div class="jm-cell2"><p class="thought-text2">"It's telling me exactly who owns it and what to do. That's all I needed."</p></div>
                 <div class="jm-cell2"><p class="thought-text2">"I didn't have to ask anyone. I just fixed it."</p></div>
-                <div class="jm-cell2" style="border-right:none"><p class="thought-text2">"The inline guidance transformed this from a dead-end into a guided path to success."</p></div>
+                <div class="jm-cell2" style="border-right:none"><p class="thought-text2">"Gate cleared. On to the next thing."</p></div>
 
                 <div class="jm-cell2 lane-label2">Resolved</div>
                 <div class="jm-cell2"></div>
@@ -505,65 +458,55 @@
 
         <hr class="cs-divider">
 
-        <!-- Strategic Goals -->
         <section class="cs-section">
-          <p class="cs-section-label">Strategy</p>
-          <h2 class="cs-section-title">Four objectives to reclaim engineering velocity</h2>
+          <p class="cs-section-label">The decision</p>
+          <h2 class="cs-section-title">The call</h2>
+          <div class="cs-body">
+            <p>The product owners had roadmaps full of features. The engineers didn&rsquo;t need features. They needed to believe the platform would do what it said. So the first call was to pause new feature work and fix parity and reliability first. I made that case on usage and adoption data rather than opinion, and put a cost on the engineering time lost to slow and failed deployments. It was not a popular call, I owned it, and I led the migration across teams that followed.</p>
+          </div>
+          <div class="cs-body" style="margin-top:1.5rem;">
+            <p>That decision set four objectives:</p>
+          </div>
           <ul class="cs-list cs-list--numbered">
-            <li>Reclaim Engineering Velocity. Eliminate multi-day dead time by surfacing resolution paths at the point of failure</li>
-            <li>Demystify Compliance. Translate machine-first labels into human-first insights users can actually act on</li>
-            <li>Enable Developer Autonomy. Reduce shadow support dependency through self-service remediation</li>
-            <li>Bridge the Onboarding Gap. Shorten the learning curve for new hires significantly</li>
+            <li>Reclaim engineering velocity. Eliminate dead time by surfacing resolution paths at the point of failure</li>
+            <li>Demystify compliance. Translate machine-first labels into human-first insights engineers can act on</li>
+            <li>Enable autonomy. Reduce shadow support dependency through self-service remediation</li>
+            <li>Bridge the onboarding gap. Shorten the learning curve for new hires</li>
           </ul>
         </section>
 
         <hr class="cs-divider">
 
-        <!-- Rollout -->
         <section class="cs-section">
-          <p class="cs-section-label">Rollout</p>
-          <h2 class="cs-section-title">A three-phase plan, each gate-checked before the next began.</h2>
-          <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch;margin-top:2rem;">
-
-            <!-- Phase 1 -->
-            <div style="background:#dbeafe;border-radius:12px;padding:24px;">
-              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1e40af;margin:0 0 12px;">Phase 1 · Foundation</p>
-              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Error taxonomy and signal map</h3>
-              <p style="font-size:13px;color:#1e40af;line-height:1.65;margin:0;">Audited every failure state across the deployment pipeline. Grouped by root cause, frequency, and time-to-resolution. Built a shared taxonomy that gave engineering, product, and design a common language for the problem space.</p>
-            </div>
-
-            <!-- Validate arrow 1 -->
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px;gap:6px;">
-              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                <path d="M4 12 L26 12 M26 12 L18 5 M26 12 L18 19" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <p style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin:0;">Validate</p>
-            </div>
-
-            <!-- Phase 2 -->
-            <div style="background:#bfdbfe;border-radius:12px;padding:24px;">
-              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1d4ed8;margin:0 0 12px;">Phase 2 · Pattern</p>
-              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Progressive disclosure, validated at small scale</h3>
-              <p style="font-size:13px;color:#1d4ed8;line-height:1.65;margin:0;">Designed and tested the contextual guidance pattern with a single release type and a small cohort of teams. Validated the interaction model before any platform-wide commitment.</p>
-            </div>
-
-            <!-- Validate arrow 2 -->
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px;gap:6px;">
-              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                <path d="M4 12 L26 12 M26 12 L18 5 M26 12 L18 19" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <p style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin:0;">Validate</p>
-            </div>
-
-            <!-- Phase 3 -->
-            <div style="background:#93c5fd;border-radius:12px;padding:24px;">
-              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1e40af;margin:0 0 12px;">Phase 3 · Scale</p>
-              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Pattern adoption across the IDP</h3>
-              <p style="font-size:13px;color:#1e40af;line-height:1.65;margin:0;">Once the model held, the same pattern extended beyond Watch Tower into other surfaces, establishing how the entire platform would surface guidance in future. What other teams inherited was a component, not a spec: one surface that handles any gate type by swapping content rather than structure, accessible to WCAG 2.2 AA by default. Adopting it meant adopting the accessibility and interaction work already done, instead of solving it again.</p>
-            </div>
-
+          <p class="cs-section-label">The trade-off</p>
+          <h2 class="cs-section-title">Security, every time</h2>
+          <div class="cs-body">
+            <p>This is a bank. Every time we made something easier I had to show risk and security that we hadn&rsquo;t weakened a control. Sometimes the answer was no. I designed to the constraint instead of around it.</p>
           </div>
-          <p style="font-size:14px;font-style:italic;color:var(--color-text-secondary);text-align:center;margin-top:1.5rem;">We didn't ship a feature. We shipped a pattern that scaled.</p>
+        </section>
+
+        <hr class="cs-divider">
+
+        <section class="cs-section">
+          <p class="cs-section-label">The work</p>
+          <h2 class="cs-section-title">What trust turned out to be</h2>
+          <h3 class="cs-section-title" style="margin-top:2rem;">Visibility: the Watch Tower</h3>
+          <div class="cs-body">
+            <p>Regulatory blockers and runtime errors were invisible until something failed. We put guidance at the point of failure: a persistent, contextual panel inside the deployment workflow that explains why a check failed in plain language and what to do next, with one-click links to the fix. It also carried deployment progress, so an engineer always knew where a release stood, and alerted engineers who were away from their desk.</p>
+            <p>The legacy interface functioned as a passive ledger. A static list of compliance states with high cognitive load, forcing users to hunt across fragmented systems for any resolution path. The Watch Tower replaced it with two things:</p>
+          </div>
+
+          <div class="cs-problem-grid" style="margin-top: 1.5rem;">
+            <div class="cs-problem-card">
+              <p class="cs-problem-title">The "Why"</p>
+              <p class="cs-problem-desc">Cryptic error codes replaced with human-readable explanations. Every failure state tells the user exactly what went wrong and why, in plain language.</p>
+            </div>
+            <div class="cs-problem-card">
+              <p class="cs-problem-title">The "How"</p>
+              <p class="cs-problem-desc">A dedicated "Suggestion/Action" column with one-click deep links to resolution paths. No more detective work across multiple systems.</p>
+            </div>
+          </div>
+
         </section>
 
         <hr class="cs-divider">
@@ -571,7 +514,7 @@
         <!-- Design Decisions -->
         <section class="cs-section">
           <p class="cs-section-label">Design Decisions</p>
-          <h2 class="cs-section-title">What we considered, and what we rejected</h2>
+          <h3 class="cs-section-title">What we considered, and what we rejected</h3>
           <div class="cs-body">
             <p>Before landing on the Watch Tower, we stress-tested three alternative directions. Each solved a piece of the problem but failed the core test: keep the user in-flow, at the point of failure.</p>
           </div>
@@ -679,7 +622,7 @@
         <!-- Component Placement / Systems Thinking -->
         <section class="cs-section">
           <p class="cs-section-label">Systems Thinking</p>
-          <h2 class="cs-section-title">Placing the Watch Tower where the work happens</h2>
+          <h3 class="cs-section-title">Placing the Watch Tower where the work happens</h3>
           <div class="cs-body">
             <p>The critical design decision was where to intervene. Rather than adding a new surface, we placed the Watch Tower inside the user's existing deployment view, at the exact point of failure.</p>
           </div>
@@ -692,123 +635,52 @@
 
         <hr class="cs-divider">
 
-        <!-- Evolution -->
+        <!-- Rollout -->
         <section class="cs-section">
-          <p class="cs-section-label">The Solution</p>
-          <h2 class="cs-section-title">From static reporting to the Watch Tower</h2>
-          <div class="cs-body">
-            <p>The legacy interface functioned as a passive ledger. A static list of compliance states with high cognitive load, forcing users to hunt across fragmented systems for any resolution path.</p>
-            <p>The Watch Tower introduces a contextual, persistent UI component as a "source of truth" with two core pillars:</p>
+          <p class="cs-section-label">Rollout</p>
+          <h3 class="cs-section-title">A three-phase plan, each gate-checked before the next began.</h3>
+          <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch;margin-top:2rem;">
+
+            <!-- Phase 1 -->
+            <div style="background:#dbeafe;border-radius:12px;padding:24px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1e40af;margin:0 0 12px;">Phase 1 · Foundation</p>
+              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Error taxonomy and signal map</h3>
+              <p style="font-size:13px;color:#1e40af;line-height:1.65;margin:0;">Audited every failure state across the deployment pipeline. Grouped by root cause, frequency, and time-to-resolution. Built a shared taxonomy that gave engineering, product, and design a common language for the problem space.</p>
+            </div>
+
+            <!-- Validate arrow 1 -->
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px;gap:6px;">
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+                <path d="M4 12 L26 12 M26 12 L18 5 M26 12 L18 19" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin:0;">Validate</p>
+            </div>
+
+            <!-- Phase 2 -->
+            <div style="background:#bfdbfe;border-radius:12px;padding:24px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1d4ed8;margin:0 0 12px;">Phase 2 · Pattern</p>
+              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Progressive disclosure, validated at small scale</h3>
+              <p style="font-size:13px;color:#1d4ed8;line-height:1.65;margin:0;">Designed and tested the contextual guidance pattern with a single release type and a small cohort of teams. Validated the interaction model before any platform-wide commitment.</p>
+            </div>
+
+            <!-- Validate arrow 2 -->
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px;gap:6px;">
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+                <path d="M4 12 L26 12 M26 12 L18 5 M26 12 L18 19" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p style="font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#9ca3af;margin:0;">Validate</p>
+            </div>
+
+            <!-- Phase 3 -->
+            <div style="background:#93c5fd;border-radius:12px;padding:24px;">
+              <p style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1e40af;margin:0 0 12px;">Phase 3 · Scale</p>
+              <h3 style="font-size:16px;font-weight:700;color:#1e3a5f;line-height:1.3;margin:0 0 12px;">Pattern adoption across the IDP</h3>
+              <p style="font-size:13px;color:#1e40af;line-height:1.65;margin:0;">Once the model held, the same pattern extended beyond Watch Tower into other surfaces, establishing how the entire platform would surface guidance in future. What other teams inherited was a component, not a spec: one surface that handles any gate type by swapping content rather than structure, accessible to WCAG 2.2 AA by default. Adopting it meant adopting the accessibility and interaction work already done, instead of solving it again.</p>
+            </div>
+
           </div>
-
-          <div class="cs-problem-grid" style="margin-top: 1.5rem;">
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">The "Why"</p>
-              <p class="cs-problem-desc">Cryptic error codes replaced with human-readable explanations. Every failure state tells the user exactly what went wrong and why, in plain language.</p>
-            </div>
-            <div class="cs-problem-card">
-              <p class="cs-problem-title">The "How"</p>
-              <p class="cs-problem-desc">A dedicated "Suggestion/Action" column with one-click deep links to resolution paths. No more detective work across multiple systems.</p>
-            </div>
-          </div>
-
-          <style>
-            .ja-scope { font-family: var(--font-main); margin-top: 1.75rem; }
-            .ja-compare { display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:center; }
-            .ja-col { border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:10px; }
-            .ja-col.is-before { background:#fef3f2; border:1px solid #fecdca; }
-            .ja-col.is-after  { background:#ecfdf3; border:1px solid #abefc6; }
-            .ja-tag { align-self:flex-start; font-size:10px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:3px 9px; border-radius:20px; }
-            .ja-tag.is-before { color:#b42318; background:#fee4e2; }
-            .ja-tag.is-after  { color:#067647; background:#d1fadf; }
-            .ja-step { display:flex; gap:10px; align-items:flex-start; }
-            .ja-dot { width:18px; height:18px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; margin-top:1px; }
-            .is-before .ja-dot { background:#fee4e2; color:#b42318; }
-            .is-after  .ja-dot { background:#d1fadf; color:#067647; }
-            .ja-step-title { font-size:12.5px; font-weight:700; color:#1a1a1a; line-height:1.3; }
-            .ja-step-desc { font-size:11.5px; color:#667085; line-height:1.45; margin-top:1px; }
-            .ja-foot { margin-top:4px; padding-top:10px; border-top:1px dashed; display:flex; flex-wrap:wrap; gap:6px; }
-            .is-before .ja-foot { border-color:#fecdca; }
-            .is-after  .ja-foot { border-color:#abefc6; }
-            .ja-chip { font-size:10px; font-weight:600; padding:3px 9px; border-radius:20px; }
-            .is-before .ja-chip { color:#b42318; background:#fff; border:1px solid #fecdca; }
-            .is-after  .ja-chip { color:#067647; background:#fff; border:1px solid #abefc6; }
-            .ja-mid { display:flex; align-items:center; justify-content:center; color:#94a3b8; font-size:20px; font-weight:300; }
-            @media (max-width:760px){
-              .ja-compare { grid-template-columns:1fr; }
-              .ja-mid { transform:rotate(90deg); padding:6px 0; }
-            }
-          </style>
-
-          <div class="ja-scope">
-            <div class="ja-compare">
-              <div class="ja-col is-before">
-                <span class="ja-tag is-before">Before · passive ledger</span>
-                <div class="ja-step"><div class="ja-dot">1</div><div><div class="ja-step-title">Hit a cryptic failure</div><div class="ja-step-desc">An opaque error code with no explanation of what actually went wrong.</div></div></div>
-                <div class="ja-step"><div class="ja-dot">2</div><div><div class="ja-step-title">Hunt across systems</div><div class="ja-step-desc">Dig through fragmented dashboards and docs to work out what it means.</div></div></div>
-                <div class="ja-step"><div class="ja-dot">3</div><div><div class="ja-step-title">Stall or escalate</div><div class="ja-step-desc">No resolution path on screen, so the deployment waits on someone else.</div></div></div>
-                <div class="ja-foot"><span class="ja-chip">Cryptic codes</span><span class="ja-chip">Fragmented hunt</span><span class="ja-chip">Dead ends</span></div>
-              </div>
-              <div class="ja-mid">→</div>
-              <div class="ja-col is-after">
-                <span class="ja-tag is-after">After · the Watch Tower</span>
-                <div class="ja-step"><div class="ja-dot">1</div><div><div class="ja-step-title">See it in one place</div><div class="ja-step-desc">A persistent, contextual status surface. Every blocking issue, no hunting.</div></div></div>
-                <div class="ja-step"><div class="ja-dot">2</div><div><div class="ja-step-title">Understand instantly</div><div class="ja-step-desc">The "why" in plain language: exactly what failed and what it means.</div></div></div>
-                <div class="ja-step"><div class="ja-dot">3</div><div><div class="ja-step-title">Resolve in one click</div><div class="ja-step-desc">The "how": a direct deep link to the fix, right where the failure lives.</div></div></div>
-                <div class="ja-foot"><span class="ja-chip">Plain language</span><span class="ja-chip">One source of truth</span><span class="ja-chip">Guided resolution</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cs-body" style="margin-top:2.5rem;"><p>Users reported that contextual guidance at the point of failure changed the experience fundamentally, turning dead-end error states into actionable resolution paths.</p></div>
-        </section>
-
-        <hr class="cs-divider">
-
-        <!-- Validation Framework -->
-        <section class="cs-section">
-          <p class="cs-section-label">Measurement</p>
-          <h2 class="cs-section-title">How we built the case, layer by layer.</h2>
-          <p style="font-size:1rem;color:var(--color-text-secondary);line-height:1.65;margin:0.5rem 0 1.25rem;">Built the case in three layers: engineer hours recovered per deployment, reduction in support escalations to the platform team, and downstream impact on release velocity and lead time.</p>
-          <div class="cs-body">
-            <p style="margin-top:1rem;">The six metrics below are what survived that validation: directional, repeatable, and consistent across regions and team types.</p>
-          </div>
-        </section>
-
-        <!-- Outcomes -->
-        <section class="cs-section">
-          <h2 class="cs-section-title">Measurable outcomes across thousands of users</h2>
-
-          <div class="cs-stats" style="--cs-accent:#5B8DEF;">
-            <div class="cs-stat">
-              <p class="cs-stat-value">Significantly faster</p>
-              <p class="cs-stat-label">Deployment time, down from days</p>
-            </div>
-            <div class="cs-stat">
-              <p class="cs-stat-value">Majority</p>
-              <p class="cs-stat-label">Reported higher and simplified clarity</p>
-            </div>
-            <div class="cs-stat">
-              <p class="cs-stat-value">A significant portion</p>
-              <p class="cs-stat-label">Decrease in support escalations globally</p>
-            </div>
-            <div class="cs-stat">
-              <p class="cs-stat-value">Significantly more self-sufficient</p>
-              <p class="cs-stat-label">Resolving deployments without relying on other teams</p>
-            </div>
-            <div class="cs-stat">
-              <p class="cs-stat-value">Substantially less time</p>
-              <p class="cs-stat-label">Spent resolving deployment issues, even for experienced users</p>
-            </div>
-            <div class="cs-stat">
-              <p class="cs-stat-value">Rated most helpful</p>
-              <p class="cs-stat-label">Integrated Actionable Steps, by users across all experience levels</p>
-            </div>
-          </div>
-
-          <div class="cs-body" style="margin-top: 2rem;">
-            <p>Beyond the metrics, the Watch Tower drove a genuine cultural shift, from frustration and shadow support to a streamlined, self-sufficient engineering culture. Onboarding efficiency improved significantly, unlocking real velocity from day one.</p>
-          </div>
+          <p style="font-size:14px;font-style:italic;color:var(--color-text-secondary);text-align:center;margin-top:1.5rem;">We didn't ship a feature. We shipped a pattern that scaled.</p>
+          <div class="cs-body" style="margin-top:1.5rem;"><p>We built the case in three layers: engineer hours recovered per deployment, the drop in support escalations to the platform team, and the downstream effect on release velocity. What survived that validation was directional, repeatable, and consistent across regions and team types.</p></div>
         </section>
 
         <hr class="cs-divider">
@@ -816,7 +688,7 @@
         <!-- What came next -->
         <section class="cs-section">
           <p class="cs-section-label">What came next</p>
-          <h2 class="cs-section-title">From launch to steady state.</h2>
+          <h3 class="cs-section-title">From launch to steady state.</h3>
           <div class="cs-body">
             <p><strong>Watch Tower wasn't a single launch. It was a maintained product across three iterations.</strong></p>
             <p style="margin-top:1rem;"><strong>v1</strong> shipped to a defined release type and a controlled cohort. Within weeks, telemetry surfaced two patterns the design hadn't anticipated: error recurrence after partial resolution, and mid-deployment context loss when an engineer left and returned to a paused release.</p>
@@ -826,6 +698,56 @@
           </div>
         </section>
 
+        <hr class="cs-divider">
+
+        <section class="cs-section">
+          <p class="cs-section-label">Requests and Approvals</p>
+          <h3 class="cs-section-title">Context travels with the request</h3>
+          <div class="cs-body">
+            <p>The approval flow worked, but approvers could not see what they were approving. Requesters had no way to attach context, so every request arrived with a side conversation in chat. I owned the rebuild. Context now travels with the request, approvals that never needed a human no longer wait for one, and the regulatory checks run before deployment rather than after it, so engineers fix problems while they still can. Approvers stopped chasing requesters over chat.</p>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <section class="cs-section">
+          <p class="cs-section-label">Onboarding</p>
+          <h3 class="cs-section-title">The platform teaches itself</h3>
+          <div class="cs-body">
+            <p>I owned the developer documentation and the onboarding guides, and they fed the platform&rsquo;s AI assistant. An engineer could ask the platform how to do something instead of asking the person next to them, which is what turned onboarding from a tax on senior engineers&rsquo; time into something a new hire could do alone.</p>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <section class="cs-section">
+          <p class="cs-section-label">Leadership</p>
+          <h2 class="cs-section-title">Building the capability</h2>
+          <div class="cs-body">
+            <p>I built the design team out from that one graduate designer into a team across three time zones, each designer embedded with the engineering team in their own city. I paired every designer with an engineering lead locally, so they learned the developer workflow and got answers from the engineer sitting next to them rather than from head office on the other side of the world.</p>
+            <p>I wrote the progression framework with HR, ran the performance reviews, and several designers were promoted. I ran a weekly session where engineers and customers brought problems straight to the design team. I took over the platform&rsquo;s half-built design system and owned it to completion, from tokens and governance up, and it became the foundation of the bank&rsquo;s global design system.</p>
+          </div>
+        </section>
+
+        <hr class="cs-divider">
+
+        <section class="cs-section">
+          <p class="cs-section-label">Outcomes</p>
+          <h2 class="cs-section-title">What changed</h2>
+          <div class="cs-body">
+            <p>Engineers moved onto the platform, and product managers followed. Deployments got faster because problems surfaced earlier, and the pattern was adopted across the platform.</p>
+            <p>We measured six things:</p>
+          </div>
+          <ul class="cs-list">
+            <li>Time to deploy</li>
+            <li>Reported clarity of information</li>
+            <li>Support escalations</li>
+            <li>Self-sufficiency, resolving deployments without another team</li>
+            <li>Time experienced engineers spent resolving deployment issues</li>
+            <li>Rated the most useful part of the pattern, across all experience levels</li>
+          </ul>
+          <div class="cs-body" style="margin-top:1.5rem;"><p>The figures stay with the bank.</p></div>
+        </section>
       </div>
     </div>
 
