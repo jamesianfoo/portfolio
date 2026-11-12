@@ -729,6 +729,10 @@
           xPercent: -50,
           yPercent: -50,
           x: sign * k.x * w,
+          // The CSS resting transform is translate(-50%, -50%). At fractional
+          // heights (phones) GSAP reads that as a pixel y and stacks yPercent
+          // on top, lifting the deck out of its box. Pin y so it can't.
+          y: 0,
           z: k.z,
           rotationY: -sign * k.rot,
           scale: k.scale,

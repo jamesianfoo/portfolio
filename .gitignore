@@ -3,3 +3,9 @@
 # macOS finder metadata, never belongs in the repo
 .DS_Store
 **/.DS_Store
+
+# Local PDF export of the portfolio, not part of the site
+JamesFoo-Portfolio.pdf
+portfolio-pdf-print.html
+portfolio-pdf-source.html
+pdf-assets/
