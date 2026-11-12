@@ -90,7 +90,7 @@
           <span class="sp-line"><span class="sp-line-inner">One <em>full-stack app.</em></span></span>
           <span class="sp-line"><span class="sp-line-inner">Shipped solo.</span></span>
         </h1>
-        <p class="sp-hero-sub" data-hero-fade>Shipped Sous Pantry solo on iOS (Swift) using light spec-driven development and rapid prototyping across several AI coding tools. Research to App Store in six months, with zero rework between prototype and shipping. The Android client is in build on the same backend.</p>
+        <p class="sp-hero-sub" data-hero-fade>Shipped Sous Pantry solo on iOS (Swift) using light spec-driven development and rapid prototyping with Claude Code. Research to App Store in six months. The prototype became the production app, with no throwaway rebuild. The Android client is in build on the same backend.</p>
         <div class="sp-chips" data-hero-fade>
           <span class="sp-chip sp-chip--live">Live on the App Store</span>
           <span class="sp-chip">iOS shipped · Android in build</span>
@@ -126,7 +126,7 @@
           <div class="sp-recipe-cell" data-reveal data-reveal-delay="140">
             <p class="sp-recipe-label">Cook time</p>
             <p class="sp-recipe-value">6 weeks</p>
-            <p class="sp-recipe-note">Focused iOS implementation + 2 weeks QA, launched June 2025</p>
+            <p class="sp-recipe-note">Focused iOS implementation + 2 weeks QA, launched June 2026</p>
           </div>
           <div class="sp-recipe-cell" data-reveal data-reveal-delay="210">
             <p class="sp-recipe-label">Ready in</p>
@@ -170,7 +170,7 @@
     <!-- ============ RESEARCH ============ -->
     <section class="sp-section sp-section--line">
       <div class="container">
-        <p class="sp-eyebrow" data-reveal>Research &amp; discovery · Jan to April 2025</p>
+        <p class="sp-eyebrow" data-reveal>Research &amp; discovery · Jan to April 2026</p>
         <h2 class="sp-title" data-reveal data-reveal-delay="70">Four months before <em>a line of production code.</em></h2>
         <div class="cs-two-col" style="margin-top:2rem;">
           <div data-reveal>
@@ -186,7 +186,7 @@
             <ul class="cs-list">
               <li>Most require manual pantry entry, the exact friction users complained about</li>
               <li>AI features were superficial, bolted on rather than core to the experience</li>
-              <li>None connected pantry → meals → shopping into one seamless loop</li>
+              <li>None connected pantry → meals → shopping into one connected loop</li>
             </ul>
           </div>
         </div>
@@ -211,7 +211,7 @@
         <ol class="sp-method-list">
           <li class="sp-step">
             <p class="sp-step-name">Product clarity</p>
-            <p class="sp-step-desc">Vision, pain points, and a single success metric: plan a week of meals in under 15 minutes. Key assumption to validate: photo-based scanning removes enough friction to make the whole idea work.</p>
+            <p class="sp-step-desc">Vision, pain points, and the one assumption the whole idea depended on: photo-based scanning removes enough friction to make it work.</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Architecture-first design</p>
@@ -227,7 +227,7 @@
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Options &amp; recommendation</p>
-            <p class="sp-step-desc">Weighed three options: a web-only MVP, one platform first, or both in parallel. Solo, parallel was never realistic, so the real question was which platform. I checked mobile market share in the two markets I was building for. In early 2025 iOS held roughly 63.7% in Australia against Android's 36.3%, and 57.5% to 59% across North America. iOS first put the app in front of the larger share of users in both markets from day one, with Android to follow on the same backend once the core product was validated. (StatCounter, early 2025: <a href="https://gs.statcounter.com/os-market-share/mobile/australia" target="_blank" rel="noopener">Australia</a>, <a href="https://gs.statcounter.com/os-market-share/mobile/north-america" target="_blank" rel="noopener">North America</a>.)</p>
+            <p class="sp-step-desc">Weighed three options: a web-only MVP, one platform first, or both in parallel. Solo, parallel was never realistic, so the real question was which platform. I checked mobile market share in the two markets I was building for. When I made the call in early 2026, iOS held roughly 59% to 63% in Australia against Android's 37% to 40%, and 59% to 62% across North America. iOS first put the app in front of the larger share of users in both markets from day one, with Android to follow on the same backend once the core product was validated. (StatCounter, January to March 2026: <a href="https://gs.statcounter.com/os-market-share/mobile/australia" target="_blank" rel="noopener">Australia</a>, <a href="https://gs.statcounter.com/os-market-share/mobile/north-america" target="_blank" rel="noopener">North America</a>.)</p>
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Executable roadmap</p>
@@ -235,7 +235,7 @@
           </li>
           <li class="sp-step">
             <p class="sp-step-name">Ship with quality</p>
-            <p class="sp-step-desc">Interactive prototypes built with Claude Code and run in the iOS Simulator validated UX before production code. Iterated with real early testers, then worked across several AI coding environments (Cursor, Claude Code, OpenClaw and my own Hermes Agent), matching the tool to the task across design, components, API integration and testing.</p>
+            <p class="sp-step-desc">Interactive prototypes built with Claude Code and run in the iOS Simulator validated UX before production code. Iterated with real early testers. Along the way I tested other AI coding tools on the project (Cursor, OpenClaw and Hermes Agent). They overlapped too much and each one added cost, so I stayed with Claude Code for the build: design, components, API integration and testing.</p>
           </li>
         </ol>
       </div>
@@ -454,28 +454,28 @@
     <section class="sp-section">
       <div class="container">
         <p class="sp-eyebrow" data-reveal>Development process</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">Built across <em>several AI coding tools.</em></h2>
-        <p class="sp-body" data-reveal data-reveal-delay="140">Interactive prototypes built with <strong>Claude Code</strong> and run in the iOS Simulator through Xcode validated UX decisions before a line of production code was written. From there the work moved between tools rather than living in one: Claude Code stayed on component and API integration loops and mid-build diagnosis, <strong>Cursor</strong> for fast in-editor iteration, <strong>OpenClaw</strong>, and <strong>Hermes Agent</strong>, one I built myself, for the repetitive scaffolding. Using several on real work is how you learn what each is actually good at. The iOS prototype went to production in six weeks with no rework; the Android client is being built on the backend and business logic already shipped.</p>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Built with <em>Claude Code.</em></h2>
+        <p class="sp-body" data-reveal data-reveal-delay="140">Interactive prototypes built with <strong>Claude Code</strong> and run in the iOS Simulator through Xcode validated UX decisions before a line of production code was written. Claude Code then carried the build: components, API integration and mid-build diagnosis. I tested <strong>Cursor</strong>, <strong>OpenClaw</strong> and <strong>Hermes Agent</strong> on the project along the way. Too many of them did the same job, and every extra tool cost more money. Claude could already do what the others did, so I stayed with it. The iOS prototype became the production app in six weeks, with no throwaway rebuild; the Android client is being built on the backend and business logic already shipped.</p>
 
         <div class="sp-timeline">
           <div class="sp-timeline-rail"><div class="sp-timeline-fill"></div></div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">Jan – Apr 2025 · 4 months</p>
+            <p class="sp-tl-range">Jan – Apr 2026 · 4 months</p>
             <p class="sp-tl-label">Research &amp; planning</p>
             <p class="sp-tl-desc">User research, competitor analysis, ideation, and learning the tools this build would require.</p>
           </div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">Apr – mid-May 2025 · 6 weeks</p>
+            <p class="sp-tl-range">Apr – mid-May 2026 · 6 weeks</p>
             <p class="sp-tl-label">iOS implementation</p>
             <p class="sp-tl-desc">Focused development against the roadmap from the spec-driven planning phase.</p>
           </div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">Mid-May – mid-June 2025 · 2 weeks</p>
+            <p class="sp-tl-range">Mid-May – mid-June 2026 · 2 weeks</p>
             <p class="sp-tl-label">iOS testing &amp; launch</p>
-            <p class="sp-tl-desc">QA, refinement, and launch. Sous Pantry went live on the App Store in June 2025.</p>
+            <p class="sp-tl-desc">QA, refinement, and launch. Sous Pantry went live on the App Store in June 2026.</p>
           </div>
           <div class="sp-tl-item">
-            <p class="sp-tl-range">From end of May 2025 · in progress</p>
+            <p class="sp-tl-range">From end of May 2026 · in progress</p>
             <p class="sp-tl-label">Android build · ongoing</p>
             <p class="sp-tl-desc">Started alongside iOS testing and still in build, reusing the backend and business logic already shipped. Ship date TBC.</p>
           </div>
@@ -503,11 +503,11 @@
     <section class="sp-section sp-section--line">
       <div class="container">
         <p class="sp-eyebrow" data-reveal>Results &amp; impact</p>
-        <h2 class="sp-title" data-reveal data-reveal-delay="70">Production quality, <em>zero rework.</em></h2>
+        <h2 class="sp-title" data-reveal data-reveal-delay="70">Production quality, <em>no rebuild.</em></h2>
         <div class="sp-stats">
           <div class="sp-stat" data-reveal>
-            <span class="sp-stat-value">Zero</span>
-            <span class="sp-stat-label">Rework between prototype and shipped production code</span>
+            <span class="sp-stat-value">No rebuild</span>
+            <span class="sp-stat-label">The prototype became the production app</span>
           </div>
           <div class="sp-stat" data-reveal data-reveal-delay="80">
             <span class="sp-stat-value"><span data-sp-count="6">6</span><span class="u"> months</span></span>
@@ -522,7 +522,7 @@
         <ul class="cs-check-list" style="margin-top:1.75rem;">
           <li data-reveal>Production-ready AI integration: Anthropic API with deliberate, transparent UX</li>
           <li data-reveal data-reveal-delay="70">Shipped to the App Store from a solo contributor: design, client, backend and AI</li>
-          <li data-reveal data-reveal-delay="140">Zero external service dependencies: every infrastructure layer owned end-to-end</li>
+          <li data-reveal data-reveal-delay="140">Two services behind the app, both contracts I designed: a Worker for model calls and imagery, and Supabase for data</li>
           <li data-reveal data-reveal-delay="210">Backend architected so a second client reuses the same API, and the Android build is proving it now</li>
         </ul>
       </div>
@@ -569,7 +569,7 @@
               </li>
               <li>
                 <h4>Photo-based input</h4>
-                <p>The single biggest UX lever. Manual entry ran 3–5 minutes per session. A camera snap or photo scan brings it down to 10–15 seconds per item.</p>
+                <p>The single biggest UX lever. Typing every item in by hand is slow enough that people give up. A camera snap or photo scan takes 10–15 seconds per item.</p>
               </li>
               <li>
                 <h4>Transparent AI reasoning</h4>
@@ -643,7 +643,7 @@
           </div>
           <div class="cs-problem-card" data-reveal data-reveal-delay="480">
             <p class="cs-problem-title">Rapid iteration and production quality are not opposites</p>
-            <p class="cs-problem-desc">With the right tooling and a spec worth following, moving quickly did not cost me quality. Zero rework between prototype and shipped code is the evidence.</p>
+            <p class="cs-problem-desc">With the right tooling and a spec worth following, moving quickly did not cost me quality. The evidence: the prototype became the production app, with no throwaway rebuild.</p>
           </div>
         </div>
       </div>
@@ -713,7 +713,7 @@
     <!-- ============ OUTRO QUOTE ============ -->
     <section class="sp-outro-quote">
       <div class="container">
-        <p class="sp-hypothesis-text" data-split>Code like an <em>engineer</em>, think like a <em>designer</em>, use AI to amplify both.</p>
+        <p class="sp-hypothesis-text" data-split>Build with AI, read the <em>code</em>, think like a <em>designer</em>.</p>
       </div>
     </section>
 
