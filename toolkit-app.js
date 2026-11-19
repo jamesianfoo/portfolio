@@ -3109,7 +3109,7 @@
     }, [modal]);
     const curTool = modal?.type === "tool" ? TOOLS.find(t => t.id === modal.id) : null;
     const curGuide = modal?.type === "guide" ? GUIDES.find(g => g.id === modal.id) : null;
-    const modalLabel = curTool ? `${curTool.n} · ${curTool.name}` : curGuide ? curGuide.type.toUpperCase() : "";
+    const modalLabel = ""; // the body already carries the label and title
     const font = "'Inter', system-ui, sans-serif";
     return /*#__PURE__*/React.createElement("div", {
       className: embed ? "tk-app tk-embed" : "tk-app",
