@@ -242,7 +242,7 @@ html[data-theme="dark"] .switch i{left:calc(100% - 5px);transform:translateX(-10
 .tk-list a{display:flex;gap:.7rem;align-items:baseline;font-size:.76rem;padding:.5rem 0;transition:padding .3s ease,color .3s ease}
 .tk-list a:hover{padding-left:.35rem;color:var(--signal)}
 .tk-list span{color:var(--tile-dim);font-size:.66rem}.tk-list b{font-weight:500}.tk-list i{margin-left:auto;font-style:normal;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tile-dim)}
-.tk-guide{grid-column:span 4;min-height:220px}.tk-guide:nth-last-child(1){grid-column:span 12;min-height:150px}
+.tk-guide{grid-column:span 4;min-height:220px}.tk-guide:nth-last-child(-n+2){grid-column:span 6}
 .tk-guide>.tile-arrow{position:absolute;right:20px;bottom:18px}
 
 /* ---------- toolkit pop-up: the toolkit app drawn over this page, in the tile look ---------- */
@@ -284,7 +284,7 @@ body.tk-open{overflow:hidden}
   .wall{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:640px){
-  .ab-pillar,.tk-guide{grid-column:1/-1}.ab-cols,.tk-list{columns:1}
+  .ab-pillar,.tk-guide,.tk-guide:nth-last-child(-n+2){grid-column:1/-1}.ab-cols,.tk-list{columns:1}
   .dash-view{padding:10px 10px 92px}
   .bento{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(140px,auto);
     grid-template-areas:"intro intro" "intro intro" "phil phil" "phil phil" "sous sous" "sous sous" "sous sous" "work globe" "radar radar" "radar radar" "writing writing" "focus focus" "contact contact" "clients clients" "theme theme" "clock clock"}
@@ -567,8 +567,9 @@ body.tk-open{overflow:hidden}
         </div>
         <div class="tile tk-core">
           <p class="tile-label"><span>Core tools</span><span>Pick one to open it</span></p>
-          <ol class="tk-list"><li><a href="toolkit.html#tool-sot"><span>01</span><b>Second-Order Thinking</b><i>Consequences</i></a></li><li><a href="toolkit.html#tool-eisenhower"><span>02</span><b>Eisenhower Matrix</b><i>Prioritisation</i></a></li><li><a href="toolkit.html#tool-decisionmatrix"><span>03</span><b>Decision Matrix</b><i>Comparison</i></a></li><li><a href="toolkit.html#tool-circles"><span>04</span><b>Connection Circles</b><i>Systems</i></a></li><li><a href="toolkit.html#tool-conflict"><span>05</span><b>Conflict Resolution</b><i>Win-win</i></a></li><li><a href="toolkit.html#tool-ladder"><span>06</span><b>Ladder of Inference</b><i>Reasoning</i></a></li><li><a href="toolkit.html#tool-ooda"><span>07</span><b>OODA Loop</b><i>Speed</i></a></li><li><a href="toolkit.html#tool-firstprinciples"><span>08</span><b>First Principles</b><i>Decomposition</i></a></li><li><a href="toolkit.html#tool-inversion"><span>09</span><b>Inversion</b><i>Risk</i></a></li><li><a href="toolkit.html#tool-feedbackloop"><span>10</span><b>Feedback Loop Design</b><i>Learning</i></a></li><li><a href="toolkit.html#tool-perspective"><span>11</span><b>Perspective Taking</b><i>Empathy</i></a></li><li><a href="toolkit.html#tool-forcefield"><span>12</span><b>Force Field Analysis</b><i>Change</i></a></li><li><a href="toolkit.html#tool-blueocean"><span>13</span><b>Blue Ocean Strategy</b><i>Strategy</i></a></li><li><a href="toolkit.html#tool-okr"><span>14</span><b>OKRs &amp; Goal Stacking</b><i>Goals</i></a></li><li><a href="design-kpi-tree.html"><span>15</span><b>Design KPI Tree</b><i>Metrics</i></a></li></ol>
+          <ol class="tk-list"><li><a href="toolkit.html#tool-sot"><span>01</span><b>Second-Order Thinking</b><i>Consequences</i></a></li><li><a href="toolkit.html#tool-eisenhower"><span>02</span><b>Eisenhower Matrix</b><i>Prioritisation</i></a></li><li><a href="toolkit.html#tool-decisionmatrix"><span>03</span><b>Decision Matrix</b><i>Comparison</i></a></li><li><a href="toolkit.html#tool-circles"><span>04</span><b>Connection Circles</b><i>Systems</i></a></li><li><a href="toolkit.html#tool-conflict"><span>05</span><b>Conflict Resolution</b><i>Win-win</i></a></li><li><a href="toolkit.html#tool-ladder"><span>06</span><b>Ladder of Inference</b><i>Reasoning</i></a></li><li><a href="toolkit.html#tool-ooda"><span>07</span><b>OODA Loop</b><i>Speed</i></a></li><li><a href="toolkit.html#tool-firstprinciples"><span>08</span><b>First Principles</b><i>Decomposition</i></a></li><li><a href="toolkit.html#tool-inversion"><span>09</span><b>Inversion</b><i>Risk</i></a></li><li><a href="toolkit.html#tool-feedbackloop"><span>10</span><b>Feedback Loop Design</b><i>Learning</i></a></li><li><a href="toolkit.html#tool-perspective"><span>11</span><b>Perspective Taking</b><i>Empathy</i></a></li><li><a href="toolkit.html#tool-forcefield"><span>12</span><b>Force Field Analysis</b><i>Change</i></a></li><li><a href="toolkit.html#tool-blueocean"><span>13</span><b>Blue Ocean Strategy</b><i>Strategy</i></a></li><li><a href="toolkit.html#tool-okr"><span>14</span><b>OKRs &amp; Goal Stacking</b><i>Goals</i></a></li></ol>
         </div>
+        <a class="tile tk-guide" href="design-kpi-tree.html"><p class="tile-label"><span>Design Metrics</span><span>Interactive</span></p><h3>Design KPI Tree</h3><p>Map a business goal to the design work behind it and the metrics that show it worked.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
         <a class="tile tk-guide" href="toolkit.html#guide-premortem"><p class="tile-label"><span>Failure Prevention</span><span>30-45 min</span></p><h3>The Pre-Mortem Method</h3><p>Imagine your project has already failed. Now figure out why, before it happens.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
         <a class="tile tk-guide" href="toolkit.html#guide-polarity"><p class="tile-label"><span>Paradox Management</span><span>45-60 min</span></p><h3>Polarity Mapping</h3><p>Some problems cannot be solved, only managed. Learn the difference and stop fighting yourself.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
         <a class="tile tk-guide" href="toolkit.html#guide-systems"><p class="tile-label"><span>Leverage &amp; Change</span><span>1-2 hrs</span></p><h3>Systems Thinking Mastery</h3><p>Find the small interventions that produce large, lasting results.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
@@ -826,7 +827,7 @@ body.tk-open{overflow:hidden}
   (function () {
     var host = document.getElementById('tk-root'), root = null, loading = null;
     var SRC = ['https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js', 'toolkit-app.js?v=jg10'];
+      'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js', 'toolkit-app.js?v=jg14'];
     function load() {
       if (loading) return loading;
       window.TK_THEME = 'bento';

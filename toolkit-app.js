@@ -3208,7 +3208,7 @@
         background: G.bdr
       }
     }, sec.label === "Core Tools" && /*#__PURE__*/React.createElement("div", {
-      onClick: () => window.open("JamesFoo-design-kpi-tree.html", "_blank"),
+      onClick: () => window.open("design-kpi-tree.html", "_blank"),
       style: {
         background: G.white,
         cursor: "pointer",
