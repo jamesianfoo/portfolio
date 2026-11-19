@@ -878,7 +878,7 @@
 .cs-menu a.is-active { opacity: 1; font-size: 0.95rem; }
 
 .cs-section-label,
-.sp-eyebrow { scroll-margin-top: 110px; }
+.sp-eyebrow { scroll-margin-top: 56px; }
 
 @media (min-width: 1360px) {
   .cs-menu { display: flex; }

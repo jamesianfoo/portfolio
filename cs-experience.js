@@ -139,13 +139,13 @@
       .filter(function (el) { return !el.closest('.cs-related, footer') && el.textContent.trim(); });
     if (labels.length < 3) return;
 
-    // Scroll so the label sits just under the nav. The target is worked out as a
+    // Scroll so the label sits near the top of the screen. The target is worked out as a
     // number, so it does not depend on how the smooth scroller reads CSS scroll
     // margins. Pages with their own scroller (Sous Pantry) share it via window.__lenis;
     // scrolling natively while one is running makes the two fight and land short.
     // Images and reveals can change the page height mid-scroll, so check on arrival
     // and correct once or twice if the label is not where it should be.
-    var OFFSET = 110;
+    var OFFSET = 56;
     function targetY(el) { return Math.max(0, el.getBoundingClientRect().top + window.scrollY - OFFSET); }
     function scrollToLabel(el, tries) {
       var L = lenis || window.__lenis, y = targetY(el);

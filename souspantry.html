@@ -17,7 +17,8 @@
   <meta name="description" content="Case study: Shipping Sous Pantry solo on iOS. A pantry and meal planning app built with light spec-driven development, with Android in build. By James Foo, Lead Product Designer.">
   <title>Sous Pantry · Pantry &amp; Meal Planning App | Solo iOS Build | James Foo</title>
   <link rel="stylesheet" href="styles.css?v=jg09">
-  <link rel="stylesheet" href="case-study.css?v=jg10">
+  <link rel="stylesheet" href="dock.css?v=jg12">
+  <link rel="stylesheet" href="case-study.css?v=jg11">
   <link rel="stylesheet" href="sous.css?v=jg09">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,35 +26,7 @@
 </head>
 <body style="--cs-accent:#F97316;">
 
-  <header class="header" id="top">
-    <nav class="nav">
-      <a href="index.html" class="nav-logo"><img src="images/logo-mark.svg" alt="James Foo"></a>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
-          LinkedIn
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://calendly.com/jfoo-jamesian/30min" class="nav-cta" target="_blank" rel="noopener" data-magnetic>Work with me</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
 
-  <div class="mobile-menu">
-    <button class="mobile-menu-close" aria-label="Close menu">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
-    <a href="index.html" class="mobile-menu-link">Home</a>
-    <a href="about.html" class="mobile-menu-link">About</a>
-    <a href="contact.html" class="mobile-menu-link">Contact</a>
-    <a href="https://www.linkedin.com/in/james-foo/" class="mobile-menu-link" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://calendly.com/jfoo-jamesian/30min" class="mobile-menu-link mobile-menu-link--cta" target="_blank" rel="noopener">Work with me</a>
-  </div>
 
   <main>
 
@@ -80,7 +53,7 @@
       </span>
 
       <div class="container sp-hero-inner">
-        <a href="index.html" class="sp-hero-back" data-hero-fade>
+        <a href="index.html#work" class="sp-hero-back" data-hero-fade>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           All work
         </a>
@@ -793,10 +766,10 @@
     <h2 class="sp-gate-title" id="code-gate-title">The codebase is private.</h2>
     <p class="sp-gate-body">Happy to walk you through the Sous Pantry source: backend, iOS, and the AI integration. Send a quick request with who you are and I'll open it up.</p>
     <div class="sp-gate-actions">
-      <a class="sp-link-btn sp-link-btn--solid" href="mailto:jamesian.foo@gmail.com?subject=Sous%20Pantry%20%E2%80%94%20code%20access%20request&body=Hi%20James%2C%0A%0AI%27d%20like%20access%20to%20the%20Sous%20Pantry%20repositories%20(backend%20%2F%20iOS).%0A%0AName%3A%0ARole%20%2F%20company%3A%0AGitHub%20username%3A%0AWhat%20I%27m%20interested%20in%3A%0A%0AThanks!">
+      <a class="sp-link-btn sp-link-btn--solid" href="mailto:jamesian.foo@gmail.com?subject=Sous%20Pantry%3A%20code%20access%20request&body=Hi%20James%2C%0A%0AI%27d%20like%20access%20to%20the%20Sous%20Pantry%20repositories%20(backend%20%2F%20iOS).%0A%0AName%3A%0ARole%20%2F%20company%3A%0AGitHub%20username%3A%0AWhat%20I%27m%20interested%20in%3A%0A%0AThanks!">
         Request access by email
       </a>
-      <a class="sp-link-btn" href="contact.html">Use the contact form</a>
+      <a class="sp-link-btn" href="https://calendly.com/jfoo-jamesian/30min" target="_blank" rel="noopener">Book a call</a>
     </div>
     <p class="sp-gate-note">Requests are usually answered within a day.</p>
   </dialog>
@@ -810,7 +783,7 @@
       <div class="footer-center"></div>
       <div class="footer-right">
         <div class="footer-rlinks">
-          <a href="contact.html" class="footer-link">Get in touch</a>
+          <a href="https://calendly.com/jfoo-jamesian/30min" class="footer-link" target="_blank" rel="noopener">Get in touch</a>
           <span class="footer-dot">&middot;</span>
           <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
           <span class="footer-dot">&middot;</span>
@@ -826,6 +799,16 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script src="script.js?v=jg09"></script>
   <script src="sous.js?v=jg10"></script>
-  <script src="cs-experience.js?v=jg11"></script>
+  <script src="cs-experience.js?v=jg12"></script>
+  <div class="dockbar">
+    <nav class="dock" aria-label="Main">
+      <a href="index.html" class="dock-home" aria-label="Home" title="Home"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 7.2 8 2l6 5.2V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/><path d="M6.3 14V9.5h3.4V14"/></svg></a>
+      <a href="index.html#work" aria-current="page">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#toolkit">My Toolkit</a>
+    </nav>
+    <a class="dock-cta" href="https://calendly.com/jfoo-jamesian/30min" target="_blank" rel="noopener">Work with me</a>
+  </div>
+  <script src="dock.js?v=jg12"></script>
 </body>
 </html>
