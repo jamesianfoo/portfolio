@@ -20,226 +20,474 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css?v=jg09">
-  <link rel="stylesheet" href="home.css?v=jg09">
-  <script>document.documentElement.classList.add('js');</script>
+  <style>
+/* Dashboard homepage. Tokens and fonts come from styles.css,
+   everything else lives in this file. */
+:root{--tile:#F4F4F2;--tile-line:#E4E3DE;--tile-ink:#16140F;--tile-dim:#6B6860;--page:#FFFFFF;--dock:rgba(22,20,15,.92);--dock-ink:#F4F1E8}
+html[data-theme="dark"]{--tile:#1C1A17;--tile-line:rgba(244,241,232,.14);--tile-ink:#F4F1E8;--tile-dim:#A39F94;--page:#121110;--dock:rgba(244,241,232,.94);--dock-ink:#16140F}
+body.dash{padding:0;background:var(--page);color:var(--tile-ink);transition:background .4s ease,color .4s ease;min-height:100vh}
+.dash a{color:inherit;text-decoration:none}
+a.tile{color:var(--tile-ink)}
+a.t-sous{color:#ECE7D8}
+a.tk-lead,.tk-lead{color:var(--tile)}
+.tk-lead h2{color:inherit}
+.dash-view{display:none;padding:14px 14px 96px;animation:dashIn .5s ease both}
+body[data-view="dashboard"] #view-dashboard,body[data-view="work"] #view-work,body[data-view="about"] #view-about,body[data-view="toolkit"] #view-toolkit{display:block}
+@keyframes dashIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- tiles ---------- */
+.tile{position:relative;overflow:hidden;background:var(--tile);border:1px solid var(--tile-line);border-radius:20px;padding:20px;display:flex;flex-direction:column;min-height:0;transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .3s ease,background .4s ease}
+.tile::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(232,147,12,.16),transparent 70%)}
+.tile:hover::before{opacity:1}
+a.tile:hover,button.tile:hover{transform:translateY(-3px);border-color:var(--tile-ink)}
+.tile-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tile-dim);margin:0 0 auto;display:flex;justify-content:space-between;gap:1rem}
+.tile-arrow{font-size:1rem;line-height:1;transition:transform .4s ease}
+a.tile:hover .tile-arrow,button.tile:hover .tile-arrow{transform:translate(3px,-3px)}
+
+.bento{display:grid;gap:12px;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(6,1fr);height:max(calc(100vh - 110px),700px);
+  grid-template-areas:
+  "intro intro intro intro intro sous sous sous globe globe contact contact"
+  "intro intro intro intro intro sous sous sous globe globe contact contact"
+  "intro intro intro intro intro sous sous sous radar radar contact contact"
+  "phil phil phil focus focus sous sous sous radar radar writing writing"
+  "phil phil phil focus focus clients clients clients clock clock writing writing"
+  "phil phil phil focus focus work work work clock clock theme theme"}
+.t-intro{grid-area:intro}.t-sous{grid-area:sous}.t-clock{grid-area:clock}.t-contact{grid-area:contact}.t-globe{grid-area:globe}.t-radar{grid-area:radar}.t-focus{grid-area:focus}.t-theme{grid-area:theme}.t-work{grid-area:work}.t-clients{grid-area:clients}.t-writing{grid-area:writing}.t-phil{grid-area:phil}
+
+/* intro */
+.t-intro{justify-content:space-between}
+.intro-top{display:flex;align-items:center;gap:.75rem;font-size:.78rem}
+.intro-top img{height:22px;width:auto}
+html[data-theme="dark"] .intro-top img,html[data-theme="dark"] .t-clients img{filter:invert(1) hue-rotate(180deg)}
+.intro-status{margin-left:auto;display:inline-flex;align-items:center;gap:.5rem;color:var(--tile-dim);font-size:.7rem}
+.intro-dot{width:8px;height:8px;border-radius:50%;background:#3FB68B;box-shadow:0 0 0 0 rgba(63,182,139,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(63,182,139,0)}100%{box-shadow:0 0 0 0 rgba(63,182,139,0)}}
+.intro-id{display:flex;flex-direction:column;font-size:.68rem;color:var(--tile-dim);line-height:1.4}
+.intro-id b{font-size:.82rem;color:var(--tile-ink);font-weight:600}
+.intro-title{font-size:clamp(1.4rem,2.5vw,2.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin:0;min-height:1.2em}
+.intro-typed{color:var(--signal)}
+.intro-caret{display:inline-block;width:2px;height:.95em;margin-left:3px;background:var(--tile-ink);vertical-align:-.1em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.intro-sub{font-size:.76rem;line-height:1.6;color:var(--tile-dim);max-width:none;margin:.7rem 0 0}
+.intro-foot{display:flex;justify-content:space-between;font-size:.7rem;color:var(--tile-dim);margin:0;padding-top:.9rem;border-top:1px solid var(--tile-line)}
+
+/* sous */
+.t-sous{background:#0F3B23;border-color:#0F3B23;color:#ECE7D8;padding:0}
+.t-sous .tile-label{color:rgba(236,231,216,.7);padding:20px 20px 0;margin:0}
+.sous-screens{position:relative;flex:1;min-height:0;margin:14px 0 0}
+.sous-screens img{position:absolute;inset:0;margin:auto;height:100%;width:auto;max-width:78%;object-fit:contain;border-radius:16px;opacity:0;transform:translateY(14px) scale(.97);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.sous-screens img.is-on{opacity:1;transform:none}
+.sous-foot{padding:14px 20px 18px;font-size:.78rem;line-height:1.45}
+.sous-foot strong{display:block;font-size:.95rem;color:#ECE7D8}
+.sous-foot span{color:rgba(236,231,216,.7)}
+
+/* game: a small merge-the-numbers board in place of the clock */
+.t-game{padding:14px;gap:.5rem;outline:none;touch-action:none}
+.t-game:focus-visible{border-color:var(--tile-ink)}
+.t-game .tile-label{margin:0;align-items:baseline}
+.t-game .tile-label{white-space:nowrap}
+.g-foot b{font-weight:600;color:var(--tile-ink)}
+.g-wrap{flex:1;min-height:0;position:relative;display:flex;justify-content:center;align-items:center}
+.g-hint{position:absolute;inset:0;margin:auto;height:max-content;width:max-content;max-width:92%;text-align:center;font-size:.66rem;line-height:1.5;padding:.55rem .8rem;border-radius:10px;background:#16140F;color:#F4F1E8;pointer-events:none;transition:opacity .4s ease}
+.g-hint.is-off{opacity:0}
+.g-board{container-type:inline-size;cursor:pointer;height:100%;max-height:420px;aspect-ratio:1;max-width:100%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:5px;padding:5px;border-radius:12px;background:color-mix(in srgb,var(--tile-ink) 10%,transparent)}
+.g-cell{border-radius:7px;display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;font-size:clamp(.6rem,1.15vw,1rem);font-size:clamp(.6rem,8.5cqi,2.1rem);letter-spacing:-.04em;color:#16140F;background:color-mix(in srgb,var(--tile-ink) 8%,transparent);transition:background .12s ease}
+.g-cell[data-v="2"]{background:#EFEADF}.g-cell[data-v="4"]{background:#E6DCC2}.g-cell[data-v="8"]{background:#F6BD78}.g-cell[data-v="16"]{background:#F29A4A}
+.g-cell[data-v="32"]{background:#EE7B3C;color:#fff}.g-cell[data-v="64"]{background:#E5482A;color:#fff}.g-cell[data-v="128"]{background:#B8FF2C}.g-cell[data-v="256"]{background:#8FE02A}
+.g-cell[data-v="128"],.g-cell[data-v="256"],.g-cell[data-v="512"]{font-size:clamp(.55rem,7cqi,1.8rem)}.g-cell[data-v="1024"],.g-cell.g-top{font-size:clamp(.5rem,5.6cqi,1.45rem)}
+.g-cell[data-v="512"]{background:#5B8DEF;color:#fff}.g-cell[data-v="1024"]{background:#9D7BEF;color:#fff}.g-cell.g-top{background:#16140F;color:#B8FF2C}
+.g-cell.g-pop{animation:gPop .16s ease}
+@keyframes gPop{from{transform:scale(.6)}60%{transform:scale(1.1)}}
+.g-foot{display:flex;justify-content:space-between;align-items:center;font-size:.66rem;color:var(--tile-dim);margin:0}
+.g-foot button{font:inherit;color:var(--tile-ink);background:none;border:1px solid var(--tile-line);border-radius:999px;padding:.3rem .7rem;cursor:pointer;transition:background .3s ease,border-color .3s ease}
+.g-foot button:hover{background:#B8FF2C;border-color:#B8FF2C;color:#16140F}
+
+/* globe */
+.t-globe{align-items:center}
+.t-globe .tile-label{align-self:stretch}
+.globe{flex:1;min-height:0;position:relative;width:100%;margin:.5rem 0 0}
+.globe canvas{position:absolute;inset:0;margin:auto;height:100%;width:auto;max-height:200px;max-width:100%;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 1.5px var(--tile-ink),0 0 22px color-mix(in srgb,var(--tile-ink) 28%,transparent)}
+.globe-city{font-size:.74rem;color:var(--tile-dim);margin:.5rem 0 0;transition:opacity .3s ease}
+
+/* radar */
+.radar{flex:1;min-height:0;width:100%}
+.radar .ring{fill:none;stroke:var(--tile-line);stroke-width:1}
+.radar .spoke{stroke:var(--tile-line);stroke-width:1}
+.radar .shape{fill:url(#rd-fill);stroke:url(#rd-line);stroke-width:1.5;stroke-linejoin:round;transform-origin:110px 104px;animation:radarIn 1.1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes radarIn{from{transform:scale(0);opacity:0}}
+.radar .dot{fill:var(--tile);stroke-width:1.5;transition:r .25s ease}
+.radar g.pt:hover .dot{r:5}
+.radar text{font-family:var(--font-mono);font-size:10px;fill:var(--tile-dim);transition:fill .25s ease}
+.radar g.pt:hover text{fill:var(--tile-ink)}
+
+/* contact */
+.t-contact{gap:0}
+.contact-list{position:relative;z-index:1;list-style:none;margin:0;padding:0;font-size:.8rem}
+.contact-list li{border-top:1px solid var(--tile-line)}
+.contact-list a{display:flex;justify-content:space-between;padding:.7rem 0;transition:color .3s ease,padding .3s ease}
+.contact-list a:hover{color:var(--signal);padding-left:.35rem}
+.t-contact{--shine:#fff}html[data-theme="dark"] .t-contact{--shine:#121110}
+.contact-big{flex:1;min-height:0;margin:.6rem 0;display:flex;justify-content:flex-end;color:var(--tile-ink)}
+.contact-big svg{height:100%;max-height:120px;aspect-ratio:1;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.t-contact:hover .contact-big svg{transform:translate(6px,-6px)}
+.t-contact::after{content:'';position:absolute;top:-20%;bottom:-20%;left:-60%;width:38%;pointer-events:none;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--shine) 55%,transparent),transparent);animation:sweep 3.2s ease-in-out infinite}
+@keyframes sweep{0%{left:-60%}55%,100%{left:130%}}
+
+/* focus */
+.focus{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.focus li{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;padding:.42rem .75rem;border:1px solid var(--tile-line);border-radius:999px;transition:background .45s ease,color .45s ease,border-color .45s ease,box-shadow .45s ease,transform .45s cubic-bezier(.2,.7,.2,1);animation:chipIn .6s cubic-bezier(.2,.7,.2,1) both}
+.focus li:nth-child(2){animation-delay:.07s}.focus li:nth-child(3){animation-delay:.14s}.focus li:nth-child(4){animation-delay:.21s}.focus li:nth-child(5){animation-delay:.28s}.focus li:nth-child(6){animation-delay:.35s}.focus li:nth-child(7){animation-delay:.42s}
+@keyframes chipIn{from{opacity:0;transform:translateY(10px)}}
+.focus svg{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.focus li:hover,.focus li.is-on{background:#B8FF2C;color:#16140F;border-color:#B8FF2C;transform:translateX(4px);box-shadow:0 0 18px rgba(184,255,44,.55)}
+.focus li:hover svg,.focus li.is-on svg{transform:rotate(-12deg) scale(1.15)}
+
+/* theme */
+.t-theme{cursor:pointer;font:inherit;color:inherit;text-align:left;gap:.6rem;padding:14px}
+.t-theme .tile-label{margin:0}
+.switch{flex:1;min-height:44px;border-radius:999px;border:1px solid var(--tile-line);background:var(--page);position:relative;container-type:size}
+.switch i{position:absolute;top:5px;bottom:5px;left:5px;aspect-ratio:1;border-radius:50%;background:#F2541B;transition:left .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
+html[data-theme="dark"] .switch i{left:calc(100% - 5px);transform:translateX(-100%)}
+
+/* leadership philosophy carousel */
+.t-phil{background:var(--tile-ink);border-color:var(--tile-ink);color:var(--tile);outline:none}
+.t-phil:focus-visible{box-shadow:0 0 0 2px #B8FF2C}
+.t-phil .tile-label{color:inherit;opacity:.65;margin:0}
+.ph-stage{position:relative;flex:1;min-height:0;margin:1rem 0 .6rem}
+.ph-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transform:translateX(26px);transition:opacity .2s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.ph-slide.is-on{opacity:1;transform:none;pointer-events:auto;transition:opacity .5s ease .22s,transform .6s cubic-bezier(.2,.7,.2,1) .12s}
+.ph-slide.is-past{transform:translateX(-26px)}
+.ph-num{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:700;letter-spacing:-.05em;line-height:.9;color:#B8FF2C;margin-bottom:auto}
+.ph-head{font-size:clamp(1.05rem,1.55vw,1.45rem);font-weight:600;letter-spacing:-.02em;line-height:1.2;margin:0;color:inherit}
+.ph-slide p{font-size:.74rem;line-height:1.6;margin:.7rem 0 0;color:inherit;opacity:.78}
+.ph-slide .ph-verse{opacity:1;color:#B8FF2C;font-size:.7rem}
+.ph-nav{display:flex;align-items:center;gap:.4rem}
+.ph-dots{display:flex;gap:5px;margin-right:auto}
+.ph-dots i{width:6px;height:6px;border-radius:999px;background:currentColor;opacity:.3;transition:width .4s ease,opacity .4s ease,background .4s ease}
+.ph-dots i.is-on{width:20px;opacity:1;background:#B8FF2C}
+.ph-nav button{font:inherit;color:inherit;background:none;border:1px solid color-mix(in srgb,currentColor 30%,transparent);border-radius:999px;width:30px;height:30px;cursor:pointer;transition:background .3s ease,color .3s ease,border-color .3s ease}
+.ph-nav button:hover{background:#B8FF2C;border-color:#B8FF2C;color:#16140F}
+
+/* work shortcut */
+.t-work{cursor:pointer;font:inherit;color:inherit;text-align:left;background:var(--tile-ink);color:var(--tile);border-color:var(--tile-ink)}
+.t-work .tile-label{color:inherit;opacity:.7}
+.t-work{flex-direction:row;flex-wrap:wrap;align-items:flex-end;column-gap:1rem;background:var(--tile);color:var(--tile-ink);border-color:var(--tile-line)}
+.t-work .tile-label{flex:0 0 100%;align-self:flex-start}
+.work-count{font-size:clamp(2rem,3.4vw,3.2rem);font-weight:700;letter-spacing:-.05em;line-height:.85}
+.work-sub{font-size:.76rem;opacity:.75;padding-bottom:.2rem}
+
+/* clients: two rows of logos moving in opposite directions, so the tile is full */
+.t-clients{padding:16px 0 14px;gap:0}
+.t-clients .tile-label{padding:0 20px;margin:0}
+.logo-rows{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-evenly;overflow:hidden}
+.logos{display:flex;gap:2.6rem;width:max-content;align-items:center;animation:slide 44s linear infinite}
+.logos--back{animation-direction:reverse;animation-duration:52s}
+.t-clients:hover .logos{animation-play-state:paused}
+.logos img{height:clamp(26px,3.4vh,38px);width:auto;opacity:.75;filter:grayscale(1)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* writing */
+.writing{list-style:none;margin:auto 0 0;padding:0}
+.writing li{border-top:1px solid var(--tile-line)}
+.writing a{display:block;padding:.65rem 0;transition:padding .3s ease}
+.writing a:hover{padding-left:.35rem}
+.writing b{display:block;font-size:.74rem;font-weight:500;line-height:1.4;transition:color .3s ease}
+.writing a:hover b{color:var(--signal)}
+.writing span{display:flex;justify-content:space-between;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tile-dim);margin-top:.4rem}
+
+/* ---------- work wall ---------- */
+.wall-head{display:flex;align-items:baseline;justify-content:space-between;padding:26px 8px 22px}
+.wall-head h1{font-size:clamp(2rem,5vw,4.2rem);font-weight:700;letter-spacing:-.04em;line-height:1;margin:0}
+.wall-head p{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tile-dim);margin:0}
+.wall{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+.proj{padding:0}
+.wall .proj-sous{grid-area:auto;grid-row:span 2;min-height:520px}
+.wall .proj-sous .sous-screens{margin:24px 0 8px}
+.wall .proj-sous .sous-screens img{height:auto;width:auto;max-height:100%;max-width:66%}
+.proj-visual{height:clamp(220px,24vw,360px);display:grid;place-items:center;overflow:hidden;background:color-mix(in srgb,var(--accent,#E8930C) 10%,var(--tile));color:var(--accent,#E8930C)}
+.proj-visual .hm-motif{width:min(74%,420px);height:auto;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .hm-motif{transform:scale(1.05) rotate(-1deg)}
+.proj-visual img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .proj-visual img{transform:scale(1.04)}
+
+.proj-meta{padding:16px 20px 18px;display:flex;justify-content:space-between;gap:1.5rem;align-items:flex-end}
+.proj-meta h2{font-size:1.02rem;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin:0}
+.proj-meta p{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tile-dim);margin:.35rem 0 0}
+.proj-nda{position:absolute;top:16px;left:20px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tile-dim)}
+
+/* ---------- about + toolkit ---------- */
+.grid12{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+.grid12 .tile p{font-size:.78rem;line-height:1.65;color:var(--tile-dim);margin:.7rem 0 0}
+.grid12 .tile .tile-label{font-size:.68rem;line-height:1.4;margin:0 0 1.4rem}
+.grid12 h3{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin:auto 0 0}
+.ab-title{font-size:clamp(1.3rem,2.3vw,2.1rem);font-weight:600;letter-spacing:-.03em;line-height:1.15;margin:0 0 .6rem}
+.ab-lead{grid-column:span 8}.ab-cols{columns:2;column-gap:2rem}.ab-cols p{break-inside:avoid}.ab-cols p:first-child{margin-top:0}
+.ab-photo{grid-column:span 4;padding:0;min-height:340px}.ab-photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}.ab-photo:hover img{transform:scale(1.04)}
+.ab-pillar{grid-column:span 3;min-height:250px}
+.ab-stack{grid-column:span 7}.ab-beyond{grid-column:span 5}
+.stack{margin:0;display:grid;gap:1rem}.stack dt{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tile-dim);margin-bottom:.5rem}.stack dd{margin:0}
+.pills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.pills li{font-size:.7rem;padding:.4rem .75rem;border:1px solid var(--tile-line);border-radius:999px;transition:background .3s ease,border-color .3s ease,color .3s ease}
+.pills li:hover{background:#B8FF2C;border-color:#B8FF2C;color:#16140F}
+.ab-beyond .pills{margin-top:1.2rem}
+.ab-quote{margin:0 0 .4rem;font-size:1.15rem;font-weight:600;letter-spacing:-.02em;line-height:1.35;color:var(--tile-ink)}
+.ab-quote cite{display:block;font-style:normal;font-weight:400;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tile-dim);margin-top:.5rem}
+.tk-lead{grid-column:span 5;background:var(--tile-ink);border-color:var(--tile-ink);color:var(--tile)}
+.grid12 .tk-lead p,.tk-lead .tile-label{color:inherit;opacity:.75}
+.tk-lead .ab-title{margin-top:auto}
+.tk-core{grid-column:span 7}
+.tk-list{list-style:none;margin:0;padding:0;columns:2;column-gap:2rem}
+.tk-list li{border-top:1px solid var(--tile-line);break-inside:avoid}
+.tk-list a{display:flex;gap:.7rem;align-items:baseline;font-size:.76rem;padding:.5rem 0;transition:padding .3s ease,color .3s ease}
+.tk-list a:hover{padding-left:.35rem;color:var(--signal)}
+.tk-list span{color:var(--tile-dim);font-size:.66rem}.tk-list b{font-weight:500}.tk-list i{margin-left:auto;font-style:normal;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tile-dim)}
+.tk-guide{grid-column:span 4;min-height:220px}.tk-guide:nth-last-child(1){grid-column:span 12;min-height:150px}
+.tk-guide>.tile-arrow{position:absolute;right:20px;bottom:18px}
+
+/* ---------- toolkit pop-up: the toolkit app drawn over this page, in the tile look ---------- */
+.tk-embed{min-height:0!important;background:none!important}
+.tk-embed>*:not(.tk-modal){display:none!important}
+.tk-modal{background:rgba(18,17,16,.5)!important;backdrop-filter:blur(8px)!important;padding:28px 14px 96px!important;animation:tkFade .3s ease both}
+.tk-modal,.tk-modal *{font-family:var(--font-mono)!important;letter-spacing:normal}
+.tk-modal>div{border-radius:20px!important;border:1px solid var(--tile-line)!important;box-shadow:0 40px 90px -30px rgba(0,0,0,.55);animation:tkRise .45s cubic-bezier(.2,.7,.2,1) both}
+.tk-modal>div>div:first-child{padding:14px 16px 14px 22px!important}
+.tk-modal>div>div:first-child button{border-radius:999px!important}
+.tk-modal h1,.tk-modal h2,.tk-modal h3{letter-spacing:-.02em!important}
+.tk-modal input,.tk-modal textarea,.tk-modal select{border-radius:10px!important}
+@keyframes tkFade{from{opacity:0}}
+@keyframes tkRise{from{opacity:0;transform:translateY(18px) scale(.985)}}
+body.tk-open{overflow:hidden}
+body.tk-open .dock{opacity:0;pointer-events:none}
+.dock{transition:opacity .3s ease}
+@media print{body.tk-open>*:not(#tk-root){display:none!important}.tk-modal{position:static!important;background:none!important;padding:0!important}.tk-modal>div{border:0!important;box-shadow:none}.tk-modal>div>div{max-height:none!important}}
+
+/* ---------- booking pop-up ---------- */
+.cal{position:fixed;inset:0;z-index:210;display:flex;align-items:center;justify-content:center;padding:18px 14px;background:rgba(18,17,16,.5);backdrop-filter:blur(8px);animation:tkFade .3s ease both}
+.cal[hidden]{display:none}
+.cal-panel{width:min(1040px,100%);height:min(780px,100%);display:flex;flex-direction:column;overflow:hidden;background:var(--tile);border:1px solid var(--tile-line);border-radius:20px;box-shadow:0 40px 90px -30px rgba(0,0,0,.55);animation:tkRise .45s cubic-bezier(.2,.7,.2,1) both}
+.cal-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:12px 14px 12px 22px;border-bottom:1px solid var(--tile-line);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tile-dim)}
+.cal-acts{display:flex;align-items:center;gap:.9rem}
+.cal-acts a{letter-spacing:.04em;text-transform:none;font-size:.72rem}
+.cal-acts a:hover{color:var(--signal)}
+.cal-acts button{font:inherit;width:30px;height:30px;border-radius:999px;border:1px solid var(--tile-line);background:none;color:var(--tile-ink);cursor:pointer;transition:background .3s ease,border-color .3s ease}
+.cal-acts button:hover{background:#B8FF2C;border-color:#B8FF2C;color:#16140F}
+.cal-body{position:relative;flex:1;min-height:0;background:#fff}
+.cal-wait{position:absolute;inset:0;margin:auto;height:max-content;text-align:center;font-size:.78rem;color:#6B6860}
+.cal-body iframe{position:relative;width:100%;height:100%;border:0;display:block}
+body.cal-open{overflow:hidden}
+body.cal-open .dock{opacity:0;pointer-events:none}
+
+/* ---------- dock ---------- */
+.dock{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:4px;padding:5px;border-radius:999px;background:var(--dock);color:var(--dock-ink);backdrop-filter:blur(12px);box-shadow:0 18px 40px -18px rgba(0,0,0,.5);font-size:.74rem;max-width:calc(100vw - 20px)}
+.dock button,.dock a{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:.6rem 1rem;border-radius:999px;white-space:nowrap;opacity:.65;transition:opacity .3s ease,background .3s ease}
+.dock button:hover,.dock a:hover{opacity:1}
+.dock button[aria-pressed="true"]{opacity:1;background:color-mix(in srgb,var(--dock-ink) 16%,transparent)}
+.dock .dock-home{display:inline-flex;align-items:center;padding:.6rem .85rem}
+.dock-home svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.dock-sep{width:1px;height:18px;background:currentColor;opacity:.25;margin:0 4px}
+
+/* ---------- smaller screens: tiles stack and the page scrolls ---------- */
+@media (min-width:1101px){.logos--back{display:none}}
+@media (max-width:1100px){
+  .t-intro{gap:1.4rem}.intro-foot{padding-top:1.1rem}
+  .t-phil{min-height:340px}
+  .ab-lead,.ab-photo,.ab-stack,.ab-beyond,.tk-lead,.tk-core{grid-column:1/-1}.ab-pillar,.tk-guide{grid-column:span 6}
+  .bento{height:auto;grid-template-columns:repeat(6,1fr);grid-template-rows:none;grid-auto-rows:minmax(150px,auto);
+    grid-template-areas:
+    "intro intro intro intro intro intro"
+    "intro intro intro intro intro intro"
+    "phil phil phil phil phil phil"
+    "phil phil phil phil phil phil"
+    "sous sous sous work work work"
+    "sous sous sous globe globe globe"
+    "sous sous sous globe globe globe"
+    "radar radar radar writing writing writing"
+    "radar radar radar focus focus focus"
+    "contact contact contact clients clients clients"
+    "contact contact contact theme theme theme"
+    "clock clock clock clock clock clock"}
+  .t-game{min-height:440px}
+  .wall{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .ab-pillar,.tk-guide{grid-column:1/-1}.ab-cols,.tk-list{columns:1}
+  .dash-view{padding:10px 10px 92px}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(140px,auto);
+    grid-template-areas:"intro intro" "intro intro" "phil phil" "phil phil" "sous sous" "sous sous" "sous sous" "work globe" "radar radar" "radar radar" "writing writing" "focus focus" "contact contact" "clients clients" "theme theme" "clock clock"}
+  .t-intro{min-height:320px}.t-sous{min-height:460px}.t-phil{min-height:430px}.t-globe,.t-work{min-height:210px}.t-game{min-height:400px}.t-contact{min-height:260px}
+  .t-work{flex-direction:column;align-items:flex-start}.t-work .tile-label{flex:0 0 auto;align-self:stretch}.work-count{margin-top:auto}
+  .wall{grid-template-columns:1fr}.wall .proj-sous{grid-row:auto}.proj-visual{height:62vw}
+  .wall-head{flex-direction:column;gap:.6rem}
+  .dock{font-size:.68rem}.dock button,.dock a{padding:.55rem .7rem}
+  .dock .dock-hide{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dash-view,.logos,.intro-dot,.intro-caret,.radar .shape,.focus li,.t-contact::after,.g-cell.g-pop,.tk-modal,.tk-modal>div,.cal,.cal-panel{animation:none}
+  .ph-slide{transition:none}
+  .tile,.sous-screens img,.switch i{transition:none}
+}
+</style>
 </head>
-<body class="home">
-
-  <!-- Preloader — "Welcome", hand-drawn -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader-inner">
-      <svg class="loader-word" viewBox="0 0 450 220" fill="none" aria-label="Welcome">
-        <g class="lw-ink">
-          <!-- "welcome" — one continuous cursive stroke, Apple-hello style -->
-          <path class="lw-stroke" d="M34 150 C40 142 45 126 48 108 C50 124 53 146 62 148 C70 149 75 126 78 104 C80 126 83 148 92 148 C100 149 105 126 108 104 C109 98 112 95 116 96 C119 97 119 102 116 104 C120 104 124 103 128 102 C135 100 142 98 148 96 C154 90 152 82 145 85 C138 88 134 98 134 110 C134 128 141 147 154 147 C161 147 167 141 171 133 C180 115 186 78 187 54 C188 40 180 40 178 52 C176 68 179 106 182 128 C184 143 190 150 198 149 C204 148 208 141 211 133 C217 116 224 103 232 99 C225 96 216 106 215 122 C214 139 222 150 234 149 C240 148 244 143 247 137 C253 122 261 103 270 99 C262 96 254 107 253 123 C252 140 260 151 271 148 C281 145 285 129 283 113 C282 103 276 98 271 100 C275 106 282 108 289 106 C294 109 296 120 296 132 C296 139 296 144 296 148 C296 126 299 101 310 100 C319 99 322 114 322 130 C322 137 322 143 322 148 C322 126 325 101 336 100 C345 99 348 114 348 130 C348 137 348 143 348 148 C348 132 352 118 358 112 C364 104 371 98 376 99 C382 94 380 86 373 88 C366 90 362 100 362 112 C362 130 370 149 383 149 C393 149 402 138 408 126 C411 119 413 112 414 106"/>
-          <!-- underline swash -->
-          <path class="lw-swash" d="M60 184 C180 174 320 174 405 180"/>
-          <!-- travelling pen nib -->
-          <circle class="lw-pen" cx="34" cy="150" r="5"/>
-        </g>
-      </svg>
-      <p class="loader-tag">complexity, meet humans</p>
-    </div>
-    <span class="loader-count" id="loader-count">00</span>
-  </div>
-
-  <!-- Navigation -->
-  <header class="header" id="top">
-    <nav class="nav">
-      <span class="nav-brand">
-        <a href="index.html" class="nav-logo"><img src="images/logo-mark.svg" alt="James Foo"></a>
-        <span class="nav-title">Lead Product Designer · Design Technologist</span>
-        <span class="nav-time">Melbourne&nbsp;·&nbsp;<span id="nav-clock">—</span>&nbsp;AEST</span>
-      </span>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="#work" class="nav-link" data-scroll>Work</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="toolkit.html" class="nav-link">My Toolkit</a>
-        <a href="https://www.linkedin.com/in/james-foo/" class="nav-link nav-link--external" target="_blank" rel="noopener">
-          LinkedIn
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3.5 1H11V8.5M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://calendly.com/jfoo-jamesian/30min" class="nav-cta" target="_blank" rel="noopener" data-magnetic>Work with me</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu">
-    <button class="mobile-menu-close" aria-label="Close menu">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    </button>
-    <a href="index.html" class="mobile-menu-link active">Home</a>
-    <a href="#work" class="mobile-menu-link" data-scroll>Work</a>
-    <a href="about.html" class="mobile-menu-link">About</a>
-    <a href="toolkit.html" class="mobile-menu-link">My Toolkit</a>
-    <a href="contact.html" class="mobile-menu-link">Contact</a>
-    <a href="https://calendly.com/jfoo-jamesian/30min" class="mobile-menu-link mobile-menu-link--cta" target="_blank" rel="noopener">Work with me</a>
-  </div>
+<body class="dash" data-view="dashboard">
 
   <main>
+    <!-- ============ DASHBOARD ============ -->
+    <section class="dash-view" id="view-dashboard" aria-label="Dashboard">
+      <div class="bento">
 
-    <!-- ============ HERO ============ -->
-    <section class="hm-hero" id="hero">
-      <canvas class="hm-field" id="hero-field" aria-hidden="true"></canvas>
-
-      <div class="container hm-hero-inner">
-        <p class="hm-hero-status" data-hero-fade>
-          <span class="hm-status-dot" aria-hidden="true"></span>
-          Open to senior roles &amp; consulting
-        </p>
-
-        <h1 class="hm-hero-title">
-          <span class="hm-line"><span class="hm-line-inner">I design where</span></span>
-          <span class="hm-line hm-line--big"><span class="hm-line-inner"><em>complexity</em></span></span>
-          <span class="hm-line hm-line--big"><span class="hm-line-inner">meets <span class="hm-humans">humans<svg class="hm-underline" viewBox="0 0 220 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 60 2, 160 2, 217 7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span><span class="hm-period">.</span></span></span>
-        </h1>
-
-        <p class="hm-hero-sub" data-hero-fade>
-          I design and ship products that turn complexity into clarity: enterprise systems, AI-native workflows &amp; developer tools.
-        </p>
-
-        <div class="hm-hero-cta" data-hero-fade>
-          <a href="https://calendly.com/jfoo-jamesian/30min" class="btn btn--solid" target="_blank" rel="noopener" data-magnetic><span>Work with me</span></a>
-          <a href="contact.html" class="btn" data-magnetic><span>Get in touch</span></a>
-          <a href="#work" class="btn" data-scroll data-magnetic><span>View selected work</span><span aria-hidden="true">↓</span></a>
+        <div class="tile t-intro">
+          <div class="intro-top">
+            <img src="images/logo-mark.svg" alt="James Foo">
+            <span class="intro-status"><span class="intro-dot" aria-hidden="true"></span>Open to senior roles &amp; consulting</span>
+          </div>
+          <div>
+            <h1 class="intro-title"><span class="intro-lead">I am a </span><span class="intro-typed" id="typed" aria-live="off">Product Designer</span><span class="intro-caret" aria-hidden="true"></span></h1>
+            <p class="intro-sub">I design and ship products that turn complexity into clarity: enterprise systems, AI-native workflows &amp; developer tools.</p>
+            <p class="intro-sub">Over 14 years I've led product design across B2B enterprise SaaS, internal platforms, and AI-native workflows, at organisations including Macquarie Group and Siemens, working in continuous discovery cycles and measuring impact through data, not assumptions.</p>
+            <p class="intro-sub">I also shipped Sous Pantry to the App Store entirely solo: a full-stack AI app built with Claude Code. No co-founder. No agency. Just a designer who builds things and solves your challenges.</p>
+          </div>
+          <p class="intro-foot"><span id="intro-date">Melbourne, AU</span><span id="intro-time"></span></p>
         </div>
-      </div>
 
-      <div class="container hm-hero-meta" data-hero-fade>
-        <span class="eyebrow">Lead Product Designer · Design Technologist · Melbourne, AU</span>
-        <span class="eyebrow hm-scroll-cue">Scroll<span class="hm-scroll-line" aria-hidden="true"></span></span>
-        <span class="eyebrow">14+ yrs · B2C, B2B &amp; Enterprise · Macquarie Group &amp; Siemens alumni</span>
+        <a class="tile t-sous" href="souspantry.html">
+          <p class="tile-label"><span>Live on the App Store</span><span class="tile-arrow" aria-hidden="true">↗</span></p>
+          <div class="sous-screens">
+            <img class="is-on" src="images/sous-screen-home.jpg" alt="Sous Pantry home screen with a pantry audit and meals you can cook now">
+            <img src="images/sous-screen-pantry.jpg" alt="Sous Pantry inventory listing 48 items by category" loading="lazy">
+            <img src="images/sous-screen-plan.jpg" alt="Sous Pantry meal suggestions with pantry match percentages" loading="lazy">
+            <img src="images/sous-screen-shop.jpg" alt="Sous Pantry shopping list with 17 items to get" loading="lazy">
+          </div>
+          <p class="sous-foot"><strong>Sous Pantry</strong><span>One designer. One full-stack app. Shipped solo.</span></p>
+        </a>
+
+        <div class="tile t-globe">
+          <p class="tile-label"><span>Where my work is used</span></p>
+          <div class="globe"><canvas id="globe" width="320" height="320" role="img" aria-label="A rotating globe marking the places where my work is used"></canvas></div>
+          <p class="globe-city" id="globe-city">Melbourne</p>
+        </div>
+
+        <div class="tile t-contact">
+          <p class="tile-label"><span>Contact</span></p>
+          <p class="contact-big" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="-100" y1="0" x2="0" y2="100"><stop offset="0" stop-color="currentColor"/><stop offset=".42" stop-color="currentColor"/><stop offset=".5" stop-color="var(--shine)"/><stop offset=".58" stop-color="currentColor"/><stop offset="1" stop-color="currentColor"/><animateTransform attributeName="gradientTransform" type="translate" values="0 0;220 0;220 0" keyTimes="0;.55;1" dur="3.2s" repeatCount="indefinite"/></linearGradient></defs><path d="M22 86 L10 74 L62 22 H24 V6 H94 V76 H78 V38 Z" fill="url(#shine)"/></svg></p>
+          <ul class="contact-list">
+            <li><a href="https://calendly.com/jfoo-jamesian/30min" target="_blank" rel="noopener"><span>Work with me</span><span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://calendly.com/jfoo-jamesian/30min" target="_blank" rel="noopener"><span>Start a conversation</span><span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.linkedin.com/in/james-foo/" target="_blank" rel="noopener"><span>LinkedIn</span><span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+
+        <div class="tile t-writing">
+          <p class="tile-label"><span>Writing</span></p>
+          <ul class="writing">
+            <li><a href="https://www.linkedin.com/pulse/how-win-ai-turning-resistance-real-impact-james-foo-ryjnc/" target="_blank" rel="noopener"><b>How to win with AI: Turning resistance into real impact</b><span>LinkedIn Pulse<i aria-hidden="true">↗</i></span></a></li>
+            <li><a href="https://www.linkedin.com/pulse/innovation-debt-why-design-leaders-must-look-beyond-backlog-james-foo-7v9ee/" target="_blank" rel="noopener"><b>The Innovation Debt: Why Design Leaders Must Look Beyond the Backlog</b><span>LinkedIn Pulse<i aria-hidden="true">↗</i></span></a></li>
+          </ul>
+        </div>
+
+        <div class="tile t-radar">
+          <p class="tile-label"><span>Strengths</span></p>
+          <svg class="radar" id="radar" viewBox="-12 0 244 206" role="img" aria-label="Strengths: strongest in creative, technical, design thinking and innovation, with research and build slightly lower"></svg>
+        </div>
+
+        <div class="tile t-clock t-game" id="game" tabindex="0" aria-label="Merge numbers game. Use the arrow keys or swipe to play.">
+          <p class="tile-label"><span>Merge numbers</span><span id="g-msg"></span></p>
+          <div class="g-wrap"><div class="g-board" id="g-board" aria-hidden="true"></div><p class="g-hint" id="g-hint">Swipe, or click a side<br>Arrow keys work too</p></div>
+          <p class="g-foot"><span><b id="g-score">0</b> · best <b id="g-best">0</b></span><button type="button" id="g-new">New</button></p>
+        </div>
+
+        <div class="tile t-focus">
+          <p class="tile-label"><span>Focus</span></p>
+          <ul class="focus" id="focus"><li><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3" width="12" height="10" rx="2"/><path d="M2 6.5h12"/></svg>Digital Products</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>Enterprise Systems (ERP)</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l1.6 4.9 4.9 1.6-4.9 1.6L8 14.5 6.4 9.6 1.5 8l4.9-1.6z"/></svg>AI Adoption</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 0 1-9.6 3.7M2.5 8a5.5 5.5 0 0 1 9.6-3.7"/><path d="M12.5 1.5v3h-3M3.5 14.5v-3h3"/></svg>Workflow Automation</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.5" y="1.5" width="7" height="13" rx="1.8"/><path d="M7 12h2"/></svg>Mobile App Development</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3"/><path d="M1.7 8h12.6M8 1.7c2.2 2 2.2 10.6 0 12.6M8 1.7c-2.2 2-2.2 10.6 0 12.6"/></svg>Web Development</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4.5L2 8l3.5 3.5M10.5 4.5L14 8l-3.5 3.5"/></svg>Developer Tools</li></ul>
+        </div>
+
+        <button class="tile t-theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch between light and dark">
+          <span class="tile-label"><span>Mode switch</span></span>
+          <span class="switch" aria-hidden="true"><i></i></span>
+        </button>
+
+        <div class="tile t-phil" id="phil" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Design leadership philosophy">
+          <p class="tile-label"><span>Design leadership philosophy</span><span id="ph-count">1 / 6</span></p>
+          <div class="ph-stage">
+            <div class="ph-slide is-on">
+              <h2 class="ph-head">Great design leadership is never just one thing.</h2>
+              <p>The best design leaders don't just make great products. They build the conditions and culture for great products to exist, alongside great people. That takes five capabilities, held in balance at once.</p>
+              <p class="ph-verse">Equip this generation to empower the next.<br>And always, 1 Corinthians 16:14</p>
+            </div>
+            <div class="ph-slide" aria-hidden="true">
+              <span class="ph-num">01</span>
+              <h2 class="ph-head">Strategy</h2>
+              <p>Setting direction with intention. Building a shared design vision and roadmap in genuine collaboration with leadership, driving meaningful change rather than reacting to daily noise.</p>
+            </div>
+            <div class="ph-slide" aria-hidden="true">
+              <span class="ph-num">02</span>
+              <h2 class="ph-head">Experience</h2>
+              <p>Owning craft and quality. Pushing for human-centred thinking across the business and defining what &quot;good&quot; actually means for your organisation, then holding that bar.</p>
+            </div>
+            <div class="ph-slide" aria-hidden="true">
+              <span class="ph-num">03</span>
+              <h2 class="ph-head">Systems</h2>
+              <p>Designing beyond the screen. Building components, patterns, and design languages that scale, so consistency becomes the default, not the exception.</p>
+            </div>
+            <div class="ph-slide" aria-hidden="true">
+              <span class="ph-num">04</span>
+              <h2 class="ph-head">People</h2>
+              <p>Leading with care. Hiring with intention, fostering a culture where people do their best work, and always developing the next generation of design leaders.</p>
+            </div>
+            <div class="ph-slide" aria-hidden="true">
+              <span class="ph-num">05</span>
+              <h2 class="ph-head">AI-native thinking</h2>
+              <p>Designing for the AI era, not just with AI tools. Understanding how intelligence changes the interaction model, and ensuring humans stay meaningfully in control.</p>
+            </div>
+          </div>
+          <div class="ph-nav">
+            <div class="ph-dots" id="ph-dots" aria-hidden="true"></div>
+            <button type="button" id="ph-prev" aria-label="Previous">←</button>
+            <button type="button" id="ph-next" aria-label="Next">→</button>
+          </div>
+        </div>
+
+        <button class="tile t-work" type="button" data-view-btn="work">
+          <span class="tile-label"><span>Selected work</span><span class="tile-arrow" aria-hidden="true">↗</span></span>
+          <span class="work-count">05</span>
+          <span class="work-sub">Five projects, no two alike.</span>
+        </button>
+
+        <div class="tile t-clients">
+          <p class="tile-label"><span>Organisations using Work Planner</span></p>
+          <div class="logo-rows"><div class="logos"><img src="images/clients/mta-nyc.svg" alt="New York City MTA" loading="lazy"><img src="images/clients/antarctic-division.svg" alt="Australian Antarctic Division" loading="lazy"><img src="images/clients/nsw-trainlink.png" alt="NSW TrainLink" loading="lazy"><img src="images/clients/city-of-vancouver.svg" alt="City of Vancouver" loading="lazy"><img src="images/clients/metro-trains.svg" alt="Metro Trains Melbourne" loading="lazy"><img src="images/clients/city-of-sydney.png" alt="City of Sydney" loading="lazy"><img src="images/clients/chicago-housing.png" alt="Chicago Housing Authority" loading="lazy"><img src="images/clients/tas-gov.png" alt="Tasmanian Government" loading="lazy"><img src="images/clients/toronto-zoo.svg" alt="Toronto Zoo" loading="lazy"><img src="images/clients/city-of-adelaide.svg" alt="City of Adelaide" loading="lazy"><img src="images/clients/bristol.svg" alt="City of Bristol" loading="lazy"><img src="images/clients/topeka.png" alt="City of Topeka, Kansas" loading="lazy"><img src="images/clients/chicago-housing.png" alt="" loading="lazy"><img src="images/clients/tas-gov.png" alt="" loading="lazy"><img src="images/clients/toronto-zoo.svg" alt="" loading="lazy"><img src="images/clients/city-of-adelaide.svg" alt="" loading="lazy"><img src="images/clients/bristol.svg" alt="" loading="lazy"><img src="images/clients/topeka.png" alt="" loading="lazy"><img src="images/clients/mta-nyc.svg" alt="" loading="lazy"><img src="images/clients/antarctic-division.svg" alt="" loading="lazy"><img src="images/clients/nsw-trainlink.png" alt="" loading="lazy"><img src="images/clients/city-of-vancouver.svg" alt="" loading="lazy"><img src="images/clients/metro-trains.svg" alt="" loading="lazy"><img src="images/clients/city-of-sydney.png" alt="" loading="lazy"></div><div class="logos logos--back"><img src="images/clients/chicago-housing.png" alt="" loading="lazy"><img src="images/clients/tas-gov.png" alt="" loading="lazy"><img src="images/clients/toronto-zoo.svg" alt="" loading="lazy"><img src="images/clients/city-of-adelaide.svg" alt="" loading="lazy"><img src="images/clients/bristol.svg" alt="" loading="lazy"><img src="images/clients/topeka.png" alt="" loading="lazy"><img src="images/clients/mta-nyc.svg" alt="" loading="lazy"><img src="images/clients/antarctic-division.svg" alt="" loading="lazy"><img src="images/clients/nsw-trainlink.png" alt="" loading="lazy"><img src="images/clients/city-of-vancouver.svg" alt="" loading="lazy"><img src="images/clients/metro-trains.svg" alt="" loading="lazy"><img src="images/clients/city-of-sydney.png" alt="" loading="lazy"><img src="images/clients/chicago-housing.png" alt="" loading="lazy"><img src="images/clients/tas-gov.png" alt="" loading="lazy"><img src="images/clients/toronto-zoo.svg" alt="" loading="lazy"><img src="images/clients/city-of-adelaide.svg" alt="" loading="lazy"><img src="images/clients/bristol.svg" alt="" loading="lazy"><img src="images/clients/topeka.png" alt="" loading="lazy"><img src="images/clients/mta-nyc.svg" alt="" loading="lazy"><img src="images/clients/antarctic-division.svg" alt="" loading="lazy"><img src="images/clients/nsw-trainlink.png" alt="" loading="lazy"><img src="images/clients/city-of-vancouver.svg" alt="" loading="lazy"><img src="images/clients/metro-trains.svg" alt="" loading="lazy"><img src="images/clients/city-of-sydney.png" alt="" loading="lazy"></div></div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ============ MARQUEE ============ -->
-    <div class="hm-marquee" aria-hidden="true">
-      <div class="hm-marquee-track" id="marquee-track">
-        <span class="hm-marquee-seg">Enterprise Systems <i>✺</i> AI-Native Workflows <i>✺</i> Developer Tools <i>✺</i> Design Strategy <i>✺</i> </span><span class="hm-marquee-seg">Enterprise Systems <i>✺</i> AI-Native Workflows <i>✺</i> Developer Tools <i>✺</i> Design Strategy <i>✺</i> </span><span class="hm-marquee-seg">Enterprise Systems <i>✺</i> AI-Native Workflows <i>✺</i> Developer Tools <i>✺</i> Design Strategy <i>✺</i> </span>
+    <!-- ============ WORK ============ -->
+    <section class="dash-view" id="view-work" aria-label="Selected work">
+      <div class="wall-head">
+        <h1>Selected work</h1>
+        <p>Five projects</p>
       </div>
-    </div>
+      <div class="wall">
 
-    <!-- ============ SELECTED WORK ============ -->
-    <section class="hm-work" id="work">
-      <div class="container">
-        <div class="hm-section-head">
-          <p class="eyebrow" data-reveal>Selected work</p>
-          <h2 class="hm-section-title" data-reveal data-reveal-delay="80">Five projects,<br><em>no two alike.</em></h2>
-          <span class="hm-section-index" data-reveal data-reveal-delay="140">(05)</span>
-        </div>
-      </div>
-
-      <div class="hm-stack container">
-
-        <!-- 01 Sous Pantry -->
-        <div class="hm-card-slot">
-        <a href="souspantry.html" class="hm-card hm-card--sous" data-cursor="view" style="--card-accent:#3FB68B;">
-          <div class="hm-card-inner">
-            <div class="hm-card-info">
-              <div class="hm-card-top">
-                <span class="hm-card-index">01</span>
-                <span class="hm-card-tag">Live on App Store · Solo Build</span>
-              </div>
-              <span class="hm-card-brand" role="img" aria-label="Sous Pantry"></span>
-              <h3 class="hm-card-title">One designer. One full-stack app. Shipped solo.</h3>
-              <p class="hm-card-desc">Shipped to the App Store entirely solo. UX strategy, iOS, and the backend, built with AI coding tools. Android is in build on the same backend. No co-founder. No agency. Just a designer who codes.</p>
-              <ul class="hm-card-stats">
-                <li>iOS shipped</li>
-                <li>Anthropic API backend</li>
-                <li>Shipped solo</li>
-              </ul>
-              <span class="hm-card-link">Read case study <i aria-hidden="true">→</i></span>
-            </div>
-            <div class="hm-card-visual hm-card-visual--sous">
-              <div class="sous-stage" id="sous-stage" aria-label="Sous Pantry app screens">
-                <div class="sous-deck" id="sous-deck">
-                  <figure class="sous-phone" data-label="Home"><img src="images/sous-screen-home.jpg" alt="Sous Pantry home screen with a pantry audit and meals you can cook now" loading="lazy" decoding="async"></figure>
-                  <figure class="sous-phone" data-label="Pantry"><img src="images/sous-screen-pantry.jpg" alt="Sous Pantry inventory listing 48 items by category" loading="lazy" decoding="async"></figure>
-                  <figure class="sous-phone" data-label="Plan &amp; Cook"><img src="images/sous-screen-plan.jpg" alt="Sous Pantry meal suggestions with pantry match percentages" loading="lazy" decoding="async"></figure>
-                  <figure class="sous-phone" data-label="Shopping"><img src="images/sous-screen-shop.jpg" alt="Sous Pantry shopping list with 17 items to get" loading="lazy" decoding="async"></figure>
-                </div>
-                <span class="sous-caption" id="sous-caption" aria-hidden="true">Home</span>
-              </div>
-            </div>
+        <a class="tile t-sous proj-sous" href="souspantry.html">
+          <p class="tile-label"><span>Live on the App Store</span><span class="tile-arrow" aria-hidden="true">↗</span></p>
+          <div class="sous-screens">
+            <img class="is-on" src="images/sous-screen-home.jpg" alt="Sous Pantry home screen with a pantry audit and meals you can cook now">
+            <img src="images/sous-screen-pantry.jpg" alt="Sous Pantry inventory listing 48 items by category" loading="lazy">
+            <img src="images/sous-screen-plan.jpg" alt="Sous Pantry meal suggestions with pantry match percentages" loading="lazy">
+            <img src="images/sous-screen-shop.jpg" alt="Sous Pantry shopping list with 17 items to get" loading="lazy">
           </div>
+          <p class="sous-foot"><strong>Sous Pantry</strong><span>One designer. One full-stack app. Shipped solo.</span></p>
         </a>
-        </div>
-        <!-- 02 WatchTower -->
-        <div class="hm-card-slot">
-        <a href="watchtower.html" class="hm-card" data-cursor="view" style="--card-accent:#5B8DEF;">
-          <div class="hm-card-inner">
-            <div class="hm-card-info">
-              <div class="hm-card-top">
-                <span class="hm-card-index">02</span>
-                <span class="hm-card-tag">Developer Experience</span>
-              </div>
-              <h3 class="hm-card-title">Put the fix where the work happens.</h3>
-              <p class="hm-card-desc">An experience strategy to make thousands of engineers self-sufficient at deployment, and the pattern that changed how the entire internal platform surfaces guidance.</p>
-              <div class="hm-card-metrics">
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--joy" viewBox="0 0 48 48" fill="none" role="img" aria-label="Dramatic rise in engineer satisfaction">
-                      <path class="joy-sparkle" d="M8 9.5 Q8 13 11.5 13 Q8 13 8 16.5 Q8 13 4.5 13 Q8 13 8 9.5 Z" fill="currentColor"/>
-                      <path class="joy-sparkle" d="M41 12 Q41 15 44 15 Q41 15 41 18 Q41 15 38 15 Q41 15 41 12 Z" fill="currentColor"/>
-                      <g class="joy-face">
-                        <circle cx="24" cy="28" r="11" stroke="currentColor" stroke-width="2.4"/>
-                        <path d="M15 19 Q24 7 33 19 Z" fill="currentColor"/>
-                        <rect x="11.5" y="18" width="25" height="2.8" rx="1.4" fill="currentColor"/>
-                        <path d="M18.3 26.5 Q20.4 23.8 22.5 26.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M25.5 26.5 Q27.6 23.8 29.7 26.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M18.5 31 Q24 36.5 29.5 31" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Dramatic rise in engineer satisfaction</span>
-                </div>
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--rocket" viewBox="0 0 48 48" fill="none" role="img" aria-label="Rapid engineer adoption">
-                      <g class="rocket-flame">
-                        <path d="M20 32 Q24 46 28 32 Q24 37 20 32 Z" fill="currentColor" opacity="0.55"/>
-                        <path d="M21.6 32 Q24 41 26.4 32 Q24 35 21.6 32 Z" fill="currentColor"/>
-                      </g>
-                      <g class="rocket-body">
-                        <path d="M24 3 C31.5 9 33 19 33 27 L15 27 C15 19 16.5 9 24 3 Z" fill="currentColor"/>
-                        <path d="M15 24 L9 33 L15 30 Z" fill="currentColor"/>
-                        <path d="M33 24 L39 33 L33 30 Z" fill="currentColor"/>
-                        <path d="M15 27 L33 27 L30 32.5 L18 32.5 Z" fill="currentColor" opacity="0.75"/>
-                        <circle cx="24" cy="16" r="3.4" fill="#121110"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Rapid engineer adoption, within a short time</span>
-                </div>
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--globe" viewBox="0 0 48 48" fill="none" role="img" aria-label="Fewer support escalations, worldwide">
-                      <g class="globe-spin">
-                        <circle cx="21" cy="21" r="12" stroke="currentColor" stroke-width="2.4"/>
-                        <line x1="9" y1="21" x2="33" y2="21" stroke="currentColor" stroke-width="1.7"/>
-                        <path d="M10 14.5 Q21 18.5 32 14.5" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
-                        <path d="M10 27.5 Q21 23.5 32 27.5" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
-                        <ellipse class="globe-mer" cx="21" cy="21" rx="6" ry="12" stroke="currentColor" stroke-width="1.7"/>
-                      </g>
-                      <g class="globe-drop">
-                        <circle cx="37" cy="37" r="8" fill="#121110"/>
-                        <path d="M37 32.5 L37 41 M33.5 37.5 L37 41 L40.5 37.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Fewer support escalations, worldwide</span>
-                </div>
-              </div>
-              <span class="hm-card-link">Read case study <i aria-hidden="true">→</i></span>
-            </div>
-            <div class="hm-card-visual">
-              <svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
-                <!-- radar sweep — monitoring, deployment signals -->
+
+        <a class="tile proj" href="work-planner.html" style="--accent:#E8930C">
+          <div class="proj-visual"><img src="images/work-planner.jpg" alt="Predictor, a multi-year infrastructure planning platform across dashboard, map and data views" loading="lazy"></div>
+          <div class="proj-meta"><div><h2>Make coordination the default, not the overhead.</h2><p>Work Planner · SaaS · Infrastructure Planning</p></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
+        </a>
+
+        <a class="tile proj" href="watchtower.html" style="--accent:#5B8DEF">
+          <span class="proj-nda">Real screens withheld · NDA</span>
+          <div class="proj-visual"><svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
+                <!-- radar sweep: monitoring, deployment signals -->
                 <circle cx="210" cy="160" r="44" stroke="rgba(244,241,232,0.18)" stroke-width="1.5"/>
                 <circle cx="210" cy="160" r="88" stroke="rgba(244,241,232,0.14)" stroke-width="1.5"/>
                 <circle cx="210" cy="160" r="132" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 7" opacity="0.65"/>
@@ -252,69 +500,13 @@
                 <circle cx="158" cy="216" r="4" fill="rgba(244,241,232,0.5)"/>
                 <circle cx="130" cy="110" r="4" fill="rgba(244,241,232,0.3)"/>
                 <circle cx="210" cy="160" r="5" fill="currentColor"/>
-              </svg>
-              <span class="hm-nda">// real screens withheld · NDA</span>
-            </div>
-          </div>
+              </svg></div>
+          <div class="proj-meta"><div><h2>Put the fix where the work happens.</h2><p>Watch Tower · Developer Experience</p></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
         </a>
-        </div>
 
-        <!-- 03 AI Access -->
-        <div class="hm-card-slot">
-        <a href="ai-access.html" class="hm-card" data-cursor="view" style="--card-accent:#9D7BEF;">
-          <div class="hm-card-inner">
-            <div class="hm-card-info">
-              <div class="hm-card-top">
-                <span class="hm-card-index">03</span>
-                <span class="hm-card-tag">AI Experience Design</span>
-              </div>
-              <h3 class="hm-card-title">Make intent the interface.</h3>
-              <p class="hm-card-desc">Replacing fragmented access requests with an AI agent that interprets intent, synthesises risk data, and hands approvers a single decision, not a research task.</p>
-              <div class="hm-card-metrics">
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--clock" viewBox="0 0 48 48" fill="none" role="img" aria-label="Hours reclaimed per user, per week">
-                      <g class="clock-body">
-                        <circle cx="11.5" cy="7.5" r="3.4" fill="currentColor"/>
-                        <circle cx="36.5" cy="7.5" r="3.4" fill="currentColor"/>
-                        <line x1="16" y1="38.5" x2="13" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <line x1="32" y1="38.5" x2="35" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="24" cy="26" r="13.5" stroke="currentColor" stroke-width="2.4" fill="#121110"/>
-                        <line x1="24" y1="15.5" x2="24" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="34.5" y1="26" x2="32" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="24" y1="36.5" x2="24" y2="34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="13.5" y1="26" x2="16" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <line class="clock-min" x1="24" y1="26" x2="24" y2="18.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <line class="clock-hr" x1="24" y1="26" x2="28.8" y2="23.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="24" cy="26" r="1.8" fill="currentColor"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Hours reclaimed per user, per week</span>
-                </div>
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--zero" viewBox="0 0 48 48" fill="none" role="img" aria-label="Zero manual data gathering">
-                      <g class="zero-mag">
-                        <circle cx="20.5" cy="20.5" r="8.5" stroke="currentColor" stroke-width="2.4"/>
-                        <line x1="26.8" y1="26.8" x2="33.5" y2="33.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
-                        <circle class="zero-dot" cx="17.5" cy="19" r="1.5" fill="currentColor"/>
-                        <circle class="zero-dot" cx="22" cy="17.5" r="1.5" fill="currentColor"/>
-                        <circle class="zero-dot" cx="20" cy="23" r="1.5" fill="currentColor"/>
-                      </g>
-                      <g class="zero-ban">
-                        <circle cx="24" cy="24" r="17.5" stroke="currentColor" stroke-width="2.2" opacity="0.9"/>
-                        <line class="zero-slash" x1="36.4" y1="11.6" x2="11.6" y2="36.4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Zero manual data gathering</span>
-                </div>
-              </div>
-              <span class="hm-card-link">Read case study <i aria-hidden="true">→</i></span>
-            </div>
-            <div class="hm-card-visual">
-              <svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
+        <a class="tile proj" href="ai-access.html" style="--accent:#9D7BEF">
+          <span class="proj-nda">Real screens withheld · NDA</span>
+          <div class="proj-visual"><svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
                 <!-- many fragmented inputs converge to one decision -->
                 <circle cx="66" cy="70" r="7" stroke="rgba(244,241,232,0.4)" stroke-width="1.5"/>
                 <circle cx="46" cy="150" r="7" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/>
@@ -332,82 +524,14 @@
                 <circle cx="330" cy="160" r="7" fill="currentColor"/>
                 <circle cx="330" cy="160" r="18" stroke="currentColor" stroke-width="1.5" opacity="0.7"/>
                 <circle cx="330" cy="160" r="30" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="3 7"/>
-              </svg>
-              <span class="hm-nda">// real screens withheld · NDA</span>
-            </div>
-          </div>
+              </svg></div>
+          <div class="proj-meta"><div><h2>Make intent the interface.</h2><p>AI Access · AI Experience Design</p></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
         </a>
-        </div>
 
-        <!-- 04 Risk Control -->
-        <div class="hm-card-slot">
-        <a href="risk-control.html" class="hm-card" data-cursor="view" style="--card-accent:#3FB68B;">
-          <div class="hm-card-inner">
-            <div class="hm-card-info">
-              <div class="hm-card-top">
-                <span class="hm-card-index">04</span>
-                <span class="hm-card-tag">Compliance Design</span>
-              </div>
-              <h3 class="hm-card-title">Make rigour the path of least resistance.</h3>
-              <p class="hm-card-desc">Turning a week-long compliance bottleneck into a self-service workflow, without simplifying the rules, only the experience.</p>
-              <div class="hm-card-metrics">
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--gauge" viewBox="0 0 48 48" fill="none" role="img" aria-label="Increased efficiency identifying urgency">
-                      <path d="M7 33 A17 17 0 0 1 41 33" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                      <line x1="24" y1="16" x2="24" y2="19.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <line x1="12.6" y1="21.4" x2="15.1" y2="23.9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <line x1="35.4" y1="21.4" x2="32.9" y2="23.9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <line class="gauge-needle" x1="24" y1="33" x2="14" y2="24" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-                      <circle cx="24" cy="33" r="2.6" fill="currentColor"/>
-                      <line x1="14" y1="39" x2="34" y2="39" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Increased efficiency identifying urgency</span>
-                </div>
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--target" viewBox="0 0 48 48" fill="none" role="img" aria-label="Improved accuracy in status interpretation">
-                      <g class="tgt-rings">
-                        <circle cx="22" cy="26" r="13.5" stroke="currentColor" stroke-width="2.2"/>
-                        <circle cx="22" cy="26" r="8" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                      </g>
-                      <circle cx="22" cy="26" r="3" fill="currentColor"/>
-                      <g class="tgt-arrow">
-                        <line x1="24" y1="24" x2="37" y2="11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <path d="M37 11 L37.8 5.4 L42.6 10.2 Z" fill="currentColor"/>
-                        <path d="M33 8 L37.5 10.5 L40 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Improved accuracy in status interpretation</span>
-                </div>
-                <div class="hm-metric hm-metric--icon">
-                  <span class="hm-metric-value hm-metric-value--icon">
-                    <svg class="hm-icon hm-icon--cal" viewBox="0 0 48 48" fill="none" role="img" aria-label="Reduced days of operational remediation effort">
-                      <rect class="cal-page" x="15" y="15" width="18" height="17" rx="2" stroke="currentColor" stroke-width="2" fill="#121110"/>
-                      <g class="cal-body">
-                        <rect x="11" y="11" width="26" height="26" rx="3" stroke="currentColor" stroke-width="2.4" fill="#121110"/>
-                        <path d="M11 14 Q11 11 14 11 L34 11 Q37 11 37 14 L37 18 L11 18 Z" fill="currentColor"/>
-                        <line x1="17.5" y1="7.5" x2="17.5" y2="13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <line x1="30.5" y1="7.5" x2="30.5" y2="13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="17.5" cy="24" r="1.6" fill="currentColor"/>
-                        <circle cx="24" cy="24" r="1.6" fill="currentColor"/>
-                        <circle cx="30.5" cy="24" r="1.6" fill="currentColor"/>
-                        <circle cx="17.5" cy="30.5" r="1.6" fill="currentColor"/>
-                        <circle cx="24" cy="30.5" r="1.6" fill="currentColor" opacity="0.45"/>
-                        <circle cx="30.5" cy="30.5" r="1.6" fill="currentColor" opacity="0.2"/>
-                      </g>
-                    </svg>
-                  </span>
-                  <span class="hm-metric-label">Reduced days of operational remediation effort</span>
-                </div>
-              </div>
-              <span class="hm-card-link">Read case study <i aria-hidden="true">→</i></span>
-            </div>
-            <div class="hm-card-visual">
-              <svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
-                <!-- rigour as checklist — friction removed, rules intact -->
+        <a class="tile proj" href="risk-control.html" style="--accent:#3FB68B">
+          <span class="proj-nda">Real screens withheld · NDA</span>
+          <div class="proj-visual"><svg class="hm-motif" viewBox="0 0 420 320" fill="none" aria-hidden="true">
+                <!-- rigour as checklist: friction removed, rules intact -->
                 <circle cx="86" cy="76" r="13" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M80 76 L84.5 81 L93 71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <line x1="120" y1="76" x2="334" y2="76" stroke="rgba(244,241,232,0.3)" stroke-width="1.5"/>
@@ -419,216 +543,431 @@
                 <line x1="120" y1="200" x2="318" y2="200" stroke="rgba(244,241,232,0.2)" stroke-width="1.5"/>
                 <circle cx="86" cy="262" r="13" stroke="rgba(244,241,232,0.25)" stroke-width="1.5" stroke-dasharray="3 5"/>
                 <line x1="120" y1="262" x2="270" y2="262" stroke="rgba(244,241,232,0.12)" stroke-width="1.5"/>
-              </svg>
-              <span class="hm-nda">// real screens withheld · NDA</span>
-            </div>
-          </div>
+              </svg></div>
+          <div class="proj-meta"><div><h2>Make rigour the path of least resistance.</h2><p>Risk Control · Compliance Design</p></div><span class="tile-arrow" aria-hidden="true">↗</span></div>
         </a>
-        </div>
-
-        <!-- 05 Work Planner -->
-        <div class="hm-card-slot">
-        <a href="work-planner.html" class="hm-card" data-cursor="view" style="--card-accent:#E8930C;">
-          <div class="hm-card-inner">
-            <div class="hm-card-info">
-              <div class="hm-card-top">
-                <span class="hm-card-index">05</span>
-                <span class="hm-card-tag">SaaS · Infrastructure Planning</span>
-              </div>
-              <h3 class="hm-card-title">Make coordination the default, not the overhead.</h3>
-              <div class="hm-card-metrics">
-                <div class="hm-metric">
-                  <span class="hm-metric-value"><span data-count="40" data-suffix="%">40%</span></span>
-                  <span class="hm-metric-label">less time chasing other departments</span>
-                </div>
-                <div class="hm-metric">
-                  <span class="hm-metric-value"><span data-count="70" data-suffix="%">70%</span></span>
-                  <span class="hm-metric-label">fewer wasted resources</span>
-                </div>
-                <div class="hm-metric">
-                  <span class="hm-metric-value"><span data-count="15" data-suffix="+">15+</span></span>
-                  <span class="hm-metric-label">organisations, one platform</span>
-                </div>
-              </div>
-              <p class="hm-card-desc">Transforming fragmented spreadsheets and siloed GIS tools into a single web platform for government and transit organisations planning multi-year capital works.</p>
-              <span class="hm-card-link">Read case study <i aria-hidden="true">→</i></span>
-            </div>
-            <div class="hm-card-visual">
-              <img src="images/work-planner.jpg" alt="Predictor, a multi-year infrastructure planning platform across dashboard, map and data views" loading="lazy">
-            </div>
-          </div>
-        </a>
-        </div>
-
 
       </div>
     </section>
 
-    <!-- ============ CLIENTS ============ -->
-    <section class="hm-clients" id="clients">
-      <div class="container">
-        <p class="eyebrow" data-reveal>Clients</p>
-        <h2 class="hm-section-title" data-reveal data-reveal-delay="80">From Antarctica<br>to <em>New York City.</em></h2>
-        <div class="hm-logos" data-reveal>
-          <div class="hm-logos-row" data-dir="1">
-            <div class="hm-logos-track">
-              <div class="hm-logos-seg">
-                <figure class="hm-logo"><img src="images/clients/mta-nyc.svg" alt="New York City MTA"><figcaption>New York City MTA</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/antarctic-division.svg" alt="Australian Antarctic Division"><figcaption>Australian Antarctic Division</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/nsw-trainlink.png" alt="NSW TrainLink"><figcaption>NSW TrainLink</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-vancouver.svg" alt="City of Vancouver"><figcaption>City of Vancouver</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/metro-trains.svg" alt="Metro Trains Melbourne"><figcaption>Metro Trains Melbourne</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-sydney.png" alt="City of Sydney"><figcaption>City of Sydney</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/chicago-housing.png" alt="Chicago Housing Authority"><figcaption>Chicago Housing Authority</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/tas-gov.png" alt="Tasmanian Government"><figcaption>Tasmanian Government</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/toronto-zoo.svg" alt="Toronto Zoo"><figcaption>Toronto Zoo</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>Sydney Olympic Park</b><i>Authority</i></span><figcaption>Sydney Olympic Park Authority</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-adelaide.svg" alt="City of Adelaide"><figcaption>City of Adelaide</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>Melton</b><i>City Council</i></span><figcaption>Melton City Council</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/bristol.svg" alt="City of Bristol"><figcaption>City of Bristol</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>City of</b><i>Victor Harbor</i></span><figcaption>City of Victor Harbor</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/topeka.png" alt="City of Topeka, Kansas"><figcaption>City of Topeka, Kansas</figcaption></figure>
-              </div>
-              <div class="hm-logos-seg" aria-hidden="true">
-                <figure class="hm-logo"><img src="images/clients/mta-nyc.svg" alt=""><figcaption>New York City MTA</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/antarctic-division.svg" alt=""><figcaption>Australian Antarctic Division</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/nsw-trainlink.png" alt=""><figcaption>NSW TrainLink</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-vancouver.svg" alt=""><figcaption>City of Vancouver</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/metro-trains.svg" alt=""><figcaption>Metro Trains Melbourne</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-sydney.png" alt=""><figcaption>City of Sydney</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/chicago-housing.png" alt=""><figcaption>Chicago Housing Authority</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/tas-gov.png" alt=""><figcaption>Tasmanian Government</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/toronto-zoo.svg" alt=""><figcaption>Toronto Zoo</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>Sydney Olympic Park</b><i>Authority</i></span><figcaption>Sydney Olympic Park Authority</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/city-of-adelaide.svg" alt=""><figcaption>City of Adelaide</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>Melton</b><i>City Council</i></span><figcaption>Melton City Council</figcaption></figure>
-                <figure class="hm-logo hm-logo--wide"><img src="images/clients/bristol.svg" alt=""><figcaption>City of Bristol</figcaption></figure>
-                <figure class="hm-logo hm-logo--badge"><span class="hm-badge"><b>City of</b><i>Victor Harbor</i></span><figcaption>City of Victor Harbor</figcaption></figure>
-                <figure class="hm-logo"><img src="images/clients/topeka.png" alt=""><figcaption>City of Topeka, Kansas</figcaption></figure>
-              </div>
-            </div>
+    <!-- ============ ABOUT ============ -->
+    <section class="dash-view" id="view-about" aria-label="About">
+      <div class="wall-head"><h1>About</h1><p>Lead Product Designer · Design Technologist · d.MBA</p></div>
+      <div class="grid12">
+        <div class="tile ab-lead">
+          <p class="tile-label"><span>Who I am</span></p>
+          <h2 class="ab-title">A designer who still builds.</h2>
+          <div class="ab-cols">
+            <p>I loved drawing as a kid, then computers pulled me in. My first job was front-end development, with some graphic design and UX on the side. Over 14 years I moved into product design and then design leadership, across enterprise software, a regulated bank and now my own studio.</p>
+            <p>At Macquarie I kept seeing good design get lost between the designer's file and the engineer's code. So I worked on that gap: first with the design system, then by getting my team to build working prototypes with AI, so engineers picked up something real.</p>
+            <p>Since December 2025 I've run Jamesian Studio. I designed and shipped Sous Pantry, an AI app, with Claude Code, and learned first-hand what makes AI safe to work with: clear rules, a person checking, and honest failure states.</p>
+            <p>I finished a Design MBA in 2026 because design has to make sense to the business too. It changed how I talk about trade-offs and cost.</p>
+            <p>People matter to me as much as the work. I've led and mentored designers for about seven years, through hiring, critique and promotions. If you want to talk design or swap notes, I'm always up for it.</p>
           </div>
+        </div>
+        <div class="tile ab-photo"><img src="https://cdn.myportfolio.com/179a14b9849925e892fce24f702e624f/04494147-bcda-4a21-a028-031ac5927873_rw_1200.png?h=24903d6dbe158c19dfdab300fabfacf1" alt="James Foo" loading="lazy"></div>
+        <div class="tile ab-pillar"><p class="tile-label"><span>Design pillar</span><span>01</span></p><h3>AI and agentic experiences</h3><p>AI that people can trust with real decisions. It does the research, shows its working, and says when it isn't sure. A person still makes the call.</p></div>
+        <div class="tile ab-pillar"><p class="tile-label"><span>Design pillar</span><span>02</span></p><h3>Design that pays its way</h3><p>I tie design to what the business already measures: adoption, time saved, fewer support tickets. If I can't show it moved something, I keep working on it.</p></div>
+        <div class="tile ab-pillar"><p class="tile-label"><span>Design pillar</span><span>03</span></p><h3>Systems that survive code</h3><p>Design systems that designers and engineers both actually use: tokens, shared components and the rules around them.</p></div>
+        <div class="tile ab-pillar"><p class="tile-label"><span>Design pillar</span><span>04</span></p><h3>Evidence over opinion</h3><p>Research, testing and usage data before the big calls, with accessibility (WCAG 2.2 AA) built in from the start.</p></div>
+        <div class="tile ab-stack">
+          <p class="tile-label"><span>Tools I work with</span></p>
+          <dl class="stack"><div><dt>Design &amp; Research</dt><dd><ul class="pills"><li>Figma</li><li>FigJam</li><li>Miro</li><li>Adobe Creative Suite</li><li>Sketch</li></ul></dd></div><div><dt>Insights &amp; Validation</dt><dd><ul class="pills"><li>UserTesting.com</li><li>Lookback</li><li>Maze</li><li>Hotjar</li><li>Google Analytics</li></ul></dd></div><div><dt>AI &amp; Build Tools</dt><dd><ul class="pills"><li>Claude Code</li><li>Codex</li><li>Cursor</li><li>n8n</li><li>GitHub</li><li>Supabase</li><li>GitHub Copilot</li></ul></dd></div><div><dt>Design-to-Code</dt><dd><ul class="pills"><li>Storybook</li><li>HTML / CSS / JS</li><li>Swift (basic)</li><li>React Native (basic)</li></ul></dd></div><div><dt>Team Ops</dt><dd><ul class="pills"><li>Slack</li><li>Microsoft Teams</li><li>Jira</li><li>Confluence</li></ul></dd></div></dl>
+        </div>
+        <div class="tile ab-beyond">
+          <p class="tile-label"><span>Beyond work</span></p>
+          <blockquote class="ab-quote">"Let all that you do be done in love."<cite>1 Corinthians 16:14</cite></blockquote>
+          <p>At 18, I packed up and moved to Germany alone. That experience shaped everything about how I approach the world. It taught me resilience, adaptability, and the value of genuinely connecting with people who see things differently than you do.</p>
+          <p>Outside of work, I prioritise time with my family, especially on weekends. I serve at my local church, which brings me a lot of joy, and I train at the gym regularly or get out for a run when I need to switch off completely. I also find myself deeply immersed in a LEGO build sometimes, analysing brick by brick, or down a documentary rabbit hole with a very good coffee in hand.</p>
+          <ul class="pills"><li>Family</li><li>Church</li><li>Fitness</li><li>LEGO</li><li>Documentaries</li><li>Coffee</li></ul>
         </div>
       </div>
     </section>
 
-    <!-- ============ PHILOSOPHY (horizontal scroll) ============ -->
-    <section class="hm-philosophy" id="philosophy" data-theme="dark">
-      <div class="hm-philosophy-pin">
-        <div class="hm-philosophy-track" id="philosophy-track">
-
-          <div class="hm-ph-panel hm-ph-panel--intro">
-            <p class="eyebrow eyebrow--night">Design leadership philosophy</p>
-            <h2 class="hm-ph-heading">Great design leadership is never <em>just one thing.</em></h2>
-            <p class="hm-ph-intro">The best design leaders don't just make great products. They build the conditions and culture for great products to exist, alongside great people. That takes five capabilities, held in balance at once.</p>
-            <p class="hm-ph-verse">Equip this generation to empower the next.<br>And always, <em>1 Corinthians 16:14</em></p>
-            <span class="hm-ph-cue" aria-hidden="true">Keep scrolling →</span>
-          </div>
-
-          <div class="hm-ph-panel">
-            <span class="hm-ph-num">01</span>
-            <h3 class="hm-ph-title">Strategy</h3>
-            <p class="hm-ph-desc">Setting direction with intention. Building a shared design vision and roadmap in genuine collaboration with leadership, driving meaningful change rather than reacting to daily noise.</p>
-          </div>
-
-          <div class="hm-ph-panel">
-            <span class="hm-ph-num">02</span>
-            <h3 class="hm-ph-title">Experience</h3>
-            <p class="hm-ph-desc">Owning craft and quality. Pushing for human-centred thinking across the business and defining what "good" actually means for your organisation, then holding that bar.</p>
-          </div>
-
-          <div class="hm-ph-panel">
-            <span class="hm-ph-num">03</span>
-            <h3 class="hm-ph-title">Systems</h3>
-            <p class="hm-ph-desc">Designing beyond the screen. Building components, patterns, and design languages that scale, so consistency becomes the default, not the exception.</p>
-          </div>
-
-          <div class="hm-ph-panel">
-            <span class="hm-ph-num">04</span>
-            <h3 class="hm-ph-title">People</h3>
-            <p class="hm-ph-desc">Leading with care. Hiring with intention, fostering a culture where people do their best work, and always developing the next generation of design leaders.</p>
-          </div>
-
-          <div class="hm-ph-panel">
-            <span class="hm-ph-num">05</span>
-            <h3 class="hm-ph-title">AI-native thinking</h3>
-            <p class="hm-ph-desc">Designing for the AI era, not just with AI tools. Understanding how intelligence changes the interaction model, and ensuring humans stay meaningfully in control.</p>
-          </div>
-
+    <!-- ============ TOOLKIT ============ -->
+    <section class="dash-view" id="view-toolkit" aria-label="My Toolkit">
+      <div class="wall-head"><h1>My Toolkit</h1><p>14 core tools · 7 guides</p></div>
+      <div class="grid12">
+        <div class="tile tk-lead">
+          <p class="tile-label"><span>Thinking tools</span></p>
+          <h2 class="ab-title">The thinking tools I use at work.</h2>
+          <p>14 core tools for everyday decisions and 7 longer guides. Pick any one and it opens ready to use.</p>
         </div>
+        <div class="tile tk-core">
+          <p class="tile-label"><span>Core tools</span><span>Pick one to open it</span></p>
+          <ol class="tk-list"><li><a href="toolkit.html#tool-sot"><span>01</span><b>Second-Order Thinking</b><i>Consequences</i></a></li><li><a href="toolkit.html#tool-eisenhower"><span>02</span><b>Eisenhower Matrix</b><i>Prioritisation</i></a></li><li><a href="toolkit.html#tool-decisionmatrix"><span>03</span><b>Decision Matrix</b><i>Comparison</i></a></li><li><a href="toolkit.html#tool-circles"><span>04</span><b>Connection Circles</b><i>Systems</i></a></li><li><a href="toolkit.html#tool-conflict"><span>05</span><b>Conflict Resolution</b><i>Win-win</i></a></li><li><a href="toolkit.html#tool-ladder"><span>06</span><b>Ladder of Inference</b><i>Reasoning</i></a></li><li><a href="toolkit.html#tool-ooda"><span>07</span><b>OODA Loop</b><i>Speed</i></a></li><li><a href="toolkit.html#tool-firstprinciples"><span>08</span><b>First Principles</b><i>Decomposition</i></a></li><li><a href="toolkit.html#tool-inversion"><span>09</span><b>Inversion</b><i>Risk</i></a></li><li><a href="toolkit.html#tool-feedbackloop"><span>10</span><b>Feedback Loop Design</b><i>Learning</i></a></li><li><a href="toolkit.html#tool-perspective"><span>11</span><b>Perspective Taking</b><i>Empathy</i></a></li><li><a href="toolkit.html#tool-forcefield"><span>12</span><b>Force Field Analysis</b><i>Change</i></a></li><li><a href="toolkit.html#tool-blueocean"><span>13</span><b>Blue Ocean Strategy</b><i>Strategy</i></a></li><li><a href="toolkit.html#tool-okr"><span>14</span><b>OKRs &amp; Goal Stacking</b><i>Goals</i></a></li></ol>
+        </div>
+        <a class="tile tk-guide" href="toolkit.html#guide-premortem"><p class="tile-label"><span>Failure Prevention</span><span>30-45 min</span></p><h3>The Pre-Mortem Method</h3><p>Imagine your project has already failed. Now figure out why, before it happens.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-polarity"><p class="tile-label"><span>Paradox Management</span><span>45-60 min</span></p><h3>Polarity Mapping</h3><p>Some problems cannot be solved, only managed. Learn the difference and stop fighting yourself.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-systems"><p class="tile-label"><span>Leverage &amp; Change</span><span>1-2 hrs</span></p><h3>Systems Thinking Mastery</h3><p>Find the small interventions that produce large, lasting results.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-creative"><p class="tile-label"><span>Idea Generation</span><span>20-90 min</span></p><h3>Creative Problem-Solving Toolkit</h3><p>Six techniques that professional creatives use when the obvious answers are not working.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-biases"><p class="tile-label"><span>Thinking Errors</span><span>Reference</span></p><h3>Cognitive Biases Field Guide</h3><p>The 20 biases that most distort decisions in professional life, with practical counters.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-aicollab"><p class="tile-label"><span>Working with AI</span><span>Reference</span></p><h3>AI Collaboration Toolkit</h3><p>Prompting frameworks and workflow patterns that make AI 10x more useful.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
+        <a class="tile tk-guide" href="toolkit.html#guide-journal"><p class="tile-label"><span>Calibration Practice</span><span>Ongoing</span></p><h3>The Decision Journal</h3><p>Track your predictions over time. The only way to get genuinely better at deciding.</p><span class="tile-arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
-
-    <!-- ============ ABOUT TEASER ============ -->
-    <section class="hm-about" id="about">
-      <div class="container hm-about-inner">
-        <div class="hm-about-media" data-reveal>
-          <img src="https://cdn.myportfolio.com/179a14b9849925e892fce24f702e624f/04494147-bcda-4a21-a028-031ac5927873_rw_1200.png?h=24903d6dbe158c19dfdab300fabfacf1" alt="James Foo" loading="lazy">
-        </div>
-        <div class="hm-about-copy">
-          <p class="eyebrow" data-reveal>About</p>
-          <h2 class="hm-section-title" data-reveal data-reveal-delay="60">Reduce cognitive load. Design for trust. Make the hard thing feel <em>obvious.</em></h2>
-          <p class="hm-about-body" data-reveal data-reveal-delay="120">Over 14 years I've led product design across B2B enterprise SaaS, internal platforms, and AI-native workflows, at organisations including Macquarie Group and Siemens, working in continuous discovery cycles and measuring impact through data, not assumptions.</p>
-          <p class="hm-about-body" data-reveal data-reveal-delay="150">I also shipped Sous Pantry to the App Store entirely solo: a full-stack AI app built with Claude Code. No co-founder. No agency. Just a designer who codes.</p>
-          <div class="hm-about-stats" data-reveal data-reveal-delay="180">
-            <div class="hm-stat"><span class="hm-stat-value" data-count="14" data-suffix="+">14+</span><span class="hm-stat-label">Years in product design</span></div>
-            <div class="hm-stat"><span class="hm-stat-value" data-count="7" data-suffix=" yrs">7 yrs</span><span class="hm-stat-label">Leading and mentoring designers</span></div>
-            <div class="hm-stat"><span class="hm-stat-value">d.MBA</span><span class="hm-stat-label">Design + business strategy</span></div>
-          </div>
-          <a href="about.html" class="btn" data-reveal data-reveal-delay="240" data-magnetic><span>More about me</span><span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ MEGA CTA / FOOTER ============ -->
-    <section class="hm-outro" data-theme="dark" id="contact">
-      <div class="container hm-outro-inner">
-        <p class="eyebrow eyebrow--night" data-reveal>Next step</p>
-        <h2 class="hm-outro-title">
-          <span class="hm-line"><span class="hm-line-inner" data-outro-line>Let's build</span></span>
-          <span class="hm-line"><span class="hm-line-inner" data-outro-line><em>great things</em></span></span>
-          <span class="hm-line"><span class="hm-line-inner" data-outro-line>together.</span></span>
-        </h2>
-        <div class="hm-outro-cta" data-reveal>
-          <a href="https://calendly.com/jfoo-jamesian/30min" class="btn btn--light-solid" target="_blank" rel="noopener" data-magnetic><span>Work with me</span></a>
-          <a href="https://www.linkedin.com/in/james-foo/" class="btn btn--light" target="_blank" rel="noopener" data-magnetic><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-
-      <div class="hm-outro-marquee" aria-hidden="true">
-        <div class="hm-marquee-track hm-marquee-track--outro" id="outro-marquee">
-          <span class="hm-marquee-seg"><img src="images/logo-mark.svg" alt="James Foo"><img src="images/logo-mark.svg" alt="James Foo"><img src="images/logo-mark.svg" alt="James Foo"></span><span class="hm-marquee-seg"><img src="images/logo-mark.svg" alt="James Foo"><img src="images/logo-mark.svg" alt="James Foo"><img src="images/logo-mark.svg" alt="James Foo"></span>
-        </div>
-      </div>
-
-      <footer class="footer footer--home">
-        <div class="container footer-inner">
-          <div class="footer-left">
-            <span class="footer-name"><span class="footer-logo"><img src="images/logo-mark.svg" alt="James Foo"></span></span>
-            <span class="footer-role">Let all that you do be done in love. <em>1 Corinthians 16:14</em></span>
-          </div>
-          <div class="footer-right">
-            <div class="footer-rlinks">
-              <a href="contact.html" class="footer-link">Get in touch</a>
-              <span class="footer-dot">&middot;</span>
-              <a href="https://www.linkedin.com/in/james-foo/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
-              <span class="footer-dot">&middot;</span>
-              <span class="footer-meta">Melbourne · <span id="footer-clock">—</span> AEST</span>
-              <span class="footer-dot">&middot;</span>
-              <span class="footer-meta footer-copyright">© 2026</span>
-            </div>
-            <a href="#top" class="back-to-top">Back to top ↑</a>
-          </div>
-        </div>
-      </footer>
-    </section>
-
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
-  <script src="script.js?v=jg09"></script>
-  <script src="home.js?v=jg10"></script>
+  <!-- Booking pop-up: the Calendly page in a frame, loaded only when opened -->
+  <div class="cal" id="cal" hidden role="dialog" aria-modal="true" aria-label="Book a time">
+    <div class="cal-panel">
+      <div class="cal-bar"><span>Book a time</span><span class="cal-acts"><a id="cal-new" href="#" target="_blank" rel="noopener">Open in a new tab ↗</a><button type="button" id="cal-close" aria-label="Close">✕</button></span></div>
+      <div class="cal-body"><p class="cal-wait">Loading the calendar…</p><iframe id="cal-frame" title="Book a time with James" loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+  <!-- Toolkit pop-ups mount here -->
+  <div id="tk-root"></div>
+
+  <!-- Dock -->
+  <nav class="dock" aria-label="Main">
+    <button type="button" class="dock-home" data-view-btn="dashboard" aria-pressed="true" aria-label="Home" title="Home"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 7.2 8 2l6 5.2V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/><path d="M6.3 14V9.5h3.4V14"/></svg></button>
+    <button type="button" data-view-btn="work" aria-pressed="false">Work</button>
+    <button type="button" data-view-btn="about" aria-pressed="false">About</button>
+    <button type="button" data-view-btn="toolkit" aria-pressed="false">My Toolkit</button>
+  </nav>
+
+  <script>
+(function () {
+  'use strict';
+  var root = document.documentElement, body = document.body;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // theme: remembered per browser, never required for the page to work
+  try { if (localStorage.getItem('dash-theme') === 'dark') root.setAttribute('data-theme', 'dark'); } catch (e) {}
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
+    this.setAttribute('aria-pressed', String(!dark));
+    try { localStorage.setItem('dash-theme', dark ? 'light' : 'dark'); } catch (e) {}
+  });
+
+  // views: Dashboard and Work are two screens of one page
+  var VIEWS = ['dashboard', 'work', 'about', 'toolkit'];
+  function fromHash() { return location.hash.slice(1); }
+  function show(view, push) {
+    if (VIEWS.indexOf(view) < 0) view = 'dashboard';
+    body.setAttribute('data-view', view);
+    [].forEach.call(document.querySelectorAll('[data-view-btn]'), function (b) {
+      if (b.closest('.dock')) b.setAttribute('aria-pressed', String(b.getAttribute('data-view-btn') === view));
+    });
+    if (push) history.pushState(null, '', view === 'dashboard' ? location.pathname : '#' + view);
+    window.scrollTo(0, 0);
+  }
+  [].forEach.call(document.querySelectorAll('[data-view-btn]'), function (b) {
+    b.addEventListener('click', function () { show(b.getAttribute('data-view-btn'), true); });
+  });
+  window.addEventListener('popstate', function () { show(fromHash()); });
+  show(fromHash());
+
+  // pointer glow inside each tile
+  [].forEach.call(document.querySelectorAll('.tile'), function (t) {
+    t.addEventListener('pointermove', function (e) {
+      var r = t.getBoundingClientRect();
+      t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // "I am a ..." typed line
+  var roles = ['Product Designer', 'Communicator', 'Creative', 'Developer', 'Strategist'];
+  var typed = document.getElementById('typed');
+  if (!reduce) (function type(i, n, del) {
+    var w = roles[i];
+    typed.textContent = w.slice(0, n);
+    if (!del && n === w.length) return setTimeout(function () { type(i, n, true); }, 1700);
+    if (del && n === 0) return setTimeout(function () { type((i + 1) % roles.length, 0, false); }, 350);
+    setTimeout(function () { type(i, n + (del ? -1 : 1), del); }, del ? 35 : 75);
+  })(0, roles[0].length, false);
+
+  // Melbourne date and time in the intro tile
+  var zone = 'Australia/Melbourne';
+  var idate = document.getElementById('intro-date'), itime = document.getElementById('intro-time');
+  var dateF = new Intl.DateTimeFormat('en-AU', { timeZone: zone, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  var timeF = new Intl.DateTimeFormat('en-AU', { timeZone: zone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  function tick() { var now = new Date(); idate.textContent = dateF.format(now); itime.textContent = timeF.format(now); }
+  tick(); setInterval(tick, 1000);
+
+  // Merge numbers: slide the board, equal tiles merge, reach 2048
+  (function () {
+    var tile = document.getElementById('game'), board = document.getElementById('g-board');
+    if (!tile || !board) return;
+    var scoreEl = document.getElementById('g-score'), bestEl = document.getElementById('g-best'), msg = document.getElementById('g-msg');
+    var cells = [], g, score, best = 0, over;
+    for (var i = 0; i < 16; i++) { var c = document.createElement('div'); c.className = 'g-cell'; board.appendChild(c); cells.push(c); }
+    try { best = +localStorage.getItem('dash-game-best') || 0; } catch (e) {}
+
+    function spawn() {
+      var free = []; g.forEach(function (v, i) { if (!v) free.push(i); });
+      if (!free.length) return -1;
+      var at = free[Math.floor(Math.random() * free.length)];
+      g[at] = Math.random() < 0.9 ? 2 : 4; return at;
+    }
+    // slide one row of four toward index 0, merging equal neighbours once
+    function slide(row) {
+      var v = row.filter(Boolean), out = [], gained = 0;
+      for (var i = 0; i < v.length; i++) {
+        if (v[i] === v[i + 1]) { out.push(v[i] * 2); gained += v[i] * 2; i++; } else out.push(v[i]);
+      }
+      while (out.length < 4) out.push(0);
+      return { row: out, gained: gained };
+    }
+    // the four board indexes of line n, read in the direction of travel
+    function line(dir, n) {
+      var idx = [];
+      for (var k = 0; k < 4; k++) idx.push(dir === 'left' ? n * 4 + k : dir === 'right' ? n * 4 + 3 - k : dir === 'up' ? k * 4 + n : (3 - k) * 4 + n);
+      return idx;
+    }
+    function stuck() {
+      for (var i = 0; i < 16; i++) {
+        if (!g[i]) return false;
+        if (i % 4 < 3 && g[i] === g[i + 1]) return false;
+        if (i < 12 && g[i] === g[i + 4]) return false;
+      }
+      return true;
+    }
+    function draw(pop) {
+      cells.forEach(function (c, i) {
+        var v = g[i];
+        c.textContent = v || '';
+        if (v) c.setAttribute('data-v', v); else c.removeAttribute('data-v');
+        c.className = 'g-cell' + (v >= 2048 ? ' g-top' : '') + (pop && pop.indexOf(i) >= 0 ? ' g-pop' : '');
+      });
+      scoreEl.textContent = score; bestEl.textContent = best;
+    }
+    function move(dir) {
+      if (over) return;
+      var moved = false, pop = [];
+      for (var n = 0; n < 4; n++) {
+        var idx = line(dir, n), before = idx.map(function (i) { return g[i]; }), res = slide(before);
+        res.row.forEach(function (v, k) { if (v !== before[k]) { moved = true; if (v > before[k] && before[k]) pop.push(idx[k]); } g[idx[k]] = v; });
+        score += res.gained;
+      }
+      if (!moved) return;
+      pop.push(spawn());
+      if (score > best) { best = score; try { localStorage.setItem('dash-game-best', best); } catch (e) {} }
+      if (g.indexOf(2048) >= 0) msg.textContent = '2048!';
+      else if (stuck()) { over = true; msg.textContent = 'Game over'; }
+      draw(pop);
+    }
+    function reset() { g = []; for (var i = 0; i < 16; i++) g.push(0); score = 0; over = false; msg.textContent = ''; draw([spawn(), spawn()]); }
+
+    var KEYS = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down' };
+    tile.addEventListener('keydown', function (e) { if (KEYS[e.key]) { e.preventDefault(); go(KEYS[e.key]); } });
+    tile.addEventListener('pointerenter', function () { tile.focus({ preventScroll: true }); });
+    // Swipe (finger or mouse drag) moves that way. A plain click or tap moves toward the side pressed.
+    var sx = null, sy, hint = document.getElementById('g-hint');
+    function go(dir) { hint.classList.add('is-off'); move(dir); }
+    function toward(dx, dy) { return Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'); }
+    board.addEventListener('pointerdown', function (e) {
+      sx = e.clientX; sy = e.clientY;
+      if (board.setPointerCapture) try { board.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    board.addEventListener('pointerup', function (e) {
+      if (sx == null) return;
+      var dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) >= 18) return go(toward(dx, dy));
+      var r = board.getBoundingClientRect();
+      go(toward(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)));
+    });
+    board.addEventListener('pointercancel', function () { sx = null; });
+    document.getElementById('g-new').addEventListener('click', reset);
+    reset();
+    tile.__game = { slide: slide, move: move, state: function () { return g.slice(); }, set: function (a) { g = a.slice(); draw(); } };
+  })();
+
+  // Globe: a dotted sphere, with the cities where Work Planner is used
+  (function () {
+    var cv = document.getElementById('globe'), cityEl = document.getElementById('globe-city');
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), R = 150, C = 160, rad = Math.PI / 180;
+    var cities = [['Melbourne', -37.8, 145], ['Sydney', -33.9, 151.2], ['Adelaide', -34.9, 138.6], ['Hobart', -42.9, 147.3],
+      ['New York', 40.7, -74], ['Toronto', 43.7, -79.4], ['Chicago', 41.9, -87.6], ['Vancouver', 49.3, -123.1], ['Bristol', 51.45, -2.6],
+      ['Singapore', 1.35, 103.8], ['Malaysia', 3.14, 101.7], ['Hong Kong', 22.3, 114.2], ['Gurugram', 28.46, 77.03],
+      ['San Francisco', 37.77, -122.42], ['Houston', 29.76, -95.37], ['Philadelphia', 39.95, -75.17], ['London', 51.5, -0.13]];
+    // Real coastlines: Natural Earth 110m land, sampled to 2-degree cells.
+    // 90 rows from 90N to 90S, 180 columns from 180W to 180E, four cells per hex digit.
+    var LAND = '0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007fe01ff8000000000000000000000000000000000001fffffffffe00000000000006000000000000000000015ff5ffffff8000f8000000007c000000000000000020033e1ffffff000040000010000700000000000000000f9afc00fffff00000000030003ffc001c00000000001fd9f7e003fffe000000000c043fffffc080000001c0009fe77fe01fffe000007800c1fffffffffffc007fffffffffffffffffffffffcfc7638900000000000003fffffffffffffffffffffff8003c002000000000000097fffffffffffffffffffffffdfdffffffffffffffffe00fffffffff00380f8000003efffffffffffffffffffe01ffffffffe01e007800000fe7ffffffffffffffff7f0007c0fffffe01f6000000007e3ffffffffffffffd6300003801fffffc1fe000000182cfffffffffffffff00e00008000ffffff9ff8000003c20ffffffffffffffc00e000000007fffffbffc000006efffffffffffffffffc0c000000003ffffffffc000000dfffffffffffffffffc00000000000fffffffae000000ffffffffffffffffff400000000000fffffffc1000000ffffffffffffffffff000000000000fffffffe00000007fff97dffffffffffe400000000000ffffffe00000007f9bf03cffffffffff8c00000000000ffffffc00000007e2cf7fefffffffffe0800000000000ffffff800000007c00dffe7fffffff8c08000000000007fffff0000000038e84fff7fffffffe618000000000007fffff000000001ff000ffffffffffc4f0000000000001ffffc000000007ff801ffffffffffe100000000000000ffffc000000007ffeffffffffffffe000000000000000ffe8c000000007ffffffdffffffffe0000000000000003fc0400000001fffffefeffffffffc0000000000000003fc0000000003ffffffff4dffffffc0000000000000000780600000003ffffff7ff0ffffff00000000000000000784380000003ffffffbff07fcff4000000000000000007ec070000003ffffffbfe03f87e4000000000000000001fc000000003ffffff9f801e07f02000000000000000001f000000007fffffffe001c01f020000000000000000007000000003fffffff8001c01f810000000000000000001070000003fffffff7000c013010000000000000000000fff000001fffffffe000a0100180000000000000000001ff800000fffffffe00020080080000000000000000001fff00000787ffffc000002c1800000000000000000001fff80000001ffffc00000343800000000000000000003fff80000001ffff0000001cf800000000000000000007ffff0000003fffe0000000c7a08000000000000000003ffffe000001fffc00000006720fc00000000000000007fffff000000fffc000000060203e40000000000000003fffff800000fffc000000016001f00000000000000001fffff800000fffc000000000080980000000000000001fffff0000007ffc000000000008000000000000000000ffffe000000fffc00000000001e400000000000000000ffffe000000fffc6000000000fc6000000000000000007fffe000001fff8e000000001ffe000000000000000001fffc000000fff0e000000003fff000000000000000001fffc0000007ff0c00000000ffff800000000000000001fff80000007ff0c00000001ffff800000000000000001ffc00000007fe0800000001ffffc00000000000000003ffc00000003fe0000000001ffffe00000000000000003ffc00000003fc0000000001ffffe00000000000000003ff800000001f80000000000ffffe00000000000000003ff000000001f00000000001f07fc00000000000000003fc000000001000000000000801fc00000000000000007fc000000000000000000000000f800000000000000007f00000000000000000000000000000600000000000007c00000000000000000000000001000800000000000007c0000000000000000000000000100180000000000000780000000000000000000000000000700000000000000f80000000000000000000000000000000000000000000f80000000000000000000000000000000000000000000f000000000000000000000000000000000000000000007000000000000000000000000000000000000000000003800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000c00000000000001f0007dfffffe000000000000000000e000000000003bfff87fffffffff80000000000000007e00000015ffffffff3fffffffffffe00000000001c703f000001ffffffffffffffffffffffe000001fffffffffc000007ffffffffffffffffffffff80001dfffffffff800001ffffffffffffffffffffffff00004ffffffffff00070fffffffffffffffffffffffff800007ffffffffff51e0ffffffffffffffffffffffffe000007fffffffffffffffffffffffffffffffffffffffe00033c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000';
+    function isLand(lat, lon) {
+      var r = Math.min(89, Math.floor((90 - lat) / 2)), c = Math.min(179, Math.floor((lon + 180) / 2)), i = r * 180 + c;
+      return (parseInt(LAND.charAt(i >> 2), 16) >> (3 - (i & 3))) & 1;
+    }
+    var dots = [], N = 5200;
+    for (var i = 0; i < N; i++) { // evenly spread points, kept only where there is land
+      var y = 1 - (i / (N - 1)) * 2, t = i * 2.399963;
+      var lat = Math.asin(y) / rad, lon = ((t / rad) % 360 + 540) % 360 - 180;
+      if (isLand(lat, lon)) dots.push([lat * rad, lon * rad]);
+    }
+    var rot = -2.9, shown = ''; // starts with Australia coming into view
+    function draw() {
+      var ink = getComputedStyle(cv).color;
+      ctx.clearRect(0, 0, 320, 320);
+      ctx.fillStyle = ink;
+      var s = Math.sin(rot), c = Math.cos(rot);
+      dots.forEach(function (d) {
+        var lo = d[1] + rot, cl = Math.cos(d[0]), z = cl * Math.cos(lo);
+        if (z <= 0) return;
+        ctx.globalAlpha = 0.3 + z * 0.6;
+        ctx.fillRect(C + cl * Math.sin(lo) * R - 1.3, C - Math.sin(d[0]) * R - 1.3, 2.6, 2.6);
+      });
+      var best = null, bz = 0, bx = 0, by = 0;
+      cities.forEach(function (ct) {
+        var la = ct[1] * rad, lo = ct[2] * rad + rot;
+        var x = Math.cos(la) * Math.sin(lo), z = Math.cos(la) * Math.cos(lo), y = Math.sin(la);
+        if (z <= 0) return;
+        if (z > bz) { bz = z; best = ct[0]; bx = C + x * R; by = C - y * R; }
+        ctx.globalAlpha = 0.5 + z * 0.5;
+        ctx.fillStyle = '#E8930C';
+        ctx.beginPath(); ctx.arc(C + x * R, C - y * R, 5, 0, 6.3); ctx.fill();
+      });
+      if (best) { // ring around the city named under the globe
+        ctx.globalAlpha = 1; ctx.strokeStyle = '#E8930C'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(bx, by, 11 + 3 * Math.sin(rot * 60), 0, 6.3); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      if (best && best !== shown) { shown = best; cityEl.textContent = best; }
+    }
+    draw();
+    if (!reduce) (function loop() { rot += 0.0022; draw(); requestAnimationFrame(loop); })();
+  })();
+
+  // Strengths radar. Values are 0 to 1 and are James's to set.
+  (function () {
+    var el = document.getElementById('radar'); if (!el) return;
+    var axes = [['Creative', 0.95], ['Technical', 0.9], ['Build', 0.7], ['Design Thinking', 0.95], ['Research', 0.7], ['Innovative', 0.9]];
+    var cx = 110, cy = 104, R = 66, cols = ['#E85AAD', '#E8930C', '#3FB68B', '#2FB8C6', '#5B8DEF', '#9D7BEF'];
+    function pt(i, k) { var a = (-90 + i * 360 / axes.length) * Math.PI / 180; return [cx + Math.cos(a) * R * k, cy + Math.sin(a) * R * k]; }
+    function poly(k) { return axes.map(function (_, i) { return pt(i, typeof k === 'number' ? k : axes[i][1]).map(function (v) { return v.toFixed(1); }).join(','); }).join(' '); }
+    var s = '<defs><linearGradient id="rd-line" x1="0" y1="0" x2="1" y2="1">' +
+      cols.map(function (c, i) { return '<stop offset="' + (i / (cols.length - 1)) + '" stop-color="' + c + '"/>'; }).join('') +
+      '</linearGradient><linearGradient id="rd-fill" x1="0" y1="0" x2="1" y2="1">' +
+      cols.map(function (c, i) { return '<stop offset="' + (i / (cols.length - 1)) + '" stop-color="' + c + '" stop-opacity=".22"/>'; }).join('') +
+      '</linearGradient></defs>';
+    [0.33, 0.66, 1].forEach(function (k) { s += '<polygon class="ring" points="' + poly(k) + '"/>'; });
+    axes.forEach(function (_, i) { var e = pt(i, 1); s += '<line class="spoke" x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '"/>'; });
+    s += '<polygon class="shape" points="' + poly() + '"/>';
+    axes.forEach(function (ax, i) {
+      var d = pt(i, ax[1]), l = pt(i, 1.3), anchor = 'middle';
+      s += '<g class="pt"><circle class="dot" cx="' + d[0].toFixed(1) + '" cy="' + d[1].toFixed(1) + '" r="3" stroke="' + cols[i] + '"/>' +
+        '<text x="' + l[0].toFixed(1) + '" y="' + (l[1] + 3).toFixed(1) + '" text-anchor="' + anchor + '">' + ax[0] + '</text></g>';
+    });
+    el.innerHTML = s;
+  })();
+
+  // Booking pop-up: any Calendly link opens over the page. Ctrl/Cmd-click still opens a new tab.
+  (function () {
+    var box = document.getElementById('cal'), frame = document.getElementById('cal-frame'), last = null;
+    function close() {
+      box.hidden = true; frame.removeAttribute('src'); body.classList.remove('cal-open');
+      if (last) last.focus();
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="https://calendly.com/"]');
+      if (!a || a.id === 'cal-new' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      var url = a.getAttribute('href');
+      last = a;
+      document.getElementById('cal-new').href = url;
+      frame.src = url + (url.indexOf('?') < 0 ? '?' : '&') + 'embed_type=PopupWidget&hide_gdpr_banner=1&embed_domain=' + encodeURIComponent(location.hostname || 'jamesfoodesign.com');
+      box.hidden = false; body.classList.add('cal-open');
+      document.getElementById('cal-close').focus();
+    });
+    document.getElementById('cal-close').addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
+  })();
+
+  // Toolkit pop-ups: the toolkit app is loaded on the first click, then drawn over this page
+  (function () {
+    var host = document.getElementById('tk-root'), root = null, loading = null;
+    var SRC = ['https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js', 'toolkit-app.js?v=jg10'];
+    function load() {
+      if (loading) return loading;
+      window.TK_THEME = 'bento';
+      loading = SRC.reduce(function (p, src) {
+        return p.then(function () {
+          return new Promise(function (ok, fail) {
+            var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s);
+          });
+        });
+      }, Promise.resolve());
+      return loading;
+    }
+    function close() { if (root) root.render(null); body.classList.remove('tk-open'); }
+    function open(type, id) {
+      return load().then(function () {
+        if (!root) root = ReactDOM.createRoot(host);
+        body.classList.add('tk-open');
+        root.render(React.createElement(window.thinkingToolkit.default, { key: type + id + Date.now(), embed: true, open: { type: type, id: id }, onClose: close }));
+      });
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="toolkit.html#"]');
+      var m = a && /#(tool|guide)-([a-z]+)$/.exec(a.getAttribute('href'));
+      if (!m) return;
+      e.preventDefault();
+      // if the app cannot load (offline, blocked CDN), fall back to the full toolkit page
+      open(m[1], m[2]).catch(function () { location.href = a.getAttribute('href'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !body.classList.contains('tk-open')) return;
+      var btns = host.querySelectorAll('.tk-modal > div > div:first-child button');
+      if (btns.length) btns[btns.length - 1].click();
+    });
+    window.__tkOpen = open;
+  })();
+
+  // Leadership philosophy carousel: arrows, dots, swipe, arrow keys, and a slow auto-advance
+  (function () {
+    var tile = document.getElementById('phil'); if (!tile) return;
+    var slides = [].slice.call(tile.querySelectorAll('.ph-slide')), dotsEl = document.getElementById('ph-dots');
+    var count = document.getElementById('ph-count'), cur = 0, timer = null, n = slides.length;
+    var dots = slides.map(function () { var d = document.createElement('i'); dotsEl.appendChild(d); return d; });
+    function go(to) {
+      cur = (to + n) % n;
+      slides.forEach(function (s, i) {
+        s.classList.toggle('is-on', i === cur); s.classList.toggle('is-past', i < cur);
+        if (i === cur) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('is-on', i === cur); });
+      count.textContent = (cur + 1) + ' / ' + n;
+    }
+    function stop() { clearInterval(timer); timer = null; }
+    function play() { if (!reduce && !timer) timer = setInterval(function () { go(cur + 1); }, 6500); }
+    document.getElementById('ph-prev').addEventListener('click', function () { go(cur - 1); });
+    document.getElementById('ph-next').addEventListener('click', function () { go(cur + 1); });
+    tile.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); }
+    });
+    var sx = null;
+    tile.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    tile.addEventListener('pointerup', function (e) {
+      if (sx == null) return; var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
+    });
+    ['pointerenter', 'focusin'].forEach(function (ev) { tile.addEventListener(ev, stop); });
+    ['pointerleave', 'focusout'].forEach(function (ev) { tile.addEventListener(ev, play); });
+    go(0); play();
+    tile.__go = go;
+  })();
+
+  // Focus: a highlight walks down the list
+  var chips = [].slice.call(document.querySelectorAll('#focus li')), ci = -1;
+  if (chips.length && !reduce) setInterval(function () {
+    if (ci >= 0) chips[ci].classList.remove('is-on');
+    ci = (ci + 1) % chips.length; chips[ci].classList.add('is-on');
+  }, 1600);
+
+  // Sous Pantry screens
+  [].forEach.call(document.querySelectorAll('.sous-screens'), function (deck) {
+    var shots = [].slice.call(deck.querySelectorAll('img')), cur = 0;
+    if (shots.length > 1 && !reduce) setInterval(function () {
+      shots[cur].classList.remove('is-on'); cur = (cur + 1) % shots.length; shots[cur].classList.add('is-on');
+    }, 3000);
+  });
+})();
+</script>
 </body>
 </html>
