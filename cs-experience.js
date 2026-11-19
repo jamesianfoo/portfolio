@@ -130,6 +130,74 @@
     });
   });
 
+  /* ---------- Section menu (left rail) ---------- */
+  /* Built from the section labels already on the page, so every case
+     study gets it without markup changes. Desktop only: CSS hides it
+     where there is no gutter to sit in. */
+  (function sectionMenu() {
+    var labels = [].slice.call(document.querySelectorAll('.cs-section-label, .sp-eyebrow'))
+      .filter(function (el) { return !el.closest('.cs-related, footer') && el.textContent.trim(); });
+    if (labels.length < 3) return;
+
+    // Scroll so the label sits just under the nav. The target is worked out as a
+    // number, so it does not depend on how the smooth scroller reads CSS scroll
+    // margins. Pages with their own scroller (Sous Pantry) share it via window.__lenis;
+    // scrolling natively while one is running makes the two fight and land short.
+    // Images and reveals can change the page height mid-scroll, so check on arrival
+    // and correct once or twice if the label is not where it should be.
+    var OFFSET = 110;
+    function targetY(el) { return Math.max(0, el.getBoundingClientRect().top + window.scrollY - OFFSET); }
+    function scrollToLabel(el, tries) {
+      var L = lenis || window.__lenis, y = targetY(el);
+      tries = tries || 0;
+      function settle() {
+        if (tries < 3 && Math.abs(targetY(el) - window.scrollY) > 6) scrollToLabel(el, tries + 1);
+      }
+      if (L) L.scrollTo(y, { immediate: reduceMotion || tries > 0, force: true, onComplete: settle });
+      else { window.scrollTo({ top: y, behavior: reduceMotion || tries > 0 ? 'auto' : 'smooth' }); setTimeout(settle, 900); }
+    }
+
+    var nav = document.createElement('nav');
+    nav.className = 'cs-menu';
+    nav.setAttribute('aria-label', 'Sections');
+    var links = labels.map(function (el, i) {
+      if (!el.id) el.id = 'section-' + (i + 1);
+      var a = document.createElement('a');
+      a.href = '#' + el.id;
+      a.textContent = el.textContent.split('·')[0].trim();
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToLabel(el);
+        history.replaceState(null, '', '#' + el.id);
+      });
+      nav.appendChild(a);
+      return a;
+    });
+    document.body.appendChild(nav);
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * 0.4, active = -1;
+      for (var i = 0; i < labels.length; i++) {
+        if (labels[i].getBoundingClientRect().top <= line) active = i; else break;
+      }
+      var end = document.querySelector('.cs-related, footer');
+      var past = end && end.getBoundingClientRect().top < window.innerHeight * 0.6;
+      nav.classList.toggle('is-visible', active >= 0 && !past);
+      links.forEach(function (a, i) {
+        var on = i === active;
+        a.classList.toggle('is-active', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
   /* ---------- Honest measurements (hidden-tab guard) ---------- */
   var refreshPending = false;
   function safeRefresh() {

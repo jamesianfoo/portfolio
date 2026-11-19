@@ -832,3 +832,61 @@
     gap: 1.25rem;
   }
 }
+
+
+/* ============================================================
+   SECTION MENU: fixed left rail on case studies (desktop only).
+   cs-experience.js builds it from the section labels. White text
+   with a difference blend keeps it readable over light and dark
+   sections without knowing which one is behind it.
+   ============================================================ */
+.cs-menu {
+  position: fixed;
+  /* lines up with the page container's inner edge at any width */
+  left: max(var(--gutter), calc((100vw - var(--max-width)) / 2 + var(--gutter)));
+  top: 50%;
+  z-index: 40;
+  width: 190px;
+  max-height: 70vh;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  gap: 0.7rem;
+  transform: translateY(-50%);
+  mix-blend-mode: difference;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.cs-menu.is-visible { opacity: 1; pointer-events: auto; }
+
+.cs-menu a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #fff;
+  opacity: 0.38;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: opacity 0.3s ease, font-size 0.3s ease;
+}
+
+.cs-menu a:hover,
+.cs-menu a:focus-visible { opacity: 0.8; }
+
+.cs-menu a.is-active { opacity: 1; font-size: 0.95rem; }
+
+.cs-section-label,
+.sp-eyebrow { scroll-margin-top: 110px; }
+
+@media (min-width: 1360px) {
+  .cs-menu { display: flex; }
+  /* indent the reading column so the menu has its own lane */
+  .cs-content > .container,
+  .sp-section > .container { padding-left: calc(var(--gutter) + 230px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-menu, .cs-menu a { transition: none; }
+}

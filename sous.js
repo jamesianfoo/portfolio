@@ -17,6 +17,7 @@
   var lenis = null;
   if (!reduceMotion && typeof window.Lenis !== 'undefined') {
     lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1.0 });
+    window.__lenis = lenis; // shared with the section menu in cs-experience.js
     if (hasGsap && hasST) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(function (time) { lenis.raf(time * 1000); });

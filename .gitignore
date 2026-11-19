@@ -9,3 +9,6 @@ JamesFoo-Portfolio.pdf
 portfolio-pdf-print.html
 portfolio-pdf-source.html
 pdf-assets/
+
+# Local working rules. Names things covered by NDA, so it stays out of the public repo
+CLAUDE.md
