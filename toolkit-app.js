@@ -47,7 +47,7 @@
   const s = {
     // Typography
     mono: {
-      fontFamily: "'JetBrains Mono', 'Courier New', monospace"
+      fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace"
     },
     serif: {
       fontFamily: "'Raleway', system-ui, sans-serif",
@@ -1005,7 +1005,7 @@
         background: G.ink,
         color: G.white,
         fontSize: 11,
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace",
         padding: "3px 9px",
         borderRadius: 2
       }
@@ -1054,7 +1054,7 @@
         background: G.ink,
         color: G.white,
         fontSize: 11,
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace",
         padding: "3px 9px",
         borderRadius: 2
       }
@@ -1180,7 +1180,7 @@
         padding: "3px 6px",
         border: `1px solid ${G.bdr}`,
         borderRadius: 2,
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace",
         fontSize: 12,
         textAlign: "center",
         background: G.white
@@ -1202,7 +1202,7 @@
         padding: "3px 6px",
         border: `1px solid ${G.bdr}`,
         borderRadius: 2,
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace",
         fontSize: 12,
         textAlign: "center",
         background: G.white
@@ -1217,7 +1217,7 @@
       key: i,
       style: {
         padding: "7px 10px",
-        fontFamily: "'JetBrains Mono',monospace",
+        fontFamily: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace",
         fontWeight: 700,
         fontSize: 13,
         color: t === maxTotal ? G.live : G.ink

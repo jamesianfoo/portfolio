@@ -1,10 +1,9 @@
 /* ============================================================
-   JAMES FOO — DESIGN SYSTEM v2 "INK & PAPER"
+   JAMES FOO: DESIGN SYSTEM v2 "INK & PAPER"
    Global styles shared by every page.
-   JetBrains Mono — full-mono type system
+   SF Mono (system monospace): full-mono type system
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap');
 
 /* ---------- Reset ---------- */
 *, *::before, *::after {
@@ -33,10 +32,10 @@
   --night-text: #F4F1E8;
   --night-text-2: #A8A296;
 
-  /* Type — full mono system */
-  --font-display: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-  --font-main: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  /* Type: full mono system */
+  --font-display: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
+  --font-main: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
 
   /* Legacy tokens (case studies + inner pages consume these) */
   --color-bg: var(--paper);
@@ -61,7 +60,7 @@
 
 html {
   font-size: 16px;
-  /* NOTE: never add scroll-behavior:smooth here — it breaks ScrollTrigger
+  /* NOTE: never add scroll-behavior:smooth here: it breaks ScrollTrigger
      measurement (async scroll during refresh). Lenis owns smooth scrolling. */
 }
 
@@ -180,7 +179,7 @@ button { font-family: inherit; }
   gap: 8px;
 }
 
-/* Footer sits on a dark (--night) background on every page — invert
+/* Footer sits on a dark (--night) background on every page: invert
    the mark so it reads as light ink instead of swapping asset files. */
 .footer-logo {
   display: inline-flex;
@@ -285,7 +284,7 @@ button { font-family: inherit; }
 
 .nav-cta:hover { background: var(--signal); border-color: var(--signal); color: var(--ink); }
 
-/* secondary nav CTA — outline, sits beside the solid primary action */
+/* secondary nav CTA: outline, sits beside the solid primary action */
 .nav-cta--ghost {
   background: transparent;
   color: var(--ink);
@@ -450,7 +449,7 @@ button { font-family: inherit; }
 .btn--light-solid:hover { color: var(--ink); border-color: var(--signal); }
 
 /* ============================================================
-   CTA SECTION (inner pages — about / contact / case studies)
+   CTA SECTION (inner pages: about / contact / case studies)
    ============================================================ */
 .cta {
   position: relative;
@@ -834,7 +833,7 @@ body.cursor-on-dark .cursor-ring { border-color: rgba(244, 241, 232, 0.45); }
 }
 
 /* ============================================================
-   RESPONSIVE — shared chrome
+   RESPONSIVE: shared chrome
    ============================================================ */
 @media (max-width: 1360px) {
   .nav-title { display: none; }
