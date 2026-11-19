@@ -1,7 +1,7 @@
 /* ============================================================
    JAMES FOO: DESIGN SYSTEM v2 "INK & PAPER"
    Global styles shared by every page.
-   SF Mono (system monospace): full-mono type system
+   SF Pro (system sans) type system
    ============================================================ */
 
 
@@ -33,9 +33,9 @@
   --night-text-2: #A8A296;
 
   /* Type: full mono system */
-  --font-display: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
-  --font-main: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
-  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Roboto Mono', monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-main: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* Legacy tokens (case studies + inner pages consume these) */
   --color-bg: var(--paper);
