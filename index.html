@@ -144,11 +144,32 @@ html[data-theme="dark"] .intro-top img,html[data-theme="dark"] .t-clients img{fi
 .focus li:hover svg,.focus li.is-on svg{transform:rotate(-12deg) scale(1.15)}
 
 /* theme */
-.t-theme{cursor:pointer;font:inherit;color:inherit;text-align:left;gap:.6rem;padding:14px}
-.t-theme .tile-label{margin:0}
-.switch{flex:1;min-height:44px;border-radius:999px;border:1px solid var(--tile-line);background:var(--page);position:relative;container-type:size}
-.switch i{position:absolute;top:5px;bottom:5px;left:5px;aspect-ratio:1;border-radius:50%;background:#F2541B;transition:left .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
-html[data-theme="dark"] .switch i{left:calc(100% - 5px);transform:translateX(-100%)}
+.t-theme{cursor:pointer;font:inherit;color:inherit;text-align:left;padding:14px;min-height:110px;
+  --sky:#F3E6CC;--w1:#2F5D62;--w2:#D9A441;--w3:#F6EFDF;--wl:#B98A2E;--bird:#fff;--far:#EDE6D6;--tip:#1F3B4D;--edge:#B98A2E}
+html[data-theme="dark"] .t-theme{--sky:#101A33;--w1:#16233F;--w2:#22375F;--w3:#33507E;--wl:#C9D3E6;--bird:#C9D3E6;--far:#8FA0BF;--tip:#0B1226;--edge:transparent}
+.t-theme .tile-label{margin:0;position:relative;z-index:1;color:#5E4A2A;transition:color 1s ease}
+html[data-theme="dark"] .t-theme .tile-label{color:#C9D3E6}
+.ts-state::after{content:"Day"}html[data-theme="dark"] .ts-state::after{content:"Night"}
+.ts{position:absolute;inset:0;width:100%;height:100%}
+.ts *{transition:fill 1s ease,stroke 1s ease,opacity 1s ease,transform 1.1s cubic-bezier(.5,0,.2,1)}
+.ts-sky{fill:var(--sky)}
+.ts-stars{fill:#F4F1E8;opacity:0}html[data-theme="dark"] .ts-stars{opacity:.9}
+.ts-sun>circle{fill:#B5452C}.ts-flower{fill:#F6EFDF}.ts-flower>circle{fill:#D9A441}
+.ts-moon{transform:translateY(110px)}.ts-moon circle{fill:#F1ECDD}.ts-moon .ts-halo{opacity:.14}
+html[data-theme="dark"] .ts-sun{transform:translateY(110px)}html[data-theme="dark"] .ts-moon{transform:none}
+.ts-fill{stroke:var(--wl);stroke-width:1}.ts-line{fill:none;stroke:var(--wl);stroke-width:.8;opacity:.75}
+.ts-w1 .ts-fill{fill:var(--w1)}.ts-w2 .ts-fill{fill:var(--w2)}.ts-w3 .ts-fill{fill:var(--w3)}
+.ts-w1 .ts-line{stroke:#D9A441}html[data-theme="dark"] .ts-w1 .ts-line{stroke:var(--wl)}
+.ts-w{transition:none;animation:ts-drift 7s linear infinite paused}.ts-w2{animation-duration:5s;animation-direction:reverse}.ts-w3{animation-duration:9s}
+@keyframes ts-drift{to{transform:translateX(40px)}}
+.ts-body{fill:var(--bird);stroke:var(--edge);stroke-width:.6}.ts-far{fill:var(--far)}.ts-tip{fill:var(--tip)}
+.ts-neck{fill:none;stroke:var(--bird);stroke-width:3;stroke-linecap:round}.ts-beak{stroke:#B98A2E;stroke-width:1.4;stroke-linecap:round}
+.ts-crown{fill:#B5452C}.ts-leg{stroke:var(--tip);stroke-width:1}
+html[data-theme="dark"] .ts-cranes{transform:translate(-16px,8px)}
+.t-theme:hover .ts-w,.t-theme:focus-visible .ts-w{animation-play-state:running}
+.t-theme:hover .ts-cranes,.t-theme:focus-visible .ts-cranes{transform:translateY(-5px)}
+html[data-theme="dark"] .t-theme:hover .ts-cranes,html[data-theme="dark"] .t-theme:focus-visible .ts-cranes{transform:translate(-16px,3px)}
+@media (prefers-reduced-motion:reduce){.ts *,.ts-w{transition:none;animation:none}}
 
 /* leadership philosophy carousel */
 .t-phil{background:var(--tile-ink);border-color:var(--tile-ink);color:var(--tile);outline:none}
@@ -296,7 +317,7 @@ body.tk-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   .dash-view,.logos,.intro-dot,.intro-caret,.radar .shape,.focus li,.t-contact::after,.g-cell.g-pop,.tk-modal,.tk-modal>div{animation:none}
   .ph-slide{transition:none}
-  .tile,.sous-screens img,.switch i{transition:none}
+  .tile,.sous-screens img{transition:none}
 }
 </style>
 </head>
@@ -373,8 +394,8 @@ body.tk-open{overflow:hidden}
         </div>
 
         <button class="tile t-theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch between light and dark">
-          <span class="tile-label"><span>Mode switch</span></span>
-          <span class="switch" aria-hidden="true"><i></i></span>
+          <svg class="ts" viewBox="0 0 320 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect class="ts-sky" x="-80" y="-40" width="480" height="230"/><g class="ts-stars"><circle cx="24" cy="22" r="1.1"/><circle cx="58" cy="44" r="0.8"/><circle cx="150" cy="16" r="1"/><circle cx="188" cy="40" r="0.8"/><circle cx="214" cy="18" r="1.2"/><circle cx="262" cy="30" r="0.9"/><circle cx="296" cy="14" r="1"/><circle cx="236" cy="58" r="0.7"/><circle cx="86" cy="14" r="0.8"/><circle cx="304" cy="52" r="0.8"/></g><g class="ts-sun"><circle cx="104" cy="66" r="40"/><g class="ts-flower" transform="translate(88 50)"><ellipse cx="0" cy="-7" rx="4.2" ry="6.5" transform="rotate(0)"/><ellipse cx="0" cy="-7" rx="4.2" ry="6.5" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="4.2" ry="6.5" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="4.2" ry="6.5" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="4.2" ry="6.5" transform="rotate(288)"/><circle r="2.6"/></g></g><g class="ts-moon"><circle class="ts-halo" cx="104" cy="60" r="36"/><circle cx="104" cy="60" r="27"/></g><g class="ts-w ts-w1"><path class="ts-fill" d="M-80,92q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0q20,-18 40,0V150H-80Z"/><path class="ts-line" d="M-60,100q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0q20,-13 40,0"/><path class="ts-line" d="M-80,109q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0q20,-10 40,0"/></g><g class="ts-cranes"><g transform="translate(232 44) rotate(-8)"><path class="ts-far" d="M2,-3Q14,-20 30,-22Q22,-10 12,-1Z"/><path class="ts-body" d="M-4,-3Q2,-26 20,-34Q14,-18 10,-2Z"/><path class="ts-tip" d="M9,-24L20,-34L15,-15Z"/><ellipse class="ts-body" cx="0" cy="0" rx="14" ry="5"/><path class="ts-tip" d="M11,-1L25,3L12,4Z"/><path class="ts-neck" d="M-12,-1Q-24,-6 -34,-4"/><path class="ts-beak" d="M-34,-4L-42,-3"/><circle class="ts-crown" cx="-32.5" cy="-6" r="1.7"/><path class="ts-leg" d="M12,2L36,6"/></g><g transform="translate(278 78) scale(.62) rotate(4)"><path class="ts-far" d="M2,-3Q14,-20 30,-22Q22,-10 12,-1Z"/><path class="ts-body" d="M-4,-3Q2,-26 20,-34Q14,-18 10,-2Z"/><path class="ts-tip" d="M9,-24L20,-34L15,-15Z"/><ellipse class="ts-body" cx="0" cy="0" rx="14" ry="5"/><path class="ts-tip" d="M11,-1L25,3L12,4Z"/><path class="ts-neck" d="M-12,-1Q-24,-6 -34,-4"/><path class="ts-beak" d="M-34,-4L-42,-3"/><circle class="ts-crown" cx="-32.5" cy="-6" r="1.7"/><path class="ts-leg" d="M12,2L36,6"/></g></g><g class="ts-w ts-w2"><path class="ts-fill" d="M-60,106q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0q20,-16 40,0V150H-60Z"/><path class="ts-line" d="M-40,114q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0q20,-11 40,0"/><path class="ts-line" d="M-60,123q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0q20,-8 40,0"/></g><g class="ts-w ts-w3"><path class="ts-fill" d="M-80,120q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0q20,-14 40,0V150H-80Z"/><path class="ts-line" d="M-60,128q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0q20,-9 40,0"/><path class="ts-line" d="M-80,137q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0q20,-6 40,0"/></g></svg>
+          <span class="tile-label"><span>Mode switch</span><span class="ts-state" aria-hidden="true"></span></span>
         </button>
 
         <div class="tile t-phil" id="phil" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Design leadership philosophy">
