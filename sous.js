@@ -37,7 +37,7 @@
     openers.forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (supported) dialog.showModal();
-        else window.location.href = 'contact.html'; // ancient-browser fallback
+        else window.location.href = 'https://calendly.com/jfoo-jamesian/30min'; // ancient-browser fallback
       });
     });
 

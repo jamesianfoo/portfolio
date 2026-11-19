@@ -7,6 +7,9 @@
    ============================================================ */
 :root { --nav-h: 0px; } /* the top nav bar is gone, so nothing reserves space for it */
 body:not(.dash) { padding-bottom: 92px; }
+/* pages that end on the dark closing block: let it run to the bottom edge, behind the dock */
+body:has(.cta) { padding-bottom: 0; }
+body:has(.cta) .cta { padding-bottom: calc(clamp(5rem, 12vw, 9rem) + 64px); }
 
 .dockbar {
   position: fixed; left: 50%; bottom: 18px; z-index: 60;
@@ -82,6 +85,8 @@ body.cal-open .dockbar, body.tk-open .dockbar { opacity: 0; pointer-events: none
   .dock button, .dock a { padding: .55rem .7rem; }
   .dock-cta { padding: .55rem 1rem; }
   body:not(.dash) { padding-bottom: 128px; }
+  body:has(.cta) { padding-bottom: 0; }
+  body:has(.cta) .cta { padding-bottom: calc(clamp(5rem, 12vw, 9rem) + 100px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .cal, .cal-panel { animation: none; }
