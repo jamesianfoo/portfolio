@@ -36,14 +36,14 @@ body:has(.cta) .cta { padding-bottom: calc(clamp(5rem, 12vw, 9rem) + 64px); }
 .dock .dock-home { display: inline-flex; align-items: center; padding: .6rem .85rem; }
 .dock-home svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 
-.dock-cta {
+.dockbar .dock-cta {
   font: inherit; text-decoration: none; white-space: nowrap; cursor: pointer;
   padding: calc(.6rem + 5px) 1.15rem; border-radius: 999px;
   background: #B8FF2C; color: #16140F; border: 1px solid #B8FF2C;
   box-shadow: 0 18px 40px -18px rgba(0, 0, 0, .5);
   transition: transform .4s cubic-bezier(.2, .7, .2, 1), background .3s ease, border-color .3s ease;
 }
-.dock-cta:hover { transform: translateY(-2px); background: #fff; border-color: #16140F; }
+.dockbar .dock-cta:hover { color: #16140F; transform: translateY(-2px); background: #fff; border-color: #16140F; }
 
 /* ---------- booking pop-up ---------- */
 .cal {
